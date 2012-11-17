@@ -1,7 +1,15 @@
 // app.js
 
+if (!Function.prototype.bind) {
+  Function.prototype.bind = function(scope) {
+    return $.proxy(this, scope);
+  };
+}
+
 var App = {};
 
+/* Config
+ *************************/
 App.Config = (function() {
 
   var data = {};
@@ -51,3 +59,41 @@ App.Config = (function() {
   };
   return Config;
 })();
+
+/* Map
+ *************************/
+App.Map = (function() {
+
+  var element = $('#map-canvas');
+
+  return {
+    init: function() {      
+  
+      var options = {
+        zoom: 8,
+        center: new google.maps.LatLng(-34.397, 150.644),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+
+      this.map = new google.maps.Map(element[0], options);
+    },
+    load: function() {
+      
+      var attr = {
+        type: 'text/javascript',
+        src: 'http://maps.googleapis.com/maps/api/js?key=' + App.Config.get('mapApiKey') + '&sensor=false&callback=App.Map.init'
+      };
+
+      $('<script />', attr).appendTo('body');
+    }
+  };
+})();
+
+
+/* Init
+ *************************/
+App.init = function() {
+  App.Map.load();
+};
+
+$(App.init.bind(App));
