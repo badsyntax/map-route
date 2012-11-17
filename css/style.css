@@ -20,4 +20,14 @@ body {
   position: absolute;
   top: 50%;
   width: 100%;
+  margin-top: -1em;
+}
+
+#map-canvas .has-js,
+.js #map-canvas .no-js {
+  display: none;
+}
+
+.js #map-canvas .has-js {
+  display: block;
 }

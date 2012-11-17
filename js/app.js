@@ -62,7 +62,7 @@ App.Config = (function() {
 }());
 
 App.log = function() {
-  if (App.Config.get('debug') === true) {
+  if (App.Config.get('debug') === true && console && console.log) {
     console.log.apply(console, arguments);
   }
 };
