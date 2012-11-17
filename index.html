@@ -35,13 +35,9 @@
   <!-- Templates -->
 
   <script type="text/html" id="toolbar-template">
-  <div class="toolbar btn-toolbar">
-    <div class="btn-group">
-      <button class="btn add-pin">
-        Add pin
-      </button>
-      <button class="btn add-route">
-        Add route
+  <div class="toolbar btn-toolbar" data-toggle="buttons-radio">
+    <div class="btn-group" data-bind="foreach: buttons">
+      <button data-bind="attr: { 'class': 'btn ' + className() }, html: caption()">
       </button>
     </div>
   </div> 
@@ -52,9 +48,13 @@
   <script src="/lib/knockout/knockout-2.2.0.js"></script>
   <script src="/js/App.js"></script>
   <script src="/js/Config/App.Config.js"></script>
+  <script src="/js/Map/App.Map.js"></script>
+  <script src="/js/Toolbar/Actions/App.Toolbar.Actions.AddPin.js"></script>
+  <script src="/js/Toolbar/Actions/App.Toolbar.Actions.AddRoute.js"></script>
   <script src="/js/Controllers/App.Controllers.Map.js"></script>
   <script src="/js/Controllers/App.Controllers.Toolbar.js"></script>
   <script src="/js/UI/App.UI.Toolbar.js"></script>
+  <script src="/js/Models/App.Models.ToolbarButton.js"></script>
   <script src="/js/ViewModels/App.ViewModels.Toolbar.js"></script>
   <script>
   App.Config.set({

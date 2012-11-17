@@ -1,21 +1,16 @@
-/* UI
+/* Toolbar UI
  *************************/
-
-App.UI.Toolbar = function(container, viewModel) {
+App.UI.Toolbar = function(controller, container, viewModel) {
+  this.controller = controller;
   this.container = container;
   this.viewModel = viewModel;
   this.bindEvents();
 };
 
 App.UI.Toolbar.prototype.bindEvents = function() {
-  this.container.on('click', '.add-pin', this.onAddPinClick.bind(this));
-  this.container.on('click', '.add-route', this.onAddRouteClick.bind(this));
+  this.container.on('click', 'button', this.onButtonClick.bind(this));
 };
 
-App.UI.Toolbar.prototype.onAddPinClick = function(e) {
-  alert('Add pin!');
-};
-
-App.UI.Toolbar.prototype.onAddRouteClick = function(e) {
-  alert('Add route!');
+App.UI.Toolbar.prototype.onButtonClick = function(e) {
+  this.controller.executeAction(e, ko.dataFor(e.currentTarget));
 };
