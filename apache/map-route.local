@@ -1,0 +1,4 @@
+<VirtualHost *:80>
+	DocumentRoot	/home/richard/Projects/map-route
+	ServerName	map-route
+</VirtualHost>
