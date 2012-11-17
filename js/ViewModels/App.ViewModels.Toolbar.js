@@ -16,12 +16,12 @@ App.ViewModels.Toolbar.prototype.setObservables = function() {
     new App.Models.ToolbarButton({
       caption: 'Add pin',
       className: 'add-pin',
-      action: new App.Toolbar.Actions.AddPin,
+      action: new App.Toolbar.Actions.AddPin()
     }),
     new App.Models.ToolbarButton({
       caption: 'Add Route',
       className: 'add-route',
-      action: new App.Toolbar.Actions.AddRoute
+      action: new App.Toolbar.Actions.AddRoute()
     })
   ];
 

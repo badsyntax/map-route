@@ -32,7 +32,8 @@ module.exports = function(grunt) {
         $: true,
         console: false,
         google: true,
-        ko: true
+        ko: true,
+        App: true
       }
     },
     uglify: {}

@@ -40,5 +40,5 @@ App.Map = (function() {
     instance: function() {
       return map;
     }
-  }
+  };
 }());
