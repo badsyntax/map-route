@@ -115,6 +115,9 @@ App.Map = (function() {
 /* Init
  *************************/
 App.init = function() {
+  
+  App.log('Loaded in ' + ((new Date).getTime() - window.__start) + 'ms');
+  
   App.Map.load();
 };
 
