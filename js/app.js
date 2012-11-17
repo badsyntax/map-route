@@ -7,7 +7,7 @@ if (!Function.prototype.bind) {
   Function.prototype.bind = function(scope) {
     return $.proxy(this, scope);
   };
-};
+}
 
 /* Config
  *************************/
@@ -59,7 +59,7 @@ App.Config = (function() {
     }
   };
   return Config;
-})();
+}());
 
 App.log = function() {
   if (App.Config.get('debug') === true) {
@@ -109,7 +109,7 @@ App.Map = (function() {
       App.log('Center changed');
     }
   };
-})();
+}());
 
 
 /* Init
