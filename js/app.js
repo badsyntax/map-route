@@ -1,12 +1,13 @@
 // app.js
+var App = {};
 
+/* Shims
+ *************************/
 if (!Function.prototype.bind) {
   Function.prototype.bind = function(scope) {
     return $.proxy(this, scope);
   };
-}
-
-var App = {};
+};
 
 /* Config
  *************************/
@@ -60,6 +61,12 @@ App.Config = (function() {
   return Config;
 })();
 
+App.log = function() {
+  if (App.Config.get('debug') === true) {
+    console.log.apply(console, arguments);
+  }
+};
+
 /* Map
  *************************/
 App.Map = (function() {
@@ -72,10 +79,12 @@ App.Map = (function() {
       var options = {
         zoom: 8,
         center: new google.maps.LatLng(-34.397, 150.644),
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP // ROADMAP SATELLITE HYBRID TERRAIN
       };
 
       this.map = new google.maps.Map(element[0], options);
+      this.setMarkers();
+      this.bindEvents();
     },
     load: function() {
       
@@ -85,6 +94,19 @@ App.Map = (function() {
       };
 
       $('<script />', attr).appendTo('body');
+    },
+    setMarkers: function() {
+      this.marker = new google.maps.Marker({
+        position: this.map.getCenter(),
+        map: this.map,
+        title: 'Click to zoom'
+      });
+    },
+    bindEvents: function() {
+      google.maps.event.addListener(this.map, 'center_changed', this.onCenterChanged.bind(this));
+    },
+    onCenterChanged: function() {
+      App.log('Center changed');
     }
   };
 })();
