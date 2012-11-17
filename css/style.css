@@ -37,3 +37,13 @@ body {
 .js #map-canvas .has-js {
   display: block;
 }
+
+/* Toolbar */
+.toolbar {
+  margin: 0;
+  position: absolute;
+  z-index: 9999;
+  top: 10px;
+  left: 50%;
+  margin-left: -70px ;
+}

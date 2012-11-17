@@ -14,8 +14,10 @@
   <link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
 <body>
-  
-   <div id="map-canvas">
+
+  <!-- Map canvas -->
+
+  <div id="map-canvas">
     <div class="message">
       <div class="has-js">
         Loading map...
@@ -24,10 +26,30 @@
         <strong>You need to enable Javascript in your browser to use this application.</strong>
       </div>
     </div>
-   </div>
+  </div>
+
+  <!-- Layout -->
+
+  <div id="toolbar" data-bind="template: { name: 'toolbar-template' }"></div>
+
+  <!-- Templates -->
+
+  <script type="text/html" id="toolbar-template">
+  <div class="toolbar btn-toolbar">
+    <div class="btn-group">
+      <button class="btn add-pin">
+        <i class="icon-filter"></i> Add pin
+      </button>
+      <button class="btn add-route">
+        <i class="icon-minus"></i> Add route
+      </button>
+    </div>
+  </div> 
+  </script>
 
   <script src="/lib/jquery/jquery-1.8.3.min.js"></script>
   <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/lib/knockout/knockout-2.2.0.js"></script>
   <script src="/js/app.js"></script>
   <script>
   App.Config.set({
