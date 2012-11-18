@@ -2,7 +2,7 @@
  *************************/
 App.Controllers.Toolbar = function() {
   
-  this.container = $('#toolbar');
+  this.container = $('#toolbar-ui');
   this.map = App.Map.instance();
   this.curAction = null;
 

@@ -1,10 +1,6 @@
 // app.js
 var App = {
   Controllers: {},
-  Map: {},
-  Toolbar: {
-    Actions: {}
-  },
   Models: {},
   ViewModels: {},
   UI: {},

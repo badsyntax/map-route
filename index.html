@@ -30,17 +30,33 @@
 
   <!-- Layout -->
 
-  <div id="toolbar" data-bind="template: { name: 'toolbar-template' }"></div>
+  <div id="toolbar-ui" data-bind="template: { name: 'toolbar-template' }"></div>
+  <div id="modal-ui" data-bind="template: { name: 'modal-template' }"></div>
 
   <!-- Templates -->
 
   <script type="text/html" id="toolbar-template">
-  <div class="toolbar btn-toolbar" data-toggle="buttons-radio">
+  <div id="toolbar" class="toolbar btn-toolbar" data-toggle="buttons-radio">
     <div class="btn-group" data-bind="foreach: buttons">
       <button data-bind="attr: { 'class': 'btn ' + className() }, html: caption()">
       </button>
     </div>
   </div> 
+  </script>
+
+  <script type="text/html" id="modal-template">
+  <div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 data-bind="text: heading"></h3>
+    </div>
+    <div class="modal-body">
+      <p data-bind="text: content"></p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" data-dismiss="modal">Okay</button>
+    </div>
+  </div>
   </script>
 
   <script src="/lib/jquery/jquery-1.8.3.min.js"></script>
@@ -49,14 +65,17 @@
   <script src="/js/App.js"></script>
   <script src="/js/Config/App.Config.js"></script>
   <script src="/js/Map/App.Map.js"></script>
-  <script src="/js/Toolbar/Actions/App.Toolbar.Actions.Default.js"></script>
-  <script src="/js/Toolbar/Actions/App.Toolbar.Actions.AddPin.js"></script>
-  <script src="/js/Toolbar/Actions/App.Toolbar.Actions.AddRoute.js"></script>
+  <script src="/js/Map/Actions/App.Map.Actions.Default.js"></script>
+  <script src="/js/Map/Actions/App.Map.Actions.AddPin.js"></script>
+  <script src="/js/Map/Actions/App.Map.Actions.AddRoute.js"></script>
   <script src="/js/Controllers/App.Controllers.Map.js"></script>
+  <script src="/js/Controllers/App.Controllers.Modal.js"></script>
   <script src="/js/Controllers/App.Controllers.Toolbar.js"></script>
   <script src="/js/UI/App.UI.Toolbar.js"></script>
+  <script src="/js/UI/App.UI.Modal.js"></script>
   <script src="/js/Models/App.Models.ToolbarButton.js"></script>
   <script src="/js/ViewModels/App.ViewModels.Toolbar.js"></script>
+  <script src="/js/ViewModels/App.ViewModels.Modal.js"></script>
   <script>
   App.Config.set({
     debug: true,

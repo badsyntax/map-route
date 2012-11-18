@@ -4,6 +4,7 @@ App.Map = (function() {
   var canvas = $('#map-canvas');
 
   return {
+    Actions: {},
     markers: [],
     create: function(callback) {
       if (!map) {

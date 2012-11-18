@@ -15,4 +15,5 @@ App.Controllers.Map.prototype.bindEvents = function() {
 
 App.Controllers.Map.prototype.onTilesLoaded = function() {
   new App.Controllers.Toolbar();
+  new App.Controllers.Modal();
 };
