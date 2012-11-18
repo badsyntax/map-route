@@ -12,13 +12,6 @@ App.Toolbar.Actions.AddPin.prototype.bindEvents = function() {
   this.handlers.push(google.maps.event.addListener(this.map, 'click', this.onMapClick.bind(this)));
 };
 
-App.Toolbar.Actions.AddPin.prototype.reset = function() {
-  this.map.setOptions({ draggableCursor: null });
-  $.each(this.handlers, function(i, handler) {
-    handler.remove();
-  });
-};
-
 App.Toolbar.Actions.AddPin.prototype.onMapClick = function(e) {
   this.placeMarker(e.latLng);
 };
@@ -36,9 +29,16 @@ App.Toolbar.Actions.AddPin.prototype.placeMarker = function(location) {
       animation: null // google.maps.Animation.DROP | BOUNCE
   });
   
-  google.maps.event.addListener(marker, 'click', function() {
-    infowindow.open(this.map, marker);
-  }.bind(this));
+  // google.maps.event.addListener(marker, 'click', function() {
+  //   infowindow.open(this.map, marker);
+  // }.bind(this));
   
   App.Map.markers.push(marker);
+};
+
+App.Toolbar.Actions.AddPin.prototype.reset = function() {
+  this.map.setOptions({ draggableCursor: null });
+  $.each(this.handlers, function(i, handler) {
+    handler.remove();
+  });
 };
