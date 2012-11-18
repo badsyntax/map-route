@@ -39,8 +39,8 @@ App.Toolbar.Actions.AddRoute.prototype.bindEvents = function() {
         if (marker.poly === this.lastMarker) {
           path.removeAt(marker.poly);
           this.lastMarker--;
-          marker.poly = -1;
-        } else {
+          marker.poly = false;
+        } else if (!marker.poly && marker.poly !== 0) {
           path.push(e.latLng);
           this.lastMarker++;
           marker.poly = this.lastMarker;
