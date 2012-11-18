@@ -8,11 +8,12 @@ App.ViewModels.Toolbar = function(controller) {
 
 App.ViewModels.Toolbar.prototype.setObservables = function() {
   
-  var controller = this.controller;
-  var addPin = controller.addPin;
-  var addRoute = controller.addRoute;
-
   var buttons = [
+    new App.Models.ToolbarButton({
+      caption: 'Default',
+      className: 'default active',
+      action: new App.Toolbar.Actions.Default()
+    }),
     new App.Models.ToolbarButton({
       caption: 'Add pin',
       className: 'add-pin',

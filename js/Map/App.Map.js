@@ -4,6 +4,7 @@ App.Map = (function() {
   var canvas = $('#map-canvas');
 
   return {
+    markers: [],
     create: function(callback) {
       if (!map) {
         this.load(callback);
@@ -30,8 +31,8 @@ App.Map = (function() {
     init: function() {
 
       var options = {
-        zoom: 8,
-        center: new google.maps.LatLng(-34.397, 150.644),
+        zoom: 6,
+        center: new google.maps.LatLng(-30.679559110919985, 24.411089843750005),
         mapTypeId: google.maps.MapTypeId.ROADMAP // ROADMAP SATELLITE HYBRID TERRAIN
       };
 

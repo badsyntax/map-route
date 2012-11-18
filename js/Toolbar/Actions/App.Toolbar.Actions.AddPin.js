@@ -24,9 +24,21 @@ App.Toolbar.Actions.AddPin.prototype.onMapClick = function(e) {
 };
 
 App.Toolbar.Actions.AddPin.prototype.placeMarker = function(location) {
+  
+  var infowindow = new google.maps.InfoWindow({
+    content: '<p><em>No description.</em></p><p><a href="#">Add description &raquo;</a></p>'
+  });
+
   var marker = new google.maps.Marker({
       position: location,
-      map: this.map
+      map: this.map,
+      draggable: true,
+      animation: null // google.maps.Animation.DROP | BOUNCE
   });
-  this.map.markers.push(marker);
+  
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.open(this.map, marker);
+  }.bind(this));
+  
+  App.Map.markers.push(marker);
 };

@@ -2,9 +2,16 @@
  *************************/
 App.UI.Toolbar = function(controller, container, viewModel) {
   this.controller = controller;
-  this.container = container;
+  this.container = container.find('.toolbar');
   this.viewModel = viewModel;
+  this.position();
   this.bindEvents();
+};
+
+App.UI.Toolbar.prototype.position = function() {
+  this.container.css({
+    marginLeft: -1 * Math.round(this.container.width() / 2)
+  });
 };
 
 App.UI.Toolbar.prototype.bindEvents = function() {
