@@ -1,4 +1,9 @@
 <VirtualHost *:80>
-	DocumentRoot	/home/richard/Projects/map-route
+	
+  DocumentRoot	/home/richard/Projects/map-route/httpdocs
 	ServerName	map-route
+
+  # Set the environment
+  SetEnv KOHANA_ENV development
+
 </VirtualHost>

@@ -8,7 +8,7 @@
   ErrorLog /home/richard/www/logs/maproute.proxima.cc-elogs
 
   # Set the environment
-  SetEnv KOHANA_ENV development
+  SetEnv KOHANA_ENV production
 
   # Secure the dev area
   <DirectoryMatch /home/richard/www/sites/maproute.proxima.cc>
