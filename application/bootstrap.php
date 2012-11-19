@@ -116,6 +116,8 @@ Cookie::$salt = Kohana::$config->load('site.cookie.salt');
  */
 Kohana::modules(array(
 	'auth'       => MODPATH.'auth',       // Basic authentication
+	'minion'     => MODPATH.'minion',       // Basic authentication
+	'minion-tasks-migrations' => MODPATH.'minion-tasks-migrations',
 	'cache'      => MODPATH.'cache',      // Caching with multiple backends
 	'database'   => MODPATH.'database',   // Database access
 	'orm'        => MODPATH.'orm',        // Object Relationship Mapping

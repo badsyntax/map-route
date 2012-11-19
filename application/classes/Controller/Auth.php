@@ -6,12 +6,8 @@ class Controller_Auth extends Controller_Base {
 
 	public function action_index()
 	{
-
     $consumer = OAuth2_Consumer::factory('google');
-
-    // Change to google profile API
-    $request = Request::factory('https://www.googleapis.com/oauth2/v1/userinfo');
-
+    $request = Request::factory(Kohana::$config->load('oauth2.consumer.google.userinfo_uri'));
     $response = $consumer->execute($request);
 
     $me = json_decode($response->body());
@@ -23,14 +19,16 @@ class Controller_Auth extends Controller_Base {
 
   public function action_login()
   {
+    $google_config = Kohana::$config->load('oauth2.consumer.google');
+
     $query = http_build_query(array(
       'response_type' => 'code',
-      'client_id' => '826317412749.apps.googleusercontent.com',
-      'scope' => 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
-      'redirect_uri' => 'http://maproute.proxima.cc/auth/callback'
+      'client_id' => $google_config['client_id'],
+      'scope' => $google_config['scope'],
+      'redirect_uri' => $google_config['redirect_uri']
     ));
 
-    $google_login = 'https://accounts.google.com/o/oauth2/auth?' . $query;
+    $google_login = $google_config['authorize_uri'].'?'.$query;
 
     $content = View::factory('pages/auth/login')
       ->set('google_login', $google_login);
@@ -42,16 +40,16 @@ class Controller_Auth extends Controller_Base {
   {
     $code = $this->request->query('code');
 
-    if ($code) {
-
+    if ($code !== NULL)
+    {
       $consumer = OAuth2_Consumer::factory('google');
 
       $token = $consumer->request_token(array(
         'code' => $code
       ));
-
-      $this->redirect('');
     }
+
+    $this->template->set('content', 'handle redirect with js');
   }
 
 } // End Welcome

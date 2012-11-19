@@ -2,7 +2,6 @@
 
 return array(
   'cookie' => array(
-    // Change this salt to something unique!
-    'salt' => 'JpTKsYl8bqjJdsNbHKqg'
+    'salt' => 'JpTKsYl8dfdf3sNbHKqg'
   )
 );

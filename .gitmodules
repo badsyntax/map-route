@@ -19,3 +19,6 @@
 [submodule "modules/oauth2"]
 	path = modules/oauth2
 	url = git@github.com:badsyntax/kohana-oauth2.git
+[submodule "modules/minion-tasks-migrations"]
+	path = modules/minion-tasks-migrations
+	url = https://github.com/kohana-minion/tasks-migrations.git
