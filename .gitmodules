@@ -16,3 +16,6 @@
 [submodule "modules/orm"]
 	path = modules/orm
 	url = https://github.com/kohana/orm.git
+[submodule "modules/oauth2"]
+	path = modules/oauth2
+	url = git@github.com:badsyntax/kohana-oauth2.git
