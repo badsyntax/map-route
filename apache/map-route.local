@@ -2,6 +2,7 @@
 	
   DocumentRoot	/home/richard/Projects/map-route/httpdocs
 	ServerName	map-route
+  ServerAlias maproute.proxima.cc
 
   # Set the environment
   SetEnv KOHANA_ENV development

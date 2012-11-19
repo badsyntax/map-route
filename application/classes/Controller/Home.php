@@ -6,7 +6,7 @@ class Controller_Home extends Controller_Base {
 
 	public function action_index()
 	{
-		$this->response->body('hello, world!');
+    $this->template->set('content', View::factory('pages/home'));
 	}
 
 } // End Welcome

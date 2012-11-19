@@ -54,4 +54,16 @@ class Controller_Base extends Controller {
     }
   }
 
+  public function execute()
+  {
+    try
+    {
+      return parent::execute();
+    }
+    catch (OAuth2_Exception_InvalidToken $e)
+    {
+      $this->redirect('auth/login');
+    }
+  }
+
 } // End Controller_Base
