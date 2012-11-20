@@ -6,6 +6,15 @@ class Controller_Auth extends Controller_Base {
 
 	public function action_index()
 	{
+    if (Auth::instance()->logged_in())
+    {
+      echo 'user is logged in';
+    }
+    else
+    {
+      echo 'User is not logged in';
+    }
+
     $consumer = OAuth2_Consumer::factory('google');
     $request = Request::factory(Kohana::$config->load('oauth2.consumer.google.userinfo_uri'));
     $response = $consumer->execute($request);
@@ -13,8 +22,6 @@ class Controller_Auth extends Controller_Base {
     $me = json_decode($response->body());
 
     die(print_r($me));
-
-    $this->response->body($response->body());
 	}
 
   public function action_login()
@@ -44,12 +51,45 @@ class Controller_Auth extends Controller_Base {
     {
       $consumer = OAuth2_Consumer::factory('google');
 
+      // Token is stored in Session
       $token = $consumer->request_token(array(
         'code' => $code
       ));
+
+      // Get the user profile data
+      $consumer = OAuth2_Consumer::factory('google');
+      $request = Request::factory(Kohana::$config->load('oauth2.consumer.google.userinfo_uri'));
+      $response = $consumer->execute($request);
+      $profile = json_decode($response->body());
+
+      // Find the user in the DB
+      $user = ORM::factory('User')->where('email', '=', $profile->email)->find();
+
+      if (!$user->loaded())
+      {
+        try
+        {
+          $data = array(
+              'email' => $profile->email,
+              'username' => $profile->email,
+              'password' => $profile->email,
+              'name' => $profile->name
+          );
+          // Create the user
+          $user->values($data)->save();
+          $user->add('roles', new Model_Role(array('name' =>'login')));
+        }
+        catch(ORM_Validation_Exception $e)
+        {
+          $errors = $e->errors();
+          die(print_r($errors));
+        }
+      }
+
+      Auth::instance()->login($user->email, $profile->email, TRUE);
     }
 
-    $this->template->set('content', 'handle redirect with js');
+    $this->redirect('');
   }
 
-} // End Welcome
+}
