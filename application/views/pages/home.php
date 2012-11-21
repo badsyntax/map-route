@@ -15,6 +15,7 @@
 
 <div id="toolbar-ui" data-bind="template: { name: 'toolbar-template' }"></div>
 <div id="modal-ui" data-bind="template: { name: 'modal-template' }"></div>
+<div id="modal-login-ui" data-bind="template: { name: 'modal-login-template' }"></div>
 
 <!-- Templates -->
 
@@ -39,5 +40,19 @@
   <div class="modal-footer">
     <button class="btn btn-primary" data-dismiss="modal">Okay</button>
   </div>
+</div>
+</script>
+
+<script type="text/html" id="modal-login-template">
+<div id="modal-login" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+ <div class="modal-header">
+    <h3 data-bind="text: heading"></h3>
+  </div>
+  <div class="modal-body" style="text-align:center">
+    <p>Please sign in before using MapRoute:</p>
+    <p>
+      <?php echo HTML::anchor($google_login, 'Sign in with Google &raquo;', array('class' => 'btn btn-primary btn-large')) ;?>
+    </p>
+  </div>  
 </div>
 </script>

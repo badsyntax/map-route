@@ -23,6 +23,15 @@ App.ViewModels.Toolbar.prototype.setObservables = function() {
       caption: 'Add Route',
       className: 'add-route',
       action: new App.Map.Actions.AddRoute()
+    }),
+    new App.Models.ToolbarButton({
+      caption: 'Sign out',
+      className: 'sign-out',
+      action: {
+        execute: function() {
+          window.location = '/auth/signout';
+        }
+      }
     })
   ];
 

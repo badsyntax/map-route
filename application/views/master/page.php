@@ -28,17 +28,17 @@
   <script src="/assets/js/Map/Actions/App.Map.Actions.AddRoute.js"></script>
   <script src="/assets/js/Controllers/App.Controllers.Map.js"></script>
   <script src="/assets/js/Controllers/App.Controllers.Modal.js"></script>
+  <script src="/assets/js/Controllers/App.Controllers.Modal.Login.js"></script>
   <script src="/assets/js/Controllers/App.Controllers.Toolbar.js"></script>
   <script src="/assets/js/UI/App.UI.Toolbar.js"></script>
   <script src="/assets/js/UI/App.UI.Modal.js"></script>
+  <script src="/assets/js/UI/App.UI.Modal.Login.js"></script>
   <script src="/assets/js/Models/App.Models.ToolbarButton.js"></script>
   <script src="/assets/js/ViewModels/App.ViewModels.Toolbar.js"></script>
   <script src="/assets/js/ViewModels/App.ViewModels.Modal.js"></script>
+  <script src="/assets/js/ViewModels/App.ViewModels.Modal.Login.js"></script>
   <script>
-  App.Config.set({
-    debug: true,
-    mapApiKey: 'AIzaSyBRgqg6tv_ZNjtP1BYH7NRCxglMmkSFMgs'
-  });
+  App.Config.set(<?php echo $front_end_config; ?>);
   new App.Controllers.Map();
   </script>
 </body>

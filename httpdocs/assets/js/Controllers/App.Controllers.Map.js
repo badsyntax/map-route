@@ -16,4 +16,9 @@ App.Controllers.Map.prototype.bindEvents = function() {
 App.Controllers.Map.prototype.onTilesLoaded = function() {
   new App.Controllers.Toolbar();
   new App.Controllers.Modal();
+  new App.Controllers.Modal.Login();
+
+  if (!App.Config.get('user_id')) {
+    App.UI.Modal.Login.show();
+  }
 };

@@ -2,68 +2,74 @@
 
 class Controller_Base extends Controller {
 
-  public $auto_render = TRUE;
+	public $template = NULL;
+	public $front_end_config = array();
+	protected $_auth_required = FALSE;
 
-  public $template = NULL;
+	public function before()
+	{
+		// The user may be logged in but not have the correct permissions to view this controller and/or action,
+		// so instead of redirecting to signin page we redirect to 403 Forbidden
+		if ( Auth::instance()->logged_in() AND Auth::instance()->logged_in($this->_auth_required) === FALSE)
+		{
+			$this->request->redirect('403');
+		}
 
-  protected $_auth_required = FALSE;
+		// If this page is secured and the user is not logged in (or doesn't match role), then redirect to the signin page
+		if ($this->_auth_required !== FALSE && Auth::instance()->logged_in($this->_auth_required) === FALSE)
+		{
+			Message::set(Message::ERROR, __('You need to be signed in to do that.'));
 
-  public function before()
-  {
-    // The user may be logged in but not have the correct permissions to view this controller and/or action,
-    // so instead of redirecting to signin page we redirect to 403 Forbidden
-    if ( Auth::instance()->logged_in() AND Auth::instance()->logged_in($this->_auth_required) === FALSE)
-    {
-      $this->request->redirect('403');
-    }
+			// Generate the signin URL
+			$uri = Route::get('admin')
+				->uri(array(
+					'controller' => 'auth',
+					'action' => 'signin'
+				));
 
-    // If this page is secured and the user is not logged in (or doesn't match role), then redirect to the signin page
-    if ($this->_auth_required !== FALSE && Auth::instance()->logged_in($this->_auth_required) === FALSE)
-    {
-      Message::set(Message::ERROR, __('You need to be signed in to do that.'));
+			// Set the return path so user is redirect back to this page after successful sign in.
+			$uri .= '?return_to=' . $this->request->uri();
 
-      // Generate the signin URL
-      $uri = Route::get('admin')
-        ->uri(array(
-          'controller' => 'auth',
-          'action' => 'signin'
-        ));
+			$this->request->redirect($uri);
+		}
 
-      // Set the return path so user is redirect back to this page after successful sign in.
-      $uri .= '?return_to=' . $this->request->uri();
+		// Create the global template
+		$this->template = View::factory($this->master_view);
+	}
 
-      $this->request->redirect($uri);
-    }
+	public function after()
+	{
+		// If it's an AJAX or HMVC internal request then only render the INNER template
+		if ($this->request->is_ajax() OR Request::initial() !== $this->request)
+		{
+			$this->response->body($this->template->content);
+		}
+		// Else render the master template
+		else
+		{
+			$this->set_front_end_config();
 
-    // Create the global template
-    $this->template = View::factory($this->master_view);
-  }
+			// Render the master template
+			$this->response->body($this->template);
+		}
+	}
 
-  public function after()
-  {
-    // If it's an AJAX or HMVC internal request then only render the INNER template
-    if ($this->request->is_ajax() OR Request::initial() !== $this->request OR $this->auto_render === FALSE)
-    {
-      $this->response->body($this->template->content);
-    }
-    // Else render the master template
-    else if ($this->auto_render === TRUE)
-    {
-      // Render the master template
-      $this->response->body($this->template);
-    }
-  }
+	private function set_front_end_config()
+	{
+		if (Auth::instance()->logged_in())
+		{
+			$user_id = Auth::instance()->get_user()->id;
+		}
+		else
+		{
+			$user_id = 0;
+		}
 
-  public function execute()
-  {
-    try
-    {
-      return parent::execute();
-    }
-    catch (OAuth2_Exception_InvalidToken $e)
-    {
-      $this->redirect('auth/login');
-    }
-  }
+		$this->front_end_config['user_id'] = $user_id;
+		$this->front_end_config['mapApiKey'] = Kohana::$config->load('site.map.key');
+		$this->front_end_config['debug'] = Kohana::$environment === Kohana::DEVELOPMENT;
+
+		$this->template->front_end_config = json_encode($this->front_end_config);
+	}
 
 } // End Controller_Base

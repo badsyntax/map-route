@@ -1,8 +1,8 @@
 /* Modal controller
  *************************/
-App.Controllers.Modal = function() {
+App.Controllers.Modal = function(container) {
   
-  this.container = $('#modal-ui');
+  this.container = container || $('#modal-ui');
   this.map = App.Map.instance();
 
   this.initViewModel();

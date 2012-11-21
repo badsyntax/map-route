@@ -18,3 +18,12 @@ App.log = function() {
     console.log.apply(console, arguments);
   }
 };
+
+App.inherits = function(_sub, _super) {
+
+  function F() {};
+  F.prototype = _super.prototype;
+
+  _sub.prototype = new F();
+  _sub.prototype.constructor = _sub;
+}; 
