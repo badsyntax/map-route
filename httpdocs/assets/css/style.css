@@ -43,10 +43,18 @@ body {
   margin: 0;
   position: absolute;
   z-index: 1000;
-  top: 10px;
+  top: 6px;
   left: 50%;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px;
+  border-radius: 4px;
 }
 .toolbar button [class^="icon-"] {
-  font-size: 1.3em;
-  line-height: 1.3em;
+  font-size: 24px;
+  line-height: 24px;
+
+}
+
+.btn-large [class^="icon-"] {
+  font-size: 17.5px;
+  line-height: 17.5px;
 }

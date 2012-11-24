@@ -33,21 +33,6 @@ App.Map.Actions.AddPin.prototype.bindInfoWindowEvents = function(content, marker
   }.bind(this));
 };
 
-App.Map.Actions.AddPin.prototype.onRemovePinClick = function(e, marker) {
-  e.preventDefault();
-  marker.infoWindow.close();
-  marker.setMap(null);
-};
-
-App.Map.Actions.AddPin.prototype.onAddDescriptionPinClick = function(e, infoWindow, marker) {
-  e.preventDefault();
-  alert('Add description');
-};
-
-App.Map.Actions.AddPin.prototype.onMapClick = function(e) {
-  this.placeMarker(e.latLng);
-};
-
 App.Map.Actions.AddPin.prototype.toggleInfoWindow = function(e, marker) {
   if (!marker.infoWindow.getMap()) {
     marker.infoWindow.open(this.map, marker);
@@ -63,7 +48,7 @@ App.Map.Actions.AddPin.prototype.placeMarker = function(location) {
   var infoWindow = new google.maps.InfoWindow({
     content: infoWindowContent[0],
     size: new google.maps.Size(50, 50),
-    enableEventPropagation: true
+    enableEventPropagation: false
   });
 
   var marker = new google.maps.Marker({
@@ -86,4 +71,19 @@ App.Map.Actions.AddPin.prototype.reset = function() {
   $.each(this.handlers, function(i, handler) {
     handler.remove();
   });
+};
+
+App.Map.Actions.AddPin.prototype.onRemovePinClick = function(e, marker) {
+  e.preventDefault();
+  marker.infoWindow.close();
+  marker.setMap(null);
+};
+
+App.Map.Actions.AddPin.prototype.onAddDescriptionPinClick = function(e, infoWindow, marker) {
+  e.preventDefault();
+  alert('Add description');
+};
+
+App.Map.Actions.AddPin.prototype.onMapClick = function(e) {
+  this.placeMarker(e.latLng);
 };

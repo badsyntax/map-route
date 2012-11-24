@@ -55,7 +55,10 @@
   <div class="modal-body" style="text-align:center">
     <p>Please sign in before using MapRoute:</p>
     <p>
-      <?php echo HTML::anchor($google_login, 'Sign in with Google &raquo;', array('class' => 'btn btn-primary btn-large')) ;?>
+      <a href="<?php echo $google_login; ?>" class="btn btn-primary btn-large">
+        <i class="icon-google-plus"></i>
+        Sign in with Google &raquo;
+      </a>
     </p>
   </div>  
 </div>
