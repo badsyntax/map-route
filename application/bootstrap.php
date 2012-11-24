@@ -124,11 +124,17 @@ Kohana::modules(array(
 	'oauth2'     => MODPATH.'oauth2',        // Object Relationship Mapping
 	));
 
-
 /**
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
  * defaults for the URI.
  */
+Route::set('api', 'api/(<controller>(/<action>(/<id>)))')
+	->defaults(array(
+		'directory'  => 'api',
+		'controller' => 'home',
+		'action'     => 'index',
+	));
+
 Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->defaults(array(
 		'controller' => 'home',

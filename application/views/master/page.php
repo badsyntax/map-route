@@ -24,6 +24,7 @@
   <script src="/assets/lib/knockout/knockout.mapping-2.3.4.js"></script>
   <script src="/assets/js/App.js"></script>
   <script src="/assets/js/Config/App.Config.js"></script>
+  <script src="/assets/js/API/App.API.Base.js"></script>
   <script src="/assets/js/API/App.API.Pin.js"></script>
   <script src="/assets/js/Map/App.Map.js"></script>
   <script src="/assets/js/Map/App.Map.Marker.js"></script>
@@ -37,6 +38,7 @@
   <script src="/assets/js/UI/App.UI.Toolbar.js"></script>
   <script src="/assets/js/UI/App.UI.Modal.js"></script>
   <script src="/assets/js/UI/App.UI.Modal.Login.js"></script>
+  <script src="/assets/js/Models/App.Models.Base.js"></script>
   <script src="/assets/js/Models/App.Models.ToolbarButton.js"></script>
   <script src="/assets/js/Models/App.Models.Pin.js"></script>
   <script src="/assets/js/ViewModels/App.ViewModels.Toolbar.js"></script>

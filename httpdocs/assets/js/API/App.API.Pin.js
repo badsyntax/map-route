@@ -1,16 +1,11 @@
-App.API.Pin = (function() {
+App.API.Pin = (function(api) {
 
   return {
-    save: function(config) {
-      
-      $.extend(config, {
-        url: '/pin/create',
-        type: 'post',
-        contentType: 'application/json'
-      });
-
-      return $.ajax(config);
+    create: function(config) {
+      return api.create(config);
     }
   };
 
-}());
+}(new App.API.Base({
+  url: '/api/pin'
+})));

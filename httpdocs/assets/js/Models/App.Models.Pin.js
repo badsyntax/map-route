@@ -1,9 +1,11 @@
 App.Models.Pin = function(data) {
-  ko.mapping.fromJS(data, null, this);
+  App.Models.Base.apply(this, arguments);
 };
 
-App.Models.Pin.prototype.save = function(success, error) {
-  App.API.Pin.save({
+App.inherits(App.Models.Pin, App.Models.Base);
+
+App.Models.Pin.prototype.create = function(success, error) {
+  App.API.Pin.create({
     data: ko.mapping.toJSON(this),
     success: success,
     error: error
