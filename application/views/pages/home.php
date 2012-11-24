@@ -22,7 +22,11 @@
 <script type="text/html" id="toolbar-template">
 <div id="toolbar" class="toolbar btn-toolbar" data-toggle="buttons-radio">
   <div class="btn-group" data-bind="foreach: buttons">
-    <button data-bind="attr: { 'class': 'btn ' + className() }, html: caption()">
+    <button 
+      data-bind="attr: { 'class': 'btn ' + className(), 'data-original-title': caption() }" 
+      data-placement="bottom" 
+      rel="tooltip">
+      <i data-bind="attr: { 'class': iconClassName() }" />
     </button>
   </div>
 </div> 
@@ -55,4 +59,16 @@
     </p>
   </div>  
 </div>
+</script>
+
+<script type="text/html" id="map-infowindow-template">
+<p>
+  <a href="#" class="add-description">
+    <i class="icon-edit"></i> Add description
+  </a>
+  <br />
+  <a href="#" class="remove-pin">
+    <i class="icon-remove"></i> Remove pin
+  </a>
+</p>
 </script>

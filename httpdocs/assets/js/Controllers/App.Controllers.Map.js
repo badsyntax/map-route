@@ -5,6 +5,15 @@ App.Controllers.Map = function() {
 };
 
 App.Controllers.Map.prototype.init = function(map) {
+  
+  new App.Controllers.Modal();
+  new App.Controllers.Modal.Login();
+  new App.Controllers.Toolbar();
+  
+  if (!App.Config.get('user_id')) {
+    return App.UI.Modal.Login.show();
+  }
+  
   this.map = map;
   this.bindEvents();
 };
@@ -14,11 +23,4 @@ App.Controllers.Map.prototype.bindEvents = function() {
 };
 
 App.Controllers.Map.prototype.onTilesLoaded = function() {
-  new App.Controllers.Toolbar();
-  new App.Controllers.Modal();
-  new App.Controllers.Modal.Login();
-
-  if (!App.Config.get('user_id')) {
-    App.UI.Modal.Login.show();
-  }
 };

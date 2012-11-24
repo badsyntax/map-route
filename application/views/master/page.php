@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>Map Route</title>
   <meta name="description" content="Map route" />
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
@@ -11,6 +11,7 @@
     document.documentElement.className='js';
   </script>
   <link rel="stylesheet" type="text/css" href="/assets/lib/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="/assets/lib/fontawesome/css/font-awesome.css" />
   <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
 </head>
 <body>

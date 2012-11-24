@@ -1,6 +1,7 @@
 App.Map.Actions.AddPin = function() {
   this.map = App.Map.instance();
   this.handlers = [];
+  this.infoWindowTemplate = $('#map-infowindow-template').html();
 };
 
 App.Map.Actions.AddPin.prototype.execute = function() {
@@ -10,31 +11,74 @@ App.Map.Actions.AddPin.prototype.execute = function() {
 
 App.Map.Actions.AddPin.prototype.bindEvents = function() {
   this.handlers.push(google.maps.event.addListener(this.map, 'click', this.onMapClick.bind(this)));
+  $.each(App.Map.markers, this.bindMarkerEvents.bind(this));
+};
+
+App.Map.Actions.AddPin.prototype.bindMarkerEvents = function(i, marker) {
+
+  marker.setCursor('pointer');
+  marker.setDraggable(true);
+
+  this.handlers.push(google.maps.event.addListener(marker, 'click', function(e) {
+    this.toggleInfoWindow(e, marker);
+  }.bind(this)));
+};
+
+App.Map.Actions.AddPin.prototype.bindInfoWindowEvents = function(content, marker) {
+  content.on('click', 'a.remove-pin', function(e) {
+    this.onRemovePinClick.call(this, e, marker);
+  }.bind(this));
+  content.on('click', 'a.add-description', function(e) {
+    this.onAddDescriptionPinClick.call(this, e, marker);
+  }.bind(this));
+};
+
+App.Map.Actions.AddPin.prototype.onRemovePinClick = function(e, marker) {
+  e.preventDefault();
+  marker.infoWindow.close();
+  marker.setMap(null);
+};
+
+App.Map.Actions.AddPin.prototype.onAddDescriptionPinClick = function(e, infoWindow, marker) {
+  e.preventDefault();
+  alert('Add description');
 };
 
 App.Map.Actions.AddPin.prototype.onMapClick = function(e) {
   this.placeMarker(e.latLng);
 };
 
+App.Map.Actions.AddPin.prototype.toggleInfoWindow = function(e, marker) {
+  if (!marker.infoWindow.getMap()) {
+    marker.infoWindow.open(this.map, marker);
+  } else {
+    marker.infoWindow.close();
+  }
+};
+
 App.Map.Actions.AddPin.prototype.placeMarker = function(location) {
   
-  var infowindow = new google.maps.InfoWindow({
-    content: '<p><em>No description.</em></p><p><a href="#">Add description &raquo;</a></p>'
+  var infoWindowContent = $(this.infoWindowTemplate);
+
+  var infoWindow = new google.maps.InfoWindow({
+    content: infoWindowContent[0],
+    size: new google.maps.Size(50, 50),
+    enableEventPropagation: true
   });
 
   var marker = new google.maps.Marker({
+      infoWindow: infoWindow,
       position: location,
       map: this.map,
       draggable: true,
       clickable: true,
-      animation: null // google.maps.Animation.DROP | BOUNCE
+      animation: google.maps.Animation.DROP // google.maps.Animation.DROP | BOUNCE
   });
-  
-  // google.maps.event.addListener(marker, 'click', function() {
-  //   infowindow.open(this.map, marker);
-  // }.bind(this));
-  
+
   App.Map.markers.push(marker);
+
+  this.bindMarkerEvents(null, marker);
+  this.bindInfoWindowEvents(infoWindowContent, marker);
 };
 
 App.Map.Actions.AddPin.prototype.reset = function() {

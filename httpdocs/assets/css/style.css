@@ -46,3 +46,7 @@ body {
   top: 10px;
   left: 50%;
 }
+.toolbar button [class^="icon-"] {
+  font-size: 1.3em;
+  line-height: 1.3em;
+}

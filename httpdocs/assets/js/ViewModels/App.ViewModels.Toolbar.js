@@ -9,24 +9,27 @@ App.ViewModels.Toolbar = function(controller) {
 App.ViewModels.Toolbar.prototype.setObservables = function() {
   
   var buttons = [
-    new App.Models.ToolbarButton({
+    /*new App.Models.ToolbarButton({
       caption: 'Default',
       className: 'default active',
       action: new App.Map.Actions.Default()
-    }),
+    }),*/
     new App.Models.ToolbarButton({
-      caption: 'Add pin',
+      caption: 'Pins',
       className: 'add-pin',
+      iconClassName: 'icon-map-marker',
       action: new App.Map.Actions.AddPin()
     }),
     new App.Models.ToolbarButton({
-      caption: 'Add Route',
+      caption: 'Routes',
       className: 'add-route',
+      iconClassName: 'icon-sitemap',
       action: new App.Map.Actions.AddRoute()
     }),
     new App.Models.ToolbarButton({
       caption: 'Sign out',
       className: 'sign-out',
+      iconClassName: 'icon-signout',
       action: {
         execute: function() {
           window.location = '/auth/signout';

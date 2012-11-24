@@ -6,6 +6,7 @@ App.UI.Toolbar = function(controller, container, viewModel) {
   this.viewModel = viewModel;
   this.position();
   this.bindEvents();
+  this.initTooltips();
 };
 
 App.UI.Toolbar.prototype.position = function() {
@@ -21,3 +22,7 @@ App.UI.Toolbar.prototype.bindEvents = function() {
 App.UI.Toolbar.prototype.onButtonClick = function(e) {
   this.controller.executeAction(e, ko.dataFor(e.currentTarget));
 };
+
+App.UI.Toolbar.prototype.initTooltips = function() {
+  this.container.find('[rel="tooltip"]').tooltip({});
+}
