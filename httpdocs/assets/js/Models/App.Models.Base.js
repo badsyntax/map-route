@@ -1,6 +1,6 @@
 App.Models.Base = function(data) {
   if (data) {
-    this.values(data)
+    this.values(data);
   }
 };
 

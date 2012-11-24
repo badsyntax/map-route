@@ -25,4 +25,4 @@ App.UI.Toolbar.prototype.onButtonClick = function(e) {
 
 App.UI.Toolbar.prototype.initTooltips = function() {
   this.container.find('[rel="tooltip"]').tooltip({});
-}
+};

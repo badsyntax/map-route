@@ -1,7 +1,7 @@
 /* Modal controller
  *************************/
 App.Controllers.Modal.Login = function() {
-  App.Controllers.Modal.call(this, $('#modal-login-ui'))
+  App.Controllers.Modal.call(this, $('#modal-login-ui'));
 };
 
 App.inherits(App.Controllers.Modal.Login, App.Controllers.Modal);

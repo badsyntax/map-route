@@ -29,6 +29,6 @@ App.Models.Marker.prototype.findAll = function(success, error) {
           }
         }
       }
-    },
+    }
   });
 };

@@ -9,11 +9,6 @@ App.ViewModels.Toolbar = function(controller) {
 App.ViewModels.Toolbar.prototype.setObservables = function() {
   
   var buttons = [
-    /*new App.Models.ToolbarButton({
-      caption: 'Default',
-      className: 'default active',
-      action: new App.Map.Actions.Default()
-    }),*/
     new App.Models.ToolbarButton({
       caption: 'Pins',
       className: 'add-pin',
