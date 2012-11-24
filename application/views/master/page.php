@@ -25,11 +25,11 @@
   <script src="/assets/js/App.js"></script>
   <script src="/assets/js/Config/App.Config.js"></script>
   <script src="/assets/js/API/App.API.Base.js"></script>
-  <script src="/assets/js/API/App.API.Pin.js"></script>
+  <script src="/assets/js/API/App.API.Marker.js"></script>
   <script src="/assets/js/Map/App.Map.js"></script>
   <script src="/assets/js/Map/App.Map.Marker.js"></script>
   <script src="/assets/js/Map/Actions/App.Map.Actions.Default.js"></script>
-  <script src="/assets/js/Map/Actions/App.Map.Actions.AddPin.js"></script>
+  <script src="/assets/js/Map/Actions/App.Map.Actions.AddMarker.js"></script>
   <script src="/assets/js/Map/Actions/App.Map.Actions.AddRoute.js"></script>
   <script src="/assets/js/Controllers/App.Controllers.Map.js"></script>
   <script src="/assets/js/Controllers/App.Controllers.Modal.js"></script>
@@ -40,7 +40,7 @@
   <script src="/assets/js/UI/App.UI.Modal.Login.js"></script>
   <script src="/assets/js/Models/App.Models.Base.js"></script>
   <script src="/assets/js/Models/App.Models.ToolbarButton.js"></script>
-  <script src="/assets/js/Models/App.Models.Pin.js"></script>
+  <script src="/assets/js/Models/App.Models.Marker.js"></script>
   <script src="/assets/js/ViewModels/App.ViewModels.Toolbar.js"></script>
   <script src="/assets/js/ViewModels/App.ViewModels.Modal.js"></script>
   <script src="/assets/js/ViewModels/App.ViewModels.Modal.Login.js"></script>

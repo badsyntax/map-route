@@ -21,13 +21,16 @@ App.Map.Marker = function(data) {
   App.Map.markers.push(marker);
 
   // Create the model
-  marker.model = new App.Models.Pin({
-    user_id: App.Config.get('user_id'),
-    latitude: 0,
-    longitute: 0
-  })
-
-  marker.model.save();
+  marker.model = data.model;
+  if (!marker.model) {
+    marker.model = new App.Models.Marker();
+    marker.model.values({
+      user_id: App.Config.get('user_id'),
+      latitude: data.location.lat(),
+      longitude: data.location.lng(),
+    });
+    marker.model.save(data.success, data.error);
+  }
   
   return marker;
 };

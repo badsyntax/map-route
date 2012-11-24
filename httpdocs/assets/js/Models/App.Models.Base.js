@@ -1,4 +1,10 @@
 App.Models.Base = function(data) {
+  if (data) {
+    this.values(data)
+  }
+};
+
+App.Models.Base.prototype.values = function(data) {
   ko.mapping.fromJS(data, null, this);
 };
 

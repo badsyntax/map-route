@@ -41,6 +41,9 @@ App.Map = (function() {
     },
     instance: function() {
       return map;
+    },
+    addPins: function(pins) {
+      console.log(pins);
     }
   };
 }());

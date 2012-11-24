@@ -7,46 +7,23 @@ class Controller_Rest extends Controller {
 		switch($this->request->method())
 		{
 			case Request::GET:
-				$this->index();
+				$this->action_get();
 			break;
 			case Request::PUT:
-				$this->create();
+				$this->action_create();
 			break;
 			case Request::POST:
-				$this->update();
+				$this->action_update();
 			break;
 			case Request::DELETE:
-				$this->delete();
+				$this->action_delete();
 			break;
 		}		
 	}
 
-	public function index()
-	{
-		echo 'index';
-	}
-
-	public function create()
-	{
-		echo 'create';
-	}
-
-	public function update()
-	{
-		echo 'update';
-	}
-
-	public function delete()
-	{
-		echo 'delete';
-	}
-
-	private function format_json($data = array()) {
-		return json_encode($data);
-	}	
-
-	private function format_html($data = array()) {
-		return '<pre>' . var_export($data, true) . '</pre>';
-	}	
+	public function action_get() {}
+	public function action_create() {}
+	public function action_update() {}
+	public function action_delete() {}
 
 } // End Controller_Rest	

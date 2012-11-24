@@ -18,7 +18,7 @@ App.ViewModels.Toolbar.prototype.setObservables = function() {
       caption: 'Pins',
       className: 'add-pin',
       iconClassName: 'icon-map-marker',
-      action: new App.Map.Actions.AddPin()
+      action: new App.Map.Actions.AddMarker()
     }),
     new App.Models.ToolbarButton({
       caption: 'Routes',
