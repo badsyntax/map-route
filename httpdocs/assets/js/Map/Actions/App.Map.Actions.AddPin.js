@@ -25,9 +25,11 @@ App.Map.Actions.AddPin.prototype.bindMarkerEvents = function(i, marker) {
 };
 
 App.Map.Actions.AddPin.prototype.bindInfoWindowEvents = function(content, marker) {
+  
   content.on('click', 'a.remove-pin', function(e) {
     this.onRemovePinClick.call(this, e, marker);
   }.bind(this));
+
   content.on('click', 'a.add-description', function(e) {
     this.onAddDescriptionPinClick.call(this, e, marker);
   }.bind(this));
@@ -45,23 +47,11 @@ App.Map.Actions.AddPin.prototype.placeMarker = function(location) {
   
   var infoWindowContent = $(this.infoWindowTemplate);
 
-  var infoWindow = new google.maps.InfoWindow({
-    content: infoWindowContent[0],
-    size: new google.maps.Size(50, 50),
-    enableEventPropagation: false
+  var marker = new App.Map.Marker({
+    location: location,
+    infoWindowContent: infoWindowContent
   });
-
-  var marker = new google.maps.Marker({
-      infoWindow: infoWindow,
-      position: location,
-      map: this.map,
-      draggable: true,
-      clickable: true,
-      animation: google.maps.Animation.DROP // google.maps.Animation.DROP | BOUNCE
-  });
-
-  App.Map.markers.push(marker);
-
+  
   this.bindMarkerEvents(null, marker);
   this.bindInfoWindowEvents(infoWindowContent, marker);
 };

@@ -4,7 +4,8 @@ var App = {
   Models: {},
   ViewModels: {},
   UI: {},
-  Config: {}
+  Config: {},
+  API: {}
 };
 
 if (!Function.prototype.bind) {
