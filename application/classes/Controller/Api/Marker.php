@@ -36,7 +36,9 @@ class Controller_Api_Marker extends Controller_Rest {
 
 		$marker->values(array(
 			'longitude' => $data['longitude'],
-			'latitude' => $data['latitude']
+			'latitude' => $data['latitude'],
+			'description' => $data['description'],
+			'title' => $data['title']
 		));
 		$marker->save();
 

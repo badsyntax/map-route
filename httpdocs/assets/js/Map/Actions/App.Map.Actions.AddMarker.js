@@ -49,7 +49,6 @@ App.Map.Actions.AddMarker.prototype.bindInfoWindowEvents = function(marker) {
 };
 
 App.Map.Actions.AddMarker.prototype.toggleInfoWindow = function(e, marker) {
-  this.curMarker = marker;
   if (!marker.infoWindow.getMap()) {
     marker.infoWindow.open(this.map, marker);
   } else {
@@ -59,7 +58,7 @@ App.Map.Actions.AddMarker.prototype.toggleInfoWindow = function(e, marker) {
 
 App.Map.Actions.AddMarker.prototype.addMarker = function(location) {
   this.bindMarkerEvents(null, new App.Map.Marker({
-    location: location
+    location: location,
   }));
 };
 
@@ -85,9 +84,12 @@ App.Map.Actions.AddMarker.prototype.onRemoveMarkerClick = function(e, marker) {
   marker.setMap(null);
 };
 
-App.Map.Actions.AddMarker.prototype.onAddDescriptionMarkerClick = function(e, infoWindow, marker) {
+App.Map.Actions.AddMarker.prototype.onAddDescriptionMarkerClick = function(e, marker) {
   e.preventDefault();
+  this.curMarker = marker;
   this.modal.show();
+  this.modal.controller.viewModel.title(marker.model.title());
+  this.modal.controller.viewModel.description(marker.model.description());
 };
 
 App.Map.Actions.AddMarker.prototype.onMapClick = function(e) {
@@ -95,7 +97,18 @@ App.Map.Actions.AddMarker.prototype.onMapClick = function(e) {
 };
 
 App.Map.Actions.AddMarker.prototype.onDescriptionSave = function(e) {
+
   var title = $('#inputTitle').val();
   var description = $('#inputDescription').val();
-  alert('description save');
+
+  var model = this.curMarker.model;
+  model.title(title);
+  model.description(description);
+  model.save();
+
+  this.modal.hide();
+
+  // Refresh the infowindow dimensions
+  var infoWindow = this.curMarker.infoWindow;
+  infoWindow.setContent(infoWindow.getContent());
 };

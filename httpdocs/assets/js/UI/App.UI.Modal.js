@@ -28,6 +28,9 @@ App.UI.Modal = (function() {
 
       this.focus();
     },
+    hide: function() {
+      this.modal.modal('hide');
+    },
     focus: function(field) {
       field = field || 0;
       this.modal.on('shown', function () {

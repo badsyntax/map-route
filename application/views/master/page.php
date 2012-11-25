@@ -23,6 +23,7 @@
   <script src="/assets/lib/knockout/knockout-2.2.0.js"></script>
   <script src="/assets/lib/knockout/knockout.mapping-2.3.4.js"></script>
   <script src="/assets/js/App.js"></script>
+  <script src="/assets/js/Events/App.Events.js"></script>
   <script src="/assets/js/Config/App.Config.js"></script>
   <script src="/assets/js/API/App.API.Base.js"></script>
   <script src="/assets/js/API/App.API.Marker.js"></script>

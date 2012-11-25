@@ -22,10 +22,14 @@ App.Map.Marker = function(data) {
     marker.model.values({
       user_id: App.Config.get('user_id'),
       latitude: data.location.lat(),
-      longitude: data.location.lng()
+      longitude: data.location.lng(),
+      title: '',
+      description: ''
     });
     marker.model.save(data.success, data.error);
   }
+
+  ko.applyBindings(marker.model, infoWindow.getContent());
   
   return marker;
 };
