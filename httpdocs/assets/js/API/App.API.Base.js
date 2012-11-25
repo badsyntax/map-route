@@ -1,39 +1,34 @@
 App.API.Base = function(defaultConfig) {
-  this.defaultConfig = defaultConfig;
+  this.defaultConfig = $.extend({
+    contentType: 'application/json',
+    dataType: 'json'
+  }, defaultConfig);
 };
 
 App.API.Base.prototype.create = function(config) {
   $.extend(config, this.defaultConfig, {
-    type: 'POST',
-    contentType: 'application/json',
-    dataType: 'json'
+    type: 'POST'
   });
   return this.makeRequest(config);  
 };
 
 App.API.Base.prototype.update = function(config) {
   $.extend(config, this.defaultConfig, {
-    type: 'PUT',
-    contentType: 'application/json',
-    dataType: 'json'
+    type: 'PUT'
   });
   return this.makeRequest(config);  
 };
 
 App.API.Base.prototype.remove = function(config) {
   $.extend(config, this.defaultConfig, {
-    type: 'DELETE',
-    contentType: 'application/json',
-    dataType: 'json'
+    type: 'DELETE'
   });
   return this.makeRequest(config);  
 };
 
 App.API.Base.prototype.findAll = function(config) {
   $.extend(config, this.defaultConfig, {
-    type: 'GET',
-    contentType: 'application/json',
-    dataType: 'json'
+    type: 'GET'
   });
   return this.makeRequest(config);  
 };
@@ -42,6 +37,7 @@ App.API.Base.prototype.makeRequest = function(config) {
 
   var success = config.success;
   config.success = null;
+  
   var xhr = $.ajax(config);
 
   if (config.mapResponse) {

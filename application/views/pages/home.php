@@ -13,65 +13,43 @@
 
 <!-- Layout -->
 
-<div id="toolbar-ui" data-bind="template: { name: 'toolbar-template' }"></div>
-<div id="modal-ui" data-bind="template: { name: 'modal-template' }"></div>
-<div id="modal-login-ui" data-bind="template: { name: 'modal-login-template' }"></div>
+<div 
+  id="toolbar-ui" 
+  data-bind="template: { name: 'toolbar-template' }">
+</div>
+<div 
+  id="modal-ui" 
+  data-bind="template: { name: 'modal-template' }">
+</div>
+<div 
+  id="modal-login-ui" 
+  data-bind="template: { name: 'modal-login-template' }">
+</div>
+<div 
+  id="modal-edit-marker-description" 
+  data-bind="template: { name: 'modal-edit-marker-description-template' }">
+</div>
 
 <!-- Templates -->
 
 <script type="text/html" id="toolbar-template">
-<div id="toolbar" class="toolbar btn-toolbar" data-toggle="buttons-radio">
-  <div class="btn-group" data-bind="foreach: buttons">
-    <button 
-      data-bind="attr: { 'class': 'btn ' + className(), 'data-original-title': caption() }" 
-      data-placement="bottom" 
-      rel="tooltip">
-      <i data-bind="attr: { 'class': iconClassName() }" />
-    </button>
-  </div>
-</div> 
+<?php echo View::factory('pages/fragments/toolbar'); ?> 
 </script>
 
 <script type="text/html" id="modal-template">
-<div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 data-bind="text: heading"></h3>
-  </div>
-  <div class="modal-body">
-    <p data-bind="text: content"></p>
-  </div>
-  <div class="modal-footer">
-    <button class="btn btn-primary" data-dismiss="modal">Okay</button>
-  </div>
-</div>
+<?php echo View::factory('pages/fragments/modal'); ?> 
 </script>
 
 <script type="text/html" id="modal-login-template">
-<div id="modal-login" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
- <div class="modal-header">
-    <h3 data-bind="text: heading"></h3>
-  </div>
-  <div class="modal-body" style="text-align:center">
-    <p>Please sign in before using MapRoute:</p>
-    <p>
-      <a href="<?php echo $google_login; ?>" class="btn btn-primary btn-large">
-        <i class="icon-google-plus"></i>
-        Sign in with Google &raquo;
-      </a>
-    </p>
-  </div>  
-</div>
+<?php echo View::factory('pages/fragments/modal/login', array(
+  'google_login' => $google_login
+)); ?> 
+</script>
+
+<script type="text/html" id="modal-edit-marker-description-template">
+<?php echo View::factory('pages/fragments/modal/marker/edit_description'); ?> 
 </script>
 
 <script type="text/html" id="map-infowindow-template">
-<p>
-  <a href="#" class="add-description">
-    <i class="icon-edit"></i> Add description
-  </a>
-  <br />
-  <a href="#" class="remove-pin">
-    <i class="icon-remove"></i> Remove pin
-  </a>
-</p>
+<?php echo View::factory('pages/fragments/infowindow'); ?> 
 </script>

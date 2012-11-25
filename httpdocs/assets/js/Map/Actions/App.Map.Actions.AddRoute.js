@@ -63,8 +63,6 @@ App.Map.Actions.AddRoute.prototype.toggleMarker = function(e, marker) {
 
 App.Map.Actions.AddRoute.prototype.bindMarkerEvents = function(i, marker) {
 
-  console.log(marker);
-
   marker.setCursor('crosshair');
   marker.setDraggable(false);
 

@@ -51,7 +51,7 @@ App.Map = (function() {
             location: new google.maps.LatLng(marker.latitude(), marker.longitude())
           });
         
-        }.bind(this), i * 100);
+        }.bind(this), i * 160);
       }.bind(this));
     }
   };

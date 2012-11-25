@@ -30,5 +30,6 @@ App.Controllers.Map.prototype.onTilesLoaded = function() {
     App.Map.addMarkers(markers.markers());
 
     new App.Controllers.Toolbar();
+    new App.Controllers.Modal.EditMarkerDescription();
   });
 };

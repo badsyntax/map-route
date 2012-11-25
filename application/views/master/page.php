@@ -35,16 +35,19 @@
   <script src="/assets/js/Controllers/App.Controllers.Map.js"></script>
   <script src="/assets/js/Controllers/App.Controllers.Modal.js"></script>
   <script src="/assets/js/Controllers/App.Controllers.Modal.Login.js"></script>
+  <script src="/assets/js/Controllers/App.Controllers.Modal.EditMarkerDescription.js"></script>
   <script src="/assets/js/Controllers/App.Controllers.Toolbar.js"></script>
   <script src="/assets/js/UI/App.UI.Toolbar.js"></script>
   <script src="/assets/js/UI/App.UI.Modal.js"></script>
   <script src="/assets/js/UI/App.UI.Modal.Login.js"></script>
+  <script src="/assets/js/UI/App.UI.Modal.EditMarkerDescription.js"></script>
   <script src="/assets/js/Models/App.Models.Base.js"></script>
   <script src="/assets/js/Models/App.Models.ToolbarButton.js"></script>
   <script src="/assets/js/Models/App.Models.Marker.js"></script>
   <script src="/assets/js/ViewModels/App.ViewModels.Toolbar.js"></script>
   <script src="/assets/js/ViewModels/App.ViewModels.Modal.js"></script>
   <script src="/assets/js/ViewModels/App.ViewModels.Modal.Login.js"></script>
+  <script src="/assets/js/ViewModels/App.ViewModels.Modal.EditMarkerDescription.js"></script>
   <script>
   App.Config.set(<?php echo $front_end_config; ?>);
   new App.Controllers.Map();

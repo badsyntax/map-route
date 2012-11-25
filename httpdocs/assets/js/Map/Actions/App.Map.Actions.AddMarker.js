@@ -1,5 +1,6 @@
 App.Map.Actions.AddMarker = function() {
   this.map = App.Map.instance();
+  this.modal = App.UI.Modal.EditMarkerDescription;
   this.handlers = [];
 };
 
@@ -11,6 +12,7 @@ App.Map.Actions.AddMarker.prototype.execute = function() {
 App.Map.Actions.AddMarker.prototype.bindEvents = function() {
   this.handlers.push(google.maps.event.addListener(this.map, 'click', this.onMapClick.bind(this)));
   $.each(App.Map.markers, this.bindMarkerEvents.bind(this));
+  this.modal.on('save', this.onDescriptionSave.bind(this));
 };
 
 App.Map.Actions.AddMarker.prototype.bindMarkerEvents = function(i, marker) {
@@ -47,6 +49,7 @@ App.Map.Actions.AddMarker.prototype.bindInfoWindowEvents = function(marker) {
 };
 
 App.Map.Actions.AddMarker.prototype.toggleInfoWindow = function(e, marker) {
+  this.curMarker = marker;
   if (!marker.infoWindow.getMap()) {
     marker.infoWindow.open(this.map, marker);
   } else {
@@ -61,9 +64,17 @@ App.Map.Actions.AddMarker.prototype.addMarker = function(location) {
 };
 
 App.Map.Actions.AddMarker.prototype.reset = function() {
+  
   this.map.setOptions({ draggableCursor: null });
+  
   $.each(this.handlers, function(i, handler) {
     handler.remove();
+  });
+
+  this.modal.off('save');
+  
+  $.each(App.Map.markers, function(i, marker) {
+    $(marker.infoWindow.getContent()).off('click');
   });
 };
 
@@ -76,8 +87,15 @@ App.Map.Actions.AddMarker.prototype.onRemoveMarkerClick = function(e, marker) {
 
 App.Map.Actions.AddMarker.prototype.onAddDescriptionMarkerClick = function(e, infoWindow, marker) {
   e.preventDefault();
+  this.modal.show();
 };
 
 App.Map.Actions.AddMarker.prototype.onMapClick = function(e) {
   this.addMarker(e.latLng);
+};
+
+App.Map.Actions.AddMarker.prototype.onDescriptionSave = function(e) {
+  var title = $('#inputTitle').val();
+  var description = $('#inputDescription').val();
+  alert('description save');
 };

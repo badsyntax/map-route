@@ -55,15 +55,17 @@ body {
 .toolbar button [class^="icon-"] {
   font-size: 24px;
   line-height: 24px;
-
 }
-
 .btn-large [class^="icon-"] {
   font-size: 17.5px;
   line-height: 17.5px;
 }
-
 /* Temporary fix for tooltips in button groups messing with margins */
 .btn-group > .tooltip + .btn {
   margin-left: -1px;
+}
+
+.modal .spinner {
+  margin-right: 10px;
+  display: none;
 }
