@@ -2,12 +2,16 @@
 
 class Controller_Rest extends Controller {
 
+	protected $user;
+	
 	public function before()
 	{
 		if (!Auth::instance()->logged_in())
 		{
 			throw HTTP_Exception::factory(401);
 		}
+
+		$this->user = Auth::instance()->get_user();
 	}
 
 	public function action_index()
