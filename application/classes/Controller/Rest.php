@@ -2,6 +2,14 @@
 
 class Controller_Rest extends Controller {
 
+	public function before()
+	{
+		if (!Auth::instance()->logged_in())
+		{
+			throw HTTP_Exception::factory(401);
+		}
+	}
+
 	public function action_index()
 	{
 		switch($this->request->method())
@@ -9,10 +17,10 @@ class Controller_Rest extends Controller {
 			case Request::GET:
 				$this->action_get();
 			break;
-			case Request::PUT:
+			case Request::POST:
 				$this->action_create();
 			break;
-			case Request::POST:
+			case Request::PUT:
 				$this->action_update();
 			break;
 			case Request::DELETE:
@@ -25,5 +33,12 @@ class Controller_Rest extends Controller {
 	public function action_create() {}
 	public function action_update() {}
 	public function action_delete() {}
+
+	protected function send_response($status = 200, $content_type = 'application/json', $body = NULL)
+	{
+		$this->response->status($status);
+		$this->response->headers('Content-Type', $content_type);
+		$this->response->body($body);
+	}
 
 } // End Controller_Rest	

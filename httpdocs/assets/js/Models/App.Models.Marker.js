@@ -16,6 +16,22 @@ App.Models.Marker.prototype.create = function(success, error) {
   });
 };
 
+App.Models.Marker.prototype.update = function(success, error) {
+  App.API.Marker.update({
+    data: ko.mapping.toJSON(this),
+    success: success,
+    error: error
+  });
+};
+
+App.Models.Marker.prototype.remove = function(success, error) {
+  App.API.Marker.remove({
+    data: ko.mapping.toJSON(this),
+    success: success,
+    error: error
+  });
+};
+
 App.Models.Marker.prototype.findAll = function(success, error) {
   App.API.Marker.findAll({
     success: success,
@@ -23,7 +39,7 @@ App.Models.Marker.prototype.findAll = function(success, error) {
     mapResponse: {
       model: this,
       mappingOptions: {
-        'pins': {
+        'markers': {
           create: function(options) {
               return new App.Models.Marker(options.data);
           }

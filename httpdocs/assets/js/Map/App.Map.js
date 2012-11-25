@@ -42,8 +42,17 @@ App.Map = (function() {
     instance: function() {
       return map;
     },
-    addPins: function(pins) {
-      console.log(pins);
+    addMarkers: function(markers) {
+      $.each(markers, function(i, marker) {
+        setTimeout(function() {
+
+          new App.Map.Marker({
+            model: marker,
+            location: new google.maps.LatLng(marker.latitude(), marker.longitude())
+          });
+        
+        }.bind(this), i * 100);
+      }.bind(this));
     }
   };
 }());

@@ -13,9 +13,43 @@ class Controller_Api_Marker extends Controller_Rest {
 		$response = new StdClass();
 		$response->id = $marker->id;
 
-		$this->response->headers('Content-Type', 'application/json');
-		$this->response->status(201);
-		$this->response->body(json_encode($response));
+		$this->send_response(201, 'application/json', json_encode($response));
+	}
+
+	public function action_update()
+	{
+		$data = (array) json_decode($this->request->body());
+
+		$marker = ORM::factory('Marker', $data['id']);
+
+		if (!$marker->loaded())
+		{
+			throw HTTP_Exception::factory(500, 'Marker not found');
+		}
+
+		$marker->values(array(
+			'longitude' => $data['longitude'],
+			'latitude' => $data['latitude']
+		));
+		$marker->save();
+
+		$this->send_response(200);
+	}
+
+	public function action_delete()
+	{
+		$data = (array) json_decode($this->request->body());
+
+		$marker = ORM::factory('Marker', $data['id']);
+
+		if (!$marker->loaded())
+		{
+			throw HTTP_Exception::factory(500, 'Marker not found');
+		}
+
+		$marker->delete();
+
+		$this->send_response(200);
 	}
 
 	public function action_get()
@@ -30,8 +64,6 @@ class Controller_Api_Marker extends Controller_Rest {
 			$response->markers[] = (object) $marker->as_array();
 		}
 
-		$this->response->headers('Content-Type', 'application/json');
-		$this->response->status(200);
-		$this->response->body(json_encode($response));
+		$this->send_response(200, 'application/json', json_encode($response));
 	}
 }

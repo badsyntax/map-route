@@ -28,3 +28,15 @@ App.inherits = function(_sub, _super) {
   _sub.prototype = new F();
   _sub.prototype.constructor = _sub;
 }; 
+
+ko.bindingHandlers.fadeVisible = {
+  init: function(element, valueAccessor) {
+    var value = valueAccessor();
+    $(element).toggle(ko.utils.unwrapObservable(value));
+  },
+  update: function(element, valueAccessor) {
+    var value = valueAccessor();
+    alert(value);
+    ko.utils.unwrapObservable(value) ? $(element).fadeIn() : $(element).fadeOut();
+  }
+};

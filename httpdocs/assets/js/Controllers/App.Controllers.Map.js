@@ -12,8 +12,6 @@ App.Controllers.Map.prototype.init = function(map) {
   if (!App.Config.get('user_id')) {
     return App.UI.Modal.Login.show();
   }
-  
-  new App.Controllers.Toolbar();
 
   this.map = map;
   this.bindEvents();
@@ -24,11 +22,13 @@ App.Controllers.Map.prototype.bindEvents = function() {
 };
 
 App.Controllers.Map.prototype.onTilesLoaded = function() {
-  // Load and add the markers
+
   var markers = new App.Models.Marker();
+
   markers.findAll(function() {
-    var action = new App.Map.Actions.AddMarker();
-    action.addMarkers(markers.markers());
-    action.reset();
+
+    App.Map.addMarkers(markers.markers());
+
+    new App.Controllers.Toolbar();
   });
 };

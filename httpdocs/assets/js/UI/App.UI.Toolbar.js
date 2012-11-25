@@ -2,7 +2,7 @@
  *************************/
 App.UI.Toolbar = function(controller, container, viewModel) {
   this.controller = controller;
-  this.container = container.find('.toolbar');
+  this.container = container.find('.toolbar').fadeIn();
   this.viewModel = viewModel;
   this.position();
   this.bindEvents();

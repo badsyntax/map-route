@@ -47,6 +47,7 @@ body {
   left: 50%;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px;
   border-radius: 4px;
+  display: none;
 }
 .toolbar button {
   padding-bottom: 0;
@@ -60,4 +61,9 @@ body {
 .btn-large [class^="icon-"] {
   font-size: 17.5px;
   line-height: 17.5px;
+}
+
+/* Temporary fix for tooltips in button groups messing with margins */
+.btn-group > .tooltip + .btn {
+  margin-left: -1px;
 }

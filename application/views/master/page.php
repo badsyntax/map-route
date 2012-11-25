@@ -28,6 +28,7 @@
   <script src="/assets/js/API/App.API.Marker.js"></script>
   <script src="/assets/js/Map/App.Map.js"></script>
   <script src="/assets/js/Map/App.Map.Marker.js"></script>
+  <script src="/assets/js/Map/App.Map.InfoWindow.js"></script>
   <script src="/assets/js/Map/Actions/App.Map.Actions.Default.js"></script>
   <script src="/assets/js/Map/Actions/App.Map.Actions.AddMarker.js"></script>
   <script src="/assets/js/Map/Actions/App.Map.Actions.AddRoute.js"></script>

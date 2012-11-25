@@ -1,7 +1,6 @@
 App.Map.Actions.AddMarker = function() {
   this.map = App.Map.instance();
   this.handlers = [];
-  this.infoWindowTemplate = $('#map-infowindow-template').html();
 };
 
 App.Map.Actions.AddMarker.prototype.execute = function() {
@@ -22,10 +21,22 @@ App.Map.Actions.AddMarker.prototype.bindMarkerEvents = function(i, marker) {
   this.handlers.push(google.maps.event.addListener(marker, 'click', function(e) {
     this.toggleInfoWindow(e, marker);
   }.bind(this)));
+
+  this.handlers.push(google.maps.event.addListener(marker, 'dragend', function(e) {
+    marker.model.values({
+      longitude: marker.getPosition().lng(),
+      latitude: marker.getPosition().lat()
+    });
+    marker.model.save();
+  }.bind(this)));
+
+  this.bindInfoWindowEvents(marker);
 };
 
-App.Map.Actions.AddMarker.prototype.bindInfoWindowEvents = function(content, marker) {
-  
+App.Map.Actions.AddMarker.prototype.bindInfoWindowEvents = function(marker) {
+
+  var content = $(marker.infoWindow.getContent());
+
   content.on('click', 'a.remove-pin', function(e) {
     this.onRemoveMarkerClick.call(this, e, marker);
   }.bind(this));
@@ -43,26 +54,10 @@ App.Map.Actions.AddMarker.prototype.toggleInfoWindow = function(e, marker) {
   }
 };
 
-App.Map.Actions.AddMarker.prototype.addMarker = function(model, location) {
-
-  var infoWindowContent = $(this.infoWindowTemplate);
-
-  var marker = new App.Map.Marker({
-    model: model,
-    location: location,
-    infoWindowContent: infoWindowContent
-  });
-  
-  this.bindMarkerEvents(null, marker);
-  this.bindInfoWindowEvents(infoWindowContent, marker);
-};
-
-App.Map.Actions.AddMarker.prototype.addMarkers = function(pins) {
-  $.each(pins, function(i, pin) {
-    setTimeout(function() {
-      this.addMarker(pin, new google.maps.LatLng(pin.latitude(), pin.longitude()));
-    }.bind(this), i * 100);
-  }.bind(this));
+App.Map.Actions.AddMarker.prototype.addMarker = function(location) {
+  this.bindMarkerEvents(null, new App.Map.Marker({
+    location: location
+  }));
 };
 
 App.Map.Actions.AddMarker.prototype.reset = function() {
@@ -74,16 +69,15 @@ App.Map.Actions.AddMarker.prototype.reset = function() {
 
 App.Map.Actions.AddMarker.prototype.onRemoveMarkerClick = function(e, marker) {
   e.preventDefault();
+  marker.model.remove();
   marker.infoWindow.close();
   marker.setMap(null);
 };
 
 App.Map.Actions.AddMarker.prototype.onAddDescriptionMarkerClick = function(e, infoWindow, marker) {
   e.preventDefault();
-  alert('Add description');
 };
 
 App.Map.Actions.AddMarker.prototype.onMapClick = function(e) {
-  console.log(e.latLng);
-  this.addMarker(null, e.latLng);
+  this.addMarker(e.latLng);
 };
