@@ -12,8 +12,6 @@ class Controller_Api_Marker extends Controller_Rest {
 		$marker->values($data);
 		$marker->save();
 
-		die($marker->latitude);
-
 		$response = new StdClass();
 		$response->id = $marker->id;
 
