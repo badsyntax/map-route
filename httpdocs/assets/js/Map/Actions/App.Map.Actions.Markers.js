@@ -1,21 +1,21 @@
-App.Map.Actions.AddMarker = function() {
+App.Map.Actions.Markers = function() {
   this.map = App.Map.instance();
   this.modal = App.UI.Modal.EditMarkerDescription;
   this.handlers = [];
 };
 
-App.Map.Actions.AddMarker.prototype.execute = function() {
+App.Map.Actions.Markers.prototype.execute = function() {
   this.bindEvents();
   this.map.setOptions({ draggableCursor: 'crosshair' });
 };
 
-App.Map.Actions.AddMarker.prototype.bindEvents = function() {
+App.Map.Actions.Markers.prototype.bindEvents = function() {
   this.handlers.push(google.maps.event.addListener(this.map, 'click', this.onMapClick.bind(this)));
   $.each(App.Map.markers, this.bindMarkerEvents.bind(this));
   this.modal.on('save', this.onDescriptionSave.bind(this));
 };
 
-App.Map.Actions.AddMarker.prototype.bindMarkerEvents = function(i, marker) {
+App.Map.Actions.Markers.prototype.bindMarkerEvents = function(i, marker) {
 
   marker.setCursor('pointer');
   marker.setDraggable(true);
@@ -35,7 +35,7 @@ App.Map.Actions.AddMarker.prototype.bindMarkerEvents = function(i, marker) {
   this.bindInfoWindowEvents(marker);
 };
 
-App.Map.Actions.AddMarker.prototype.bindInfoWindowEvents = function(marker) {
+App.Map.Actions.Markers.prototype.bindInfoWindowEvents = function(marker) {
 
   var content = $(marker.infoWindow.getContent());
 
@@ -48,7 +48,7 @@ App.Map.Actions.AddMarker.prototype.bindInfoWindowEvents = function(marker) {
   }.bind(this));
 };
 
-App.Map.Actions.AddMarker.prototype.toggleInfoWindow = function(e, marker) {
+App.Map.Actions.Markers.prototype.toggleInfoWindow = function(e, marker) {
   if (!marker.infoWindow.getMap()) {
     marker.infoWindow.open(this.map, marker);
   } else {
@@ -56,13 +56,13 @@ App.Map.Actions.AddMarker.prototype.toggleInfoWindow = function(e, marker) {
   }
 };
 
-App.Map.Actions.AddMarker.prototype.addMarker = function(location) {
+App.Map.Actions.Markers.prototype.addMarker = function(location) {
   this.bindMarkerEvents(null, new App.Map.Marker({
-    location: location,
+    location: location
   }));
 };
 
-App.Map.Actions.AddMarker.prototype.reset = function() {
+App.Map.Actions.Markers.prototype.reset = function() {
   
   this.map.setOptions({ draggableCursor: null });
   
@@ -77,14 +77,14 @@ App.Map.Actions.AddMarker.prototype.reset = function() {
   });
 };
 
-App.Map.Actions.AddMarker.prototype.onRemoveMarkerClick = function(e, marker) {
+App.Map.Actions.Markers.prototype.onRemoveMarkerClick = function(e, marker) {
   e.preventDefault();
   marker.model.remove();
   marker.infoWindow.close();
   marker.setMap(null);
 };
 
-App.Map.Actions.AddMarker.prototype.onAddDescriptionMarkerClick = function(e, marker) {
+App.Map.Actions.Markers.prototype.onAddDescriptionMarkerClick = function(e, marker) {
   e.preventDefault();
   this.curMarker = marker;
   this.modal.show();
@@ -92,11 +92,11 @@ App.Map.Actions.AddMarker.prototype.onAddDescriptionMarkerClick = function(e, ma
   this.modal.controller.viewModel.description(marker.model.description());
 };
 
-App.Map.Actions.AddMarker.prototype.onMapClick = function(e) {
+App.Map.Actions.Markers.prototype.onMapClick = function(e) {
   this.addMarker(e.latLng);
 };
 
-App.Map.Actions.AddMarker.prototype.onDescriptionSave = function(e) {
+App.Map.Actions.Markers.prototype.onDescriptionSave = function(e) {
 
   var title = $('#inputTitle').val();
   var description = $('#inputDescription').val();

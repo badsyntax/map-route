@@ -31,8 +31,8 @@
   <script src="/assets/js/Map/App.Map.Marker.js"></script>
   <script src="/assets/js/Map/App.Map.InfoWindow.js"></script>
   <script src="/assets/js/Map/Actions/App.Map.Actions.Default.js"></script>
-  <script src="/assets/js/Map/Actions/App.Map.Actions.AddMarker.js"></script>
-  <script src="/assets/js/Map/Actions/App.Map.Actions.AddRoute.js"></script>
+  <script src="/assets/js/Map/Actions/App.Map.Actions.Markers.js"></script>
+  <script src="/assets/js/Map/Actions/App.Map.Actions.Routes.js"></script>
   <script src="/assets/js/Controllers/App.Controllers.Map.js"></script>
   <script src="/assets/js/Controllers/App.Controllers.Modal.js"></script>
   <script src="/assets/js/Controllers/App.Controllers.Modal.Login.js"></script>

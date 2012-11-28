@@ -1,4 +1,4 @@
-App.Map.Actions.AddRoute = function() {
+App.Map.Actions.Routes = function() {
   
   this.handlers = [];
   this.map = App.Map.instance();
@@ -21,7 +21,7 @@ App.Map.Actions.AddRoute = function() {
   this.path = this.poly.getPath();
 };
 
-App.Map.Actions.AddRoute.prototype.execute = function() {
+App.Map.Actions.Routes.prototype.execute = function() {
 
   if (!App.Map.markers.length) {
     App.UI.Modal.show('You need to add some pins before planning a route.');
@@ -33,11 +33,11 @@ App.Map.Actions.AddRoute.prototype.execute = function() {
   });
 };
 
-App.Map.Actions.AddRoute.prototype.bindEvents = function() {
+App.Map.Actions.Routes.prototype.bindEvents = function() {
   $.each(App.Map.markers, this.bindMarkerEvents.bind(this));
 };
 
-App.Map.Actions.AddRoute.prototype.toggleMarker = function(e, marker) {
+App.Map.Actions.Routes.prototype.toggleMarker = function(e, marker) {
 
   var position = marker.getPosition();
   var points = this.path.getArray();
@@ -61,7 +61,7 @@ App.Map.Actions.AddRoute.prototype.toggleMarker = function(e, marker) {
   }
 };
 
-App.Map.Actions.AddRoute.prototype.bindMarkerEvents = function(i, marker) {
+App.Map.Actions.Routes.prototype.bindMarkerEvents = function(i, marker) {
 
   marker.setCursor('crosshair');
   marker.setDraggable(false);
@@ -71,7 +71,7 @@ App.Map.Actions.AddRoute.prototype.bindMarkerEvents = function(i, marker) {
   }.bind(this)));
 };
 
-App.Map.Actions.AddRoute.prototype.reset = function() {
+App.Map.Actions.Routes.prototype.reset = function() {
   this.map.setOptions({ 
     draggableCursor: null 
   });

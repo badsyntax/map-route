@@ -1,4 +1,4 @@
-<div id="modal-login" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="modal-login" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
  <div class="modal-header">
     <h3 data-bind="text: heading"></h3>
   </div>

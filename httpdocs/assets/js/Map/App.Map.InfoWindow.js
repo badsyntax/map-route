@@ -9,4 +9,4 @@ App.Map.InfoWindow = (function(template) {
     });
   };
 
-})($('#map-infowindow-template').html());
+}($('#map-infowindow-template').html()));

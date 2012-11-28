@@ -13,13 +13,13 @@ App.ViewModels.Toolbar.prototype.setObservables = function() {
       caption: 'Pins',
       className: 'add-pin',
       iconClassName: 'icon-map-marker',
-      action: new App.Map.Actions.AddMarker()
+      action: new App.Map.Actions.Markers()
     }),
     new App.Models.ToolbarButton({
       caption: 'Routes',
       className: 'add-route',
       iconClassName: 'icon-sitemap',
-      action: new App.Map.Actions.AddRoute()
+      action: new App.Map.Actions.Routes()
     }),
     new App.Models.ToolbarButton({
       caption: 'Sign out',

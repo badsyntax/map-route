@@ -20,7 +20,6 @@
     </form>
   </div>
   <div class="modal-footer">
-    <img src="/assets/img/ajax-loader.gif" class="spinner" />
     <button class="btn btn-primary btn-save">Save</button>
     <button class="btn" data-dismiss="modal">Cancel</button>
   </div>

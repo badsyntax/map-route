@@ -1,18 +1,21 @@
 /* Map controller
  *************************/
 App.Controllers.Map = function() {
-  App.Map.create(this.init.bind(this));
-};
 
-App.Controllers.Map.prototype.init = function(map) {
-  
   new App.Controllers.Modal();
   new App.Controllers.Modal.Login();
   
   if (!App.Config.get('user_id')) {
-    return App.UI.Modal.Login.show();
+    return $('#map-canvas').empty() && setTimeout(function() {
+      App.UI.Modal.Login.show();
+      App.Map.create();
+    }, 150);
   }
 
+  App.Map.create(this.init.bind(this));
+};
+
+App.Controllers.Map.prototype.init = function(map) {
   this.map = map;
   this.bindEvents();
 };

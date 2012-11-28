@@ -12,11 +12,14 @@ App.UI.Modal = (function() {
     },
     bindEvents: function(){
     },
-    show: function(message) {
+    show: function(message, callback) {
       
-      this.viewModel.content(message);
+      if (message) {
+        this.viewModel.content(message);
+      }
 
       this.modal
+      .on('shown', callback)
       .modal({
         show: true
       })

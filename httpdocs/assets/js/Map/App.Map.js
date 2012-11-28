@@ -15,7 +15,9 @@ App.Map = (function() {
 
       window.mapCallback = function() {
         this.init();
-        callback(map);
+        if (callback) {
+          callback(map);
+        }
       }.bind(this);
 
       var attr = {
