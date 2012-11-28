@@ -1,6 +1,6 @@
 <!-- Map canvas -->
 
-<div id="map-canvas">
+<div id="map-canvas" class="map">
   <div class="message">
     <div class="has-js">
       Loading map...
@@ -35,21 +35,17 @@
 <script type="text/html" id="toolbar-template">
 <?php echo View::factory('pages/fragments/toolbar'); ?> 
 </script>
-
 <script type="text/html" id="modal-template">
 <?php echo View::factory('pages/fragments/modal'); ?> 
 </script>
-
 <script type="text/html" id="modal-login-template">
 <?php echo View::factory('pages/fragments/modal/login', array(
   'google_login' => $google_login
 )); ?> 
 </script>
-
 <script type="text/html" id="modal-edit-marker-description-template">
 <?php echo View::factory('pages/fragments/modal/marker/edit_description'); ?> 
 </script>
-
 <script type="text/html" id="map-infowindow-template">
 <?php echo View::factory('pages/fragments/infowindow'); ?> 
 </script>

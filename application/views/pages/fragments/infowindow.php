@@ -1,4 +1,4 @@
-<div>
+<div class="info-window">
   <div>
     <strong data-bind="text: title"></strong>
   </div>

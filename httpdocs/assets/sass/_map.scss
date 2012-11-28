@@ -1,0 +1,39 @@
+/* Map Canvas
+ *****************/
+.map { 
+
+  height: 100%;
+  width: 100%;
+
+  img {
+    max-width: none;
+    width: auto; 
+    display: inline;
+  }
+
+  .message {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    margin-top: -1em;
+  }
+
+  .has-js {
+    display: none;
+  }
+}
+
+/* Javascript enabled
+ *****************/
+.js {
+  
+  .map {
+    .no-js {
+      display: none;
+    }
+    .has-js {
+      display: block;
+    }
+  }
+}
