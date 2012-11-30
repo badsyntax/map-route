@@ -25,6 +25,12 @@
 [submodule "modules/kostache"]
 	path = modules/kostache
 	url = https://github.com/zombor/KOstache.git
+[submodule "modules/userguide"]
+	path = modules/userguide
+	url = https://github.com/kohana/userguide.git
+[submodule "modules/compress2"]
+	path = modules/compress2
+	url = git@github.com:badsyntax/kohana-compress.git
 [submodule "modules/compress"]
 	path = modules/compress
-	url = https://github.com/azampagl/kohana-compress.git
+	url = git@github.com:badsyntax/kohana-compress.git
