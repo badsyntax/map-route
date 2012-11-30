@@ -55,6 +55,16 @@ App.Map = (function() {
         
         }.bind(this), i * 160);
       }.bind(this));
+    },
+    removeMarker: function(marker) {
+
+      marker.model.remove();
+      marker.infoWindow.close();
+      marker.setMap(null);
+
+      this.markers = $.map(this.markers, function(m) {
+        return m === marker ? null : m;
+      });
     }
   };
 }());

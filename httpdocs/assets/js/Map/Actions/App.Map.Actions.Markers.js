@@ -79,9 +79,7 @@ App.Map.Actions.Markers.prototype.reset = function() {
 
 App.Map.Actions.Markers.prototype.onRemoveMarkerClick = function(e, marker) {
   e.preventDefault();
-  marker.model.remove();
-  marker.infoWindow.close();
-  marker.setMap(null);
+  marker.remove();
 };
 
 App.Map.Actions.Markers.prototype.onAddDescriptionMarkerClick = function(e, marker) {
