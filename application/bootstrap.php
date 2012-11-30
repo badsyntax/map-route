@@ -105,7 +105,6 @@ Kohana::$log->attach(new Log_File(APPPATH.'logs'));
  */
 Kohana::$config->attach(new Config_File);
 
-
 /**
  * Set default config
  **/
@@ -114,16 +113,7 @@ Cookie::$salt = Kohana::$config->load('site.cookie.salt');
 /**
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
-Kohana::modules(array(
-	'auth'       => MODPATH.'auth',
-	'minion'     => MODPATH.'minion',
-	'minion-tasks-migrations' => MODPATH.'minion-tasks-migrations',
-	'cache'      => MODPATH.'cache',
-	'database'   => MODPATH.'database',
-	'orm'        => MODPATH.'orm',
-	'oauth2'     => MODPATH.'oauth2',
-	'kostache'   => MODPATH.'kostache',
-	));
+Kohana::modules(Kohana::$config->load('site.modules'));
 
 /**
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
@@ -141,4 +131,3 @@ Route::set('default', '(<controller>(/<action>(/<id>)))')
 		'controller' => 'home',
 		'action'     => 'index',
 	));
-

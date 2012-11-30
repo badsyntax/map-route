@@ -6,5 +6,4 @@ class Controller_Home extends Controller_Base {
 	{
 		$this->content = new View_Page_Home;		
 	}
-
 }

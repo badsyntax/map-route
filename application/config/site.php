@@ -1,6 +1,18 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 return array(
+	'modules' => array(
+		'auth'       => MODPATH.'auth',
+		'minion'     => MODPATH.'minion',
+		'cache'      => MODPATH.'cache',
+		'database'   => MODPATH.'database',
+		'orm'        => MODPATH.'orm',
+		'oauth2'     => MODPATH.'oauth2',
+		'kostache'   => MODPATH.'kostache',
+		'compress'   => MODPATH.'compress',
+		'userguide'  => MODPATH.'userguide',
+		'minion-tasks-migrations' => MODPATH.'minion-tasks-migrations',
+	),
 	'cookie' => array(
 		'salt' => 'JpTKsYl8dfdf3sNbHKqg'
 	),
