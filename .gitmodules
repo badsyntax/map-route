@@ -22,3 +22,6 @@
 [submodule "modules/minion-tasks-migrations"]
 	path = modules/minion-tasks-migrations
 	url = https://github.com/kohana-minion/tasks-migrations.git
+[submodule "modules/kostache"]
+	path = modules/kostache
+	url = https://github.com/zombor/KOstache.git
