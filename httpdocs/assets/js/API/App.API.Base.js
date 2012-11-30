@@ -5,32 +5,32 @@ App.API.Base = function(defaultConfig) {
   }, defaultConfig);
 };
 
+App.API.Base.prototype.xhrConfig = function(config, xhrConfig) {
+  return $.extend(config, this.defaultConfig, xhrConfig);
+};
+
 App.API.Base.prototype.create = function(config) {
-  $.extend(config, this.defaultConfig, {
+  return this.makeRequest(this.xhrConfig(config, {
     type: 'POST'
-  });
-  return this.makeRequest(config);  
+  }));  
 };
 
 App.API.Base.prototype.update = function(config) {
-  $.extend(config, this.defaultConfig, {
+  return this.makeRequest(this.xhrConfig(config, {
     type: 'PUT'
-  });
-  return this.makeRequest(config);  
+  }));  
 };
 
 App.API.Base.prototype.remove = function(config) {
-  $.extend(config, this.defaultConfig, {
+  return this.makeRequest(this.xhrConfig(config, {
     type: 'DELETE'
-  });
-  return this.makeRequest(config);  
+  }));  
 };
 
 App.API.Base.prototype.findAll = function(config) {
-  $.extend(config, this.defaultConfig, {
+  return this.makeRequest(this.xhrConfig(config, {
     type: 'GET'
-  });
-  return this.makeRequest(config);  
+  }));  
 };
 
 App.API.Base.prototype.makeRequest = function(config) {
@@ -45,6 +45,8 @@ App.API.Base.prototype.makeRequest = function(config) {
   }
 
   xhr.success(success);
+
+  return xhr;
 };
 
 App.API.Base.prototype.mapResponse = function(xhr, config) {

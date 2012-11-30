@@ -1,7 +1,7 @@
 App.Models.ToolbarButton = function(data) {
 
   ko.mapping.fromJS(data, {
-    'ignore': ["action"]
+    'ignore': [ 'action' ]
   }, this);
 
   this.action = data.action;

@@ -1,11 +1,13 @@
 App.Map = (function() {
   
   var map;
+  var route;
   var canvas = $('#map-canvas');
 
   return {
     Actions: {},
     markers: [],
+    path: [],
     create: function(callback) {
       if (!map) {
         this.load(callback);
@@ -40,6 +42,7 @@ App.Map = (function() {
       };
 
       map = new google.maps.Map(canvas[0], options);
+
     },
     instance: function() {
       return map;

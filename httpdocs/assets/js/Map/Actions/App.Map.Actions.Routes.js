@@ -24,7 +24,7 @@ App.Map.Actions.Routes = function() {
 App.Map.Actions.Routes.prototype.execute = function() {
 
   if (!App.Map.markers.length) {
-    App.UI.Modal.show('You need to add some pins before planning a route.');
+    return App.UI.Modal.show('You need to add some pins before planning a route.');
   }
 
   this.bindEvents();
@@ -35,6 +35,17 @@ App.Map.Actions.Routes.prototype.execute = function() {
 
 App.Map.Actions.Routes.prototype.bindEvents = function() {
   $.each(App.Map.markers, this.bindMarkerEvents.bind(this));
+};
+
+App.Map.Actions.Routes.prototype.bindMarkerEvents = function(i, marker) {
+
+  marker.setClickable(true);
+  marker.setCursor('crosshair');
+  marker.setDraggable(false);
+
+  this.handlers.push(google.maps.event.addListener(marker, 'click', function(e) {
+    this.toggleMarker(e, marker);
+  }.bind(this)));
 };
 
 App.Map.Actions.Routes.prototype.toggleMarker = function(e, marker) {
@@ -59,16 +70,17 @@ App.Map.Actions.Routes.prototype.toggleMarker = function(e, marker) {
   if (add) {
     this.path.push(marker.getPosition());
   }
+
+  App.Map.Route.updatePath(this.getPath());
 };
 
-App.Map.Actions.Routes.prototype.bindMarkerEvents = function(i, marker) {
-
-  marker.setCursor('crosshair');
-  marker.setDraggable(false);
-
-  this.handlers.push(google.maps.event.addListener(marker, 'click', function(e) {
-    this.toggleMarker(e, marker);
-  }.bind(this)));
+App.Map.Actions.Routes.prototype.getPath = function() {
+  return $.map(this.path.getArray(), function(position) {
+    return {
+      lat: position.lat(),
+      lng: position.lng()
+    };
+  });
 };
 
 App.Map.Actions.Routes.prototype.reset = function() {

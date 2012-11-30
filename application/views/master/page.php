@@ -28,8 +28,6 @@
   <script src="/assets/js/API/App.API.Base.js"></script>
   <script src="/assets/js/API/App.API.Marker.js"></script>
   <script src="/assets/js/Map/App.Map.js"></script>
-  <script src="/assets/js/Map/App.Map.Marker.js"></script>
-  <script src="/assets/js/Map/App.Map.InfoWindow.js"></script>
   <script src="/assets/js/Map/Actions/App.Map.Actions.Default.js"></script>
   <script src="/assets/js/Map/Actions/App.Map.Actions.Markers.js"></script>
   <script src="/assets/js/Map/Actions/App.Map.Actions.Routes.js"></script>
@@ -43,12 +41,16 @@
   <script src="/assets/js/UI/App.UI.Modal.Login.js"></script>
   <script src="/assets/js/UI/App.UI.Modal.EditMarkerDescription.js"></script>
   <script src="/assets/js/Models/App.Models.Base.js"></script>
+  <script src="/assets/js/Models/App.Models.Route.js"></script>
   <script src="/assets/js/Models/App.Models.ToolbarButton.js"></script>
   <script src="/assets/js/Models/App.Models.Marker.js"></script>
   <script src="/assets/js/ViewModels/App.ViewModels.Toolbar.js"></script>
   <script src="/assets/js/ViewModels/App.ViewModels.Modal.js"></script>
   <script src="/assets/js/ViewModels/App.ViewModels.Modal.Login.js"></script>
   <script src="/assets/js/ViewModels/App.ViewModels.Modal.EditMarkerDescription.js"></script>
+  <script src="/assets/js/Map/App.Map.Marker.js"></script>
+  <script src="/assets/js/Map/App.Map.Route.js"></script>
+  <script src="/assets/js/Map/App.Map.InfoWindow.js"></script>
   <script>
   App.Config.set(<?php echo $front_end_config; ?>);
   new App.Controllers.Map();

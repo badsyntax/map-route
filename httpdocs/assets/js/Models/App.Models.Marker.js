@@ -1,35 +1,20 @@
 App.Models.Marker = function() {
   App.Models.Base.apply(this, arguments);
+  this.api = App.API.Marker;
 };
 
 App.inherits(App.Models.Marker, App.Models.Base);
 
 App.Models.Marker.prototype.create = function(success, error) {
-  App.API.Marker.create({
-    data: ko.mapping.toJSON(this),
-    success: success,
-    error: error,
-    mapResponse: {
-      fields: [ 'id' ],
-      model: this
-    }
-  });
+  this._create(this.api, success, error)
 };
 
 App.Models.Marker.prototype.update = function(success, error) {
-  App.API.Marker.update({
-    data: ko.mapping.toJSON(this),
-    success: success,
-    error: error
-  });
+  this._update(this.api, success, error);
 };
 
 App.Models.Marker.prototype.remove = function(success, error) {
-  App.API.Marker.remove({
-    data: ko.mapping.toJSON(this),
-    success: success,
-    error: error
-  });
+  this._remove(this.api, success, error);
 };
 
 App.Models.Marker.prototype.findAll = function(success, error) {

@@ -30,6 +30,7 @@ App.Map.Actions.Markers.prototype.bindMarkerEvents = function(i, marker) {
       latitude: marker.getPosition().lat()
     });
     marker.model.save();
+    App.Map.Route.updatePoint(marker);
   }.bind(this)));
 
   this.bindInfoWindowEvents(marker);
