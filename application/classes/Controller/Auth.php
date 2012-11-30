@@ -2,8 +2,6 @@
 
 class Controller_Auth extends Controller_Base {
 
-	public $master_view = 'master/page';
-
 	public function action_index()
 	{
 		try

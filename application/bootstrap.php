@@ -115,13 +115,14 @@ Cookie::$salt = Kohana::$config->load('site.cookie.salt');
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
 Kohana::modules(array(
-	'auth'       => MODPATH.'auth',       // Basic authentication
-	'minion'     => MODPATH.'minion',       // Basic authentication
+	'auth'       => MODPATH.'auth',
+	'minion'     => MODPATH.'minion',
 	'minion-tasks-migrations' => MODPATH.'minion-tasks-migrations',
-	'cache'      => MODPATH.'cache',      // Caching with multiple backends
-	'database'   => MODPATH.'database',   // Database access
-	'orm'        => MODPATH.'orm',        // Object Relationship Mapping
-	'oauth2'     => MODPATH.'oauth2',        // Object Relationship Mapping
+	'cache'      => MODPATH.'cache',
+	'database'   => MODPATH.'database',
+	'orm'        => MODPATH.'orm',
+	'oauth2'     => MODPATH.'oauth2',
+	'kostache'   => MODPATH.'kostache',
 	));
 
 /**
