@@ -25,3 +25,6 @@
 [submodule "modules/kostache"]
 	path = modules/kostache
 	url = https://github.com/zombor/KOstache.git
+[submodule "modules/compress"]
+	path = modules/compress
+	url = https://github.com/azampagl/kohana-compress.git
