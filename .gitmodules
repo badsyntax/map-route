@@ -28,3 +28,6 @@
 [submodule "modules/userguide"]
 	path = modules/userguide
 	url = https://github.com/kohana/userguide.git
+[submodule "modules/compress"]
+	path = modules/compress
+	url = git@github.com:badsyntax/kohana-compress.git
