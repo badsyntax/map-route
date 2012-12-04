@@ -49,19 +49,19 @@ App.Map.Actions.Routes.prototype.toggleMarker = function(e, marker) {
   });
 
   if (remove) {
-    this.path.removeAt(lastIndex);
+    App.Map.Route.removePoint(marker);
     marker.model.values({
       route_order: -1
     }).save();
   }
   if (add) {
-    this.path.push(marker.getPosition());
+    App.Map.Route.addPoint(marker);
     marker.model.values({
       route_order: this.path.getArray().length
     }).save();
   }
 
-  App.Map.Route.updatePath(this.getPath());
+  // App.Map.Route.updatePath(this.getPath());
 };
 
 App.Map.Actions.Routes.prototype.getPath = function() {

@@ -25,15 +25,20 @@ App.Map.Actions.Markers.prototype.bindMarkerEvents = function(i, marker) {
   }.bind(this)));
 
   this.handlers.push(google.maps.event.addListener(marker, 'dragend', function(e) {
-    marker.model.values({
-      longitude: marker.getPosition().lng(),
-      latitude: marker.getPosition().lat()
-    });
-    marker.model.save();
-    App.Map.Route.updatePath(marker);
+    this.onMarkerDragEnd(e, marker);
   }.bind(this)));
 
   this.bindInfoWindowEvents(marker);
+};
+
+App.Map.Actions.Markers.prototype.onMarkerDragEnd = function(e, marker) {
+
+  marker.model.values({
+    longitude: marker.getPosition().lng(),
+    latitude: marker.getPosition().lat()
+  }).save();
+
+  App.Map.Route.updatePoint(marker);
 };
 
 App.Map.Actions.Markers.prototype.bindInfoWindowEvents = function(marker) {

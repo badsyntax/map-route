@@ -4,6 +4,7 @@ App.Map.Route = (function() {
   var model;
   var poly;
   var path;
+  var points = [];
 
   var route = {
     markers: function() {
@@ -63,6 +64,29 @@ App.Map.Route = (function() {
         return m === marker ? null : m;
       });
     },
+    removePoint: function(marker) {
+      $.each(points, function(i, point) {
+        if (marker === point) {
+          path.removeAt(i);
+          points.splice(i, 1);
+          return false;
+        }
+      });
+    },
+    addPoint: function(marker) {
+      path.push(marker.getPosition());
+      points.push(marker);
+    },
+    updatePoint: function(marker) {
+      $.each(points, function(i, point) {
+        if (marker === point) {
+          var pos = marker.getPosition();
+          path.setAt(i, pos);
+          points[i] = pos;
+          return false;
+        }
+      });
+    },
     addPath: function() {
 
       markers.sort(function(a, b) {
@@ -73,14 +97,14 @@ App.Map.Route = (function() {
 
       $.map(markers, function(marker) {
         if (marker.model.route_order() >= 0) {
-          path.push(marker.getPosition());
+          points.push(marker);
         }
       });
-    },
-    updatePath: function(marker) {
-      path.clear();
-      this.addPath();
-    }
+
+      $.each(points, function(i, point) {
+        path.push(point.getPosition());
+      });
+    }    
   };
 
   return route;
