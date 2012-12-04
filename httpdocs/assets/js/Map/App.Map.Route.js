@@ -1,54 +1,87 @@
 App.Map.Route = (function() {
 
-  var markers = [];
-  var routeModel;
+  var markers;
+  var model;
+  var poly;
+  var path;
 
   var route = {
-    model: function() {
-      return routeModel;
+    markers: function() {
+      return markers;
     },
-    loadModel: function(callback) {
+    poly: function() {
+      return poly;
+    },
+    path: function() {
+      return path;
+    },
+    model: function() {
+      return model;
+    },
+    init: function() {
+      poly = new google.maps.Polyline(App.Config.get('polyOptions'));
+      path = poly.getPath();
+      this.load(function() {
+        this.loadMarkers();
+      }.bind(this));
+    },
+    load: function(callback) {
 
       new App.Models.Route().findAll(function(data) {
     
-        routeModel = new App.Models.Route(data.routes[0]);
+        model = new App.Models.Route(data.routes[0]);
 
         // Create a new route for the user
-        if (!routeModel.id || !routeModel.id()) {
-          routeModel.title = 'Default route';
-          return routeModel.save(callback);
+        if (!model.id || !model.id()) {
+          model.title = 'Default route';
+          return model.save(callback);
         }
 
         callback();
       });
     },
-    addMarkers: function() {
-      App.Map.addMarkers(markers.markers());
-    },
     loadMarkers: function() {
-      this.loadModel(function() {
-        markers = new App.Models.Marker();
-        markers.findAll(this.model().id());
+      new App.Models.Marker().findAll(this.model().id(), function() {
+        markers = this.markers();
+      });
+    },
+    addMarkers: function() {
+      markers = $.map(markers, function(marker) {
+        return new App.Map.Marker({
+          model: marker,
+          location: new google.maps.LatLng(marker.latitude(), marker.longitude())
+        });
       }.bind(this));
     },
-    updatePoint: function(marker) {
-      console.log(marker);
-      $.each(path, function(i, point) {
-        console.log(marker);
-        var pos = marker.getPosition();
-        if (point.lat === pos.lat() && point.lng === pos.lng()) {
+    removeMarker: function(marker) {
+
+      marker.model.remove();
+      marker.infoWindow.close();
+      marker.setMap(null);
+
+      this.markers = $.map(this.markers, function(m) {
+        return m === marker ? null : m;
+      });
+    },
+    addPath: function() {
+
+      markers.sort(function(a, b) {
+        var a_route_order = a.model.route_order();
+        var b_route_order = a.model.route_order();
+        return (a_route_order < b_route_order ? -1 : (a_route_order > b_route_order ? 1 : 0));
+      });
+
+      $.map(markers, function(marker) {
+        if (marker.model.route_order() >= 0) {
+          path.push(marker.getPosition());
         }
       });
     },
-    updatePath: function(p) {
-      path = p;
-      // model.values({
-      //   path: path
-      // });
+    updatePath: function(marker) {
+      path.clear();
+      this.addPath();
     }
   };
-
-  // route.loadModel();
 
   return route;
 }());

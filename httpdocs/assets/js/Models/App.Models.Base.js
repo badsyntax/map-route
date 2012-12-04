@@ -6,6 +6,7 @@ App.Models.Base = function(data) {
 
 App.Models.Base.prototype.values = function(data) {
   ko.mapping.fromJS(data, null, this);
+  return this;
 };
 
 App.Models.Base.prototype.save = function(success, error) {

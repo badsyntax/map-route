@@ -5,7 +5,7 @@ App.Models.Marker = function() {
 App.inherits(App.Models.Marker, App.Models.Base);
 
 App.Models.Marker.prototype.create = function(success, error) {
-  this._create(App.API.Marker, success, error)
+  this._create(App.API.Marker, success, error);
 };
 
 App.Models.Marker.prototype.update = function(success, error) {
@@ -30,7 +30,7 @@ App.Models.Marker.prototype.findAll = function(routeId, success, error) {
     data: {
       route_id: routeId
     },
-    success: success,
+    success: success.bind(this),
     error: error,
     mapResponse: {
       model: this,

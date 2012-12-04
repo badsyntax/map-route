@@ -22,7 +22,7 @@ class Controller_Api_Markers extends Controller_REST
 			$response->markers[] = (object) $marker->as_array();
 		}
 
-		$this->send_response(200, 'application/json', json_encode($response));
+		$this->send_response(200, 'application/json', $response);
 	}
 
 	public function action_create()
@@ -38,7 +38,7 @@ class Controller_Api_Markers extends Controller_REST
 		$response = new StdClass();
 		$response->id = $marker->id;
 
-		$this->send_response(201, 'application/json', json_encode($response));
+		$this->send_response(201, 'application/json', $response);
 	}
 
 	public function action_update()
@@ -90,6 +90,7 @@ class Controller_Api_Markers extends Controller_REST
 	{
 		$markers = ORM::factory('Marker')
 			->where('user_id', '=', $this->user->id)
+			->and_where('route_order', '>=', 0)
 			->and_where('route_id', '=', $route_id)
 			->find_all();
 

@@ -16,7 +16,7 @@ class Controller_Api_Routes extends Controller_REST
 			$response->routes[] = (object) $route->as_array();
 		}
 
-		$this->send_response(200, 'application/json', json_encode($response));
+		$this->send_response(200, 'application/json', $response);
 	}
 
 	public function action_create()
@@ -32,7 +32,7 @@ class Controller_Api_Routes extends Controller_REST
 		$response = new StdClass();
 		$response->id = $marker->id;
 
-		$this->send_response(201, 'application/json', json_encode($response));
+		$this->send_response(201, 'application/json', $response);
 	}
 
 	public function action_update()

@@ -1,13 +1,13 @@
-App.Map = (function() {
+App.Map = (function(canvas) {
   
   var map;
   var route;
-  var canvas = $('#map-canvas');
 
   return {
     Actions: {},
-    markers: [],
-    path: [],
+    instance: function() {
+      return map;
+    },
     create: function(callback) {
       if (!map) {
         this.load(callback);
@@ -43,31 +43,7 @@ App.Map = (function() {
 
       map = new google.maps.Map(canvas[0], options);
 
-    },
-    instance: function() {
-      return map;
-    },
-    addMarkers: function(markers) {
-      $.each(markers, function(i, marker) {
-        setTimeout(function() {
-
-          new App.Map.Marker({
-            model: marker,
-            location: new google.maps.LatLng(marker.latitude(), marker.longitude())
-          });
-        
-        }.bind(this), i * 160);
-      }.bind(this));
-    },
-    removeMarker: function(marker) {
-
-      marker.model.remove();
-      marker.infoWindow.close();
-      marker.setMap(null);
-
-      this.markers = $.map(this.markers, function(m) {
-        return m === marker ? null : m;
-      });
-    }
+    }    
   };
-}());
+
+}($('#map-canvas')));

@@ -4,14 +4,16 @@ App.Map.Marker = function(data) {
 
   return $.extend(marker, {
     remove: function() {
-      App.Map.removeMarker(marker);      
+      App.Map.Route.removeMarker(marker);      
     }.bind(this)
   });
 };
 
 App.Map.Marker.prototype.createMarker = function(data) {
+
   var map = App.Map.instance();
   var infoWindow = new App.Map.InfoWindow();
+  
   var marker = new google.maps.Marker({
       infoWindow: infoWindow,
       position: data.location,
@@ -20,9 +22,11 @@ App.Map.Marker.prototype.createMarker = function(data) {
       clickable: false,
       animation: google.maps.Animation.DROP // google.maps.Animation.DROP | BOUNCE
   });
-  App.Map.markers.push(marker);
+  App.Map.Route.markers().push(marker);
+  
   this.createModel(marker, data);
   ko.applyBindings(marker.model, marker.infoWindow.getContent());
+  
   return marker;
 };
 

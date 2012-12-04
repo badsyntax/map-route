@@ -3,7 +3,7 @@ App.API.Base = function(defaultConfig) {
     contentType: 'application/json',
     dataType: 'json',
     error: function() {
-      App.log('AJAX request error', arguments)
+      App.log('AJAX request error', arguments);
     }
   }, defaultConfig);
 };

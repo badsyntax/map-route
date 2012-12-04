@@ -11,7 +11,7 @@ App.Map.Actions.Markers.prototype.execute = function() {
 
 App.Map.Actions.Markers.prototype.bindEvents = function() {
   this.handlers.push(google.maps.event.addListener(this.map, 'click', this.onMapClick.bind(this)));
-  $.each(App.Map.markers, this.bindMarkerEvents.bind(this));
+  $.each(App.Map.Route.markers(), this.bindMarkerEvents.bind(this));
   this.modal.on('save', this.onDescriptionSave.bind(this));
 };
 
@@ -30,7 +30,7 @@ App.Map.Actions.Markers.prototype.bindMarkerEvents = function(i, marker) {
       latitude: marker.getPosition().lat()
     });
     marker.model.save();
-    App.Map.Route.updatePoint(marker);
+    App.Map.Route.updatePath(marker);
   }.bind(this)));
 
   this.bindInfoWindowEvents(marker);
@@ -58,11 +58,9 @@ App.Map.Actions.Markers.prototype.toggleInfoWindow = function(e, marker) {
 };
 
 App.Map.Actions.Markers.prototype.addMarker = function(location) {
-  alert('test');
   this.bindMarkerEvents(null, new App.Map.Marker({
     location: location
   }));
-  alert('test2');
 };
 
 App.Map.Actions.Markers.prototype.reset = function() {
@@ -75,7 +73,7 @@ App.Map.Actions.Markers.prototype.reset = function() {
 
   this.modal.off('save');
   
-  $.each(App.Map.markers, function(i, marker) {
+  $.each(App.Map.Route.markers(), function(i, marker) {
     $(marker.infoWindow.getContent()).off('click');
   });
 };
