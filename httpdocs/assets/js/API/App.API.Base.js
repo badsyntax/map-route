@@ -9,7 +9,8 @@ App.API.Base = function(defaultConfig) {
 };
 
 App.API.Base.prototype.xhrConfig = function(config, xhrConfig) {
-  return $.extend(config, this.defaultConfig, xhrConfig);
+  var defaultConfig = $.extend({}, this.defaultConfig);
+  return $.extend(defaultConfig, config, xhrConfig);
 };
 
 App.API.Base.prototype.create = function(config) {

@@ -1,15 +1,23 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Api_Marker extends Controller_REST
+class Controller_Api_Markers extends Controller_REST
 {
 	public function action_index()
 	{
 		$response = new StdClass();
 		$response->markers = array();
 
-		$markers = ORM::factory('Marker')->find_all();
-		
-		foreach($markers as $marker)
+		$markers = ORM::factory('Marker');
+		$markers->where('user_id', '=', $this->user->id);
+
+		// Filter by route
+		if ($route_id = $this->request->query('route_id'))
+		{
+			$markers->and_where('route_id', '=', $route_id);
+		}
+
+		// Add markers to response
+		foreach($markers->find_all() as $marker)
 		{
 			$response->markers[] = (object) $marker->as_array();
 		}

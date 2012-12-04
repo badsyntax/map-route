@@ -25,8 +25,11 @@ App.Models.Marker.prototype.adjustRouteOrder = function() {
   // alert('adjust route order');
 };
 
-App.Models.Marker.prototype.findAll = function(success, error) {
+App.Models.Marker.prototype.findAll = function(routeId, success, error) {
   App.API.Marker.findAll({
+    data: {
+      route_id: routeId
+    },
     success: success,
     error: error,
     mapResponse: {

@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Api_Route extends Controller_REST
+class Controller_Api_Routes extends Controller_REST
 {
 	public function action_index()
 	{

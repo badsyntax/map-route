@@ -4,12 +4,10 @@ App.Controllers.Map = function() {
 
   new App.Controllers.Modal();
   new App.Controllers.Modal.Login();
+  new App.Controllers.Modal.EditMarkerDescription();
   
   if (!App.Config.get('user_id')) {
-    return $('#map-canvas').empty() && setTimeout(function() {
-      App.UI.Modal.Login.show();
-      App.Map.create(); // create the map in the background
-    }, 150);
+    return this.showLoginModal();
   }
 
   App.Map.create(this.init.bind(this));
@@ -17,7 +15,18 @@ App.Controllers.Map = function() {
 
 App.Controllers.Map.prototype.init = function(map) {
   this.map = map;
+  App.Map.Route.loadMarkers();
   this.bindEvents();
+};
+
+App.Controllers.Map.prototype.showLoginModal = function() {
+  
+  $('#map-canvas').empty();
+
+  setTimeout(function() {
+    App.UI.Modal.Login.show();
+    App.Map.create();
+  }, 150);
 };
 
 App.Controllers.Map.prototype.bindEvents = function() {
@@ -27,11 +36,6 @@ App.Controllers.Map.prototype.bindEvents = function() {
 App.Controllers.Map.prototype.onTilesLoaded = function() {
 
   new App.Controllers.Toolbar();
-  new App.Controllers.Modal.EditMarkerDescription();
 
-  var markers = new App.Models.Marker();
-
-  markers.findAll(function() {
-    App.Map.addMarkers(markers.markers());
-  });
+  App.Map.Route.addMarkers();
 };
