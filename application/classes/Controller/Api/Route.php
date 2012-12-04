@@ -1,17 +1,19 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Api_Marker extends Controller_REST
+class Controller_Api_Route extends Controller_REST
 {
 	public function action_index()
 	{
 		$response = new StdClass();
-		$response->markers = array();
+		$response->routes = array();
 
-		$markers = ORM::factory('Marker')->find_all();
+		$routes = ORM::factory('Route')
+			->where('user_id', '=', $this->user->id)
+			->find_all();
 		
-		foreach($markers as $marker)
+		foreach($routes as $route)
 		{
-			$response->markers[] = (object) $marker->as_array();
+			$response->routes[] = (object) $route->as_array();
 		}
 
 		$this->send_response(200, 'application/json', json_encode($response));
@@ -23,7 +25,7 @@ class Controller_Api_Marker extends Controller_REST
 
 		$data['user_id'] = $this->user->id;
 
-		$marker = ORM::factory('Marker');
+		$marker = ORM::factory('Route');
 		$marker->values($data);
 		$marker->save();
 
@@ -37,11 +39,11 @@ class Controller_Api_Marker extends Controller_REST
 	{
 		$data = (array) json_decode($this->request->body());
 
-		$marker = ORM::factory('Marker', $data['id']);
+		$marker = ORM::factory('Route', $data['id']);
 
 		if (!$marker->loaded())
 		{
-			throw HTTP_Exception::factory(500, 'Marker not found');
+			throw HTTP_Exception::factory(500, 'Route not found');
 		}
 
 		if ($marker->user_id !== $this->user->id)
@@ -49,10 +51,13 @@ class Controller_Api_Marker extends Controller_REST
 			throw HTTP_Exception::factory(401);
 		}
 
-		$marker->values($data);
+		$marker->values(array(
+			'longitude' => $data['longitude'],
+			'latitude' => $data['latitude'],
+			'description' => $data['description'],
+			'title' => $data['title']
+		));
 		$marker->save();
-
-		$this->update_route_orders($data['route_id']);
 
 		$this->send_response(200);
 	}
@@ -61,11 +66,11 @@ class Controller_Api_Marker extends Controller_REST
 	{
 		$data = (array) json_decode($this->request->body());
 
-		$marker = ORM::factory('Marker', $data['id']);
+		$marker = ORM::factory('Route', $data['id']);
 
 		if (!$marker->loaded())
 		{
-			throw HTTP_Exception::factory(500, 'Marker not found');
+			throw HTTP_Exception::factory(500, 'Route not found');
 		}
 
 		if ($marker->user_id !== $this->user->id)
@@ -76,18 +81,5 @@ class Controller_Api_Marker extends Controller_REST
 		$marker->delete();
 
 		$this->send_response(200);
-	}
-
-	private function update_route_orders($route_id = NULL)
-	{
-		$markers = ORM::factory('Marker')
-			->where('user_id', '=', $this->user->id)
-			->and_where('route_id', '=', $route_id)
-			->find_all();
-
-		foreach($markers as $i => $marker) {
-			$marker->route_order = $i;
-			$marker->save();
-		}
 	}
 }

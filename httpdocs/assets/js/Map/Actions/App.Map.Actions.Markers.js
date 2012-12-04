@@ -58,9 +58,11 @@ App.Map.Actions.Markers.prototype.toggleInfoWindow = function(e, marker) {
 };
 
 App.Map.Actions.Markers.prototype.addMarker = function(location) {
+  alert('test');
   this.bindMarkerEvents(null, new App.Map.Marker({
     location: location
   }));
+  alert('test2');
 };
 
 App.Map.Actions.Markers.prototype.reset = function() {

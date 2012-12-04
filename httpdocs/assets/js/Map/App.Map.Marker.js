@@ -34,15 +34,18 @@ App.Map.Marker.prototype.createModel = function(marker, data) {
     return;
   }
 
-  marker.model = new App.Models.Marker();
+  var model = new App.Models.Marker();
 
-  marker.model.values({
+  model.values({
     user_id: App.Config.get('user_id'),
     latitude: data.location.lat(),
     longitude: data.location.lng(),
     title: '',
-    description: ''
+    description: '',
+    route_id: App.Map.Route.model().id
   });
 
-  marker.model.save(data.success, data.error);
+  model.save(data.success, data.error);
+
+  marker.model = model;
 };

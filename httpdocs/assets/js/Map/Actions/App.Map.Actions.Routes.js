@@ -66,9 +66,19 @@ App.Map.Actions.Routes.prototype.toggleMarker = function(e, marker) {
 
   if (remove) {
     this.path.removeAt(lastIndex);
+    marker.model.values({
+      route_id: 0,
+      route_order: 0
+    });
+    marker.model.save();
   }
   if (add) {
     this.path.push(marker.getPosition());
+    marker.model.values({
+      route_id: App.Map.Route.model().id,
+      route_order: this.path.getArray().length
+    });
+    marker.model.save();
   }
 
   App.Map.Route.updatePath(this.getPath());

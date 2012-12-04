@@ -1,20 +1,28 @@
 App.Models.Marker = function() {
   App.Models.Base.apply(this, arguments);
-  this.api = App.API.Marker;
 };
 
 App.inherits(App.Models.Marker, App.Models.Base);
 
 App.Models.Marker.prototype.create = function(success, error) {
-  this._create(this.api, success, error)
+  this._create(App.API.Marker, success, error)
 };
 
 App.Models.Marker.prototype.update = function(success, error) {
-  this._update(this.api, success, error);
+  this._update(App.API.Marker, success, error);
 };
 
 App.Models.Marker.prototype.remove = function(success, error) {
-  this._remove(this.api, success, error);
+  this._remove(App.API.Marker, success, error);
+};
+
+App.Models.Marker.prototype.save = function() {
+  App.Models.Base.prototype.save.apply(this, arguments);
+  this.adjustRouteOrder();
+};
+
+App.Models.Marker.prototype.adjustRouteOrder = function() {
+  // alert('adjust route order');
 };
 
 App.Models.Marker.prototype.findAll = function(success, error) {

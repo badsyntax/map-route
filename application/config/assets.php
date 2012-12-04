@@ -11,6 +11,7 @@ return array(
     'assets/js/Config/App.Config.js',
     'assets/js/API/App.API.Base.js',
     'assets/js/API/App.API.Marker.js',
+    'assets/js/API/App.API.Route.js',
     'assets/js/Map/App.Map.js',
     'assets/js/Map/Actions/App.Map.Actions.Default.js',
     'assets/js/Map/Actions/App.Map.Actions.Markers.js',

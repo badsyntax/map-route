@@ -1,10 +1,11 @@
 <?php
 
-class Model_Marker extends ORM {
+class Model_Marker extends ORM 
+{
 
 	protected $_belongs_to = array(
     'user' => array('model' => 'User'),
-		'path' => array('model' => 'Path'),
+		'route' => array('model' => 'Route'),
 	);
-	
+
 }

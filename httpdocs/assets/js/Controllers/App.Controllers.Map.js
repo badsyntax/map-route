@@ -8,7 +8,7 @@ App.Controllers.Map = function() {
   if (!App.Config.get('user_id')) {
     return $('#map-canvas').empty() && setTimeout(function() {
       App.UI.Modal.Login.show();
-      App.Map.create();
+      App.Map.create(); // create the map in the background
     }, 150);
   }
 
@@ -26,13 +26,12 @@ App.Controllers.Map.prototype.bindEvents = function() {
 
 App.Controllers.Map.prototype.onTilesLoaded = function() {
 
+  new App.Controllers.Toolbar();
+  new App.Controllers.Modal.EditMarkerDescription();
+
   var markers = new App.Models.Marker();
 
   markers.findAll(function() {
-
     App.Map.addMarkers(markers.markers());
-
-    new App.Controllers.Toolbar();
-    new App.Controllers.Modal.EditMarkerDescription();
   });
 };

@@ -13,16 +13,30 @@ class View_Layout
 
   public function scripts()
   {
-     $result = Compress::instance('javascripts')->scripts(Kohana::$config->load('assets.javascript'));
+    $scripts = Kohana::$config->load('assets.javascript');
 
-     return HTML::script($result);
+    if (Kohana::$environment === Kohana::PRODUCTION)
+    {
+      return HTML::script(Compress::instance('javascripts')->scripts($scripts));
+    }
+    else
+    {
+      return implode("\n", array_map('HTML::script', $scripts));
+    }
   }
 
   public function stylesheets()
   {
-     $result = Compress::instance('stylesheets')->styles(Kohana::$config->load('assets.css'));
-
-     return HTML::style($result);
+    $styles = Kohana::$config->load('assets.css');
+    
+    if (Kohana::$environment === Kohana::PRODUCTION)
+    {
+      return HTML::style(Compress::instance('stylesheets')->styles($styles));
+    }
+    else
+    {
+      return implode("\n", array_map('HTML::style', $styles));
+    }
   }
 
   public function app_config()

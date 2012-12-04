@@ -1,7 +1,10 @@
 App.API.Base = function(defaultConfig) {
   this.defaultConfig = $.extend({
     contentType: 'application/json',
-    dataType: 'json'
+    dataType: 'json',
+    error: function() {
+      App.log('AJAX request error', arguments)
+    }
   }, defaultConfig);
 };
 
