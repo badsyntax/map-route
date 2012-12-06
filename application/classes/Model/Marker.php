@@ -2,10 +2,8 @@
 
 class Model_Marker extends ORM 
 {
-
 	protected $_belongs_to = array(
-    'user' => array('model' => 'User'),
+		'user' => array('model' => 'User'),
 		'route' => array('model' => 'Route'),
 	);
-
 }
