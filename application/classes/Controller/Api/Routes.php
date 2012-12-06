@@ -4,8 +4,9 @@ class Controller_Api_Routes extends Controller_REST
 {
 	public function action_index()
 	{
-		$response = new StdClass();
-		$response->routes = array();
+		$response = REST_Response::factory(array(
+			'routes' => array()
+		));
 
 		$routes = ORM::factory('Route')
 			->where('user_id', '=', $this->user->id)
@@ -22,42 +23,43 @@ class Controller_Api_Routes extends Controller_REST
 	public function action_create()
 	{
 		$data = (array) json_decode($this->request->body());
-
 		$data['user_id'] = $this->user->id;
 
-		$marker = ORM::factory('Route');
-		$marker->values($data);
-		$marker->save();
+		$route = ORM::factory('Route');
+		$route->values($data);
+		$route->save();
 
 		$response = new StdClass();
-		$response->id = $marker->id;
+		$response->id = $route->id;
 
-		$this->send_response(201, 'application/json', $response);
+		$this->send_response(201, 'application/json', REST_Response::factory(array(
+			'id' => $route->id
+		)));
 	}
 
 	public function action_update()
 	{
 		$data = (array) json_decode($this->request->body());
 
-		$marker = ORM::factory('Route', $data['id']);
+		$route = ORM::factory('Route', $data['id']);
 
-		if (!$marker->loaded())
+		if (!$route->loaded())
 		{
 			throw HTTP_Exception::factory(500, 'Route not found');
 		}
 
-		if ($marker->user_id !== $this->user->id)
+		if ($route->user_id !== $this->user->id)
 		{
 			throw HTTP_Exception::factory(401);
 		}
 
-		$marker->values(array(
+		$route->values(array(
 			'longitude' => $data['longitude'],
 			'latitude' => $data['latitude'],
 			'description' => $data['description'],
 			'title' => $data['title']
 		));
-		$marker->save();
+		$route->save();
 
 		$this->send_response(200);
 	}
@@ -66,19 +68,19 @@ class Controller_Api_Routes extends Controller_REST
 	{
 		$data = (array) json_decode($this->request->body());
 
-		$marker = ORM::factory('Route', $data['id']);
+		$route = ORM::factory('Route', $data['id']);
 
-		if (!$marker->loaded())
+		if (!$route->loaded())
 		{
 			throw HTTP_Exception::factory(500, 'Route not found');
 		}
 
-		if ($marker->user_id !== $this->user->id)
+		if ($route->user_id !== $this->user->id)
 		{
 			throw HTTP_Exception::factory(401);
 		}
 
-		$marker->delete();
+		$route->delete();
 
 		$this->send_response(200);
 	}

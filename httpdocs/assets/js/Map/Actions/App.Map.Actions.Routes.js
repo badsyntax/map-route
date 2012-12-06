@@ -50,18 +50,10 @@ App.Map.Actions.Routes.prototype.toggleMarker = function(e, marker) {
 
   if (remove) {
     App.Map.Route.removePoint(marker);
-    marker.model.values({
-      route_order: -1
-    }).save();
   }
   if (add) {
-    App.Map.Route.addPoint(marker);
-    marker.model.values({
-      route_order: this.path.getArray().length
-    }).save();
+    App.Map.Route.addPoint(marker, this.path.getArray().length);
   }
-
-  // App.Map.Route.updatePath(this.getPath());
 };
 
 App.Map.Actions.Routes.prototype.getPath = function() {

@@ -19,6 +19,9 @@ App.Map.Route = (function() {
     model: function() {
       return model;
     },
+    points: function() {
+      return points;
+    },
     init: function() {
       poly = new google.maps.Polyline(App.Config.get('polyOptions'));
       path = poly.getPath();
@@ -60,11 +63,12 @@ App.Map.Route = (function() {
       marker.infoWindow.close();
       marker.setMap(null);
 
-      this.markers = $.map(this.markers, function(m) {
+      markers = $.map(this.markers, function(m) {
         return m === marker ? null : m;
       });
     },
     removePoint: function(marker) {
+      
       $.each(points, function(i, point) {
         if (marker === point) {
           path.removeAt(i);
@@ -72,10 +76,19 @@ App.Map.Route = (function() {
           return false;
         }
       });
+      
+      marker.model.values({
+        route_order: -1
+      }).save();
     },
-    addPoint: function(marker) {
+    addPoint: function(marker, routeOrder) {
+      
       path.push(marker.getPosition());
       points.push(marker);
+
+      marker.model.values({
+        route_order: routeOrder 
+      }).save();
     },
     updatePoint: function(marker) {
       $.each(points, function(i, point) {

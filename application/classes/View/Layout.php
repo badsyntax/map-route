@@ -47,6 +47,6 @@ class View_Layout
     $this->_app_config['mapApiKey'] = Kohana::$config->load('site.map.key');
     $this->_app_config['debug'] = Kohana::$environment === Kohana::DEVELOPMENT;
 
-    return json_encode($this->_app_config);
+    return json_encode($this->_app_config, JSON_NUMERIC_CHECK);
   }
 }

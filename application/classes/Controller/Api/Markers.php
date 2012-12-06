@@ -4,8 +4,9 @@ class Controller_Api_Markers extends Controller_REST
 {
 	public function action_index()
 	{
-		$response = new StdClass();
-		$response->markers = array();
+		$response = REST_Response::factory(array(
+			'markers' => array()
+		));
 
 		$markers = ORM::factory('Marker');
 		$markers->where('user_id', '=', $this->user->id);
@@ -15,9 +16,10 @@ class Controller_Api_Markers extends Controller_REST
 		{
 			$markers->and_where('route_id', '=', $route_id);
 		}
+		$markers->order_by('route_order', 'ASC');
+		$markers = $markers->find_all();
 
-		// Add markers to response
-		foreach($markers->find_all() as $marker)
+		foreach($markers as $marker)
 		{
 			$response->markers[] = (object) $marker->as_array();
 		}
@@ -35,10 +37,9 @@ class Controller_Api_Markers extends Controller_REST
 		$marker->values($data);
 		$marker->save();
 
-		$response = new StdClass();
-		$response->id = $marker->id;
-
-		$this->send_response(201, 'application/json', $response);
+		$this->send_response(201, 'application/json', REST_Response::factory(array(
+			'id' => $marker->id
+		)));
 	}
 
 	public function action_update()
@@ -92,9 +93,11 @@ class Controller_Api_Markers extends Controller_REST
 			->where('user_id', '=', $this->user->id)
 			->and_where('route_order', '>=', 0)
 			->and_where('route_id', '=', $route_id)
+			->order_by('route_order', 'ASC')
 			->find_all();
 
-		foreach($markers as $i => $marker) {
+		foreach($markers as $i => $marker)
+		{
 			$marker->route_order = $i;
 			$marker->save();
 		}

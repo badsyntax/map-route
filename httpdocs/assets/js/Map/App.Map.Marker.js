@@ -1,6 +1,9 @@
 App.Map.Marker = function(data) {
 
   var marker = this.createMarker(data);
+  marker.model = this.createModel(marker, data);
+
+  ko.applyBindings(marker.model, marker.infoWindow.getContent());
 
   return $.extend(marker, {
     remove: function() {
@@ -24,18 +27,13 @@ App.Map.Marker.prototype.createMarker = function(data) {
   });
   App.Map.Route.markers().push(marker);
   
-  this.createModel(marker, data);
-  ko.applyBindings(marker.model, marker.infoWindow.getContent());
-  
   return marker;
 };
 
 App.Map.Marker.prototype.createModel = function(marker, data) {
   
-  marker.model = data.model;
-
-  if (marker.model) {
-    return;
+  if (data.model) {
+    return data.model;
   }
 
   var model = new App.Models.Marker();
@@ -51,5 +49,5 @@ App.Map.Marker.prototype.createModel = function(marker, data) {
 
   model.save(data.success, data.error);
 
-  marker.model = model;
+  return model;
 };
