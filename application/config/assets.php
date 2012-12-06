@@ -25,7 +25,6 @@ return array(
     'assets/js/UI/App.UI.Modal.js',
     'assets/js/Models/App.Models.Base.js',
     'assets/js/Models/App.Models.Route.js',
-    'assets/js/Models/App.Models.Path.js',
     'assets/js/Models/App.Models.ToolbarButton.js',
     'assets/js/Models/App.Models.Marker.js',
     'assets/js/ViewModels/App.ViewModels.Toolbar.js',
