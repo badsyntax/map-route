@@ -1,15 +1,12 @@
 App.Map = (function(canvas) {
   
-  var map;
-  var route;
+  var map = ko.observable();
 
   return {
     Actions: {},
-    instance: function() {
-      return map;
-    },
+    instance: map,
     create: function(callback) {
-      if (!map) {
+      if (!map()) {
         this.load(callback);
       }
     },
@@ -18,7 +15,7 @@ App.Map = (function(canvas) {
       window.mapCallback = function() {
         this.init();
         if (callback) {
-          callback(map);
+          callback(map());
         }
       }.bind(this);
 
@@ -41,8 +38,7 @@ App.Map = (function(canvas) {
         mapTypeId: google.maps.MapTypeId.ROADMAP // ROADMAP | SATELLITE | HYBRID | TERRAIN
       };
 
-      map = new google.maps.Map(canvas[0], options);
-
+      map(new google.maps.Map(canvas[0], options));
     }    
   };
 
