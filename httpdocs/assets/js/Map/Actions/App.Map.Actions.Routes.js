@@ -1,14 +1,16 @@
 App.Map.Actions.Routes = function() {
-  this.handlers = [];
+  App.Map.Actions.Action.apply(this, arguments);
   this.map = App.Map.instance();
   this.poly = App.Map.Route.poly();
   this.path = App.Map.Route.path();
 };
 
+App.inherits(App.Map.Actions.Routes, App.Map.Actions.Action);
+
 App.Map.Actions.Routes.prototype.execute = function() {
 
   if (!App.Map.Route.markers().length) {
-    return App.UI.Modal.show('You need to add some pins before planning a route.');
+    return App.UI.Modal.message('You need to add some pins before planning a route.');
   }
 
   this.bindEvents();
@@ -66,10 +68,8 @@ App.Map.Actions.Routes.prototype.getPath = function() {
 };
 
 App.Map.Actions.Routes.prototype.reset = function() {
+  App.Map.Actions.Action.prototype.reset.apply(this, arguments);
   this.map.setOptions({ 
     draggableCursor: null 
-  });
-  $.each(this.handlers, function(i, handler) {
-    handler.remove();
   });
 };

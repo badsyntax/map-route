@@ -3,10 +3,13 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 data-bind="text: heading"></h3>
   </div>
-  <div class="modal-body">
-    <p data-bind="text: content"></p>
+  <div class="modal-body" data-bind="html: content">
   </div>
-  <div class="modal-footer">
-    <button class="btn btn-primary" data-dismiss="modal">Okay</button>
+  <div class="modal-footer" data-bind="visible: controls(), template: { foreach: buttons }">
+    <button data-dismiss="modal" data-bind="
+      click: action, 
+      text: title, 
+      attr: { 'class': 'btn ' + type() }
+    "></button>
   </div>
 </div>

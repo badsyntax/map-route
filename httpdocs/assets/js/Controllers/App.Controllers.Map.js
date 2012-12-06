@@ -1,10 +1,6 @@
 /* Map controller
  *************************/
 App.Controllers.Map = function() {
-
-  new App.Controllers.Modal();
-  new App.Controllers.Modal.Login();
-  new App.Controllers.Modal.EditMarkerDescription();
   
   if (!App.Config.get('user_id')) {
     return this.showLoginModal();
@@ -37,11 +33,11 @@ App.Controllers.Map.prototype.setConfig = function() {
 };
 
 App.Controllers.Map.prototype.showLoginModal = function() {
-  
-  $('#map-canvas').empty();
-
   setTimeout(function() {
-    App.UI.Modal.Login.show();
+    App.UI.Modal.show('#modal-login', {
+      heading: 'Sign in',
+      controls: false
+    });
     App.Map.create();
   }, 150);
 };

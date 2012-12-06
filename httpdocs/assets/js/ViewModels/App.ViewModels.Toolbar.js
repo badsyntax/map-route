@@ -22,6 +22,12 @@ App.ViewModels.Toolbar.prototype.setObservables = function() {
       action: new App.Map.Actions.Routes()
     }),
     new App.Models.ToolbarButton({
+      caption: 'Share',
+      className: 'share',
+      iconClassName: 'icon-share',
+      action: new App.Map.Actions.Share()
+    }),
+    new App.Models.ToolbarButton({
       caption: 'Sign out',
       className: 'sign-out',
       iconClassName: 'icon-signout',

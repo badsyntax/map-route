@@ -1,11 +1,5 @@
 App.Map.Actions.Default = function() {
-  
+  App.Map.Actions.Action.apply(this, arguments);
 };
 
-App.Map.Actions.Default.prototype.execute = function() {
-  
-};
-
-App.Map.Actions.Default.prototype.reset = function() {
-  
-};
+App.inherits(App.Map.Actions.Default, App.Map.Actions.Action);

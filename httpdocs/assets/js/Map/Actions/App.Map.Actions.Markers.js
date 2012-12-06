@@ -1,8 +1,10 @@
 App.Map.Actions.Markers = function() {
+  App.Map.Actions.Action.apply(this, arguments);
   this.map = App.Map.instance();
-  this.modal = App.UI.Modal.EditMarkerDescription;
-  this.handlers = [];
+  this.modal = App.UI.Modal;
 };
+
+App.inherits(App.Map.Actions.Markers, App.Map.Actions.Action);
 
 App.Map.Actions.Markers.prototype.execute = function() {
   this.bindEvents();
@@ -12,7 +14,7 @@ App.Map.Actions.Markers.prototype.execute = function() {
 App.Map.Actions.Markers.prototype.bindEvents = function() {
   this.handlers.push(google.maps.event.addListener(this.map, 'click', this.onMapClick.bind(this)));
   $.each(App.Map.Route.markers(), this.bindMarkerEvents.bind(this));
-  this.modal.on('save', this.onDescriptionSave.bind(this));
+  this.modal.container.on('submit.marker', 'form', this.saveDescription.bind(this));
 };
 
 App.Map.Actions.Markers.prototype.bindMarkerEvents = function(i, marker) {
@@ -45,11 +47,11 @@ App.Map.Actions.Markers.prototype.bindInfoWindowEvents = function(marker) {
 
   var content = $(marker.infoWindow.getContent());
 
-  content.on('click', 'a.remove-pin', function(e) {
+  content.on('click.pin', 'a.remove-pin', function(e) {
     this.onRemoveMarkerClick.call(this, e, marker);
   }.bind(this));
 
-  content.on('click', 'a.add-description', function(e) {
+  content.on('click.pin', 'a.add-description', function(e) {
     this.onAddDescriptionMarkerClick.call(this, e, marker);
   }.bind(this));
 };
@@ -68,39 +70,39 @@ App.Map.Actions.Markers.prototype.addMarker = function(location) {
   }));
 };
 
-App.Map.Actions.Markers.prototype.reset = function() {
-  
-  this.map.setOptions({ draggableCursor: null });
-  
-  $.each(this.handlers, function(i, handler) {
-    handler.remove();
-  });
-
-  this.modal.off('save');
-  
-  $.each(App.Map.Route.markers(), function(i, marker) {
-    $(marker.infoWindow.getContent()).off('click');
-  });
-};
-
 App.Map.Actions.Markers.prototype.onRemoveMarkerClick = function(e, marker) {
   e.preventDefault();
   marker.remove();
 };
 
 App.Map.Actions.Markers.prototype.onAddDescriptionMarkerClick = function(e, marker) {
+  
   e.preventDefault();
   this.curMarker = marker;
-  this.modal.show();
-  this.modal.controller.viewModel.title(marker.model.title());
-  this.modal.controller.viewModel.description(marker.model.description());
+
+  App.UI.Modal.show('#modal-edit-marker', {
+    heading: 'Edit marker',
+    buttons: [{
+      title: 'Save',
+      action: this.saveDescription.bind(this),
+      type: 'btn-primary'
+    }, {
+      title: 'Cancel',
+      action: '',
+      type: ''
+    }]
+  }, marker.model);
 };
 
 App.Map.Actions.Markers.prototype.onMapClick = function(e) {
-  this.addMarker(e.latLng);
+  this.addMarker(e.latLng); 
 };
 
-App.Map.Actions.Markers.prototype.onDescriptionSave = function(e) {
+App.Map.Actions.Markers.prototype.saveDescription = function(e) {
+
+  if (e && e.preventDefault) {
+    e.preventDefault();
+  }
 
   var title = $('#inputTitle').val();
   var description = $('#inputDescription').val();
@@ -110,9 +112,24 @@ App.Map.Actions.Markers.prototype.onDescriptionSave = function(e) {
   model.description(description);
   model.save();
 
-  this.modal.hide();
+  App.UI.Modal.hide();
 
   // Refresh the infowindow dimensions
   var infoWindow = this.curMarker.infoWindow;
   infoWindow.setContent(infoWindow.getContent());
+};
+
+App.Map.Actions.Markers.prototype.reset = function() {
+
+  App.Map.Actions.Action.prototype.reset.apply(this, arguments);
+
+  this.map.setOptions({ 
+    draggableCursor: null 
+  });
+
+  this.modal.container.off('.marker');
+  
+  $.each(App.Map.Route.markers(), function(i, marker) {
+    $(marker.infoWindow.getContent()).off('.marker');
+  });
 };

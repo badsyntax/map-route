@@ -1,22 +1,21 @@
 /* Modal UI
  *************************/
 App.UI.Modal = (function() {
-  return $.extend(App.Events, {
+
+  var modal = {
     setup: function(controller, container, viewModel) {
       this.controller = controller;
       this.container = container;
-      this.spinner = this.container.find('.spinner');
       this.viewModel = viewModel;
       this.modal = this.container.find('.modal');
-      this.bindEvents();
     },
-    bindEvents: function(){
+    message: function(content, heading, callback) {
+      this.viewModel.defaultValues({
+        content: content
+      });
+      this.open(callback);
     },
-    show: function(message, callback) {
-      
-      if (message) {
-        this.viewModel.content(message);
-      }
+    open: function(callback) {
 
       this.modal
       .on('shown', callback)
@@ -31,6 +30,20 @@ App.UI.Modal = (function() {
 
       this.focus();
     },
+    show: function(selector, modalData, bodyData, callback) {
+
+      var elem = $('<div />').html($(selector).html());
+      ko.applyBindings(bodyData || {}, elem[0]);
+
+      this.container
+        .find('.modal-body')
+        .empty()
+        .append(elem[0]);
+
+      this.viewModel.values(modalData);
+
+      this.open(callback);
+    },
     hide: function() {
       this.modal.modal('hide');
     },
@@ -39,13 +52,8 @@ App.UI.Modal = (function() {
       this.modal.on('shown', function () {
         this.container.find('input,textarea').eq(field).focus();
       }.bind(this));
-    },
-    loading: function(state) {
-      if (state === true) {
-        this.spinner.show();
-      } else {
-        this.spinner.hide();
-      }
     }
-  });
+  };
+
+  return $.extend(App.Events, modal);
 }());

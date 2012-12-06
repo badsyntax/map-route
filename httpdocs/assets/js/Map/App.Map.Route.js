@@ -17,9 +17,7 @@ App.Map.Route = (function() {
     init: function() {
       poly(new google.maps.Polyline(App.Config.get('polyOptions')));
       path(poly().getPath());
-      this.load(function() {
-        this.loadMarkers();
-      }.bind(this));
+      this.load(this.loadMarkers.bind(this));
     },
     load: function(callback) {
 
@@ -58,7 +56,7 @@ App.Map.Route = (function() {
       marker.infoWindow.close();
       marker.setMap(null);
 
-      markers($.map(this.markers, function(m) {
+      markers($.map(markers(), function(m) {
         return m === marker ? null : m;
       }));
     },
