@@ -13,12 +13,22 @@ class Migration_Maproute_20121125173913 extends Minion_Migration_Base {
 			CREATE TABLE IF NOT EXISTS `markers` (
 		  `id` int(11) NOT NULL AUTO_INCREMENT,
 		  `user_id` int(11) unsigned NOT NULL,
+		  `route_id` int(11) unsigned NOT NULL,
+		  `route_order` int(11) NOT NULL default -1,
 		  `latitude` double NULL,
 		  `longitude` double NULL,
 		  `title` varchar(254) DEFAULT NULL,
 		  `description` text,
 		  PRIMARY KEY (`id`)
 		) ENGINE=MyISAM  DEFAULT CHARSET=utf8');
+
+		$db->query(NULL, '
+			CREATE TABLE IF NOT EXISTS `routes` (
+			  `id` int(11) NOT NULL AUTO_INCREMENT,
+			  `user_id` int(11) NOT NULL,
+			  `title` varchar(254) NOT NULL,
+			  PRIMARY KEY (`id`)
+			) ENGINE=MyISAM  DEFAULT CHARSET=utf8');
 
 		$db->query(NULL, '
 			CREATE TABLE IF NOT EXISTS `roles` (
@@ -78,11 +88,12 @@ class Migration_Maproute_20121125173913 extends Minion_Migration_Base {
 	 */
 	public function down(Kohana_Database $db)
 	{
-		$db->query(NULL, 'DROP TABLE IF EXISTS `markers`');
-		$db->query(NULL, 'DROP TABLE IF EXISTS `roles`');
+		$db->query(NULL, 'DROP TABLE IF EXISTS `user_tokens`');
 		$db->query(NULL, 'DROP TABLE IF EXISTS `roles_users`');
 		$db->query(NULL, 'DROP TABLE IF EXISTS `users`');
-		$db->query(NULL, 'DROP TABLE IF EXISTS `user_tokens`');
+		$db->query(NULL, 'DROP TABLE IF EXISTS `roles`');
+		$db->query(NULL, 'DROP TABLE IF EXISTS `markers`');
+		$db->query(NULL, 'DROP TABLE IF EXISTS `routes`');
 	}
 
 }
