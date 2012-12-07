@@ -14,14 +14,14 @@ App.Map.Route = (function() {
     model:   model,
     points:  points,
 
-    init: function(callback) {
+    init: function(route_id, callback) {
       poly(new google.maps.Polyline(App.Config.get('polyOptions')));
       path(poly().getPath());
-      this.load(function() {
+      this.load(route_id, function() {
         this.loadMarkers(callback);
       }.bind(this));
     },
-    load: function(callback) {
+    load: function(route_id, callback) {
 
       new App.Models.Route().findAll(function(data) {
     

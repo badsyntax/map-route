@@ -21,8 +21,8 @@ App.Map = (function(canvas) {
 
       var attr = {
         type: 'text/javascript',
-        src: [
-          'http://maps.googleapis.com/maps/api/js?key=' + App.Config.get('mapApiKey'),
+        src: 'http://maps.googleapis.com/maps/api/js?' + [
+          'key=' + App.Config.get('mapApiKey'),
           'sensor=false',
           'callback=mapCallback'
         ].join('&')

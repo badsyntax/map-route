@@ -1,14 +1,19 @@
 /* Toolbar viewmodel
  *************************/
 
-App.ViewModels.Toolbar = function(controller) {
-  this.controller = controller;
-  this.setObservables();
+App.ViewModels.Toolbar = function(container) {
+  this.container = container;
+  this.buttons = ko.observableArray();
+  this.curAction = null;
+  this.setData();
 };
 
-App.ViewModels.Toolbar.prototype.setObservables = function() {
-  
-  var buttons = [
+App.ViewModels.Toolbar.prototype.rendered = function() {
+  this.ui = new App.UI.Toolbar(this.container, this);
+};
+
+App.ViewModels.Toolbar.prototype.setData = function() {
+  this.buttons([
     new App.Models.ToolbarButton({
       caption: 'Pins',
       className: 'add-pin',
@@ -37,7 +42,12 @@ App.ViewModels.Toolbar.prototype.setObservables = function() {
         }
       }
     })
-  ];
+  ]);
+};
 
-  this.buttons = ko.observableArray(buttons);
+App.ViewModels.Toolbar.prototype.executeAction = function(e, model) {
+  if (this.curAction) {
+    this.curAction.reset();
+  }
+  (this.curAction = model.action).execute();
 };

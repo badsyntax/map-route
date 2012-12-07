@@ -1,7 +1,6 @@
 /* Toolbar UI
  *************************/
-App.UI.Toolbar = function(controller, container, viewModel) {
-  this.controller = controller;
+App.UI.Toolbar = function(container, viewModel) {
   this.container = container.find('.toolbar').fadeIn();
   this.viewModel = viewModel;
   this.position();
@@ -20,7 +19,7 @@ App.UI.Toolbar.prototype.bindEvents = function() {
 };
 
 App.UI.Toolbar.prototype.onButtonClick = function(e) {
-  this.controller.executeAction(e, ko.dataFor(e.currentTarget));
+  this.viewModel.executeAction(e, ko.dataFor(e.currentTarget));
 };
 
 App.UI.Toolbar.prototype.initTooltips = function() {

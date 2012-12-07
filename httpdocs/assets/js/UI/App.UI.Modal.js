@@ -3,11 +3,9 @@
 App.UI.Modal = (function() {
 
   var modal = {
-    setup: function(controller, container, viewModel) {
-      this.controller = controller;
-      this.container = container;
+    setup: function(container, viewModel) {
+      this.container = container.find('.modal');
       this.viewModel = viewModel;
-      this.modal = this.container.find('.modal');
     },
     message: function(content, heading, callback) {
       this.viewModel.defaultValues({
@@ -17,7 +15,7 @@ App.UI.Modal = (function() {
     },
     open: function(callback) {
 
-      this.modal
+      this.container
       .on('shown', callback)
       .modal({
         show: true
@@ -41,15 +39,14 @@ App.UI.Modal = (function() {
         .append(elem[0]);
 
       this.viewModel.values(modalData);
-
       this.open(callback);
     },
     hide: function() {
-      this.modal.modal('hide');
+      this.container.modal('hide');
     },
     focus: function(field) {
       field = field || 0;
-      this.modal.on('shown', function () {
+      this.container.on('shown', function () {
         this.container.find('input,textarea').eq(field).focus();
       }.bind(this));
     }

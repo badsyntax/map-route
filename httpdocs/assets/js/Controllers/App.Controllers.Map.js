@@ -1,48 +1,39 @@
 /* Map controller
  *************************/
-App.Controllers.Map = function() {
+App.Controllers.Map = function(route_id, action) {
   
-  if (!App.Config.get('user_id')) {
-    return this.showLoginModal();
-  }
+  this.route_id = route_id;
+  this.action = action;
+  this.initModal();
 
-  App.Map.create(this.setRoutes.bind(this));
-};
-
-App.Controllers.Map.prototype.setRoutes = function(map) {
-  
-  var self = this;
-
-  Path.map("#/route(/:route_id)(/:action)").to(function(){
-
-    var route_id = this.params['route_id'] || 0;
-    var action = this.params['action'] || 'edit';
-
-    if (!App.Map.Route.model())
-    {
-      // FIXME
-      return App.Map.Route.init(function() {
-        self.init(map);
-      })
-    }
-
-    self.init(map);
-  });
-
-  Path.map('#/load').to(function() {
-    App.Map.Route.init(function() {
-      window.location.hash = '/route/' + App.Map.Route.model().id() + '/edit'
-    });
-  });
-
-  Path.root('#/load');
-  Path.listen();
+  App.Map.create(function(map){
+    App.Map.Route.init(route_id, function() {
+      this.init(map);
+    }.bind(this))
+  }.bind(this));
 };
 
 App.Controllers.Map.prototype.init = function(map) {
+  if (this.route_id === 'load') {
+    App.Router.push('route', App.Map.Route.model().id(), 'edit');
+  }
   this.map = map;
   this.setConfig();
   this.bindEvents();
+};
+
+App.Controllers.Map.prototype.initModal = function() {
+  var container = $('#modal-ui');
+  var viewModel = new App.ViewModels.Modal(container);
+  ko.applyBindings(viewModel, container[0]);
+  App.UI.Modal.setup(container, viewModel);
+};
+
+App.Controllers.Map.prototype.initToolbar = function() {
+  var container = $('#toolbar-ui');
+  var viewModel = new App.ViewModels.Toolbar(container);
+  ko.applyBindings(viewModel, container[0]);
+  viewModel.rendered();
 };
 
 App.Controllers.Map.prototype.setConfig = function() {
@@ -61,24 +52,13 @@ App.Controllers.Map.prototype.setConfig = function() {
   });
 };
 
-App.Controllers.Map.prototype.showLoginModal = function() {
-  setTimeout(function() {
-    App.UI.Modal.show('#modal-login', {
-      heading: 'Sign in',
-      controls: false
-    });
-    App.Map.create();
-  }, 150);
-};
-
 App.Controllers.Map.prototype.bindEvents = function() {
   google.maps.event.addListenerOnce(this.map, 'tilesloaded', this.onTilesLoaded.bind(this));
 };
 
 App.Controllers.Map.prototype.onTilesLoaded = function() {
 
-  new App.Controllers.Toolbar();
-
+  this.initToolbar();
   App.Map.Route.addMarkers();
 
   setTimeout(function() {
