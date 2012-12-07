@@ -3,6 +3,7 @@
 return array(
   'javascript' => array(
     'assets/lib/jquery/jquery-1.8.3.min.js',
+    'assets/lib/jquery/path.min.js',
     'assets/lib/bootstrap/js/bootstrap.min.js',
     'assets/lib/knockout/knockout-2.2.0.js',
     'assets/lib/knockout/knockout.mapping-2.3.4.js',

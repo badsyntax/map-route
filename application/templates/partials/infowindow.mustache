@@ -1,13 +1,14 @@
 <div class="info-window">
   <div>
-    <strong data-bind="text: title"></strong>
+    <!-- ko if: title --><strong data-bind="text: title"></strong><!-- /ko -->
+    <!-- ko ifnot: title -->&nbsp;<!-- /ko -->
   </div>
   <p data-bind="html: description"></p>
   <a href="#" class="add-description">
     <i class="icon-edit"></i> 
-    <span data-bind="html: (description() || title() ? 'Edit' : 'Add')"></span> description
+    Edit
   </a>
-  <br />
+  |
   <a href="#" class="remove-pin">
     <i class="icon-remove"></i> Remove
   </a>

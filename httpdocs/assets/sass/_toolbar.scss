@@ -13,14 +13,15 @@
 
   button {
     padding-bottom: 0;
-  }
-
-  button {
     padding: 5px 12px 1px 12px;
   }
 
   button [class^="icon-"] {
     font-size: 21px;
     line-height: 21px;
+  }
+
+  .tooltip {
+    font-size: 12px;
   }
 }

@@ -14,10 +14,12 @@ App.Map.Route = (function() {
     model:   model,
     points:  points,
 
-    init: function() {
+    init: function(callback) {
       poly(new google.maps.Polyline(App.Config.get('polyOptions')));
       path(poly().getPath());
-      this.load(this.loadMarkers.bind(this));
+      this.load(function() {
+        this.loadMarkers(callback);
+      }.bind(this));
     },
     load: function(callback) {
 
@@ -34,9 +36,10 @@ App.Map.Route = (function() {
         callback();
       });
     },
-    loadMarkers: function() {
+    loadMarkers: function(callback) {
       new App.Models.Marker().findAll(model().id(), function() {
         markers(this.markers());
+        callback();
       });
     },
     addMarkers: function() {

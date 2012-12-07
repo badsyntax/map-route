@@ -66,15 +66,16 @@ body {
 /* line 14, ../sass/_toolbar.scss */
 .toolbar button {
   padding-bottom: 0;
-}
-/* line 18, ../sass/_toolbar.scss */
-.toolbar button {
   padding: 5px 12px 1px 12px;
 }
-/* line 22, ../sass/_toolbar.scss */
+/* line 19, ../sass/_toolbar.scss */
 .toolbar button [class^="icon-"] {
   font-size: 21px;
   line-height: 21px;
+}
+/* line 24, ../sass/_toolbar.scss */
+.toolbar .tooltip {
+  font-size: 12px;
 }
 
 /* Buttons

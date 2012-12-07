@@ -6,14 +6,43 @@ App.Controllers.Map = function() {
     return this.showLoginModal();
   }
 
-  App.Map.create(this.init.bind(this));
+  App.Map.create(this.setRoutes.bind(this));
+};
+
+App.Controllers.Map.prototype.setRoutes = function(map) {
+  
+  var self = this;
+
+  Path.map("#/route(/:route_id)(/:action)").to(function(){
+
+    var route_id = this.params['route_id'] || 0;
+    var action = this.params['action'] || 'edit';
+
+    if (!App.Map.Route.model())
+    {
+      // FIXME
+      return App.Map.Route.init(function() {
+        self.init(map);
+      })
+    }
+
+    self.init(map);
+  });
+
+  Path.map('#/load').to(function() {
+    App.Map.Route.init(function() {
+      window.location.hash = '/route/' + App.Map.Route.model().id() + '/edit'
+    });
+  });
+
+  Path.root('#/load');
+  Path.listen();
 };
 
 App.Controllers.Map.prototype.init = function(map) {
   this.map = map;
   this.setConfig();
   this.bindEvents();
-  App.Map.Route.init();
 };
 
 App.Controllers.Map.prototype.setConfig = function() {
