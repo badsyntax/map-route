@@ -8,7 +8,9 @@ App.Controllers.Map = function(route_id, action) {
 
   App.Map.create(function(map){
     App.Map.Route.init(route_id, function() {
-      this.init(map);
+      if (App.Map.Route.loaded()) {
+        this.init(map); 
+      }
     }.bind(this))
   }.bind(this));
 };
@@ -58,10 +60,13 @@ App.Controllers.Map.prototype.bindEvents = function() {
 
 App.Controllers.Map.prototype.onTilesLoaded = function() {
 
-  this.initToolbar();
   App.Map.Route.addMarkers();
 
   setTimeout(function() {
     App.Map.Route.addPath();
   }, 600);
+
+  if (this.action === 'edit') {
+    this.initToolbar();
+  }
 };

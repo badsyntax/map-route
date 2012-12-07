@@ -8,6 +8,8 @@ App.Map = (function(canvas) {
     create: function(callback) {
       if (!map()) {
         this.load(callback);
+      } else {
+        callback(map());
       }
     },
     load: function(callback) {

@@ -24,16 +24,26 @@ App.Map.Route = (function() {
     load: function(route_id, callback) {
 
       new App.Models.Route().findAll(function(data) {
-    
-        model(new App.Models.Route(data.routes[0]));
 
-        // Create a new route for the user
-        if (!model().id || !model().id()) {
-          model().title('Default route');
-          return model().save(callback);
+        var route = data.routes[0] || { id: 0, title: '' };
+        model(new App.Models.Route(route));
+
+        if (this.loaded()) {
+          callback()
+        } else if (route_id === 'new') {
+          this.create('Default route');
+        } else {
+          App.Router.push('');
         }
-
-        callback();
+      }.bind(this));
+    },
+    loaded: function() {
+      return (model().id && model().id());
+    },
+    create: function(title, callback) {
+      model().title(title);
+      model().save(function() {
+        App.Router.push('route', model().id(), 'edit');
       });
     },
     loadMarkers: function(callback) {

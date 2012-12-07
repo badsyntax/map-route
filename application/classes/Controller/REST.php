@@ -6,7 +6,9 @@ class Controller_REST extends Kohana_Controller_REST {
 	{
 		if (!Auth::instance()->logged_in())
 		{
-			throw HTTP_Exception::factory(401);
+			$exception = HTTP_Exception::factory(401);
+			$exception->authenticate('realm="MapRoute"');
+			throw $exception;
 		}
 
 		$this->user = Auth::instance()->get_user();

@@ -41,11 +41,27 @@ class View_Layout
 
 	public function app_config()
 	{
-		$user_id = Auth::instance()->logged_in() ? $this->user->id : 0;
-
-		$this->_app_config['user_id'] = $user_id;
 		$this->_app_config['mapApiKey'] = Kohana::$config->load('site.map.key');
 		$this->_app_config['debug'] = Kohana::$environment === Kohana::DEVELOPMENT;
+
+		if ($this->user !== NULL && $this->user->loaded()) 
+		{
+			$this->_app_config['user_id'] = $this->user->id;
+			
+			$route = $this->user->routes
+				->order_by('id', 'ASC')
+				->limit(1)
+				->find();
+
+			if ($route->loaded())
+			{
+				$this->_app_config['default_route'] = $route->id;
+			}
+		}
+		else
+		{
+			$this->_app_config['user_id'] = 0;
+		}
 
 		return json_encode($this->_app_config, JSON_NUMERIC_CHECK);
 	}
