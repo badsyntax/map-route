@@ -36,6 +36,7 @@ return array(
   ),
   'css' => array(
     'assets/lib/bootstrap/css/bootstrap.min.css',
+    'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
     'assets/lib/fontawesome/css/font-awesome.css',
     'assets/css/screen.css',
   )

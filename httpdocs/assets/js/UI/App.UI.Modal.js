@@ -21,9 +21,6 @@ App.UI.Modal = (function() {
         show: true
       })
       .css({
-        'margin-top': function () {
-          return -($(this).height() / 2);
-        }
       });
 
       this.focus();

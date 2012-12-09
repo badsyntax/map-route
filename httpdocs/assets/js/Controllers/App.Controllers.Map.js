@@ -61,6 +61,7 @@ App.Controllers.Map.prototype.bindEvents = function() {
 App.Controllers.Map.prototype.onTilesLoaded = function() {
 
   App.Map.Route.addMarkers();
+  App.Map.Route.fitMarkerBounds();
 
   setTimeout(function() {
     App.Map.Route.addPath();

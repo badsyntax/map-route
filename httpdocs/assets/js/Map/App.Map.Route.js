@@ -49,7 +49,9 @@ App.Map.Route = (function() {
     loadMarkers: function(callback) {
       new App.Models.Marker().findAll(model().id(), function() {
         markers(this.markers());
-        callback();
+        if (callback) {
+          callback();
+        }
       });
     },
     addMarkers: function() {
@@ -62,6 +64,13 @@ App.Map.Route = (function() {
           )
         });
       }.bind(this)));
+    },
+    fitMarkerBounds: function() {
+      var bounds = new google.maps.LatLngBounds();
+      $.each(markers(), function(i, marker) {
+          bounds.extend(marker.getPosition());
+      });
+      App.Map.instance().fitBounds(bounds);
     },
     removeMarker: function(marker) {
 
