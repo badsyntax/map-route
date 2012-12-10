@@ -17,6 +17,7 @@ App.Map = (function(canvas) {
       window.mapCallback = function() {
         this.init();
         if (callback) {
+          this.bindEvents();
           callback(map());
         }
       }.bind(this);
@@ -41,6 +42,11 @@ App.Map = (function(canvas) {
       };
 
       map(new google.maps.Map(canvas[0], options));
+    },
+    bindEvents: function() {
+      google.maps.event.addListenerOnce(map(), 'tilesloaded', function() {
+        App.Config.set('map.loaded', true);
+      }.bind(this));
     }    
   };
 

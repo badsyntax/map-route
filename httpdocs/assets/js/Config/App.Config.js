@@ -11,9 +11,12 @@ App.Config = (function() {
       }
       var parts = key.split('.');
       var obj = data;
-      for(var i = 0, l = parts.length; i < l; i++) {
-        obj = obj[ parts[i] ];
-      }
+      $.each(key.split('.'), function(i, part) {
+        if (!obj) {
+          return false;
+        }
+        obj = obj[ part ];
+      });
       return obj;
     },
     set: function (key, val) {
@@ -25,12 +28,12 @@ App.Config = (function() {
         var parts = key.split('.');
         key = parts.pop();
 
-        for(var i = 0, l = parts.length; i < l; i++) {
-          if (obj[ parts[i] ] === undefined) {
-            obj[ parts[i] ] = {};
+        $.each(parts, function(i, part) {
+          if (obj[part] === undefined) {
+            obj[part] = {};
           }
-          obj = obj[ parts[i] ];
-        }
+          obj = obj[part];
+        });
 
         if (typeof obj[key] === 'object' && typeof val === 'object') {
           $.extend(obj[key], val);

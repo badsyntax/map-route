@@ -55,15 +55,16 @@ App.Controllers.Map.prototype.setConfig = function() {
 };
 
 App.Controllers.Map.prototype.bindEvents = function() {
-  if (App.Config.get('mapLoaded')) {
+
+  if (App.Config.get('map.loaded')) {
     return this.onTilesLoaded();
   }
+
   google.maps.event.addListenerOnce(this.map, 'tilesloaded', this.onTilesLoaded.bind(this));
 };
 
 App.Controllers.Map.prototype.onTilesLoaded = function() {
 
-  App.Config.set('mapLoaded', true);
   App.Map.Route.addMarkers();
   App.Map.Route.addRoute();
   App.Map.Route.fitMarkerBounds();

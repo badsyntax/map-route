@@ -103,9 +103,9 @@ App.Map.Route = (function() {
     },
     removePoints: function() {
       $.each(points(), function(i, point) {
-          path().removeAt(i);
-          points.splice(i, 1);
+        path().removeAt(i);
       });
+      points([]);
     },
     removePoint: function(marker) {
       
@@ -142,7 +142,7 @@ App.Map.Route = (function() {
     },
     addRoute: function() {
 
-      if (!poly()) {
+      if (!(poly() instanceof google.maps.Polyline)) {
         this.createPoly();
       }
 
@@ -163,9 +163,13 @@ App.Map.Route = (function() {
       });
     },
     removeRoute: function() {
+      this.removePoints();
+      this.removePath();
+    },
+    removePath: function() {
       path([]);
-      points([]);
-    }    
+      poly(null);
+    }
   };
 
   return route;
