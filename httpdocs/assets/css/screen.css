@@ -102,4 +102,8 @@ body {
     top: 50%;
     margin: 0;
   }
+  /* line 11, ../sass/_mobile.scss */
+  .toolbar .btn {
+    display: block;
+  }
 }

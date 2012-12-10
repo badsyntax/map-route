@@ -1,4 +1,5 @@
 App.Models.Base = function(data) {
+  this.whereParam = {};
   if (data) {
     this.values(data);
   }
@@ -15,6 +16,14 @@ App.Models.Base.prototype.save = function(success, error) {
   } else {
     this.create(success, error);
   }
+};
+
+App.Models.Base.prototype.where = function(key, value) {
+  if (!key && !value) {
+    return $.param(this.whereParam);
+  }
+  this.whereParam[key] = value;
+  return this;
 };
 
 App.Models.Base.prototype._create = function(api, success, error) {

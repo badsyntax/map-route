@@ -24,6 +24,7 @@ App.Models.Route.prototype.findAll = function(success, error) {
   App.API.Route.findAll({
     success: success,
     error: error,
+    data: this.where(),
     mapResponse: {
       model: this,
       mappingOptions: {

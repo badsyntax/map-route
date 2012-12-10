@@ -8,9 +8,19 @@ class Controller_Api_Routes extends Controller_REST
 			'routes' => array()
 		));
 
-		$routes = ORM::factory('Route')
-			->where('user_id', '=', $this->user->id)
-			->find_all();
+		$routes = ORM::factory('Route');
+
+		if ($edit = $this->request->query('edit'))
+		{
+			$routes->where('user_id', '=', $this->user->id);
+		}
+
+		if ($id = $this->request->query('id'))
+		{
+			$routes->where('id', '=', $id);
+		}
+
+		$routes = $routes->find_all();
 		
 		foreach($routes as $route)
 		{

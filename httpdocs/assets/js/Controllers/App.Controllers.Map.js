@@ -33,7 +33,7 @@ App.Controllers.Map.prototype.initModal = function() {
 
 App.Controllers.Map.prototype.initToolbar = function() {
   var container = $('#toolbar-ui');
-  var viewModel = new App.ViewModels.Toolbar(container);
+  viewModel = new App.ViewModels.Toolbar(container);
   ko.applyBindings(viewModel, container[0]);
   viewModel.rendered();
 };
@@ -55,14 +55,18 @@ App.Controllers.Map.prototype.setConfig = function() {
 };
 
 App.Controllers.Map.prototype.bindEvents = function() {
+  if (App.Config.get('mapLoaded')) {
+    return this.onTilesLoaded();
+  }
   google.maps.event.addListenerOnce(this.map, 'tilesloaded', this.onTilesLoaded.bind(this));
 };
 
 App.Controllers.Map.prototype.onTilesLoaded = function() {
 
+  App.Config.set('mapLoaded', true);
   App.Map.Route.addMarkers();
+  App.Map.Route.addRoute();
   App.Map.Route.fitMarkerBounds();
-  App.Map.Route.addPath();
 
   if (this.action === 'edit') {
     this.initToolbar();

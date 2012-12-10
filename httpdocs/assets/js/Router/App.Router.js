@@ -25,7 +25,8 @@ App.Router.prototype.setPaths = function() {
   });
 
   Path.rescue(function() {
-    throw new Error('Not found');
+    App.Router.push('signin');
+    // throw new Error('Not found');
   });
 
   Path.root('#/signin');

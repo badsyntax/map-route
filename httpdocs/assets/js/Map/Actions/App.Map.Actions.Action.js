@@ -13,4 +13,5 @@ App.Map.Actions.Action.prototype.reset = function() {
   $.each(this.handlers, function(i, handler) {
     handler.remove();
   });
+  this.handlers = [];
 };

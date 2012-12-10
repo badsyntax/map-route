@@ -27,6 +27,12 @@ App.ViewModels.Toolbar.prototype.setData = function() {
       action: new App.Map.Actions.Routes()
     }),
     new App.Models.ToolbarButton({
+      caption: 'Search',
+      className: 'search',
+      iconClassName: 'icon-search',
+      action: new App.Map.Actions.Routes()
+    }),
+    new App.Models.ToolbarButton({
       caption: 'Share',
       className: 'share',
       iconClassName: 'icon-share',
@@ -50,4 +56,10 @@ App.ViewModels.Toolbar.prototype.executeAction = function(e, model) {
     this.curAction.reset();
   }
   (this.curAction = model.action).execute();
+};
+
+App.ViewModels.Toolbar.prototype.reset = function() {
+  $.each(this.buttons(), function(i, button) {
+    console.log(button);;
+  });
 };

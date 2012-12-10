@@ -16,6 +16,10 @@ class Controller_Api_Markers extends Controller_REST
 		{
 			$markers->and_where('route_id', '=', $route_id);
 		}
+		else
+		{
+			throw HTTP_Exception::factory(500, 'No route specified');
+		}
 		$markers->order_by('route_order', 'ASC');
 		$markers = $markers->find_all();
 

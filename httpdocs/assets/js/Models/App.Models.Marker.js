@@ -18,18 +18,11 @@ App.Models.Marker.prototype.remove = function(success, error) {
 
 App.Models.Marker.prototype.save = function() {
   App.Models.Base.prototype.save.apply(this, arguments);
-  this.adjustRouteOrder();
 };
 
-App.Models.Marker.prototype.adjustRouteOrder = function() {
-  // alert('adjust route order');
-};
-
-App.Models.Marker.prototype.findAll = function(routeId, success, error) {
+App.Models.Marker.prototype.findAll = function(success, error) {
   App.API.Marker.findAll({
-    data: {
-      route_id: routeId
-    },
+    data: this.where(),
     success: success.bind(this),
     error: error,
     mapResponse: {
