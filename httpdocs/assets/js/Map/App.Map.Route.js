@@ -1,10 +1,11 @@
 App.Map.Route = (function() {
 
-  var markers = ko.observableArray();
-  var points  = ko.observableArray();
-  var model   = ko.observable();
-  var poly    = ko.observable();
-  var path    = ko.observable();
+  var markersData = ko.observableArray();
+  var markers     = ko.observableArray();
+  var points      = ko.observableArray();
+  var path        = ko.observable();
+  var model       = ko.observable();
+  var poly        = ko.observable();
 
   var route = {
     
@@ -15,18 +16,23 @@ App.Map.Route = (function() {
     points:  points,
 
     init: function(route_id, callback) {
-      poly(new google.maps.Polyline(App.Config.get('polyOptions')));
-      path(poly().getPath());
       this.load(route_id, function() {
         this.loadMarkers(callback);
       }.bind(this));
+    },
+    createPoly: function() {
+      poly(new google.maps.Polyline(App.Config.get('polyOptions')));
+      poly().setMap(App.Map.instance());
+      path(poly().getPath());
     },
     load: function(route_id, callback) {
 
       new App.Models.Route().findAll(function(data) {
 
-        var route = data.routes[0] || { id: 0, title: '' };
-        model(new App.Models.Route(route));
+        model(new App.Models.Route(data.routes[0] || {
+          id: 0, 
+          title: '' 
+        }));
 
         if (this.loaded()) {
           callback()
@@ -48,14 +54,14 @@ App.Map.Route = (function() {
     },
     loadMarkers: function(callback) {
       new App.Models.Marker().findAll(model().id(), function() {
-        markers(this.markers());
+        markersData(this.markers());
         if (callback) {
           callback();
         }
       });
     },
     addMarkers: function() {
-      markers($.map(markers(), function(marker) {
+      markers($.map(markersData(), function(marker) {
         return new App.Map.Marker({
           model: marker,
           location: new google.maps.LatLng(
@@ -116,6 +122,10 @@ App.Map.Route = (function() {
       });
     },
     addPath: function() {
+
+      if (!poly()) {
+        this.createPoly();
+      }
 
       markers().sort(function(a, b) {
         var a_route_order = a.model.route_order();

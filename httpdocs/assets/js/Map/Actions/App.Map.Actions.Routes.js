@@ -40,11 +40,9 @@ App.Map.Actions.Routes.prototype.toggleMarker = function(e, marker) {
   var points = this.path.getArray();
   var lastIndex = this.path.getLength() - 1;
   var remove = false;
-  var add = true;
 
   $.each(points, function(i, point) {
     if (point === position) {
-      add = false;
       remove = (i === lastIndex);
       return false;
     }
@@ -52,8 +50,7 @@ App.Map.Actions.Routes.prototype.toggleMarker = function(e, marker) {
 
   if (remove) {
     App.Map.Route.removePoint(marker);
-  }
-  if (add) {
+  } else {
     App.Map.Route.addPoint(marker, this.path.getArray().length);
   }
 };

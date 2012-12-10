@@ -62,10 +62,7 @@ App.Controllers.Map.prototype.onTilesLoaded = function() {
 
   App.Map.Route.addMarkers();
   App.Map.Route.fitMarkerBounds();
-
-  setTimeout(function() {
-    App.Map.Route.addPath();
-  }, 600);
+  App.Map.Route.addPath();
 
   if (this.action === 'edit') {
     this.initToolbar();
