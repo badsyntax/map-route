@@ -9,7 +9,9 @@ class Controller_Api_Markers extends Controller_REST
 		));
 
 		$markers = ORM::factory('Marker');
-		$markers->where('user_id', '=', $this->user->id);
+
+		// TODO: check if this route can be shared
+		// $markers->where('user_id', '=', $this->user->id);
 
 		// Filter by route
 		if ($route_id = $this->request->query('route_id'))

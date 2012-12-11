@@ -1,14 +1,14 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_REST extends Kohana_Controller_REST {
-
+class Controller_REST extends Kohana_Controller_REST
+{
 	public function before()
 	{
-		if (!Auth::instance()->logged_in())
+		$action = $this->request->action();
+
+		if (in_array($action, array('create', 'update', 'delete')))
 		{
-			$exception = HTTP_Exception::factory(401);
-			$exception->authenticate('realm="MapRoute"');
-			throw $exception;
+			$this->secure();
 		}
 
 		$this->user = Auth::instance()->get_user();
@@ -26,5 +26,15 @@ class Controller_REST extends Kohana_Controller_REST {
 		$this->response->status($status);
 		$this->response->headers('Content-Type', $content_type);
 		$this->response->body($body);
+	}
+
+	protected function secure()
+	{
+		if (!Auth::instance()->logged_in())
+		{
+			$exception = HTTP_Exception::factory(401);
+			$exception->authenticate('realm="MapRoute"');
+			throw $exception;
+		}
 	}
 }
