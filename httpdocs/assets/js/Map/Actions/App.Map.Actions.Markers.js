@@ -1,13 +1,12 @@
 App.Map.Actions.Markers = function() {
   App.Map.Actions.Action.apply(this, arguments);
-  this.map = App.Map.instance();
   this.modal = App.UI.Modal;
 };
 
 App.inherits(App.Map.Actions.Markers, App.Map.Actions.Action);
 
 App.Map.Actions.Markers.prototype.execute = function() {
-  this.bindEvents();
+  App.Map.Actions.Action.prototype.execute.apply(this, arguments);
   this.map.setOptions({ draggableCursor: 'crosshair' });
 };
 

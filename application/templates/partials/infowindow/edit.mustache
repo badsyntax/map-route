@@ -1,0 +1,19 @@
+<div class="info-window">
+  <!-- ko if: !title() && !description() -->
+    <p><em>(No description.)</em></p>
+  <!-- /ko -->
+  <!-- ko if: title() || description() -->
+    <div>
+      <strong data-bind="text: title"></strong>
+    </div>
+    <p data-bind="html: description"></p>
+  <!-- /ko -->
+  <a href="#" class="add-description">
+    <i class="icon-edit"></i> 
+    Edit
+  </a>
+  |
+  <a href="#" class="remove-pin">
+    <i class="icon-remove"></i> Remove
+  </a>
+</div>

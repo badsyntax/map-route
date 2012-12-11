@@ -1,5 +1,6 @@
 App.Map.Actions.Action = function() {
   this.handlers = [];
+  this.map = App.Map.instance();
 };
 
 App.Map.Actions.Action.prototype.execute = function() {

@@ -12,7 +12,6 @@
 </div>
 
 <!-- Layout -->
-
 <div 
   id="toolbar-ui" 
   data-bind="template: { name: 'toolbar-template' }">
@@ -22,29 +21,25 @@
   data-bind="template: { name: 'modal-template' }">
 </div>
 
-
 <!-- Templates -->
-
 <script type="text/html" id="toolbar-template">
 {{>toolbar}}
 </script>
-
 <script type="text/html" id="modal-template">
 {{>modal}}
 </script>
-
 <script type="text/html" id="modal-edit-marker">
 {{>modal/marker/edit}}
 </script>
-
 <script type="text/html" id="modal-login">
 {{>modal/login}}
 </script>
-
 <script type="text/html" id="modal-share">
 {{>modal/share}}
 </script>
-
-<script type="text/html" id="map-infowindow-template">
-{{>infowindow}}
+<script type="text/html" id="map-infowindow-edit-template">
+{{>infowindow/edit}}
+</script>
+<script type="text/html" id="map-infowindow-view-template">
+{{>infowindow/view}}
 </script>

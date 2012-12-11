@@ -1,0 +1,12 @@
+<div class="info-window">
+  <!-- ko if: !title() && !description() -->
+    <p><em>(No description.)</em></p>
+  <!-- /ko -->
+  <!-- ko if: title() || description() -->
+    <div>
+      <!-- ko if: title --><strong data-bind="text: title"></strong><!-- /ko -->
+      <!-- ko ifnot: title -->&nbsp;<!-- /ko -->
+    </div>
+    <p data-bind="html: description"></p>
+  <!-- /ko -->
+</div>

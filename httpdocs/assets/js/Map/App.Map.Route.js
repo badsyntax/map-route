@@ -94,6 +94,7 @@ App.Map.Route = (function() {
     },
     removeMarker: function(marker) {
 
+      marker.model.remove();
       marker.infoWindow.close();
       marker.setMap(null);
 

@@ -23,23 +23,24 @@ App.Config = (function() {
       
       if (typeof key === 'object' && val === undefined) {
         $.extend(data, key);
-      } else {
-        var obj = data;
-        var parts = key.split('.');
-        key = parts.pop();
+        return;
+      }
 
-        $.each(parts, function(i, part) {
-          if (obj[part] === undefined) {
-            obj[part] = {};
-          }
-          obj = obj[part];
-        });
+      var obj = data;
+      var parts = key.split('.');
+      key = parts.pop();
 
-        if (typeof obj[key] === 'object' && typeof val === 'object') {
-          $.extend(obj[key], val);
-        } else {
-          obj[key] = val;
+      $.each(parts, function(i, part) {
+        if (obj[part] === undefined) {
+          obj[part] = {};
         }
+        obj = obj[part];
+      });
+
+      if (typeof obj[key] === 'object' && typeof val === 'object') {
+        $.extend(obj[key], val);
+      } else {
+        obj[key] = val;
       }
     },
     remove: function(key) {

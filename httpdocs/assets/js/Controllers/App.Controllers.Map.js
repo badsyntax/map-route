@@ -39,6 +39,7 @@ App.Controllers.Map.prototype.initToolbar = function() {
 };
 
 App.Controllers.Map.prototype.setConfig = function() {
+  App.Config.set('action', this.action);
   App.Config.set('polyOptions', {
     strokeColor: '#000000',
     strokeOpacity: 1.0,
@@ -66,10 +67,16 @@ App.Controllers.Map.prototype.bindEvents = function() {
 App.Controllers.Map.prototype.onTilesLoaded = function() {
 
   App.Map.Route.addMarkers();
-  App.Map.Route.addRoute();
   App.Map.Route.fitMarkerBounds();
 
-  if (this.action === 'edit') {
-    this.initToolbar();
-  }
+  setTimeout(function() {
+    
+    App.Map.Route.addRoute();
+    
+    if (this.action === 'edit') {
+      this.initToolbar();
+    } else {
+      new App.Map.Actions.View().execute();
+    }
+  }.bind(this), 500);
 };

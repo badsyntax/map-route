@@ -1,6 +1,5 @@
 App.Map.Actions.Routes = function() {
   App.Map.Actions.Action.apply(this, arguments);
-  this.map = App.Map.instance();
   this.poly = App.Map.Route.poly();
   this.path = App.Map.Route.path();
 };

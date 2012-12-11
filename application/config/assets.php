@@ -1,6 +1,12 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 return array(
+  'css' => array(
+    'assets/lib/bootstrap/css/bootstrap.min.css',
+    'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
+    'assets/lib/fontawesome/css/font-awesome.css',
+    'assets/css/screen.css',
+  ),
   'javascript' => array(
     'assets/lib/jquery/jquery-1.8.3.min.js',
     'assets/lib/jquery/path.min.js',
@@ -20,6 +26,7 @@ return array(
     'assets/js/Map/Actions/App.Map.Actions.Markers.js',
     'assets/js/Map/Actions/App.Map.Actions.Routes.js',
     'assets/js/Map/Actions/App.Map.Actions.Share.js',
+    'assets/js/Map/Actions/App.Map.Actions.View.js',
     'assets/js/Controllers/App.Controllers.Map.js',
     'assets/js/Controllers/App.Controllers.SignIn.js',
     'assets/js/UI/App.UI.Toolbar.js',
@@ -34,10 +41,4 @@ return array(
     'assets/js/Map/App.Map.Route.js',
     'assets/js/Map/App.Map.InfoWindow.js'
   ),
-  'css' => array(
-    'assets/lib/bootstrap/css/bootstrap.min.css',
-    'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
-    'assets/lib/fontawesome/css/font-awesome.css',
-    'assets/css/screen.css',
-  )
 );

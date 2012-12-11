@@ -15,7 +15,8 @@ App.Map.Marker = function(data) {
 App.Map.Marker.prototype.createMarker = function(data) {
 
   var map = App.Map.instance();
-  var infoWindow = new App.Map.InfoWindow();
+  var type = App.Config.get('action'); // view|edit
+  var infoWindow = new App.Map.InfoWindow(type);
   
   var marker = new google.maps.Marker({
       infoWindow: infoWindow,
