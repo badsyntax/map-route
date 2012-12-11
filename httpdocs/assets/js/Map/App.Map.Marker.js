@@ -7,7 +7,7 @@ App.Map.Marker = function(data) {
 
   return $.extend(marker, {
     remove: function() {
-      App.Map.Route.removeMarker(marker);      
+      App.Map.Route.removeMarker(marker, true);      
     }.bind(this)
   });
 };

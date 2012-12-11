@@ -79,7 +79,7 @@ App.Map.Route = (function() {
     },
     removeMarkers: function() {
       $.each(markers(), function(i, marker) {
-        this.removeMarker(marker);
+        this.removeMarker(marker, false);
       }.bind(this));
     },
     fitMarkerBounds: function() {
@@ -92,9 +92,11 @@ App.Map.Route = (function() {
       });
       App.Map.instance().fitBounds(bounds);
     },
-    removeMarker: function(marker) {
+    removeMarker: function(marker, removeModel) {
 
-      marker.model.remove();
+      if (removeModel) {
+        marker.model.remove();
+      }
       marker.infoWindow.close();
       marker.setMap(null);
 

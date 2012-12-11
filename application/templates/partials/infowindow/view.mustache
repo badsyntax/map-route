@@ -3,9 +3,8 @@
     <p><em>(No description.)</em></p>
   <!-- /ko -->
   <!-- ko if: title() || description() -->
-    <div>
-      <!-- ko if: title --><strong data-bind="text: title"></strong><!-- /ko -->
-      <!-- ko ifnot: title -->&nbsp;<!-- /ko -->
+     <div>
+      <strong data-bind="text: title"></strong>
     </div>
     <p data-bind="html: description"></p>
   <!-- /ko -->
