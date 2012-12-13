@@ -10,6 +10,7 @@ return array(
 		'oauth2'     => MODPATH.'oauth2',
 		'kostache'   => MODPATH.'kostache',
 		'compress'   => MODPATH.'compress',
+		'device'     => MODPATH.'device',
 		'userguide'  => MODPATH.'userguide',
 		'minion-tasks-migrations' => MODPATH.'minion-tasks-migrations',
 	),

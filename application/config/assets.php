@@ -29,6 +29,7 @@ return array(
     'assets/js/Map/Actions/App.Map.Actions.View.js',
     'assets/js/Controllers/App.Controllers.Map.js',
     'assets/js/Controllers/App.Controllers.SignIn.js',
+    'assets/js/UI/App.UI.DeviceManager.js',
     'assets/js/UI/App.UI.Toolbar.js',
     'assets/js/UI/App.UI.Modal.js',
     'assets/js/Models/App.Models.Base.js',

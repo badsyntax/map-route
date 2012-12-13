@@ -5,6 +5,7 @@ App.Controllers.Map = function(route_id, action) {
   this.route_id = route_id;
   this.action = action;
   this.initModal();
+  this.deviceManager = new App.UI.DeviceManager();
 
   App.Map.create(function(map){
     App.Map.Route.init(route_id, function() {
@@ -26,14 +27,14 @@ App.Controllers.Map.prototype.init = function(map) {
 
 App.Controllers.Map.prototype.initModal = function() {
   var container = $('#modal-ui');
-  var viewModel = new App.ViewModels.Modal(container);
+  var viewModel = new App.ViewModels.Modal(container, this);
   ko.applyBindings(viewModel, container[0]);
   App.UI.Modal.setup(container, viewModel);
 };
 
 App.Controllers.Map.prototype.initToolbar = function() {
   var container = $('#toolbar-ui');
-  viewModel = new App.ViewModels.Toolbar(container);
+  viewModel = new App.ViewModels.Toolbar(container, this);
   ko.applyBindings(viewModel, container[0]);
   viewModel.rendered();
 };

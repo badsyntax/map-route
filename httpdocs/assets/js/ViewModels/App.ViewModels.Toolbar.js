@@ -1,8 +1,9 @@
 /* Toolbar viewmodel
  *************************/
 
-App.ViewModels.Toolbar = function(container) {
+App.ViewModels.Toolbar = function(container, controller) {
   this.container = container;
+  this.controller = controller;
   this.buttons = ko.observableArray();
   this.curAction = null;
   this.setData();

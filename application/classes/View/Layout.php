@@ -9,6 +9,12 @@ class View_Layout
 	public function __construct()
 	{
 		$this->user = Auth::instance()->get_user();
+		$this->device = new Device();
+	}
+
+	public function is_mobile()
+	{
+		return $this->device->is_mobile();
 	}
 
 	public function scripts()

@@ -1,5 +1,5 @@
 <div id="toolbar" class="toolbar btn-toolbar" data-toggle="buttons-radio">
-  <div class="btn-group" data-bind="foreach: buttons">
+  <div class="btn-group {{#is_mobile}}btn-group-vertical{{/is_mobile}}" data-bind="foreach: buttons">
     <button 
       data-bind="attr: { 'class': 'btn ' + className(), 'data-original-title': caption() }" 
       data-placement="bottom" 

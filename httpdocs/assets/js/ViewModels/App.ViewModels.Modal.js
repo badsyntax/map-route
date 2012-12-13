@@ -1,8 +1,9 @@
 /* Modal viewmodel
  *************************/
 
-App.ViewModels.Modal = function(container) {
+App.ViewModels.Modal = function(container, controller) {
   this.container = container;
+  this.controller = controller;
   this.defaultValues();
 };
 
