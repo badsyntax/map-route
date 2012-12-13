@@ -31,6 +31,6 @@
 [submodule "modules/compress"]
 	path = modules/compress
 	url = git@github.com:badsyntax/kohana-compress.git
-[submodule "modules/mobile-detect/vendor/mobile-detect"]
-	path = modules/mobile-detect/vendor/mobile-detect
-	url = git://github.com/serbanghita/Mobile-Detect.git
+[submodule "modules/device"]
+	path = modules/device
+	url = git@github.com:badsyntax/kohana-device.git
