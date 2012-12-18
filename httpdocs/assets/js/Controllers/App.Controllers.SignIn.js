@@ -6,7 +6,7 @@ App.Controllers.SignIn = function() {
 };
 
 App.Controllers.SignIn.prototype.initModal = function() {
-  var container = $('#modal-ui');
+  var container = $('#modal');
   var viewModel = new App.ViewModels.Modal(container);
   ko.applyBindings(viewModel, container[0]);
   App.UI.Modal.setup(container, viewModel);

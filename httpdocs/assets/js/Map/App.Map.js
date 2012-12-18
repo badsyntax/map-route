@@ -27,7 +27,8 @@ App.Map = (function(canvas) {
         src: 'http://maps.googleapis.com/maps/api/js?' + [
           'key=' + App.Config.get('mapApiKey'),
           'sensor=false',
-          'callback=mapCallback'
+          'callback=mapCallback',
+          'libraries=places'
         ].join('&')
       };
 

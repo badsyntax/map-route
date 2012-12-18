@@ -49,5 +49,5 @@ App.UI.Modal = (function() {
     }
   };
 
-  return $.extend(App.Events, modal);
+  return modal;
 }());

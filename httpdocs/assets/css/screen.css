@@ -12,6 +12,20 @@ body {
   padding: 0;
 }
 
+/* Buttons
+ *****************/
+/* line 3, ../sass/_buttons.scss */
+.btn-large [class^="icon-"] {
+  font-size: 17.5px;
+  line-height: 17.5px;
+}
+
+/* Temporary fix for tooltips in button groups messing with margins */
+/* line 9, ../sass/_buttons.scss */
+.btn-group > .tooltip + .btn {
+  margin-left: -1px;
+}
+
 /* Map Canvas
  *****************/
 /* line 3, ../sass/_map.scss */
@@ -59,9 +73,9 @@ body {
   z-index: 1000;
   top: 6px;
   left: 50%;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px;
   border-radius: 4px;
   display: none;
+  text-align: center;
 }
 /* line 14, ../sass/_toolbar.scss */
 .toolbar button {
@@ -78,18 +92,15 @@ body {
   font-size: 12px;
 }
 
-/* Buttons
+/* Search
  *****************/
-/* line 3, ../sass/_buttons.scss */
-.btn-large [class^="icon-"] {
-  font-size: 17.5px;
-  line-height: 17.5px;
-}
-
-/* Temporary fix for tooltips in button groups messing with margins */
-/* line 9, ../sass/_buttons.scss */
-.btn-group > .tooltip + .btn {
-  margin-left: -1px;
+/* line 3, ../sass/_search.scss */
+.search {
+  position: absolute;
+  top: 44px;
+  left: 50%;
+  z-index: 99;
+  display: none;
 }
 
 /* Mobile

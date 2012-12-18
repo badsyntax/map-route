@@ -1,6 +1,3 @@
-/* Toolbar viewmodel
- *************************/
-
 App.ViewModels.Toolbar = function(container, controller) {
   this.container = container;
   this.controller = controller;
@@ -17,7 +14,7 @@ App.ViewModels.Toolbar.prototype.setData = function() {
   this.buttons([
     new App.Models.ToolbarButton({
       caption: 'Pins',
-      className: 'add-pin',
+      className: 'toolbar-add-pin',
       iconClassName: 'icon-map-marker',
       action: new App.Map.Actions.Markers()
     }),
@@ -29,19 +26,19 @@ App.ViewModels.Toolbar.prototype.setData = function() {
     }),
     new App.Models.ToolbarButton({
       caption: 'Search',
-      className: 'search',
+      className: 'toolbar-search',
       iconClassName: 'icon-search',
-      action: new App.Map.Actions.Routes()
+      action: new App.Map.Actions.Search()
     }),
     new App.Models.ToolbarButton({
       caption: 'Share',
-      className: 'share',
+      className: 'toolbar-share',
       iconClassName: 'icon-share',
       action: new App.Map.Actions.Share()
     }),
     new App.Models.ToolbarButton({
       caption: 'Sign out',
-      className: 'sign-out',
+      className: 'toolbar-sign-out',
       iconClassName: 'icon-signout',
       action: {
         execute: function() {
@@ -61,6 +58,6 @@ App.ViewModels.Toolbar.prototype.executeAction = function(e, model) {
 
 App.ViewModels.Toolbar.prototype.reset = function() {
   $.each(this.buttons(), function(i, button) {
-    console.log(button);;
+    // console.log(button);;
   });
 };

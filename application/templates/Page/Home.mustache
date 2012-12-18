@@ -12,12 +12,16 @@
 
 <!-- Layout -->
 <div 
-  id="toolbar-ui" 
+  id="toolbar" 
   data-bind="template: { name: 'toolbar-template' }">
 </div>
 <div 
-  id="modal-ui" 
+  id="modal" 
   data-bind="template: { name: 'modal-template' }">
+</div>
+<div
+  id="search"
+  data-bind="template: { name: 'search-template' }">
 </div>
 
 <!-- Templates -->
@@ -41,4 +45,7 @@
 </script>
 <script type="text/html" id="map-infowindow-view-template">
 {{>infowindow/view}}
+</script>
+<script type="text/html" id="search-template">
+{{>search}}
 </script>

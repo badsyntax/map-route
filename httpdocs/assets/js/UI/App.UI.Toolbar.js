@@ -3,8 +3,6 @@
 App.UI.Toolbar = function(container, viewModel) {
   this.container = container.find('.toolbar').fadeIn();
   this.viewModel = viewModel;
-  this.deviceManager = this.viewModel.controller.deviceManager;
-  console.log(this);
   this.position();
   this.bindEvents();
   this.onUpdateDimensions();
@@ -20,12 +18,12 @@ App.UI.Toolbar.prototype.position = function() {
 App.UI.Toolbar.prototype.bindEvents = function() {
   this.container.on('click', 'button', this.onButtonClick.bind(this));
 
-  this.deviceManager
+  App.UI.Device
   .on('updateDimensions.toolbar', this.onUpdateDimensions.bind(this));
 };
 
 App.UI.Toolbar.prototype.onUpdateDimensions = function() {
-  if (this.deviceManager.isMobile()) {
+  if (App.UI.Device.isMobile()) {
     this.container.find('.btn-group').addClass('btn-group-vertical');
   } else {
     this.container.find('.btn-group').removeClass('btn-group-vertical');
