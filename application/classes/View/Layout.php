@@ -3,13 +3,14 @@
 class View_Layout 
 {
 	public $title = 'Map Route';
-
 	public $_app_config = array();
+	protected $environment = NULL;
 
 	public function __construct()
 	{
 		$this->user = Auth::instance()->get_user();
 		$this->device = new Device();
+		$this->environment = Kohana::$environment === Kohana::PRODUCTION ? 'production' : 'development';
 	}
 
 	public function is_mobile()
@@ -19,7 +20,8 @@ class View_Layout
 
 	public function scripts()
 	{
-		$scripts = Kohana::$config->load('assets.javascript');
+		$script_config = 'assets.'.$this->environment.'.javascript';
+		$scripts = Kohana::$config->load($script_config);
 
 		if (Kohana::$environment === Kohana::PRODUCTION)
 		{
@@ -33,7 +35,8 @@ class View_Layout
 
 	public function stylesheets()
 	{
-		$styles = Kohana::$config->load('assets.css');
+		$style_config = 'assets.'.$this->environment.'.css';
+		$styles = Kohana::$config->load($style_config);
 		
 		if (Kohana::$environment === Kohana::PRODUCTION)
 		{
@@ -70,5 +73,10 @@ class View_Layout
 		}
 
 		return json_encode($this->_app_config, JSON_NUMERIC_CHECK);
+	}
+
+	public function coming_soon()
+	{
+		return Kohana::$environment === Kohana::PRODUCTION;		
 	}
 }
