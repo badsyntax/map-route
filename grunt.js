@@ -25,6 +25,7 @@ module.exports = function(grunt) {
         console: false,
         google: true,
         ko: true,
+        Path: true,
         App: true
       }
     },

@@ -24,7 +24,7 @@ App.Map.Actions.Search.prototype.execute = function() {
   $(this.ui.field).typeahead({
     source: function(query, process) {
       service.getPlacePredictions({ input: query }, function(predictions, status) {
-        if (status != google.maps.places.PlacesServiceStatus.OK) {
+        if (status !== google.maps.places.PlacesServiceStatus.OK) {
           console.log(status);
           return;
         }
@@ -35,8 +35,8 @@ App.Map.Actions.Search.prototype.execute = function() {
     },
     updater: function (item) {
       geocoder.geocode({ address: item }, function(results, status) {
-        if (status != google.maps.GeocoderStatus.OK) {
-          alert('Cannot find address');
+        if (status !== google.maps.GeocoderStatus.OK) {
+          window.alert('Cannot find address');
           return;
         }
         map.setCenter(results[0].geometry.location);
@@ -50,4 +50,4 @@ App.Map.Actions.Search.prototype.execute = function() {
 App.Map.Actions.Search.prototype.reset = function() {
   App.Map.Actions.Action.prototype.reset.apply(this, arguments);
   this.ui.reset();
-}
+};

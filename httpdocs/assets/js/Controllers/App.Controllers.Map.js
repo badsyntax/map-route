@@ -11,7 +11,7 @@ App.Controllers.Map = function(route_id, action) {
       if (App.Map.Route.loaded()) {
         this.init(map); 
       }
-    }.bind(this))
+    }.bind(this));
   }.bind(this));
 };
 
@@ -33,7 +33,7 @@ App.Controllers.Map.prototype.initModal = function() {
 
 App.Controllers.Map.prototype.initToolbar = function() {
   var container = $('#toolbar');
-  viewModel = new App.ViewModels.Toolbar(container, this);
+  var viewModel = new App.ViewModels.Toolbar(container, this);
   ko.applyBindings(viewModel, container[0]);
   viewModel.rendered();
 };

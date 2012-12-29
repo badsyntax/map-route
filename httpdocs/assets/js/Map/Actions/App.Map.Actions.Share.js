@@ -9,7 +9,7 @@ App.Map.Actions.Share.prototype.execute = function() {
     heading: 'Share'
   }, {
     url: 'http://maproute.proxima.cc/#/route/' + App.Map.Route.model().id()
-  })
+  });
 };
 
 App.Map.Actions.Share.prototype.reset = function() {

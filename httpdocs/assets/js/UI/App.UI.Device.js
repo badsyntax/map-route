@@ -41,4 +41,4 @@ App.UI.Device = (function(device) {
     isTablet: isTablet
   });
 
-})(new App.Events);
+}(new App.Events()));

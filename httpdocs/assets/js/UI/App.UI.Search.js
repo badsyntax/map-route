@@ -22,4 +22,4 @@ App.UI.Search.prototype.show = function() {
 App.UI.Search.prototype.reset = function() {
   this.element.hide();
   this.field.val('');
-}
+};

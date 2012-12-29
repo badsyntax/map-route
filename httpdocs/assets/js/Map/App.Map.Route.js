@@ -40,7 +40,7 @@ App.Map.Route = (function() {
         }));
 
         if (this.loaded()) {
-          callback()
+          callback();
         } else if (route_id === 'new') {
           this.create('Default route');
         } else {
