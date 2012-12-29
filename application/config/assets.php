@@ -6,7 +6,7 @@ return array(
 			'assets/lib/bootstrap/css/bootstrap.min.css',
 			'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
 			'assets/lib/fontawesome/css/font-awesome.css',
-			'assets/css/screen.css',
+			'assets/css/comingsoon.css',
 		),
 		'javascript' => array(
 

@@ -1,8 +1,13 @@
 {{#coming_soon}}
-
+<footer>
+  <a href="/contact">Contact</a> | 
+  <a href="/about">About</a>
+</footer>
+{{{scripts}}}
 {{/coming_soon}}
 {{^coming_soon}}
 <script>
+{{{scripts}}}
 App.Config.set({{{app_config}}});
 new App.Router();
 </script>
