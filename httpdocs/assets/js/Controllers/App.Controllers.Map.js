@@ -38,6 +38,13 @@ App.Controllers.Map.prototype.initToolbar = function() {
   viewModel.rendered();
 };
 
+App.Controllers.Map.prototype.initSidebar = function() {
+  var container = $('#sidebar');
+  var viewModel = new App.ViewModels.Sidebar(container, this);
+  ko.applyBindings(viewModel, container[0]);
+  viewModel.rendered();
+};
+
 App.Controllers.Map.prototype.setConfig = function() {
   App.Config.set('action', this.action);
   App.Config.set('polyOptions', {
@@ -73,6 +80,7 @@ App.Controllers.Map.prototype.onTilesLoaded = function() {
     
     if (this.action === 'edit') {
       this.initToolbar();
+      this.initSidebar();
     } else {
       new App.Map.Actions.View().execute();
     }

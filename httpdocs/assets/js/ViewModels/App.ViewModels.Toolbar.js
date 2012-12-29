@@ -25,12 +25,6 @@ App.ViewModels.Toolbar.prototype.setData = function() {
       action: new App.Map.Actions.Routes()
     }),
     new App.Models.ToolbarButton({
-      caption: 'Search',
-      className: 'toolbar-search',
-      iconClassName: 'icon-search',
-      action: new App.Map.Actions.Search()
-    }),
-    new App.Models.ToolbarButton({
       caption: 'Share',
       className: 'toolbar-share',
       iconClassName: 'icon-share',

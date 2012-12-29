@@ -1,27 +1,35 @@
-<!-- Map canvas -->
-<div id="map-canvas" class="map">
-  <div class="message">
-    <div class="has-js">
-      Loading map...
-    </div>
-    <div class="no-js">
-      <strong>You need to enable Javascript in your browser to use this application.</strong>
+<div class="container">
+
+  <!-- Toolbar -->
+  <div 
+    id="toolbar" 
+    data-bind="template: { name: 'toolbar-template' }">
+  </div>
+  
+  <!-- Map -->
+  <div id="map-canvas" class="map">
+    <div class="message">
+      <div class="has-js">
+        Loading map...
+      </div>
+      <div class="no-js">
+        <strong>You need to enable Javascript in your browser to use this application.</strong>
+      </div>
     </div>
   </div>
+
+  <!-- Sidebar -->
+  <aside 
+    class="sidebar" 
+    id="sidebar"
+    data-bind="template: { name: 'sidebar-template' }">
+  </aside>
 </div>
 
-<!-- Layout -->
-<div 
-  id="toolbar" 
-  data-bind="template: { name: 'toolbar-template' }">
-</div>
+<!-- Modal -->
 <div 
   id="modal" 
   data-bind="template: { name: 'modal-template' }">
-</div>
-<div
-  id="search"
-  data-bind="template: { name: 'search-template' }">
 </div>
 
 <!-- Templates -->
@@ -46,6 +54,6 @@
 <script type="text/html" id="map-infowindow-view-template">
 {{>infowindow/view}}
 </script>
-<script type="text/html" id="search-template">
-{{>search}}
+<script type="text/html" id="sidebar-template">
+{{>sidebar}}
 </script>

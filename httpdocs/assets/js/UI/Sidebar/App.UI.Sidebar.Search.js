@@ -1,27 +1,11 @@
-App.Map.Actions.Search = function() {
-  App.Map.Actions.Action.apply(this, arguments);
-  this.container = $('#search');
-  this.initViewModel();
-  this.ui = this.viewModel.ui;
- };
+App.UI.Sidebar.Search = function(container) {
 
-App.inherits(App.Map.Actions.Search, App.Map.Actions.Action);
-
-App.Map.Actions.Search.prototype.initViewModel = function() {
-  this.viewModel = new App.ViewModels.Search(this.container);
-  ko.applyBindings(this.viewModel, this.container[0]);
-  this.viewModel.rendered();
-};
-
-App.Map.Actions.Search.prototype.execute = function() {
-
-  this.ui.show();
-  
+  var field = $('#search-input');
   var service = new google.maps.places.AutocompleteService();
   var geocoder = new google.maps.Geocoder();
   var map = App.Map.instance();
 
-  $(this.ui.field).typeahead({
+  $(field).typeahead({
     source: function(query, process) {
       service.getPlacePredictions({ input: query }, function(predictions, status) {
         if (status !== google.maps.places.PlacesServiceStatus.OK) {
@@ -45,9 +29,4 @@ App.Map.Actions.Search.prototype.execute = function() {
       return item;
     }
   });
-};
-
-App.Map.Actions.Search.prototype.reset = function() {
-  App.Map.Actions.Action.prototype.reset.apply(this, arguments);
-  this.ui.reset();
 };
