@@ -1,9 +1,25 @@
 <div class="container">
 
-  <!-- Toolbar -->
-  <div 
-    id="toolbar" 
-    data-bind="template: { name: 'toolbar-template' }">
+  <div class="navbar">
+    <div class="navbar-inner">
+      
+      <div class="btn-group pull-right">
+        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+          <i class="icon-user"></i> admin         <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="/admin/auth/profile">Profile</a></li>
+          <li class="divider"></li>
+          <li><a href="/admin/auth/signout">Sign out</a></li>
+        </ul>
+      </div>
+
+      <!-- Toolbar -->
+      <div 
+        id="toolbar" 
+        data-bind="template: { name: 'toolbar-template' }">
+      </div>
+    </div>
   </div>
   
   <!-- Map -->

@@ -3,6 +3,11 @@ App.UI.Sidebar = function(container, viewModel) {
   this.viewModel = viewModel;
   this.search = new App.UI.Sidebar.Search(container);
   this.bindEvents();
+
+  $('#sidebar-tabs a').click(function (e) {
+  e.preventDefault();
+  $(this).tab('show');
+})
 };
 
 App.UI.Sidebar.prototype.bindEvents = function() {

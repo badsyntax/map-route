@@ -1,14 +1,26 @@
 <div class="search input-append">
-  <input class="span2" id="search-input" type="text" placeholder="Search for a place...">
+  <input class="" id="search-input" type="text" placeholder="Search for a place...">
   <button class="btn" type="button">Go!</button>
 </div>
 
-<ul class="nav nav-tabs" id="myTab">
-  <li class="active"><a href="#home">Route</a></li>
-  <li><a href="#profile">Pins</a></li>
+<ul class="nav nav-tabs" id="sidebar-tabs">
+  <li class="active"><a href="#sidebar-route">Route</a></li>
+  <li><a href="#sidebar-pins">Pins</a></li>
 </ul>
  
 <div class="tab-content">
-  <div class="tab-pane active" id="home">...</div>
-  <div class="tab-pane" id="profile">...</div>
+  <div class="tab-pane active" id="sidebar-route">
+    <ul class="nav nav-pills nav-stacked" data-bind="foreach: route">
+      <li>
+        <a href="#" data-bind="text: title"></a>
+      </li>
+    </ul>
+  </div>
+  <div class="tab-pane" id="sidebar-pins">
+    <ul class="nav nav-pills nav-stacked" data-bind="foreach: markers">
+      <li>
+        <a href="#" data-bind="text: title"></a>
+      </li>
+    </ul>
+  </div>
 </div>

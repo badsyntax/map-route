@@ -1,0 +1,21 @@
+ .navbar {
+  
+  margin: 0 0 0 292px;
+  z-index: 2;
+  position: relative;
+  @include box-shadow(rgba(0, 0, 0, 0.2) 6px 5px 12px -1px);
+  border-bottom: 1px solid #D5D5D5;
+
+  .navbar-inner {
+    border-left: 0;
+    border-top:0;
+    @include border-radius(0);
+    text-align: center;
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
+  .dropdown-menu {
+    text-align: left;
+  }
+}
