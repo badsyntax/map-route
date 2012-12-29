@@ -14,10 +14,13 @@ App.Controllers.SignIn.prototype.initModal = function() {
 
 App.Controllers.SignIn.prototype.showLoginModal = function() {
   setTimeout(function() {
+
     App.UI.Modal.show('#modal-login', {
       heading: 'Sign in',
       controls: false
     });
+  
     App.Map.create();
+  
   }, 150);
 };

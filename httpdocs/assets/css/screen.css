@@ -103,6 +103,18 @@ body {
   display: none;
 }
 
+/* Modals
+ *****************/
+/* line 3, ../sass/_modal.scss */
+.modal-signin {
+  text-align: center;
+}
+/* line 6, ../sass/_modal.scss */
+.modal-signin .well {
+  width: 64%;
+  margin: auto;
+}
+
 /* Mobile
  *****************/
 @media (max-width: 480px) {
@@ -116,5 +128,10 @@ body {
   /* line 11, ../sass/_mobile.scss */
   .toolbar .btn {
     display: block;
+  }
+
+  /* line 17, ../sass/_mobile.scss */
+  .modal-signin .well {
+    width: auto;
   }
 }

@@ -19,8 +19,6 @@ App.UI.Modal = (function() {
       .on('shown', callback)
       .modal({
         show: true
-      })
-      .css({
       });
 
       this.focus();

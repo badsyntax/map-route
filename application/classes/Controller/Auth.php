@@ -33,36 +33,74 @@ class Controller_Auth extends Controller_Base {
 
 		if ($code !== NULL)
 		{
-			// Get the auth token
-			$consumer = OAuth2_Consumer::factory('google');
-			$token = $consumer->request_token(array(
-				'code' => $code
-			));
-
-			// Get the user profile data
-			$request = Request::factory(Kohana::$config->load('oauth2.consumer.google.userinfo_uri'));
-			$response = $consumer->execute($request);
-			$profile = json_decode($response->body());
-
-			$user = ORM::factory('User')->where('email', '=', $profile->email)->find();
-
-			if (!$user->loaded())
+			switch($this->request->param('id'))
 			{
-				try
-				{
-					$user->create_profile($profile, $token);
-				}
-				catch(ORM_Validation_Exception $e)
-				{
-					$errors = $e->errors();
-					throw $e;
-				}
+				case 'google':
+					$this->login_google($code);
+					break;
+				case 'facebook':
+					$this->login_facebook($code);
+					break;
 			}
-
-			Auth::instance()->login($user->email, $user->email, TRUE);
 		}
 
 		$this->redirect('');
+	}
+
+	private function save_user($profile)
+	{
+		$user = ORM::factory('User')->where('email', '=', $profile->email)->find();
+
+		if (!$user->loaded())
+		{
+			try
+			{
+				$user->create_profile($profile, $token);
+			}
+			catch(ORM_Validation_Exception $e)
+			{
+				$errors = $e->errors();
+				throw $e;
+			}
+		}
+
+		return $user;
+	}
+
+	private function login_facebook($code = NULL)
+	{
+		// Get the auth token
+		$consumer = OAuth2_Consumer::factory('facebook');
+		$token = $consumer->request_token(array(
+			'code' => $code
+		));
+
+		// Get the user profile data
+		$url = Kohana::$config->load('oauth2.consumer.facebook.userinfo_uri');
+		$url .= '?access_token='.$token['access_token'];
+		$request = Request::factory($url);
+		$response = $request->execute();
+		$profile = json_decode($response->body());
+
+		$user = $this->save_user($profile);
+		Auth::instance()->login($user->email, $user->email, TRUE);
+	}
+
+	private function login_google($code = NULL)
+	{
+		// Get the auth token
+		$consumer = OAuth2_Consumer::factory('google');
+		$token = $consumer->request_token(array(
+			'code' => $code
+		));
+
+		// Get the user profile data
+		$request = Request::factory(Kohana::$config->load('oauth2.consumer.google.userinfo_uri'));
+		$response = $consumer->execute($request);
+		$profile = json_decode($response->body());
+
+		$user = $this->save_user($profile);
+		Auth::instance()->login($user->email, $user->email, TRUE);
 	}
 
 	public function action_signout()
