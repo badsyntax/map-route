@@ -9,7 +9,7 @@ return array(
 			'assets/css/comingsoon.css',
 		),
 		'javascript' => array(
-
+			'assets/js/ComingSoon.js',
 		)
 	),
 	'development' => array(
