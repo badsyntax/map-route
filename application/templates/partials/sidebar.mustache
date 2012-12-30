@@ -1,3 +1,6 @@
+<h1>
+  MapRoute
+</h1>
 <div class="search input-append">
   <input class="" id="search-input" type="text" placeholder="Search for a place...">
   <button class="btn" type="button">Go!</button>
@@ -12,15 +15,15 @@
   <div class="tab-pane active" id="sidebar-route">
     <ul class="nav nav-pills nav-stacked" data-bind="foreach: route">
       <li>
-        <a href="#" data-bind="text: title"></a>
+        <a href="#" data-bind="text: model.route_title"></a>
       </li>
     </ul>
   </div>
   <div class="tab-pane" id="sidebar-pins">
-    <ul class="nav nav-pills nav-stacked" data-bind="foreach: markers">
+    <!-- <ul class="nav nav-pills nav-stacked" data-bind="foreach: markers">
       <li>
         <a href="#" data-bind="text: title"></a>
       </li>
-    </ul>
+    </ul> -->
   </div>
 </div>

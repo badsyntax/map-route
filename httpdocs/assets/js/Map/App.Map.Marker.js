@@ -1,20 +1,23 @@
 App.Map.Marker = function(data) {
 
-  var marker = this.createMarker(data);
-  marker.model = this.createModel(marker, data);
+  var map = App.Map.instance();
+  var marker = this.createMarker(map, data);
 
   ko.applyBindings(marker.model, marker.infoWindow.getContent());
 
   return $.extend(marker, {
+    focus: function() {
+      App.Map.Route.resetMarkers();
+      marker.infoWindow.open(map, marker);
+    },
     remove: function() {
       App.Map.Route.removeMarker(marker, true);      
     }.bind(this)
   });
 };
 
-App.Map.Marker.prototype.createMarker = function(data) {
+App.Map.Marker.prototype.createMarker = function(map, data) {
 
-  var map = App.Map.instance();
   var type = App.Config.get('action'); // view|edit
   var infoWindow = new App.Map.InfoWindow(type);
   
@@ -27,7 +30,9 @@ App.Map.Marker.prototype.createMarker = function(data) {
       animation: google.maps.Animation.DROP // google.maps.Animation.DROP | BOUNCE
   });
   App.Map.Route.markers().push(marker);
-  
+
+  marker.model = this.createModel(marker, data);
+
   return marker;
 };
 

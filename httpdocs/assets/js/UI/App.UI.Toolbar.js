@@ -3,16 +3,9 @@
 App.UI.Toolbar = function(container, viewModel) {
   this.container = container.find('.toolbar').fadeIn();
   this.viewModel = viewModel;
-  this.position();
   this.bindEvents();
   this.onUpdateDimensions();
   this.initTooltips();
-};
-
-App.UI.Toolbar.prototype.position = function() {
-  this.container.css({
-    marginLeft: -1 * Math.round(this.container.width() / 2) + 130
-  });
 };
 
 App.UI.Toolbar.prototype.bindEvents = function() {

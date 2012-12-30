@@ -2,14 +2,11 @@
  *****************/
 .toolbar {
 
-  margin: 0;
-  z-index: 1000;
-  top: 6px;
-  left: 50%;
   border-radius: 4px;
   display: none;
   text-align: center;
   display: inline-block;
+  margin: 0;
 
   button {
     padding-bottom: 0;
@@ -17,11 +14,19 @@
   }
 
   button [class^="icon-"] {
-    font-size: 21px;
-    line-height: 21px;
+    font-size: 23px;
+    line-height: 23px;
   }
 
   .tooltip {
     font-size: 12px;
   }
+}
+
+.toolbar-label {
+  display: inline-block;
+  padding-top: 11px;
+  padding-right: 5px;
+  margin-left: -100px;
+  vertical-align: middle;
 }

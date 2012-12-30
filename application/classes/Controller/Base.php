@@ -3,6 +3,12 @@
 class Controller_Base extends Controller {
 
 	protected $content = NULL;
+  protected $user;
+
+  public function before()
+  {
+    $this->user = Auth::instance()->get_user();
+  }
 
 	public function after()
 	{

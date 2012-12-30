@@ -9,8 +9,14 @@ class View_Layout
 	public function __construct()
 	{
 		$this->user = Auth::instance()->get_user();
+		$this->logged_in = ($this->user AND $this->user->loaded());
 		$this->device = new Device();
 		$this->environment = Kohana::$environment === Kohana::PRODUCTION ? 'production' : 'development';
+	}
+
+	public function bodyclass()
+	{
+		return 'home' . (($this->logged_in) ? ' edit' : ' signin');
 	}
 
 	public function is_mobile()
@@ -20,7 +26,8 @@ class View_Layout
 
 	public function scripts()
 	{
-		$script_config = 'assets.'.$this->environment.'.javascript';
+		$group = $this->logged_in ? 'edit' : 'signin';
+		$script_config = 'assets.'.$this->environment.'.'.$group.'.javascript';
 		$scripts = Kohana::$config->load($script_config);
 
 		if (Kohana::$environment === Kohana::PRODUCTION)
@@ -35,7 +42,8 @@ class View_Layout
 
 	public function stylesheets()
 	{
-		$style_config = 'assets.'.$this->environment.'.css';
+		$group = $this->logged_in ? 'edit' : 'signin';
+		$style_config = 'assets.'.$this->environment.'.'.$group.'.css';
 		$styles = Kohana::$config->load($style_config);
 		
 		if (Kohana::$environment === Kohana::PRODUCTION)
@@ -78,5 +86,10 @@ class View_Layout
 	public function coming_soon()
 	{
 		return Kohana::$environment === Kohana::PRODUCTION;		
+	}
+
+	public function username()
+	{
+		return ($this->user === NULL OR !$this->user->loaded()) ? '' : ($this->user->name ?: $this->user->username ?: $this->user->email);
 	}
 }

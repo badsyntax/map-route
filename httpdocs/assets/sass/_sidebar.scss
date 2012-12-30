@@ -17,4 +17,12 @@
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
   border-right: 1px solid #D5D5D5;
   @include box-shadow(rgba(0, 0, 0, 0.2) 6px -5px 12px -1px);
+
+  h1 {
+    font-family: 'Orbitron', sans-serif;
+    padding: 4px 0 0 8px;
+    margin: 0;
+    font-size: 26px;
+    color: #222;
+  }
 }

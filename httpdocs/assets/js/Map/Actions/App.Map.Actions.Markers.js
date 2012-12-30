@@ -7,6 +7,7 @@ App.inherits(App.Map.Actions.Markers, App.Map.Actions.Action);
 
 App.Map.Actions.Markers.prototype.execute = function() {
   App.Map.Actions.Action.prototype.execute.apply(this, arguments);
+  App.Map.Route.resetMarkers();
   this.map.setOptions({ draggableCursor: 'crosshair' });
 };
 

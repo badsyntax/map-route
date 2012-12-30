@@ -92,6 +92,12 @@ App.Map.Route = (function() {
       });
       App.Map.instance().fitBounds(bounds);
     },
+    resetMarkers: function() {
+      $.each(markers(), function(i, marker) {
+        marker.setAnimation(null);
+        marker.infoWindow.close();
+      });
+    },
     removeMarker: function(marker, removeModel) {
 
       if (removeModel) {

@@ -23,7 +23,6 @@ App.Controllers.Map.prototype.init = function(map) {
   this.map = map;
   this.setConfig();
   this.bindEvents();
-  this.initSidebar();
 };
 
 App.Controllers.Map.prototype.initModal = function() {
@@ -82,6 +81,7 @@ App.Controllers.Map.prototype.onTilesLoaded = function() {
     
     if (this.action === 'edit') {
       this.initToolbar();
+      this.initSidebar();
     } else {
       new App.Map.Actions.View().execute();
     }

@@ -1,75 +1,47 @@
-<div class="container">
-
-  <div class="navbar">
-    <div class="navbar-inner">
-      
-      <div class="btn-group pull-right">
-        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-          <i class="icon-user"></i> admin         <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-          <li><a href="/admin/auth/profile">Profile</a></li>
-          <li class="divider"></li>
-          <li><a href="/admin/auth/signout">Sign out</a></li>
-        </ul>
-      </div>
-
-      <!-- Toolbar -->
-      <div 
-        id="toolbar" 
-        data-bind="template: { name: 'toolbar-template' }">
-      </div>
+<div class="navbar" style="margin:0">
+  <div class="navbar-inner">
+    <div class="container">            
+      <a href="/" class="brand">MapRoute <i class="m-icon-big-win8"></i></a>       
+      <ul class="nav">
+        <li class="active"><a href="/">Sign in</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>            
     </div>
   </div>
-  
-  <!-- Map -->
-  <div id="map-canvas" class="map">
-    <div class="message">
-      <div class="has-js">
-        Loading map...
+</div>
+
+<header class="header">    
+  <div class="container">    
+    <div class="row" style="position:relative">
+      <div id="signin-message">
+        <div class="span4">
+          <h3>Ready for a holiday? Start planning your route today.</h3>   
+          <p>MapRoute takes the pain out of planning a route. <a href="/about">More info &raquo;</a></p>            
+          <p>It only takes 2 minutes to get started, and it's completely free!</p>   
+          <a id="btn-signin" class="btn btn-large btn-primary" href="#">
+            Sign in
+            &raquo;
+          </a>     
+           <div id="signin-buttons">
+            <div class="signin-buttons" style="width:320px;margin:auto;">
+              <a href="{{google_login}}" class="btn btn-primary btn-block btn-large">
+                Sign in with Google &raquo;
+              </a>
+              <a href="{{facebook_login}}" class="btn btn-primary btn-block btn-large">
+                Sign in with Facebook &raquo;
+              </a>
+              <!--<a href="{{yahoo_login}}" class="btn btn-primary btn-block btn-large">
+                Sign in with Yahoo &raquo;
+              </a>-->
+            </div>
+          </div>           
+        </div>
+        <div class="offset1 span7" style="position:relative">        
+          <img src="/assets/img/tablet_new.png" width="540" height="351" alt="MapRoute google map">
+        </div>
       </div>
-      <div class="no-js">
-        <strong>You need to enable Javascript in your browser to use this application.</strong>
-      </div>
-    </div>
+
+    </div>       
   </div>
-
-  <!-- Sidebar -->
-  <aside 
-    class="sidebar" 
-    id="sidebar"
-    data-bind="template: { name: 'sidebar-template' }">
-  </aside>
-</div>
-
-<!-- Modal -->
-<div 
-  id="modal" 
-  data-bind="template: { name: 'modal-template' }">
-</div>
-
-<!-- Templates -->
-<script type="text/html" id="toolbar-template">
-{{>toolbar}}
-</script>
-<script type="text/html" id="modal-template">
-{{>modal}}
-</script>
-<script type="text/html" id="modal-edit-marker">
-{{>modal/marker/edit}}
-</script>
-<script type="text/html" id="modal-login">
-{{>modal/login}}
-</script>
-<script type="text/html" id="modal-share">
-{{>modal/share}}
-</script>
-<script type="text/html" id="map-infowindow-edit-template">
-{{>infowindow/edit}}
-</script>
-<script type="text/html" id="map-infowindow-view-template">
-{{>infowindow/view}}
-</script>
-<script type="text/html" id="sidebar-template">
-{{>sidebar}}
-</script>
+</header>

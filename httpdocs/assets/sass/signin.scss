@@ -1,0 +1,95 @@
+@import "compass/css3";
+
+html { 
+  height: 100%; 
+}
+body { 
+  height: 100%; 
+  margin: 0; 
+  padding: 0;
+}
+
+.navbar-inner {
+  background: transparent;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  filter: none;
+  background: #EEE;
+  border: 0;
+  border-bottom: 1px solid #CCC;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+
+.navbar {
+  .brand {
+    font: 600 20px/65px Segoe UI Light,Segoe UI,Helvetica,Arial,sans-serif;
+    color: #111;
+    text-shadow: 0 1px 0 white;
+    padding: 0;
+    margin-left: 0;
+  }
+
+  .nav {
+    float: right;
+    display: inline-block;
+  
+    li {
+      margin-left: 15px;
+      line-height: 48px;
+    }
+  }
+}
+
+.header {
+ 
+  padding-top: 50px;
+  padding-bottom: 50px;
+  overflow: hidden;
+  background: url("../img/headbg.png");
+  @include box-shadow(inset rgba(0, 0, 0, 0.9) 0 14px 26px 0);
+  border-bottom: 2px solid #000;
+  border-top: 2px solid #000;
+  height: 370px;
+
+  h3, 
+  h2, 
+  h4, 
+  p {
+    text-shadow: none;
+    color: #EAEAEA;
+  }
+
+  h3 {
+    margin: 0 0 15px;
+    font: 24px/39px Segoe UI,Helvetica,Arial,sans-serif;
+  }
+
+  .btn {
+    font-size: 21px;
+    margin-top: 12px;
+  }
+}
+
+#signin-buttons {
+  opacity: 0;
+  margin-top: 6px;
+}
+
+@media (min-width: 1200px) {
+  .navbar-inner .container,
+  .container {
+     width: 940px;
+  }
+  .span4 {
+    width: 300px;
+  }
+  .span7 {
+    width: 540px;
+  }
+  .offset1 {
+    margin-left: 100px;
+  }
+}

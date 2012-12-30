@@ -8,6 +8,11 @@ class Controller_Home extends Controller_Base {
 			? 'View_Page_Home_ComingSoon'
 			: 'View_Page_Home';
 
+    if ($this->user AND $this->user->loaded())
+    {
+      $view_model .= '_Edit';
+    }
+
 		$this->content = new $view_model;		
 	}
 }

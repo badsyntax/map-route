@@ -13,13 +13,13 @@ App.ViewModels.Toolbar.prototype.rendered = function() {
 App.ViewModels.Toolbar.prototype.setData = function() {
   this.buttons([
     new App.Models.ToolbarButton({
-      caption: 'Pins',
+      caption: 'Manage Pins',
       className: 'toolbar-add-pin',
       iconClassName: 'icon-map-marker',
       action: new App.Map.Actions.Markers()
     }),
     new App.Models.ToolbarButton({
-      caption: 'Routes',
+      caption: 'Manage Routes',
       className: 'add-route',
       iconClassName: 'icon-sitemap',
       action: new App.Map.Actions.Routes()
@@ -29,16 +29,6 @@ App.ViewModels.Toolbar.prototype.setData = function() {
       className: 'toolbar-share',
       iconClassName: 'icon-share',
       action: new App.Map.Actions.Share()
-    }),
-    new App.Models.ToolbarButton({
-      caption: 'Sign out',
-      className: 'toolbar-sign-out',
-      iconClassName: 'icon-signout',
-      action: {
-        execute: function() {
-          window.location = '/auth/signout';
-        }
-      }
     })
   ]);
 };
