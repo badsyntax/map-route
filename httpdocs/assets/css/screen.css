@@ -79,10 +79,10 @@ body {
   margin: 0 0 0 292px;
   z-index: 2;
   position: relative;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 6px 5px 12px -1px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.2) 6px 5px 12px -1px;
-  box-shadow: rgba(0, 0, 0, 0.2) 6px 5px 12px -1px;
-  border-bottom: 1px solid #D5D5D5;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 6px 5px 12px -1px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 6px 5px 12px -1px;
+  box-shadow: rgba(0, 0, 0, 0.3) 6px 5px 12px -1px;
+  border-bottom: 1px solid #a5a5a5;
 }
 /* line 9, ../sass/_navbar.scss */
 .navbar .navbar-inner {
@@ -160,10 +160,10 @@ body {
   background-image: linear-gradient(to bottom, #ffffff, #f2f2f2);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
-  border-right: 1px solid #D5D5D5;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 6px -5px 12px -1px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.2) 6px -5px 12px -1px;
-  box-shadow: rgba(0, 0, 0, 0.2) 6px -5px 12px -1px;
+  border-right: 1px solid #a5a5a5;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 6px -5px 12px -1px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 6px -5px 12px -1px;
+  box-shadow: rgba(0, 0, 0, 0.3) 6px -5px 12px -1px;
 }
 /* line 21, ../sass/_sidebar.scss */
 .sidebar h1 {

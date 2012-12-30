@@ -22,6 +22,15 @@ App.Controllers.Map.prototype.init = function(map) {
 
   this.map = map;
   this.setConfig();
+
+  App.Map.Route.addMarkers()
+  App.Map.Route.fitMarkerBounds();
+  App.Map.Route.addRoute();
+
+  if (this.action === 'edit') {
+    this.initToolbar();
+    this.initSidebar();
+  }
   this.bindEvents();
 };
 
@@ -71,18 +80,8 @@ App.Controllers.Map.prototype.bindEvents = function() {
 };
 
 App.Controllers.Map.prototype.onTilesLoaded = function() {
-
-  App.Map.Route.addMarkers();
-  App.Map.Route.fitMarkerBounds();
-
   setTimeout(function() {
-    
-    App.Map.Route.addRoute();
-    
-    if (this.action === 'edit') {
-      this.initToolbar();
-      this.initSidebar();
-    } else {
+    if (this.action !== 'edit') {
       new App.Map.Actions.View().execute();
     }
   }.bind(this), 500);
