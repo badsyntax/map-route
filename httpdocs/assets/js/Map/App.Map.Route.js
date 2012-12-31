@@ -111,9 +111,8 @@ App.Map.Route = (function() {
       marker.infoWindow.close();
       marker.setMap(null);
 
-      markers($.map(markers(), function(m) {
-        return m === marker ? null : m;
-      }));
+      markers.remove(marker);
+      App.Map.Route.removePoint(marker);
     },
     removePoints: function() {
       $.each(points(), function(i, point) {

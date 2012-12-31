@@ -96,8 +96,12 @@ body {
   text-align: center;
   padding-top: 1px;
   padding-bottom: 3px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background: #fff;
 }
-/* line 18, ../sass/_navbar.scss */
+/* line 20, ../sass/_navbar.scss */
 .navbar .dropdown-menu {
   text-align: left;
 }
@@ -168,11 +172,14 @@ body {
 /* line 22, ../sass/_sidebar.scss */
 .sidebar h1 {
   font-family: 'Orbitron', sans-serif;
-  padding: 4px 0 0 8px;
-  margin: 0;
+  padding: 0 0 0 8px;
+  margin: 0 0 14px 0;
   font-size: 26px;
-  line-height: 40px;
+  line-height: 45px;
+  border: 0;
+  border-bottom: 1px solid #e6e6e6;
   color: #222;
+  height: 45px;
 }
 
 /* Modals

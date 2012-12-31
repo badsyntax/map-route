@@ -6,7 +6,10 @@ App.Controllers.Map = function(route_id, action) {
   this.action = action;
   this.initModal();
 
+
+
   App.Map.create(function(map){
+
     App.Map.Route.init(route_id, function() {
       if (App.Map.Route.loaded()) {
         this.init(map); 
@@ -27,10 +30,11 @@ App.Controllers.Map.prototype.init = function(map) {
   App.Map.Route.fitMarkerBounds();
   App.Map.Route.addRoute();
 
-  if (this.action === 'edit') {
+   if (this.action === 'edit') {
     this.initToolbar();
     this.initSidebar();
   }
+
   this.bindEvents();
 };
 

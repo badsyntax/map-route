@@ -29,6 +29,20 @@ App.ViewModels.Sidebar.prototype.setupObservables = function() {
   }, this);
 };
 
+App.ViewModels.Sidebar.prototype.fadeIn = function(elem) {
+  if (elem.nodeType === 1) {
+    $(elem).hide().fadeIn(120);
+  }
+};
+
+App.ViewModels.Sidebar.prototype.fadeOut = function(elem) {
+  if (elem.nodeType === 1) {
+    $(elem).fadeOut(120, function() {
+      $(elem).remove();
+    });
+  }
+};
+
 App.ViewModels.Sidebar.prototype.rendered = function() {
   this.ui = new App.UI.Sidebar(this.container, this);
 };

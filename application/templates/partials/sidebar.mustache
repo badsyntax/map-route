@@ -13,7 +13,7 @@
 <div class="tab-content">
   <div class="tab-pane active" id="sidebar-route">
     <!-- ko if: route().length -->
-    <ul class="nav nav-pills nav-stacked" data-bind="foreach: route">
+    <ul class="nav nav-pills nav-stacked" data-bind="fadeVisible: route, template: { foreach: route, afterAdd: fadeIn, beforeRemove: fadeOut }">
       <li>
         <a href="#" data-bind="text: model.route_title"></a>
       </li>
