@@ -42,7 +42,7 @@ App.Controllers.SignIn.prototype.hideOverlay = function(callback) {
     opacity: 0
   }, function() {
     $(this).hide();
-    if (callback) {
+    if ($.isFunction(callback)) {
       callback();
     }
   });
@@ -63,55 +63,33 @@ App.Controllers.SignIn.prototype.openWindow = function(elem) {
 
   $(window.document).one('authsuccess', this.onAuthSuccess.bind(this));
   $(window.document).one('authfail', this.onAuthFail.bind(this));
+
+  var width = 500;
+  var height = 500;
+  var windowName = 'signin';
+  var windowURL = elem.href;
   
-  var settings = {
-    centerBrowser:1,
-    centerScreen:1,
-    height:500,
-    left:0,
-    location:0,
-    menubar:0,
-    resizable:0,
-    scrollbars:0,
-    status:0,
-    width:500,
-    windowName:null,
-    windowURL:null,
-    top:0,
-    toolbar:0
-  };
-
-  var windowFeatures = 'height=' + settings.height +
-    ',width=' + settings.width +
-    ',toolbar=' + settings.toolbar +
-    ',scrollbars=' + settings.scrollbars +
-    ',status=' + settings.status + 
-    ',resizable=' + settings.resizable +
-    ',location=' + settings.location +
-    ',menuBar=' + settings.menubar;
-
-  settings.windowName = elem.name || settings.windowName;
-  settings.windowURL = elem.href || settings.windowURL;
+  var windowFeatures = 'height=' + height +
+    ',width=' + width +
+    ',toolbar=' + 0 +
+    ',scrollbars=' + 0 +
+    ',status=' + 0 + 
+    ',resizable=' + 0 +
+    ',location=' + 0 +
+    ',menuBar=' + 0;
 
   var centeredY,centeredX, w;
 
-  if(settings.centerBrowser){
-      
-    if ($.browser.msie) {//hacked together for IE browsers
-      centeredY = (window.screenTop - 120) + ((((document.documentElement.clientHeight + 120)/2) - (settings.height/2)));
-      centeredX = window.screenLeft + ((((document.body.offsetWidth + 20)/2) - (settings.width/2)));
-    }else{
-      centeredY = window.screenY + (((window.outerHeight/2) - (settings.height/2)));
-      centeredX = window.screenX + (((window.outerWidth/2) - (settings.width/2)));
-    }
-    w = window.open(settings.windowURL, settings.windowName, windowFeatures+',left=' + centeredX +',top=' + centeredY);
-  }else if(settings.centerScreen){
-    centeredY = (screen.height - settings.height)/2;
-    centeredX = (screen.width - settings.width)/2;
-    w = window.open(settings.windowURL, settings.windowName, windowFeatures+',left=' + centeredX +',top=' + centeredY);
-  }else{
-    w = window.open(settings.windowURL, settings.windowName, windowFeatures+',left=' + settings.left +',top=' + settings.top);  
+  if ($.browser.msie) {//hacked together for IE browsers
+    centeredY = (window.screenTop - 120) + ((((document.documentElement.clientHeight + 120)/2) - (height/2)));
+    centeredX = window.screenLeft + ((((document.body.offsetWidth + 20)/2) - (width/2)));
+  } else {
+    centeredY = window.screenY + (((window.outerHeight/2) - (height/2)));
+    centeredX = window.screenX + (((window.outerWidth/2) - (width/2)));
   }
+
+  w = window.open(windowURL, windowName, windowFeatures+',left=' + centeredX +',top=' + centeredY);
   w.focus();
+  w.onbeforeunload = this.hideOverlay.bind(this);
   this.curWindow = w;
 };
