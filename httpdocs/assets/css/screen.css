@@ -140,7 +140,7 @@ body {
  *****************/
 /* line 3, ../sass/_search.scss */
 .search {
-  padding: 8px;
+  padding: 0 8px 8px 6px;
 }
 
 /* Sidebar
@@ -165,12 +165,13 @@ body {
   -moz-box-shadow: rgba(0, 0, 0, 0.3) 6px -5px 12px -1px;
   box-shadow: rgba(0, 0, 0, 0.3) 6px -5px 12px -1px;
 }
-/* line 21, ../sass/_sidebar.scss */
+/* line 22, ../sass/_sidebar.scss */
 .sidebar h1 {
   font-family: 'Orbitron', sans-serif;
   padding: 4px 0 0 8px;
   margin: 0;
   font-size: 26px;
+  line-height: 40px;
   color: #222;
 }
 

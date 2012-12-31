@@ -2,6 +2,8 @@
 
 class Controller_Auth extends Controller_Base {
 
+	protected $layout = 'layoutsimple';
+
 	public function action_index()
 	{
 		try
@@ -43,8 +45,7 @@ class Controller_Auth extends Controller_Base {
 					break;
 			}
 		}
-
-		$this->redirect('');
+		$this->content = new View_Auth_Callback;
 	}
 
 	private function save_user($profile)

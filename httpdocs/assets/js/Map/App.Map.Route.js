@@ -66,6 +66,11 @@ App.Map.Route = (function() {
         }
       });
     },
+    addMarker: function(location) {
+      return new App.Map.Marker({
+        location: location
+      });
+    },
     addMarkers: function() {
       markers($.map(markersData(), function(marker) {
         return new App.Map.Marker({

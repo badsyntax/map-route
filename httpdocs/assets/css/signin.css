@@ -79,27 +79,28 @@ body {
 /* line 76, ../sass/signin.scss */
 #signin-buttons {
   opacity: 0;
+  display: none;
   margin-top: 6px;
 }
 
 @media (min-width: 1200px) {
-  /* line 83, ../sass/signin.scss */
+  /* line 84, ../sass/signin.scss */
   .navbar-inner .container,
   .container {
     width: 940px;
   }
 
-  /* line 86, ../sass/signin.scss */
+  /* line 87, ../sass/signin.scss */
   .span4 {
     width: 300px;
   }
 
-  /* line 89, ../sass/signin.scss */
+  /* line 90, ../sass/signin.scss */
   .span7 {
     width: 540px;
   }
 
-  /* line 92, ../sass/signin.scss */
+  /* line 93, ../sass/signin.scss */
   .offset1 {
     margin-left: 100px;
   }

@@ -50,7 +50,8 @@ App.Map.Marker.prototype.createModel = function(marker, data) {
     longitude: data.location.lng(),
     title: '',
     description: '',
-    route_id: App.Map.Route.model().id
+    route_id: App.Map.Route.model().id,
+    route_order: -1
   });
 
   model.save(data.success, data.error);

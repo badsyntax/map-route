@@ -65,9 +65,7 @@ App.Map.Actions.Markers.prototype.toggleInfoWindow = function(e, marker) {
 };
 
 App.Map.Actions.Markers.prototype.addMarker = function(location) {
-  this.bindMarkerEvents(null, new App.Map.Marker({
-    location: location
-  }));
+  this.bindMarkerEvents(null, App.Map.Route.addMarker(location));
 };
 
 App.Map.Actions.Markers.prototype.onRemoveMarkerClick = function(e, marker) {

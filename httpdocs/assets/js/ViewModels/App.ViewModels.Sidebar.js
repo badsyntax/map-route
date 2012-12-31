@@ -16,11 +16,11 @@ App.ViewModels.Sidebar.prototype.setupObservables = function() {
         model.route_title = ko.observable();
       }
       
-      var defaultTitle = model.title() || 
+      var title = model.title() || 
         model.description() || 
         (model.longitude().toFixed(5)+', '+model.latitude().toFixed(5));
-      
-      var route_title = (parseInt(model.route_order(), 10) + 1) + '. ' + defaultTitle;
+
+      var route_title = (parseInt(model.route_order(), 10) + 1) + '. ' + title;
 
       model.route_title(route_title);
       

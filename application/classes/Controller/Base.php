@@ -4,6 +4,7 @@ class Controller_Base extends Controller {
 
 	protected $content = NULL;
   protected $user;
+  protected $layout = 'layout';
 
   public function before()
   {
@@ -13,7 +14,7 @@ class Controller_Base extends Controller {
 	public function after()
 	{
 		$this->response->body(
-			Kostache_Layout::factory()->render($this->content)
+			Kostache_Layout::factory($this->layout)->render($this->content)
 		);
 	}
 }

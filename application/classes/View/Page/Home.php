@@ -14,6 +14,7 @@ class View_Page_Home extends View_Layout
 		));
 
 		return $config['authorize_uri'].'?'.$query;
+		// return '/auth/callback/google';
 	}
 
 	public function facebook_login()
@@ -23,7 +24,8 @@ class View_Page_Home extends View_Layout
 		$query = http_build_query(array(
 			'client_id' => $config['client_id'],
 			'scope' => $config['scope'],
-			'redirect_uri' => $config['redirect_uri']
+			'redirect_uri' => $config['redirect_uri'],
+			'display' => $config['display']
 		));
 
 		return $config['authorize_uri'].'?'.$query;

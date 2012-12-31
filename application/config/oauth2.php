@@ -33,6 +33,7 @@ return array(
 			'redirect_uri'  => get_redirect_url('facebook'),
 			'scope'         => 'email,',
 			'userinfo_uri'  => 'https://graph.facebook.com/me',
+			'display'       => 'popup'
 		),
 	)
 );
