@@ -37,6 +37,12 @@ App.API.Base.prototype.findAll = function(config) {
   }));  
 };
 
+App.API.Base.prototype.find = function(config) {
+  return this.makeRequest(this.xhrConfig(config, {
+    type: 'GET'
+  }));  
+};
+
 App.API.Base.prototype.makeRequest = function(config) {
 
   var success = config.success;

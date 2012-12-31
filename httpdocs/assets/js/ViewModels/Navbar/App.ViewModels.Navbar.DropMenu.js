@@ -15,7 +15,7 @@ App.ViewModels.Navbar.DropMenu.prototype.setData = function() {
       href: '#/profile',
       title: 'Profile',
       divider: false,
-      // action: new App.Map.Actions.Profile()
+      action: new App.Map.Actions.Profile()
     },
     {
       divider: true
@@ -31,8 +31,8 @@ App.ViewModels.Navbar.DropMenu.prototype.setData = function() {
 App.ViewModels.Navbar.DropMenu.prototype.onOptionClick = function(model, e) {
   e.preventDefault();
   if (model.action) {
-    model.action.execute();
-  }
+    return model.action.execute();
+  } 
   console.log('clicked on a option');
   window.location = model.href;
 };
