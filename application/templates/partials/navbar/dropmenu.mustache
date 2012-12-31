@@ -1,17 +1,16 @@
-<div class="btn-group pull-right">
+<div class="btn-group pull-right" data-bind="with: dropmenu">
   <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
     <i class="icon-user"></i> {{username}} 
     <span class="caret"></span>
   </a>
-  <ul class="dropdown-menu">
-    <!--
+  <ul class="dropdown-menu" data-bind="foreach: options">
+    <!-- ko ifnot: divider -->
     <li>
-      <a href="/auth/profile">Profile</a>
+      <a data-bind="attr: { href: href }, text: title, click: $parent.onOptionClick"></a>
     </li>
+    <!-- /ko -->
+    <!-- ko if: divider -->
     <li class="divider"></li>
-  -->
-    <li>
-      <a href="/auth/signout">Sign out</a>
-    </li>
+    <!-- /ko -->
   </ul>
 </div>

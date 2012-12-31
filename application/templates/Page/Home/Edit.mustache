@@ -1,6 +1,11 @@
 <div class="container">
 
-  {{>navbar}}
+  <!-- Navbar -->
+  <div
+    class="navbar navbar-inner" 
+    id="navbar"
+    data-bind="template: { name: 'navbar-template' }">
+  </div>
   
   <!-- Map -->
   <div id="map-canvas" class="map">
@@ -20,6 +25,7 @@
     id="sidebar"
     data-bind="template: { name: 'sidebar-template' }">
   </aside>
+
 </div>
 
 <!-- Modal -->
@@ -41,6 +47,9 @@
 <script type="text/html" id="modal-share">
 {{>modal/share}}
 </script>
+<script type="text/html" id="modal-profile">
+{{>modal/profile}}
+</script>
 <script type="text/html" id="map-infowindow-edit-template">
 {{>infowindow/edit}}
 </script>
@@ -49,4 +58,10 @@
 </script>
 <script type="text/html" id="sidebar-template">
 {{>sidebar}}
+</script>
+<script type="text/html" id="navbar-template">
+{{>navbar}}
+</script>
+<script type="text/html" id="dropmenu-template">
+{{>navbar/dropmenu}}
 </script>

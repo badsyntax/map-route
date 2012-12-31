@@ -11,16 +11,12 @@ body {
 
 .navbar-inner {
   background: transparent;
-  box-shadow: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
+  @include box-shadow(none);
   filter: none;
   background: #EEE;
   border: 0;
   border-bottom: 1px solid #CCC;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
+  @include border-radius(0);
 }
 
 .navbar {
@@ -48,7 +44,7 @@ body {
   padding-top: 50px;
   padding-bottom: 50px;
   overflow: hidden;
-  background: url("../img/headbg.png");
+  background: #222 url(../img/headbg.png);
   @include box-shadow(inset rgba(0, 0, 0, 0.9) 0 14px 26px 0);
   border-bottom: 2px solid #000;
   border-top: 2px solid #000;

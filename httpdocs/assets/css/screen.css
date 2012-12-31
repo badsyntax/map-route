@@ -79,15 +79,9 @@ body {
   margin: 0 0 0 292px;
   z-index: 2;
   position: relative;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 6px 5px 12px -1px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.3) 6px 5px 12px -1px;
-  box-shadow: rgba(0, 0, 0, 0.3) 6px 5px 12px -1px;
-  border-bottom: 1px solid #a5a5a5;
-}
-/* line 9, ../sass/_navbar.scss */
-.navbar .navbar-inner {
   border-left: 0;
   border-top: 0;
+  border-bottom: 1px solid #a5a5a5;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   -ms-border-radius: 0;
@@ -96,12 +90,13 @@ body {
   text-align: center;
   padding-top: 1px;
   padding-bottom: 3px;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 6px 5px 12px -1px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 6px 5px 12px -1px;
+  box-shadow: rgba(0, 0, 0, 0.3) 6px 5px 12px -1px;
   background: #fff;
+  height: 42px;
 }
-/* line 20, ../sass/_navbar.scss */
+/* line 17, ../sass/_navbar.scss */
 .navbar .dropdown-menu {
   text-align: left;
 }
@@ -177,7 +172,7 @@ body {
   font-size: 26px;
   line-height: 45px;
   border: 0;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e9e9e9;
   color: #222;
   height: 45px;
 }

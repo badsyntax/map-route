@@ -6,8 +6,6 @@ App.Controllers.Map = function(route_id, action) {
   this.action = action;
   this.initModal();
 
-
-
   App.Map.create(function(map){
 
     App.Map.Route.init(route_id, function() {
@@ -30,8 +28,8 @@ App.Controllers.Map.prototype.init = function(map) {
   App.Map.Route.fitMarkerBounds();
   App.Map.Route.addRoute();
 
-   if (this.action === 'edit') {
-    this.initToolbar();
+  if (this.action === 'edit') {
+    this.initNavbar();
     this.initSidebar();
   }
 
@@ -45,9 +43,9 @@ App.Controllers.Map.prototype.initModal = function() {
   App.UI.Modal.setup(container, viewModel);
 };
 
-App.Controllers.Map.prototype.initToolbar = function() {
-  var container = $('#toolbar');
-  var viewModel = new App.ViewModels.Toolbar(container, this);
+App.Controllers.Map.prototype.initNavbar = function() {
+  var container = $('#navbar');
+  var viewModel = new App.ViewModels.Navbar(container, this);
   ko.applyBindings(viewModel, container[0]);
   viewModel.rendered();
 };

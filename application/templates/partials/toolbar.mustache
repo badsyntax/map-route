@@ -1,13 +1,15 @@
-<span class="toolbar-label">
-    Actions:
-</span>
-<div role="toolbar" class="toolbar btn-toolbar" data-toggle="buttons-radio">
-  <div class="btn-group {{#is_mobile}}btn-group-vertical{{/is_mobile}}" data-bind="foreach: buttons">
-    <button 
-      data-bind="attr: { 'class': 'btn ' + className(), 'data-original-title': caption() }" 
-      data-placement="bottom" 
-      rel="tooltip">  
-      <i data-bind="attr: { 'class': iconClassName() }" />
-    </button>
+<div data-bind="with: toolbar">
+  <span class="toolbar-label">
+      Actions:
+  </span>
+  <div role="toolbar" class="toolbar btn-toolbar" data-toggle="buttons-radio">
+    <div class="btn-group {{#is_mobile}}btn-group-vertical{{/is_mobile}}" data-bind="foreach: buttons">
+      <button 
+        data-bind="attr: { 'class': 'btn ' + className(), 'data-original-title': caption() }" 
+        data-placement="bottom" 
+        rel="tooltip">  
+        <i data-bind="attr: { 'class': iconClassName() }" />
+      </button>
+    </div>
   </div>
 </div>

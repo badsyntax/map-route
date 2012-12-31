@@ -84,8 +84,25 @@ App.Map.Route = (function() {
     },
     removeMarkers: function() {
       $.each(markers(), function(i, marker) {
-        this.removeMarker(marker, false);
+        this.removeMarker(marker, false, false);
       }.bind(this));
+      markers.removeAll();
+    },
+    removeMarker: function(marker, removeModel, removeMarker) {
+
+      // if (removeModel) {
+      //   marker.model.remove();
+      // }
+      // if (removeMarker) {
+      //   markers.remove(marker);
+      // }
+      if (marker.infoWindow) {
+        marker.infoWindow.close();
+      }
+
+      marker.setMap(null);
+
+      this.removePoint(marker, false);
     },
     fitMarkerBounds: function() {
       if (!markers().length) {
@@ -103,24 +120,13 @@ App.Map.Route = (function() {
         marker.infoWindow.close();
       });
     },
-    removeMarker: function(marker, removeModel) {
-
-      if (removeModel) {
-        marker.model.remove();
-      }
-      marker.infoWindow.close();
-      marker.setMap(null);
-
-      markers.remove(marker);
-      App.Map.Route.removePoint(marker);
-    },
     removePoints: function() {
       $.each(points(), function(i, point) {
         path().removeAt(i);
       });
       points([]);
     },
-    removePoint: function(marker) {
+    removePoint: function(marker, updateModel) {
       
       $.each(points(), function(i, point) {
         if (marker === point) {
@@ -130,9 +136,11 @@ App.Map.Route = (function() {
         }
       });
       
-      marker.model.values({
-        route_order: -1
-      }).save();
+      if (updateModel) {
+        marker.model.values({
+          route_order: -1
+        }).save();
+      }
     },
     addPoint: function(marker, routeOrder) {
       

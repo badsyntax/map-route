@@ -1,4 +1,4 @@
-App.ViewModels.Toolbar = function(container, controller) {
+App.ViewModels.Navbar.Toolbar = function(container, controller) {
   this.container = container;
   this.controller = controller;
   this.buttons = ko.observableArray();
@@ -6,11 +6,11 @@ App.ViewModels.Toolbar = function(container, controller) {
   this.setData();
 };
 
-App.ViewModels.Toolbar.prototype.rendered = function() {
+App.ViewModels.Navbar.Toolbar.prototype.rendered = function() {
   this.ui = new App.UI.Toolbar(this.container, this);
 };
 
-App.ViewModels.Toolbar.prototype.setData = function() {
+App.ViewModels.Navbar.Toolbar.prototype.setData = function() {
   this.buttons([
     new App.Models.ToolbarButton({
       caption: 'Manage Pins',
@@ -33,14 +33,14 @@ App.ViewModels.Toolbar.prototype.setData = function() {
   ]);
 };
 
-App.ViewModels.Toolbar.prototype.executeAction = function(e, model) {
+App.ViewModels.Navbar.Toolbar.prototype.executeAction = function(e, model) {
   if (this.curAction) {
     this.curAction.reset();
   }
   (this.curAction = model.action).execute();
 };
 
-App.ViewModels.Toolbar.prototype.reset = function() {
+App.ViewModels.Navbar.Toolbar.prototype.reset = function() {
   $.each(this.buttons(), function(i, button) {
     // console.log(button);;
   });

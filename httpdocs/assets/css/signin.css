@@ -13,19 +13,21 @@ body {
 /* line 12, ../sass/signin.scss */
 .navbar-inner {
   background: transparent;
-  box-shadow: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
+  box-shadow: none;
   filter: none;
   background: #EEE;
   border: 0;
   border-bottom: 1px solid #CCC;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
   border-radius: 0;
 }
 
-/* line 27, ../sass/signin.scss */
+/* line 23, ../sass/signin.scss */
 .navbar .brand {
   font: 600 20px/65px Segoe UI Light, Segoe UI, Helvetica, Arial, sans-serif;
   color: #111;
@@ -33,23 +35,23 @@ body {
   padding: 0;
   margin-left: 0;
 }
-/* line 35, ../sass/signin.scss */
+/* line 31, ../sass/signin.scss */
 .navbar .nav {
   float: right;
   display: inline-block;
 }
-/* line 39, ../sass/signin.scss */
+/* line 35, ../sass/signin.scss */
 .navbar .nav li {
   margin-left: 15px;
   line-height: 48px;
 }
 
-/* line 46, ../sass/signin.scss */
+/* line 42, ../sass/signin.scss */
 .header {
   padding-top: 50px;
   padding-bottom: 50px;
   overflow: hidden;
-  background: url("../img/headbg.png");
+  background: #222222 url(../img/headbg.png);
   -webkit-box-shadow: inset rgba(0, 0, 0, 0.9) 0 14px 26px 0;
   -moz-box-shadow: inset rgba(0, 0, 0, 0.9) 0 14px 26px 0;
   box-shadow: inset rgba(0, 0, 0, 0.9) 0 14px 26px 0;
@@ -57,7 +59,7 @@ body {
   border-top: 2px solid #000;
   height: 370px;
 }
-/* line 60, ../sass/signin.scss */
+/* line 56, ../sass/signin.scss */
 .header h3,
 .header h2,
 .header h4,
@@ -65,18 +67,18 @@ body {
   text-shadow: none;
   color: #EAEAEA;
 }
-/* line 65, ../sass/signin.scss */
+/* line 61, ../sass/signin.scss */
 .header h3 {
   margin: 0 0 15px;
   font: 24px/39px Segoe UI, Helvetica, Arial, sans-serif;
 }
-/* line 70, ../sass/signin.scss */
+/* line 66, ../sass/signin.scss */
 .header .btn {
   font-size: 21px;
   margin-top: 12px;
 }
 
-/* line 76, ../sass/signin.scss */
+/* line 72, ../sass/signin.scss */
 #signin-buttons {
   opacity: 0;
   display: none;
@@ -84,23 +86,23 @@ body {
 }
 
 @media (min-width: 1200px) {
-  /* line 84, ../sass/signin.scss */
+  /* line 80, ../sass/signin.scss */
   .navbar-inner .container,
   .container {
     width: 940px;
   }
 
-  /* line 87, ../sass/signin.scss */
+  /* line 83, ../sass/signin.scss */
   .span4 {
     width: 300px;
   }
 
-  /* line 90, ../sass/signin.scss */
+  /* line 86, ../sass/signin.scss */
   .span7 {
     width: 540px;
   }
 
-  /* line 93, ../sass/signin.scss */
+  /* line 89, ../sass/signin.scss */
   .offset1 {
     margin-left: 100px;
   }

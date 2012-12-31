@@ -11,7 +11,7 @@ App.Map.Marker = function(data) {
       marker.infoWindow.open(map, marker);
     },
     remove: function() {
-      App.Map.Route.removeMarker(marker, true);      
+      App.Map.Route.removeMarker(marker, true, true);      
     }.bind(this)
   });
 };
