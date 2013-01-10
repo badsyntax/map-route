@@ -5,7 +5,7 @@
   <div role="toolbar" class="toolbar btn-toolbar" data-toggle="buttons-radio">
     <div class="btn-group {{#is_mobile}}btn-group-vertical{{/is_mobile}}" data-bind="foreach: buttons">
       <button 
-        data-bind="attr: { 'class': 'btn ' + className(), 'data-original-title': caption() }" 
+        data-bind="attr: { 'class': 'btn ' + className(), 'data-original-title': caption() }, click: $parent.onButtonClick" 
         data-placement="bottom" 
         rel="tooltip">  
         <i data-bind="attr: { 'class': iconClassName() }" />

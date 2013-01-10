@@ -26,7 +26,6 @@ $js = array(
 	'assets/js/Controllers/App.Controllers.Map.js',
 	'assets/js/Controllers/App.Controllers.SignIn.js',
 	'assets/js/UI/App.UI.Device.js',
-	'assets/js/UI/App.UI.Toolbar.js',
 	'assets/js/UI/App.UI.Modal.js',
 	'assets/js/UI/Sidebar/App.UI.Sidebar.js',
 	'assets/js/UI/Sidebar/App.UI.Sidebar.Search.js',

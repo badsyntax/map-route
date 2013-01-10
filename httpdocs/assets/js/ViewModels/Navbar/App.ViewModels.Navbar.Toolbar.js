@@ -1,13 +1,18 @@
-App.ViewModels.Navbar.Toolbar = function(container, controller) {
-  this.container = container;
+App.ViewModels.Navbar.Toolbar = function(controller) {
+  
   this.controller = controller;
-  this.buttons = ko.observableArray();
   this.curAction = null;
+  this.buttons = ko.observableArray();
+
   this.setData();
+
+  // Set KO binding handler context
+  this.onButtonClick = this.onButtonClick.bind(this);
 };
 
 App.ViewModels.Navbar.Toolbar.prototype.rendered = function() {
-  this.ui = new App.UI.Toolbar(this.container, this);
+  this.container = $('#toolbar');
+  this.container.find('[rel="tooltip"]').tooltip();
 };
 
 App.ViewModels.Navbar.Toolbar.prototype.setData = function() {
@@ -40,8 +45,6 @@ App.ViewModels.Navbar.Toolbar.prototype.executeAction = function(e, model) {
   (this.curAction = model.action).execute();
 };
 
-App.ViewModels.Navbar.Toolbar.prototype.reset = function() {
-  $.each(this.buttons(), function(i, button) {
-    // console.log(button);;
-  });
+App.ViewModels.Navbar.Toolbar.prototype.onButtonClick = function(model, e) {
+  this.executeAction(e, model);
 };

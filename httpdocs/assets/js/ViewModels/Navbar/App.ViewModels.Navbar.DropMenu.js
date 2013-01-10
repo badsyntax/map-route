@@ -1,12 +1,11 @@
-App.ViewModels.Navbar.DropMenu = function(container, controller) {
-  this.container = container;
+App.ViewModels.Navbar.DropMenu = function(controller) {
   this.controller = controller;
   this.options = ko.observableArray();
   this.setData();
 };
 
 App.ViewModels.Navbar.DropMenu.prototype.rendered = function() {
-  // this.ui = new App.UI.Toolbar(this.container, this);
+  this.container = $('#dropmenu');
 };
 
 App.ViewModels.Navbar.DropMenu.prototype.setData = function() {
@@ -33,6 +32,5 @@ App.ViewModels.Navbar.DropMenu.prototype.onOptionClick = function(model, e) {
   if (model.action) {
     return model.action.execute();
   } 
-  console.log('clicked on a option');
   window.location = model.href;
 };
