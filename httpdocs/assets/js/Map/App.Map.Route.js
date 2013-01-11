@@ -67,13 +67,13 @@ App.Map.Route = (function() {
       });
     },
     addMarker: function(location) {
-      return new App.Map.Marker({
+      return App.Map.Marker.factory({
         location: location
       });
     },
     addMarkers: function() {
       markers($.map(markersData(), function(marker) {
-        return new App.Map.Marker({
+        return App.Map.Marker.factory({
           model: marker,
           location: new google.maps.LatLng(
             marker.latitude(), 
@@ -118,6 +118,8 @@ App.Map.Route = (function() {
       $.each(markers(), function(i, marker) {
         marker.setAnimation(null);
         marker.infoWindow.close();
+        marker.setCursor('pointer');
+        marker.setDraggable(true);
       });
     },
     removePoints: function() {

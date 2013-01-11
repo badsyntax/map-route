@@ -134,19 +134,21 @@ App.Map.Marker = (function() {
     return marker;
   }
 
-  return function(data) {
+  return {
+    factory: function(data) {
 
-    var map = App.Map.instance();
-    var marker = createMarker(map, data);
+      var map = App.Map.instance();
+      var marker = createMarker(map, data);
 
-    return $.extend(marker, {
-      focus: function() {
-        App.Map.Route.resetMarkers();
-        marker.infoWindow.open(map, marker);
-      },
-      remove: function() {
-        App.Map.Route.removeMarker(marker, true, true);      
-      }.bind(this)
-    });
-  }
+      return $.extend(marker, {
+        focus: function() { 
+          App.Map.Route.resetMarkers();
+          marker.infoWindow.open(map, marker);
+        },
+        remove: function() {
+          App.Map.Route.removeMarker(marker, true, true);      
+        }.bind(this)
+      });
+    }
+  };
 })();

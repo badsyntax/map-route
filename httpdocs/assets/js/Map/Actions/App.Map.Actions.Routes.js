@@ -28,12 +28,12 @@ App.Map.Actions.Routes.prototype.bindMarkerEvents = function(i, marker) {
   marker.setCursor('crosshair');
   marker.setDraggable(false);
 
-  this.handlers.push(google.maps.event.addListener(marker, 'click', function(e) {
-    this.toggleMarker(e, marker);
+  this.handlers.push(google.maps.event.addListener(marker, 'click', function() {
+    this.toggleMarker(marker);
   }.bind(this)));
 };
 
-App.Map.Actions.Routes.prototype.toggleMarker = function(e, marker) {
+App.Map.Actions.Routes.prototype.toggleMarker = function(marker) {
 
   var position = marker.getPosition();
   var points = this.path.getArray();

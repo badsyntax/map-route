@@ -32,8 +32,6 @@ App.Map.Actions.Markers.prototype.reset = function() {
     draggableCursor: null 
   });
 
-  this.modal.container.off('.marker');
-  
   $.each(App.Map.Route.markers(), function(i, marker) {
     $(marker.infoWindow.getContent()).off('.marker');
   });
