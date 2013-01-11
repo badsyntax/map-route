@@ -35,6 +35,8 @@ App.UI.Modal = (function() {
 
       this.viewModel.values(modalData);
       this.open(callback);
+
+      return this;
     },
     hide: function() {
       this.container.modal('hide');
