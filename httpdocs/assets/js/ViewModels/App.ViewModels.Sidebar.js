@@ -15,6 +15,9 @@ App.ViewModels.Sidebar.prototype.setupObservables = function() {
       if (!model.route_title) {
         model.route_title = ko.observable();
       }
+      if (!model.isActive) {
+        model.isActive = ko.observable(false);
+      }
       
       var title = model.title() || 
         model.description() || 

@@ -144,6 +144,7 @@ App.Map.Marker = (function() {
         focus: function() { 
           App.Map.Route.resetMarkers();
           marker.infoWindow.open(map, marker);
+          marker.model.isActive(true);
         },
         remove: function() {
           App.Map.Route.removeMarker(marker, true, true);      

@@ -214,23 +214,24 @@ body {
   position: absolute;
   left: 0;
   top: 0;
+  width: 100%;
 }
-/* line 21, ../sass/_scrollbar.scss */
+/* line 22, ../sass/_scrollbar.scss */
 .scroller .thumb {
   background-color: #ddd;
 }
-/* line 23, ../sass/_scrollbar.scss */
+/* line 24, ../sass/_scrollbar.scss */
 .scroller .thumb:hover {
   background-color: #bbb;
 }
-/* line 27, ../sass/_scrollbar.scss */
+/* line 28, ../sass/_scrollbar.scss */
 .scroller .scrollbar {
   position: relative;
   float: right;
   width: 15px;
   margin-right: 2px;
 }
-/* line 33, ../sass/_scrollbar.scss */
+/* line 34, ../sass/_scrollbar.scss */
 .scroller .track {
   background-color: #eee;
   height: 100%;
@@ -238,7 +239,7 @@ body {
   position: relative;
   padding: 0 1px;
 }
-/* line 40, ../sass/_scrollbar.scss */
+/* line 41, ../sass/_scrollbar.scss */
 .scroller .thumb {
   height: 20px;
   width: 13px;
@@ -247,18 +248,18 @@ body {
   position: absolute;
   top: 0;
 }
-/* line 49, ../sass/_scrollbar.scss */
+/* line 50, ../sass/_scrollbar.scss */
 .scroller .thumb .end {
   overflow: hidden;
   height: 5px;
   width: 13px;
 }
-/* line 55, ../sass/_scrollbar.scss */
+/* line 56, ../sass/_scrollbar.scss */
 .scroller .disable {
   display: none;
 }
 
-/* line 60, ../sass/_scrollbar.scss */
+/* line 61, ../sass/_scrollbar.scss */
 .noSelect {
   -webkit-user-select: none;
   -moz-user-select: none;

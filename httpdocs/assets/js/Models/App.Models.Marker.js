@@ -15,7 +15,7 @@ App.Models.Marker.prototype.findAll = function(success, error) {
       mappingOptions: {
         'markers': {
           create: function(options) {
-              return new App.Models.Marker(options.data);
+            return new App.Models.Marker(options.data);
           }
         }
       }

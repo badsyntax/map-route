@@ -116,10 +116,15 @@ App.Map.Route = (function() {
     },
     resetMarkers: function() {
       $.each(markers(), function(i, marker) {
+        
         marker.setAnimation(null);
         marker.infoWindow.close();
         marker.setCursor('pointer');
         marker.setDraggable(true);
+
+        if (marker.model.isActive) {
+          marker.model.isActive(false);
+        }
       });
     },
     removePoints: function() {
