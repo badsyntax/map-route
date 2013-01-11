@@ -18,7 +18,7 @@ App.ViewModels.Navbar.Toolbar.prototype.rendered = function() {
 App.ViewModels.Navbar.Toolbar.prototype.setData = function() {
   this.buttons([
     new App.Models.ToolbarButton({
-      caption: 'Manage Pins',
+      caption: 'Add Pins',
       className: 'toolbar-add-pin',
       iconClassName: 'icon-map-marker',
       action: new App.Map.Actions.Markers()

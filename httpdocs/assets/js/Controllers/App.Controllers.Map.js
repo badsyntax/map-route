@@ -86,5 +86,5 @@ App.Controllers.Map.prototype.onTilesLoaded = function() {
     if (this.action !== 'edit') {
       new App.Map.Actions.View().execute();
     }
-  }.bind(this), 500);
+  }.bind(this), 200);
 };

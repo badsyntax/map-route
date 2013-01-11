@@ -90,12 +90,12 @@ App.Map.Route = (function() {
     },
     removeMarker: function(marker, removeModel, removeMarker) {
 
-      // if (removeModel) {
-      //   marker.model.remove();
-      // }
-      // if (removeMarker) {
-      //   markers.remove(marker);
-      // }
+      if (removeModel) {
+        marker.model.remove();
+      }
+      if (removeMarker) {
+        markers.remove(marker);
+      }
       if (marker.infoWindow) {
         marker.infoWindow.close();
       }

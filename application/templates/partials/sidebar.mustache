@@ -15,7 +15,7 @@
     <!-- ko if: route().length -->
     <ul class="nav nav-pills nav-stacked" data-bind="fadeVisible: route, template: { foreach: route, afterAdd: fadeIn, beforeRemove: fadeOut }">
       <li>
-        <a href="#" data-bind="text: model.route_title"></a>
+        <a href="#" data-bind="text: model.route_title, click: $parent.onRoutePointClick"></a>
       </li>
     </ul>
     <!-- /ko -->
