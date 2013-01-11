@@ -8,7 +8,7 @@
   left: 0;
   top: 0;
   height: 100%;
-  background-color:#fafafa;
+  background-color: #fff;
   border-right: 1px solid #a5a5a5;
   @include box-shadow(rgba(0, 0, 0, 0.3) 6px -5px 12px -1px);
   display: table;
@@ -29,7 +29,7 @@
     border: 0;
     border-bottom: 1px solid #e9e9e9;
     color: #222;
-    height: 45px;
+    height: 46px;
   }
 
   .tab-content {
