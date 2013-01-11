@@ -73,6 +73,8 @@
 
         this.update = function( sScroll )
         {
+            (sScroll === undefined) && (sScroll = iScroll);
+
             oViewport[ options.axis ] = oViewport.obj[0][ 'offset'+ sSize ];
             oContent[ options.axis ]  = oContent.obj[0][ 'scroll'+ sSize ];
             oContent.ratio            = oViewport[ options.axis ] / oContent[ options.axis ];
@@ -136,6 +138,7 @@
         function start( event )
         {
             $( "body" ).addClass( "noSelect" );
+            oThumb.obj.addClass('selected');
 
             var oThumbDir   = parseInt( oThumb.obj.css( sDirection ), 10 );
             iMouse.start    = sAxis ? event.pageX : event.pageY;
@@ -201,6 +204,8 @@
         
         function end()
         {
+            oThumb.obj.removeClass('selected');
+
             $( "body" ).removeClass( "noSelect" );
             $( document ).unbind( 'mousemove', drag );
             $( document ).unbind( 'mouseup', end );

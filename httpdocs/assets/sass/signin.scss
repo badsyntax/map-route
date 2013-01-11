@@ -20,8 +20,9 @@ body {
 }
 
 .navbar {
+
   .brand {
-    font: 600 20px/65px Segoe UI Light,Segoe UI,Helvetica,Arial,sans-serif;
+    font: 600 20px/60px Segoe UI Light,Segoe UI,Helvetica,Arial,sans-serif;
     color: #111;
     text-shadow: 0 1px 0 white;
     padding: 0;
@@ -35,6 +36,10 @@ body {
     li {
       margin-left: 15px;
       line-height: 48px;
+
+      a {
+        padding: 7px 15px;
+      }
     }
   }
 }

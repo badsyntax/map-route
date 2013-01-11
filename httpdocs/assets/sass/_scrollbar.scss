@@ -21,7 +21,7 @@
   }
   .thumb { 
     background-color: #ddd;
-    &:hover {
+    &:hover, &.selected {
       background-color: #bbb;
     } 
   }

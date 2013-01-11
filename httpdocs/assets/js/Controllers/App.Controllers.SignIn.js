@@ -90,6 +90,15 @@ App.Controllers.SignIn.prototype.openWindow = function(elem) {
 
   w = window.open(windowURL, windowName, windowFeatures+',left=' + centeredX +',top=' + centeredY);
   w.focus();
-  w.onbeforeunload = this.hideOverlay.bind(this);
+
   this.curWindow = w;
+  
+  // Hide the overlay when the window closes
+  (function poll(timer) {
+    if (w.closed) {
+      this.hideOverlay();
+      clearTimeout(timer);
+    }
+    timer = setTimeout(poll.bind(this), 220);
+  }.bind(this)(0));
 };

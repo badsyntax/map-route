@@ -29,7 +29,9 @@ App.Router.prototype.setPaths = function() {
     // throw new Error('Not found');
   });
 
-  Path.root('#/signin');
+  if (window.location.pathname === '/') {
+    Path.root('#/signin');
+  }
 };
 
 App.Router.push = function() {

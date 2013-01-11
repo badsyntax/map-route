@@ -168,7 +168,7 @@ body {
 }
 /* line 23, ../sass/_sidebar.scss */
 .sidebar h1 {
-  font-family: "Orbitron", sans-serif;
+  font-family: 'Orbitron', sans-serif;
   padding: 0 0 0 8px;
   margin: 0 0 14px 0;
   font-size: 26px;
@@ -181,6 +181,11 @@ body {
 /* line 35, ../sass/_sidebar.scss */
 .sidebar .tab-content {
   height: 100%;
+}
+
+/* line 40, ../sass/_sidebar.scss */
+#sidebar-route {
+  overflow: hidden;
 }
 
 /* Modals
@@ -221,7 +226,7 @@ body {
   background-color: #ddd;
 }
 /* line 24, ../sass/_scrollbar.scss */
-.scroller .thumb:hover {
+.scroller .thumb:hover, .scroller .thumb.selected {
   background-color: #bbb;
 }
 /* line 28, ../sass/_scrollbar.scss */

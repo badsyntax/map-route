@@ -27,26 +27,30 @@ body {
   border-radius: 0;
 }
 
-/* line 23, ../sass/signin.scss */
+/* line 24, ../sass/signin.scss */
 .navbar .brand {
-  font: 600 20px/65px Segoe UI Light, Segoe UI, Helvetica, Arial, sans-serif;
+  font: 600 20px/60px Segoe UI Light, Segoe UI, Helvetica, Arial, sans-serif;
   color: #111;
   text-shadow: 0 1px 0 white;
   padding: 0;
   margin-left: 0;
 }
-/* line 31, ../sass/signin.scss */
+/* line 32, ../sass/signin.scss */
 .navbar .nav {
   float: right;
   display: inline-block;
 }
-/* line 35, ../sass/signin.scss */
+/* line 36, ../sass/signin.scss */
 .navbar .nav li {
   margin-left: 15px;
   line-height: 48px;
 }
+/* line 40, ../sass/signin.scss */
+.navbar .nav li a {
+  padding: 7px 15px;
+}
 
-/* line 42, ../sass/signin.scss */
+/* line 47, ../sass/signin.scss */
 .header {
   padding-top: 50px;
   padding-bottom: 50px;
@@ -59,7 +63,7 @@ body {
   border-top: 2px solid black;
   height: 370px;
 }
-/* line 56, ../sass/signin.scss */
+/* line 61, ../sass/signin.scss */
 .header h3,
 .header h2,
 .header h4,
@@ -67,18 +71,18 @@ body {
   text-shadow: none;
   color: #EAEAEA;
 }
-/* line 61, ../sass/signin.scss */
+/* line 66, ../sass/signin.scss */
 .header h3 {
   margin: 0 0 15px;
   font: 24px/39px Segoe UI, Helvetica, Arial, sans-serif;
 }
-/* line 66, ../sass/signin.scss */
+/* line 71, ../sass/signin.scss */
 .header .btn {
   font-size: 21px;
   margin-top: 12px;
 }
 
-/* line 72, ../sass/signin.scss */
+/* line 77, ../sass/signin.scss */
 #signin-buttons {
   opacity: 0;
   display: none;
@@ -86,23 +90,23 @@ body {
 }
 
 @media (min-width: 1200px) {
-  /* line 80, ../sass/signin.scss */
+  /* line 85, ../sass/signin.scss */
   .navbar-inner .container,
   .container {
     width: 940px;
   }
 
-  /* line 83, ../sass/signin.scss */
+  /* line 88, ../sass/signin.scss */
   .span4 {
     width: 300px;
   }
 
-  /* line 86, ../sass/signin.scss */
+  /* line 91, ../sass/signin.scss */
   .span7 {
     width: 540px;
   }
 
-  /* line 89, ../sass/signin.scss */
+  /* line 94, ../sass/signin.scss */
   .offset1 {
     margin-left: 100px;
   }
