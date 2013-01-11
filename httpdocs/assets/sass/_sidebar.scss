@@ -32,6 +32,20 @@
     height: 46px;
   }
 
+  .search {
+    input {
+      width: 240px;
+    }
+    button {
+      i {
+        font-size: 17px;
+      }
+      &.active {
+        border-color: #c5c5c5;
+      }
+    }
+  }
+
   .tab-content {
     height: 100%;
   }

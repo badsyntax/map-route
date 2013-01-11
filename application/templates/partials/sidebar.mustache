@@ -5,8 +5,12 @@
 </div>
 
 <div class="row">
-  <div class="search">
+  <div class="search input-append">
     <input class="input-block-level" id="search-input" type="text" placeholder="Search for a place...">
+
+    <button type="button" rel="tooltip" class="btn" data-toggle="button" data-original-title="Drop pins on search">  
+      <i class="icon-map-marker"></i>
+    </button>
   </div>
 </div>
 
@@ -25,7 +29,7 @@
       <div class="viewport">
         <div class="overview">
         <!-- ko if: route().length -->
-        <ul class="nav nav-pills nav-stacked" data-bind="fadeVisible: route, template: { foreach: route, afterAdd: fadeIn, beforeRemove: fadeOut }">
+        <ul class="nav nav-pills nav-stacked" data-bind="template: { foreach: route, afterAdd: fadeIn, beforeRemove: fadeOut }">
           <li data-bind="css: { active: model.isActive }">
             <a href="#" data-bind="text: model.route_title, click: $parent.onRoutePointClick"></a>
           </li>

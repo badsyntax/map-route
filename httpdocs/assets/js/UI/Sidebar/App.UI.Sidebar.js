@@ -5,6 +5,8 @@ App.UI.Sidebar = function(container, viewModel) {
   this.initTabs();
   this.initScrollbar();
   this.bindEvents();
+
+  this.container.find('[rel="tooltip"]').tooltip();
 };
 
 App.UI.Sidebar.prototype.initTabs = function() {

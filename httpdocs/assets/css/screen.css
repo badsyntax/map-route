@@ -113,20 +113,19 @@ body {
 }
 /* line 11, ../sass/_toolbar.scss */
 .toolbar button {
-  padding-bottom: 0;
-  padding: 5px 12px 1px 12px;
+  /*padding-bottom: 0;*/
+  /*padding: 7px 12px 4px 12px;*/
 }
 /* line 16, ../sass/_toolbar.scss */
-.toolbar button [class^="icon-"] {
-  font-size: 23px;
-  line-height: 23px;
+.toolbar .btn-group > button {
+  font-size: 18px;
 }
-/* line 21, ../sass/_toolbar.scss */
+/* line 20, ../sass/_toolbar.scss */
 .toolbar .tooltip {
   font-size: 12px;
 }
 
-/* line 26, ../sass/_toolbar.scss */
+/* line 25, ../sass/_toolbar.scss */
 .toolbar-label {
   display: inline-block;
   padding-top: 11px;
@@ -178,12 +177,24 @@ body {
   color: #222;
   height: 46px;
 }
-/* line 35, ../sass/_sidebar.scss */
+/* line 36, ../sass/_sidebar.scss */
+.sidebar .search input {
+  width: 240px;
+}
+/* line 40, ../sass/_sidebar.scss */
+.sidebar .search button i {
+  font-size: 17px;
+}
+/* line 43, ../sass/_sidebar.scss */
+.sidebar .search button.active {
+  border-color: #c5c5c5;
+}
+/* line 49, ../sass/_sidebar.scss */
 .sidebar .tab-content {
   height: 100%;
 }
 
-/* line 40, ../sass/_sidebar.scss */
+/* line 54, ../sass/_sidebar.scss */
 #sidebar-route {
   overflow: hidden;
 }
