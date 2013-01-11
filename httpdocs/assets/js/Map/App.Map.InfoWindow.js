@@ -1,15 +1,15 @@
 App.Map.InfoWindow = (function() {
+  
+  var templates = {
+    view: $('#map-infowindow-view-template').html(),
+    edit: $('#map-infowindow-edit-template').html()
+  };
 
   return function(type) {
-
-    var selector = '#map-infowindow-' + (type || 'view') + '-template';
-    var template = $(selector).html();
-
     return new google.maps.InfoWindow({
-      content: $(template)[0],
+      content: $(templates[type])[0],
       size: new google.maps.Size(50, 50),
       enableEventPropagation: false
     });
   };
-
 }());
