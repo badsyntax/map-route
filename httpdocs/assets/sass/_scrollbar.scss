@@ -1,0 +1,62 @@
+/* Scrollbar
+ *****************/
+
+
+.scroller { 
+
+  clear: both; 
+  height: 100%;
+
+  .viewport { 
+    height: 100%; 
+    overflow: hidden; 
+    position: relative; 
+  }
+  .overview { 
+    list-style: none; 
+    position: absolute; 
+    left: 0; 
+    top: 0; 
+  }
+  .thumb { 
+    background-color: #ddd;
+    &:hover {
+      background-color: #bbb;
+    } 
+  }
+  .scrollbar { 
+    position: relative; 
+    float: right; 
+    width: 15px; 
+    margin-right: 2px;
+  }
+  .track { 
+    background-color: #eee; 
+    height: 100%; 
+    width: 13px; 
+    position: relative; 
+    padding: 0 1px; 
+  }
+  .thumb { 
+
+    height: 20px; 
+    width: 13px; 
+    cursor: pointer; 
+    overflow: hidden; 
+    position: absolute; 
+    top: 0; 
+  
+    .end { 
+      overflow: hidden; 
+      height: 5px; 
+      width: 13px; 
+    }
+  }
+  .disable{ 
+    display: none; 
+  }
+}
+
+.noSelect { 
+  @include user-select(none);
+}

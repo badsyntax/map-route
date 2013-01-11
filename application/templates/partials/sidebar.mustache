@@ -1,33 +1,48 @@
-<h1>
-  MapRoute
-</h1>
-<div class="search">
-  <input class="input-block-level" id="search-input" type="text" placeholder="Search for a place...">
+<div class="row">
+  <h1>
+    MapRoute
+  </h1>
 </div>
 
-<ul class="nav nav-tabs" id="sidebar-tabs">
-  <li class="active"><a href="#sidebar-route">Route</a></li>
-  <!-- <li><a href="#sidebar-pins">Pins</a></li> -->
-</ul>
- 
-<div class="tab-content">
-  <div class="tab-pane active" id="sidebar-route">
-    <!-- ko if: route().length -->
-    <ul class="nav nav-pills nav-stacked" data-bind="fadeVisible: route, template: { foreach: route, afterAdd: fadeIn, beforeRemove: fadeOut }">
-      <li>
-        <a href="#" data-bind="text: model.route_title, click: $parent.onRoutePointClick"></a>
-      </li>
-    </ul>
-    <!-- /ko -->
-    <p data-bind="ifnot: route().length" style="margin:0;padding:0 10px">
-      <em>No route set. Once you've added some pins you can plan a route.</em>
-    </p>
+<div class="row">
+  <div class="search">
+    <input class="input-block-level" id="search-input" type="text" placeholder="Search for a place...">
   </div>
-  <!-- <div class="tab-pane" id="sidebar-pins">
-    <ul class="nav nav-pills nav-stacked" data-bind="foreach: markers">
-      <li>
-        <a href="#" data-bind="text: title"></a>
-      </li>
-    </ul>
-  </div> -->
+</div>
+
+<div class="row">
+  <ul class="nav nav-tabs" id="sidebar-tabs">
+    <li class="active"><a href="#sidebar-route">Route</a></li>
+    <!-- <li><a href="#sidebar-pins">Pins</a></li> -->
+  </ul>
+</div>
+
+<div class="row">
+   
+  <div class="tab-content">
+    <div class="tab-pane active scroller" id="sidebar-route">
+      <div class="scrollbar"><div class="track"><div class="thumb"></div></div></div>
+      <div class="viewport">
+        <div class="overview">
+        <!-- ko if: route().length -->
+        <ul class="nav nav-pills nav-stacked" data-bind="fadeVisible: route, template: { foreach: route, afterAdd: fadeIn, beforeRemove: fadeOut }">
+          <li>
+            <a href="#" data-bind="text: model.route_title, click: $parent.onRoutePointClick"></a>
+          </li>
+        </ul>
+        <!-- /ko -->
+        <p data-bind="ifnot: route().length" style="margin:0;padding:0 10px">
+          <em>No route set. Once you've added some pins you can plan a route.</em>
+        </p>
+      </div>
+    </div>
+    </div>
+    <!-- <div class="tab-pane" id="sidebar-pins">
+      <ul class="nav nav-pills nav-stacked" data-bind="foreach: markers">
+        <li>
+          <a href="#" data-bind="text: title"></a>
+        </li>
+      </ul>
+    </div> -->
+  </div>
 </div>

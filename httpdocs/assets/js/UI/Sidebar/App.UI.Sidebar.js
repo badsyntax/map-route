@@ -3,6 +3,7 @@ App.UI.Sidebar = function(container, viewModel) {
   this.viewModel = viewModel;
   this.search = new App.UI.Sidebar.Search(container);
   this.initTabs();
+  $('#sidebar-route').tinyscrollbar({size: 'auto' });
 };
 
 App.UI.Sidebar.prototype.initTabs = function() {
