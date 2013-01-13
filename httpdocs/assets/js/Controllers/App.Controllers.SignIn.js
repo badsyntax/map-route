@@ -68,34 +68,30 @@ App.Controllers.SignIn.prototype.openWindow = function(elem) {
   var height = 500;
   var windowName = 'signin';
   var windowURL = elem.href;
+
+  var centeredY = (window.screenY || 0) + (((window.outerHeight/2) - (height/2)));
+  var centeredX = (window.screenX || 0) + (((window.outerWidth/2) - (width/2)));
   
-  var windowFeatures = 'height=' + height +
-    ',width=' + width +
-    ',toolbar=' + 0 +
-    ',scrollbars=' + 0 +
-    ',status=' + 0 + 
-    ',resizable=' + 0 +
-    ',location=' + 0 +
-    ',menuBar=' + 0;
+  var windowFeatures = [
+    'height=' + height,
+    'left=' + centeredX,
+    'top=' + centeredY,
+    'width=' + width,
+    'toolbar=0',
+    'scrollbars=0',
+    'status=0',
+    'resizable=0',
+    'location=0',
+    'menuBar=0'
+  ].join(',');
 
-  var centeredY,centeredX, w;
-
-  if ($.browser.msie) {//hacked together for IE browsers
-    centeredY = (window.screenTop - 120) + ((((document.documentElement.clientHeight + 120)/2) - (height/2)));
-    centeredX = window.screenLeft + ((((document.body.offsetWidth + 20)/2) - (width/2)));
-  } else {
-    centeredY = window.screenY + (((window.outerHeight/2) - (height/2)));
-    centeredX = window.screenX + (((window.outerWidth/2) - (width/2)));
-  }
-
-  w = window.open(windowURL, windowName, windowFeatures+',left=' + centeredX +',top=' + centeredY);
-  w.focus();
-
-  this.curWindow = w;
+  var win = window.open(windowURL, windowName, windowFeatures);
+  this.curWindow = win;
+  win.focus();
   
   // Hide the overlay when the window closes
   (function poll(timer) {
-    if (w.closed) {
+    if (win.closed) {
       this.hideOverlay();
       clearTimeout(timer);
     }
