@@ -21,19 +21,19 @@ App.ViewModels.Navbar.Toolbar.prototype.setData = function() {
       caption: 'Add Pins',
       className: 'toolbar-add-pin',
       iconClassName: 'icon-map-marker',
-      action: new App.Map.Actions.Markers()
+      action: App.Map.Actions.factory('Markers')
     }),
     new App.Models.ToolbarButton({
       caption: 'Manage Routes',
       className: 'add-route',
       iconClassName: 'icon-sitemap',
-      action: new App.Map.Actions.Routes()
+      action: App.Map.Actions.factory('Routes')
     }),
     new App.Models.ToolbarButton({
       caption: 'Share',
       className: 'toolbar-share',
       iconClassName: 'icon-share',
-      action: new App.Map.Actions.Share()
+      action: App.Map.Actions.factory('Share')
     })
   ]);
 };

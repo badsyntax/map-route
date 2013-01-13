@@ -67,9 +67,10 @@ App.Map.Route = (function() {
       });
     },
     addMarker: function(location) {
-      return App.Map.Marker.factory({
+      var marker = App.Map.Marker.factory({
         location: location
       });
+      App.GlobalEvents.trigger('addmarker');
     },
     addMarkers: function() {
       markers($.map(markersData(), function(marker) {
@@ -103,6 +104,8 @@ App.Map.Route = (function() {
       marker.setMap(null);
 
       this.removePoint(marker, false);
+
+      App.GlobalEvents.trigger('removemarker');
     },
     fitMarkerBounds: function() {
       if (!markers().length) {
@@ -122,8 +125,8 @@ App.Map.Route = (function() {
         marker.setCursor('pointer');
         marker.setDraggable(true);
 
-        if (marker.model.isActive) {
-          marker.model.isActive(false);
+        if ($.isFunction(marker.model.active)) {
+          marker.model.active(false);
         }
       });
     },
@@ -157,6 +160,8 @@ App.Map.Route = (function() {
       marker.model.values({
         route_order: routeOrder 
       }).save();
+
+      App.GlobalEvents.trigger('addpoint');
     },
     updatePoint: function(marker) {
       $.each(points(), function(i, point) {

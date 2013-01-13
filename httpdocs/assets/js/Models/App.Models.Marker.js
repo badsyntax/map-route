@@ -5,6 +5,19 @@ App.Models.Marker = function() {
 
 App.inherits(App.Models.Marker, App.Models.Base);
 
+App.Models.Marker.prototype.setObservables = function() {
+  this.active = ko.observable(false);
+};
+
+App.Models.Marker.prototype.setComputed = function() {
+  this.route_title = ko.computed(this.getRouteTitle, this);
+};
+
+App.Models.Marker.prototype.getRouteTitle = function() {
+  return this.title() || this.description() || 
+    (this.longitude().toFixed(5) + ', ' + this.latitude().toFixed(5));
+};
+
 App.Models.Marker.prototype.findAll = function(success, error) {
   App.API.Marker.findAll({
     data: this.where(),

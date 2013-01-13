@@ -143,6 +143,9 @@ body {
 .sidebar .row:last-child {
   height: 100%;
 }
+.sidebar .scroller {
+  overflow: hidden;
+}
 .sidebar h1 {
   font-family: 'Orbitron', sans-serif;
   padding: 0 0 0 8px;
@@ -166,33 +169,29 @@ body {
 .sidebar .tab-content {
   height: 100%;
 }
-.sidebar .routes {
+.sidebar .markers {
   margin-bottom: .8em;
 }
-.sidebar .routes a {
+.sidebar .markers a {
   position: relative;
 }
-.sidebar .routes a .actions {
+.sidebar .markers a .actions {
   position: absolute;
   top: 2px;
   right: 5px;
   display: none;
 }
-.sidebar .routes a .actions .btn {
+.sidebar .markers a .actions .btn {
   padding: 1px 5px;
 }
-.sidebar .routes a .actions i {
+.sidebar .markers a .actions i {
   /*@include opacity(.4);*/
 }
-.sidebar .routes a:hover .actions {
+.sidebar .markers a:hover .actions {
   display: block;
 }
-.sidebar .routes a:hover .actions i:hover {
+.sidebar .markers a:hover .actions i:hover {
   /*@include opacity(1);*/
-}
-
-#sidebar-route {
-  overflow: hidden;
 }
 
 /* Modals

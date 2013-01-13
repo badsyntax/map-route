@@ -3,7 +3,6 @@ App.Map = (function(canvas) {
   var map = ko.observable();
 
   return {
-    Actions: {},
     instance: map,
     create: function(callback) {
       if (!map()) {

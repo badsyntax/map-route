@@ -17,7 +17,7 @@ App.Map.Actions.Markers.prototype.bindEvents = function() {
 };
 
 App.Map.Actions.Markers.prototype.addMarker = function(location) {
-  App.Map.Route.addMarker(location)
+  App.Map.Route.addMarker(location);
 };
 
 App.Map.Actions.Markers.prototype.onMapClick = function(e) {

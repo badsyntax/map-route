@@ -2,6 +2,8 @@ App.Models.Base = function(data) {
   this.whereParam = {};
   if (data) {
     this.values(data);
+    this.setObservables();
+    this.setComputed();
   }
 };
 
@@ -9,6 +11,9 @@ App.Models.Base.prototype.values = function(data) {
   ko.mapping.fromJS(data, null, this);
   return this;
 };
+
+App.Models.Base.prototype.setObservables = $.noop;
+App.Models.Base.prototype.setComputed = $.noop;
 
 App.Models.Base.prototype.save = function(success, error) {
   if (this.id && this.id()) {

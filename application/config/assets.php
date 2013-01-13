@@ -17,6 +17,7 @@ $js = array(
 	'assets/js/API/App.API.Route.js',
 	'assets/js/API/App.API.User.js',
 	'assets/js/Map/App.Map.js',
+	'assets/js/Map/Actions/App.Map.Actions.js',
 	'assets/js/Map/Actions/App.Map.Actions.Action.js',
 	'assets/js/Map/Actions/App.Map.Actions.Markers.js',
 	'assets/js/Map/Actions/App.Map.Actions.Routes.js',

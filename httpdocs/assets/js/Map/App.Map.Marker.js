@@ -68,9 +68,7 @@ App.Map.Marker = (function() {
       return data.model;
     }
 
-    var model = new App.Models.Marker();
-
-    model.values({
+    var model = new App.Models.Marker({
       user_id: App.Config.get('user_id'),
       latitude: data.location.lat(),
       longitude: data.location.lng(),
@@ -127,11 +125,11 @@ App.Map.Marker = (function() {
         clickable: false,
         animation: google.maps.Animation.DROP // google.maps.Animation.DROP | BOUNCE
     });
-    App.Map.Route.markers().push(marker);
 
     marker.model = createModel(marker, data);
-
     bindEvents(marker);
+
+    App.Map.Route.markers.push(marker);
 
     ko.applyBindings(marker.model, marker.infoWindow.getContent());
 
@@ -148,7 +146,7 @@ App.Map.Marker = (function() {
         focus: function() { 
           App.Map.Route.resetMarkers();
           marker.infoWindow.open(map, marker);
-          marker.model.isActive(true);
+          marker.model.active(true);
         },
         edit: function() {
           onAddDescriptionMarkerClick(null, marker);

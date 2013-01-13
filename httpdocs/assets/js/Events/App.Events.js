@@ -18,7 +18,7 @@ App.Events.delegate = function(e, handlers) {
 
    var executeHandler = (function(target) {
     return function(key, handler, elem) {
-      if ((elem = target.closest(key)).length) {
+      if ((elem = target.closest(key)).length && elem[0] !== document.body) {
         handler(e, elem[0]);
         return false;
       }
@@ -27,3 +27,5 @@ App.Events.delegate = function(e, handlers) {
 
   $.each(handlers, executeHandler);
 };
+
+App.GlobalEvents = new App.Events();

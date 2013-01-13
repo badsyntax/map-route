@@ -6,34 +6,7 @@ App.ViewModels.Sidebar = function(container, controller) {
 
 App.ViewModels.Sidebar.prototype.setupObservables = function() {
   this.markers = App.Map.Route.markers;
-
-  setTimeout(function() {
-    console.log(this.markers()[0])
-  }.bind(this), 2500);
-  
-  this.route = ko.computed(function() {
-    return $.map(App.Map.Route.points(), function(marker) {
-      
-      var model = marker.model;
-      
-      if (!model.route_title) {
-        model.route_title = ko.observable();
-      }
-      if (!model.isActive) {
-        model.isActive = ko.observable(false);
-      }
-      
-      var title = model.title() || 
-        model.description() || 
-        (model.longitude().toFixed(5)+', '+model.latitude().toFixed(5));
-
-      var route_title = (parseInt(model.route_order(), 10) + 1) + '. ' + title;
-
-      model.route_title(route_title);
-      
-      return marker;
-    });
-  }, this);
+  this.route = App.Map.Route.points;
 };
 
 App.ViewModels.Sidebar.prototype.fadeIn = function(elem) {
@@ -61,7 +34,7 @@ App.ViewModels.Sidebar.prototype.onRoutePointClick = function(marker, e) {
   App.Events.delegate(e, {
     '.edit': this.onEditButtonClick.bind(this),
     '.remove': this.onRemoveButtonClick.bind(this),
-    'a': this.onAnchorClick.bind(this)
+    'a': this.onAnchorClick.bind(this),
   });
 };
 
@@ -75,4 +48,9 @@ App.ViewModels.Sidebar.prototype.onRemoveButtonClick = function(e, elem) {
 
 App.ViewModels.Sidebar.prototype.onAnchorClick = function(e, elem) {
   ko.dataFor(elem).focus();
+};
+
+App.ViewModels.Sidebar.prototype.addPins = function() {
+  App.Map.Actions.reset();
+  App.Map.Actions.execute('Markers');
 };

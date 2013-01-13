@@ -12,7 +12,8 @@ App.Map.Actions.Routes.prototype.execute = function() {
     return App.UI.Modal.message('You need to add some pins before planning a route.');
   }
 
-  this.bindEvents();
+  App.Map.Actions.Action.prototype.execute.call(this);
+
   this.map.setOptions({ 
     draggableCursor: 'default' 
   });
