@@ -6,6 +6,10 @@ App.ViewModels.Sidebar = function(container, controller) {
 
 App.ViewModels.Sidebar.prototype.setupObservables = function() {
   this.markers = App.Map.Route.markers;
+
+  setTimeout(function() {
+    console.log(this.markers()[0])
+  }.bind(this), 2500);
   
   this.route = ko.computed(function() {
     return $.map(App.Map.Route.points(), function(marker) {
@@ -51,6 +55,24 @@ App.ViewModels.Sidebar.prototype.rendered = function() {
 };
 
 App.ViewModels.Sidebar.prototype.onRoutePointClick = function(marker, e) {
+  
   e.preventDefault();
-  marker.focus();
+
+  App.Events.delegate(e, {
+    '.edit': this.onEditButtonClick.bind(this),
+    '.remove': this.onRemoveButtonClick.bind(this),
+    'a': this.onAnchorClick.bind(this)
+  });
+};
+
+App.ViewModels.Sidebar.prototype.onEditButtonClick = function(e, elem) {
+  ko.dataFor(elem).edit();
+};
+
+App.ViewModels.Sidebar.prototype.onRemoveButtonClick = function(e, elem) {
+  ko.dataFor(elem).remove();
+};
+
+App.ViewModels.Sidebar.prototype.onAnchorClick = function(e, elem) {
+  ko.dataFor(elem).focus();
 };

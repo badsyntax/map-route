@@ -49,6 +49,37 @@
   .tab-content {
     height: 100%;
   }
+
+  .routes {
+
+    margin-bottom: .8em;
+
+    a {
+      
+      position: relative;
+      
+      .actions {
+        position: absolute;
+        top: 2px;
+        right: 5px;
+        display: none;
+        .btn {
+          padding: 1px 5px;
+        }
+        i {
+          /*@include opacity(.4);*/
+        }
+      }
+      &:hover .actions {
+        display: block;
+        i {
+          &:hover {
+            /*@include opacity(1);*/
+          }
+        }
+      }
+    }
+  }
 }
 
 #sidebar-route {

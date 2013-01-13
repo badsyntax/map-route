@@ -13,3 +13,17 @@ App.Events.prototype = {
     this._e.trigger(name);
   }
 };
+
+App.Events.delegate = function(e, handlers) {
+
+   var executeHandler = (function(target) {
+    return function(key, handler, elem) {
+      if ((elem = target.closest(key)).length) {
+        handler(e, elem[0]);
+        return false;
+      }
+    };
+  }($(e.target)));
+
+  $.each(handlers, executeHandler);
+};

@@ -28,7 +28,11 @@ App.Map.Marker = (function() {
   };
 
   function onAddDescriptionMarkerClick(e, marker) {
-    e.preventDefault();
+    
+    if (e && e.preventDefault) {
+      e.preventDefault()
+    }
+
     curMarker = marker;
 
     App.UI.Modal.show('#modal-edit-marker', {
@@ -114,7 +118,7 @@ App.Map.Marker = (function() {
 
     var type = App.Config.get('action'); // view|edit
     var infoWindow = new App.Map.InfoWindow(type);
-    
+
     var marker = new google.maps.Marker({
         infoWindow: infoWindow,
         position: data.location,
@@ -145,6 +149,9 @@ App.Map.Marker = (function() {
           App.Map.Route.resetMarkers();
           marker.infoWindow.open(map, marker);
           marker.model.isActive(true);
+        },
+        edit: function() {
+          onAddDescriptionMarkerClick(null, marker);
         },
         remove: function() {
           App.Map.Route.removeMarker(marker, true, true);      

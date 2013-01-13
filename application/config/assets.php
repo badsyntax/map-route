@@ -1,11 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 $js = array(
-	'assets/lib/jquery/jquery-1.8.3.min.js',
+	'assets/lib/jquery/jquery-1.9.0b1.min.js',
 	'assets/lib/jquery/path.min.js',
 	'assets/lib/jquery/jquery.tinyscrollbar.js',
 	'assets/lib/bootstrap/js/bootstrap.min.js',
-	'assets/lib/knockout/knockout-2.2.0.js',
+	'assets/lib/knockout/knockout-2.2.0.debug.js',
 	'assets/lib/knockout/knockout.mapping-2.3.4.js',
 	'assets/js/CustomBindings.js',
 	'assets/js/App.js',

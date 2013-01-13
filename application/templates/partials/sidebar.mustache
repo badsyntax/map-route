@@ -17,7 +17,7 @@
 <div class="row">
   <ul class="nav nav-tabs" id="sidebar-tabs">
     <li class="active"><a href="#sidebar-route">Route</a></li>
-    <!-- <li><a href="#sidebar-pins">Pins</a></li> -->
+    <li><a href="#sidebar-pins">Pins</a></li>
   </ul>
 </div>
 
@@ -29,9 +29,25 @@
       <div class="viewport">
         <div class="overview">
         <!-- ko if: route().length -->
-        <ul class="nav nav-pills nav-stacked" data-bind="template: { foreach: route, afterAdd: fadeIn, beforeRemove: fadeOut }">
+        <ul class="routes nav nav-pills nav-stacked" data-bind="
+          click: onRoutePointClick,
+          template: { 
+            foreach: route, 
+            afterAdd: fadeIn, 
+            beforeRemove: fadeOut
+          }">
           <li data-bind="css: { active: model.isActive }">
-            <a href="#" data-bind="text: model.route_title, click: $parent.onRoutePointClick"></a>
+            <a href="#">
+              <!-- ko text: model.route_title --><!-- /ko -->
+              <span class="actions btn-group">
+                <button class="btn edit">
+                  <i class="icon-edit"></i>
+                </button>
+                <button class="btn remove">
+                  <i class="icon-remove"></i>
+                </button>
+              </span>
+            </a>
           </li>
         </ul>
         <!-- /ko -->
@@ -41,12 +57,12 @@
       </div>
     </div>
     </div>
-    <!-- <div class="tab-pane" id="sidebar-pins">
+    <div class="tab-pane" id="sidebar-pins">
       <ul class="nav nav-pills nav-stacked" data-bind="foreach: markers">
         <li>
-          <a href="#" data-bind="text: title"></a>
+          <a href="#" data-bind="text: model.title()"></a>
         </li>
       </ul>
-    </div> -->
+    </div>
   </div>
 </div>
