@@ -66,7 +66,6 @@ $signin_production = Kohana::$config->load('site.comingsoon') ? array(
  	),
 ) : array(
 	'css' => array(
-		'http://fonts.googleapis.com/css?family=Orbitron:700',
 		'assets/lib/bootstrap/css/bootstrap.min.css',
 		'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
 		'assets/lib/fontawesome/css/font-awesome.css',
@@ -80,7 +79,6 @@ return array(
 		'signin' => $signin_production,
 		'edit' => array(
 			'css' => array(
-		  	'http://fonts.googleapis.com/css?family=Orbitron:700',
 				'assets/lib/bootstrap/css/bootstrap.min.css',
 				'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
 				'assets/lib/fontawesome/css/font-awesome.css',
@@ -92,7 +90,6 @@ return array(
 	'development' => array(
 		'signin' => array(
 		  'css' => array(
-		  	'http://fonts.googleapis.com/css?family=Orbitron:700',
 				'assets/lib/bootstrap/css/bootstrap.min.css',
 				'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
 				'assets/lib/fontawesome/css/font-awesome.css',
@@ -102,7 +99,6 @@ return array(
 		),
 		'edit' => array(
 			'css' => array(
-		  	'http://fonts.googleapis.com/css?family=Orbitron:700',
 				'assets/lib/bootstrap/css/bootstrap.min.css',
 				'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
 				'assets/lib/fontawesome/css/font-awesome.css',
