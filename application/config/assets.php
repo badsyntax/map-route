@@ -48,6 +48,12 @@ $js = array(
 	'assets/js/Map/App.Map.InfoWindow.js'
 );
 
+if (Kohana::$environment === Kohana::PRODUCTION)
+{
+	array_unshift($js, 'assets/js/Production/header.js');
+	array_push($js, 'assets/js/Production/footer.js');
+}
+
 $signin_production = Kohana::$config->load('site.comingsoon') ? array(
 	'css' => array(
 	 'assets/lib/bootstrap/css/bootstrap.min.css',
@@ -68,7 +74,6 @@ $signin_production = Kohana::$config->load('site.comingsoon') ? array(
 	),
 	'javascript' => $js,
 );
-	
 
 return array(
 	'production' => array(

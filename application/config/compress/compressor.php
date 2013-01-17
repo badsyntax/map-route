@@ -11,7 +11,5 @@ return array
       'mangle' => '',
       'compress' => '',
     ),
-    'header'     => '(function(){',
-    'footer'     => 'window.App = App;}());'
   ),
 );
