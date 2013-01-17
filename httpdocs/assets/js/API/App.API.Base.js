@@ -27,7 +27,8 @@ App.API.Base.prototype.update = function(config) {
 
 App.API.Base.prototype.remove = function(config) {
   return this.makeRequest(this.xhrConfig(config, {
-    type: 'DELETE'
+    type: 'DELETE',
+    dataType: 'text'
   }));  
 };
 

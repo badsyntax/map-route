@@ -24,10 +24,16 @@ App.ViewModels.Navbar.Toolbar.prototype.setData = function() {
       action: App.Map.Actions.factory('Markers')
     }),
     new App.Models.ToolbarButton({
-      caption: 'Manage Routes',
+      caption: 'Plan Route',
       className: 'add-route',
       iconClassName: 'icon-sitemap',
       action: App.Map.Actions.factory('Routes')
+    }),
+    new App.Models.ToolbarButton({
+      caption: 'Zoom Out',
+      className: 'toolbar-zoom',
+      iconClassName: 'icon-zoom-out',
+      action: App.Map.Actions.factory('ZoomOut')
     }),
     new App.Models.ToolbarButton({
       caption: 'Share',

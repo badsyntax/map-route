@@ -36,7 +36,6 @@ App.Map = (function(canvas) {
     init: function() {
 
       var options = {
-        zoom: 2,
         center: new google.maps.LatLng(10.089036, 10.992188),
         mapTypeId: google.maps.MapTypeId.ROADMAP // ROADMAP | SATELLITE | HYBRID | TERRAIN
       };

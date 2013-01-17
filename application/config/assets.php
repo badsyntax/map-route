@@ -24,6 +24,7 @@ $js = array(
 	'assets/js/Map/Actions/App.Map.Actions.Profile.js',
 	'assets/js/Map/Actions/App.Map.Actions.Share.js',
 	'assets/js/Map/Actions/App.Map.Actions.View.js',
+	'assets/js/Map/Actions/App.Map.Actions.ZoomOut.js',
 	'assets/js/Controllers/App.Controllers.Map.js',
 	'assets/js/Controllers/App.Controllers.SignIn.js',
 	'assets/js/UI/App.UI.Device.js',

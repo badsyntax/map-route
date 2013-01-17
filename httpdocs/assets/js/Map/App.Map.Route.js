@@ -108,14 +108,27 @@ App.Map.Route = (function() {
       App.GlobalEvents.trigger('removemarker');
     },
     fitMarkerBounds: function() {
+      var map = App.Map.instance();
       if (!markers().length) {
-        return;
+        return map.setZoom(2); 
       }
       var bounds = new google.maps.LatLngBounds();
       $.each(markers(), function(i, marker) {
           bounds.extend(marker.getPosition());
       });
-      App.Map.instance().fitBounds(bounds);
+      if (bounds.getNorthEast().equals(bounds.getSouthWest())) {
+        var extendPoint1 = new google.maps.LatLng(
+          bounds.getNorthEast().lat() + 0.01, 
+          bounds.getNorthEast().lng() + 0.01
+        );
+        var extendPoint2 = new google.maps.LatLng(
+          bounds.getNorthEast().lat() - 0.01, 
+          bounds.getNorthEast().lng() - 0.01
+        );
+        bounds.extend(extendPoint1);
+        bounds.extend(extendPoint2);
+      }
+      map.fitBounds(bounds);
     },
     resetMarkers: function() {
       $.each(markers(), function(i, marker) {
