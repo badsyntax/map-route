@@ -1,11 +1,17 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 
-return array(
-  'yui' => array(
-    'java'  => 'java',
-    'jar'   => 'vendor/yui/yuicompressor-2.4.6.jar',
+return array
+(
+  'uglifyjs' => array
+  (
+    'cmd' => 'uglifyjs',
+    'options' => array
+    (
+      'ascsi' => '',
+      'mangle' => '',
+      'compress' => '',
+    ),
+    'header'     => '(function(){',
+    'footer'     => 'window.App = App;}());'
   ),
-  'uglifyjS' => array(
-    'cmd' => 'uglifyjs'
-  )
 );

@@ -4,7 +4,7 @@ class Controller_Home extends Controller_Base {
 
 	public function action_index()
 	{
-		$view_model = Kohana::$environment === Kohana::PRODUCTION
+		$view_model = (Kohana::$environment === Kohana::PRODUCTION AND Kohana::$config->load('site.comingsoon'))
 			? 'View_Page_Home_ComingSoon'
 			: 'View_Page_Home';
 

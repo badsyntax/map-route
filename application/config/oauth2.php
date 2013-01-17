@@ -5,10 +5,10 @@ function get_redirect_url($consumer = NULL)
 	switch(Kohana::$environment)
 	{
 		case Kohana::DEVELOPMENT:
+		case Kohana::PRODUCTION:
 		case Kohana::STAGING:
 			return 'http://staging.maproute.cc/auth/callback/'.$consumer;
-		case Kohana::PRODUCTION:
-			return 'http://maproute.cc/auth/callback/'.$consumer;
+			// return 'http://maproute.cc/auth/callback/'.$consumer;
 	}
 }
 

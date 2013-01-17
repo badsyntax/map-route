@@ -6,7 +6,7 @@ return array(
 		'dir'        => DOCROOT.'assets/cache',
 		'gc'         => TRUE,
 		'filemtime'  => TRUE,
-		'compressor' => 'uglifyjs',
+		'compressor' => 'uglifyjs'
 	),
 	'stylesheets' => array(
 		'root'        => DOCROOT,

@@ -1,7 +1,9 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 return array(
+	'comingsoon' => FALSE,
 	'modules' => array(
+		'compress'   => MODPATH.'compress',	
 		'auth'       => MODPATH.'auth',
 		'minion'     => MODPATH.'minion',
 		'cache'      => MODPATH.'cache',
@@ -9,7 +11,6 @@ return array(
 		'orm'        => MODPATH.'orm',
 		'oauth2'     => MODPATH.'oauth2',
 		'kostache'   => MODPATH.'kostache',
-		'compress'   => MODPATH.'compress',
 		'device'     => MODPATH.'device',
 		'userguide'  => MODPATH.'userguide',
 		'minion-tasks-migrations' => MODPATH.'minion-tasks-migrations',

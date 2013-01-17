@@ -85,7 +85,7 @@ class View_Layout
 
 	public function coming_soon()
 	{
-		return Kohana::$environment === Kohana::PRODUCTION;		
+		return (Kohana::$environment === Kohana::PRODUCTION AND Kohana::$config->load('site.comingsoon'));
 	}
 
 	public function username()

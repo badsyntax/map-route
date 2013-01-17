@@ -1,11 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 $js = array(
-	'assets/lib/jquery/jquery-1.9.0b1.min.js',
+	'assets/lib/jquery/jquery-2.0.0b1.js',
 	'assets/lib/jquery/path.min.js',
 	'assets/lib/jquery/jquery.tinyscrollbar.js',
 	'assets/lib/bootstrap/js/bootstrap.min.js',
-	'assets/lib/knockout/knockout-2.2.0.debug.js',
+	'assets/lib/knockout/knockout-2.2.1.js',
 	'assets/lib/knockout/knockout.mapping-2.3.4.js',
 	'assets/js/CustomBindings.js',
 	'assets/js/App.js',
@@ -48,17 +48,41 @@ $js = array(
 	'assets/js/Map/App.Map.InfoWindow.js'
 );
 
+$signin_production = Kohana::$config->load('site.comingsoon') ? array(
+	'css' => array(
+	 'assets/lib/bootstrap/css/bootstrap.min.css',
+		'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
+		'assets/lib/fontawesome/css/font-awesome.css',
+		'assets/css/comingsoon.css'
+  ),
+  'javascript' =>  array(
+		'assets/js/ComingSoon.js',
+ 	),
+) : array(
+	'css' => array(
+		'http://fonts.googleapis.com/css?family=Orbitron:700',
+		'assets/lib/bootstrap/css/bootstrap.min.css',
+		'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
+		'assets/lib/fontawesome/css/font-awesome.css',
+		'assets/css/signin.css',
+	),
+	'javascript' => $js,
+);
+	
+
 return array(
 	'production' => array(
-		'css' => array(
-			'assets/lib/bootstrap/css/bootstrap.min.css',
-			'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
-			'assets/lib/fontawesome/css/font-awesome.css',
-			'assets/css/comingsoon.css',
-		),
-		'javascript' => array(
-			'assets/js/ComingSoon.js',
-		)
+		'signin' => $signin_production,
+		'edit' => array(
+			'css' => array(
+		  	'http://fonts.googleapis.com/css?family=Orbitron:700',
+				'assets/lib/bootstrap/css/bootstrap.min.css',
+				'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
+				'assets/lib/fontawesome/css/font-awesome.css',
+				'assets/css/screen.css',
+		  ),
+	  	'javascript' => $js,
+		 )
 	),
 	'development' => array(
 		'signin' => array(
