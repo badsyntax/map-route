@@ -23,18 +23,18 @@ App.Controllers.SignIn.prototype.onSigninButtonClick = function(e) {
 
 App.Controllers.SignIn.prototype.onSigninButtonsClick = function(e) {
   e.preventDefault();
-  this.showOverlay();
   this.openWindow(e.currentTarget);
+  this.showOverlay();
 };
 
-App.Controllers.SignIn.prototype.showOverlay = function() {
+App.Controllers.SignIn.prototype.showOverlay = function(callback) {
   this.overlay.css({
     opacity: 0,
     display: 'block',
     visibility: 'visible'
   }).animate({
     opacity: 0.8
-  });
+  }, callback);
 };
 
 App.Controllers.SignIn.prototype.hideOverlay = function(callback) {
@@ -71,7 +71,7 @@ App.Controllers.SignIn.prototype.openWindow = function(elem) {
 
   var centeredY = (window.screenY || 0) + (((window.outerHeight/2) - (height/2)));
   var centeredX = (window.screenX || 0) + (((window.outerWidth/2) - (width/2)));
-  
+
   var windowFeatures = [
     'height=' + height,
     'left=' + centeredX,
@@ -92,8 +92,8 @@ App.Controllers.SignIn.prototype.openWindow = function(elem) {
   // Hide the overlay when the window closes
   (function poll(timer) {
     if (win.closed) {
-      this.hideOverlay();
-      clearTimeout(timer);
+      this.hideOverlay()
+      return clearTimeout(timer);
     }
     timer = setTimeout(poll.bind(this), 220);
   }.bind(this)(0));
