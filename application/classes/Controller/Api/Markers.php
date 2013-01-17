@@ -69,7 +69,7 @@ class Controller_Api_Markers extends Controller_REST
 
 		$this->update_route_orders($data['route_id']);
 
-		$this->send_response(200);
+		$this->send_response(200, 'application/json', REST_Response::factory($marker));
 	}
 
 	public function action_delete()
