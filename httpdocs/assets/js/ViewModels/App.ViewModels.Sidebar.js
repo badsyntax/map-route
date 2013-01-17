@@ -24,7 +24,7 @@ App.ViewModels.Sidebar.prototype.fadeOut = function(elem) {
 };
 
 App.ViewModels.Sidebar.prototype.rendered = function() {
-  this.ui = new App.UI.Sidebar(this.container, this);
+  this.ui = new App.UI.Sidebar(this.container.find('.search'), this);
 };
 
 App.ViewModels.Sidebar.prototype.onRoutePointClick = function(marker, e) {

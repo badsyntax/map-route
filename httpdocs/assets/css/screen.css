@@ -161,7 +161,7 @@ body {
   width: 240px;
 }
 .sidebar .search button i {
-  font-size: 17px;
+  line-height: normal;
 }
 .sidebar .search button.active {
   border-color: #c5c5c5;

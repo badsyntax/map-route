@@ -37,12 +37,15 @@
   }
 
   .search {
+    form {
+
+    }
     input {
       width: 240px;
     }
     button {
       i {
-        font-size: 17px;
+        line-height: normal;
       }
       &.active {
         border-color: #c5c5c5;
