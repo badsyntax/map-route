@@ -1,1 +1,1 @@
-window.App = App;}());
+window.App = App;}(this, this.document));
