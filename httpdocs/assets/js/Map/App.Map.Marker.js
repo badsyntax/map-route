@@ -11,7 +11,7 @@ App.Map.Marker = (function() {
     }).save();
 
     App.Map.Route.updatePoint(marker);
-  };
+  }
 
   function toggleInfoWindow(e, marker) {
     if (!marker.infoWindow.getMap()) {
@@ -20,17 +20,17 @@ App.Map.Marker = (function() {
     } else {
       marker.infoWindow.close();
     }
-  };
+  }
 
   function onRemoveMarkerClick(e, marker) {
     e.preventDefault();
     marker.remove();
-  };
+  }
 
   function onAddDescriptionMarkerClick(e, marker) {
     
     if (e && e.preventDefault) {
-      e.preventDefault()
+      e.preventDefault();
     }
 
     curMarker = marker;
@@ -47,7 +47,7 @@ App.Map.Marker = (function() {
         type: ''
       }]
     }, marker.model);
-  };
+  }
 
   function saveDescription(e) {
     if (e && e.preventDefault) {
@@ -60,7 +60,7 @@ App.Map.Marker = (function() {
     // Refresh the infowindow dimensions
     var infoWindow = curMarker.infoWindow;
     infoWindow.setContent(infoWindow.getContent());
-  };
+  }
 
   function createModel(marker, data) {
 
@@ -157,4 +157,4 @@ App.Map.Marker = (function() {
       });
     }
   };
-})();
+}());

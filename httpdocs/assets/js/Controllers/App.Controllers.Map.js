@@ -32,7 +32,7 @@ App.Controllers.Map.prototype = {
     this.map = map;
     this.setConfig();
 
-    App.Map.Route.addMarkers()
+    App.Map.Route.addMarkers();
     App.Map.Route.fitMarkerBounds();
     App.Map.Route.addRoute();
 

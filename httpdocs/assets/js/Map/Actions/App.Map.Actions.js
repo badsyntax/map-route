@@ -4,7 +4,7 @@ App.Map.Actions = (function() {
 
   return {
     factory: function(action) {
-      instances[action] = new App.Map.Actions[action];
+      instances[action] = new App.Map.Actions[action]();
       return instances[action];
     },
     getInstance: function(action) {
@@ -19,5 +19,5 @@ App.Map.Actions = (function() {
       var markersAction = this.getInstance(action);
       markersAction.execute();
     }
-  }
+  };
 }());

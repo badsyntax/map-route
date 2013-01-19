@@ -26,5 +26,5 @@ App.UI.Sidebar.Search = function(container) {
 
   field.on('focus', handlers.fieldFocus);
   form.on('submit', handlers.formSubmit);
-  menu.on('click', handlers.menuClick)
+  menu.on('click', handlers.menuClick);
 };

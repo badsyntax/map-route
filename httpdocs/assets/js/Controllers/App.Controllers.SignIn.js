@@ -86,7 +86,7 @@ App.Controllers.SignIn.prototype = {
     // Hide the overlay when the window closes
     (function poll(timer) {
       if (win.closed) {
-        this.hideOverlay()
+        this.hideOverlay();
         return clearTimeout(timer);
       }
       timer = setTimeout(poll.bind(this), 220);

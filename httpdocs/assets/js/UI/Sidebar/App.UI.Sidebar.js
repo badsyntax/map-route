@@ -21,11 +21,11 @@ App.UI.Sidebar.prototype.onTabClick = function (e) {
 
   e.preventDefault();
 
-  var elem = $(e.target).tab('show')
+  var elem = $(e.target).tab('show');
  
   var selector = elem
     .attr('href')
-    .replace(/.*(?=#[^\s]*$)/, '') //strip for ie7
+    .replace(/.*(?=#[^\s]*$)/, '');
 
   this.scrollBar = $(selector).tinyscrollbar({size: 'auto' }).data('tsb');
 };

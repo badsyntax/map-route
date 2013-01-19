@@ -6,7 +6,7 @@
 	UseCanonicalName On
 
 	# Set the environment
-	SetEnv KOHANA_ENV development
+	SetEnv KOHANA_ENV production
 
   # ----------------------------------------------------------------------
   # Proper MIME type for all files
