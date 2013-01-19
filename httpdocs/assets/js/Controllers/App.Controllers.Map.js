@@ -4,15 +4,23 @@ App.Controllers.Map = function(route_id, action) {
   
   this.route_id = route_id;
   this.action = action;
-  this.initModal();
 
-  App.Map.create(function(map){
+  var self = this;
+  this.initUI(function() {
+    App.Map.create(function(map){
+      App.Map.Route.init(route_id, function() {
+        if (App.Map.Route.loaded()) {
+          self.init(map); 
+        }
+      });
+    });
+  });
+};
 
-    App.Map.Route.init(route_id, function() {
-      if (App.Map.Route.loaded()) {
-        this.init(map); 
-      }
-    }.bind(this));
+App.Controllers.Map.prototype.initUI = function(callback) {
+  this.loadTemplates(function() {
+    this.initModal();
+    callback();
   }.bind(this));
 };
 
@@ -35,6 +43,13 @@ App.Controllers.Map.prototype.init = function(map) {
 
   this.bindEvents();
 };
+
+App.Controllers.Map.prototype.loadTemplates = function(callback) {
+  $.get('/templates', function(data) {
+    $('body').append(data);
+    callback();
+  });
+}
 
 App.Controllers.Map.prototype.initModal = function() {
   var container = $('#modal');

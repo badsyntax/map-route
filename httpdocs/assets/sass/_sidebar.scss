@@ -40,8 +40,8 @@
     form {
 
     }
-    input {
-      width: 240px;
+    .query {
+      width: 214px;
     }
     button {
       i {
@@ -50,6 +50,13 @@
       &.active {
         border-color: #c5c5c5;
       }
+    }
+    .btn-group > .btn:first-child {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    .dropdown-menu label {
+      margin: 0;
     }
   }
 

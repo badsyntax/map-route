@@ -7,10 +7,25 @@
 <div class="row">
   <div class="search input-append">
     <form method="post" action="#">
-      <input class="input-block-level" id="search-input" type="text" placeholder="Search for a place...">
-      <button class="btn" type="submit">  
-        <i class="icon-search"></i>
-      </button>
+      <input class="input-block-level query" id="search-input" type="text" placeholder="Search for a place...">
+      <div class="btn-group">
+        <button class="btn" type="submit">
+          <i class="icon-search"></i>
+        </button>
+        <button class="btn dropdown-toggle" data-toggle="dropdown">
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <!-- <li class="divider"><li> -->
+          <li>
+            <a href="#">
+              <label>
+                <input type="checkbox" /> Drop pins on search
+              </label>
+            </a>
+          </li>
+        </ul>
+      </div>
     </form>
   </div>
 </div>

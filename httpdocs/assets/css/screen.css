@@ -157,14 +157,21 @@ body {
   color: #222;
   height: 46px;
 }
-.sidebar .search input {
-  width: 240px;
+.sidebar .search .query {
+  width: 214px;
 }
 .sidebar .search button i {
   line-height: normal;
 }
 .sidebar .search button.active {
   border-color: #c5c5c5;
+}
+.sidebar .search .btn-group > .btn:first-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.sidebar .search .dropdown-menu label {
+  margin: 0;
 }
 .sidebar .tab-content {
   height: 100%;

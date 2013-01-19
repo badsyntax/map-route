@@ -13,8 +13,14 @@ class Controller_Base extends Controller {
 
 	public function after()
 	{
-		$this->response->body(
-			Kostache_Layout::factory($this->layout)->render($this->content)
-		);
+    if ($this->layout === NULL)
+    {
+      $body = Kostache::factory()->render($this->content);
+    }
+    else
+    {
+      $body = Kostache_Layout::factory($this->layout)->render($this->content);
+    }
+		$this->response->body($body);
 	}
 }

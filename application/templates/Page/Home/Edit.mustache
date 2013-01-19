@@ -1,13 +1,9 @@
 <div class="container">
-
-  <!-- Navbar -->
   <div
     class="navbar navbar-inner" 
     id="navbar"
     data-bind="template: { name: 'navbar-template' }">
   </div>
-  
-  <!-- Map -->
   <div id="map-canvas" class="map">
     <div class="message">
       <div class="has-js">
@@ -18,50 +14,13 @@
       </div>
     </div>
   </div>
-
-  <!-- Sidebar -->
   <aside 
     class="sidebar" 
     id="sidebar"
     data-bind="template: { name: 'sidebar-template' }">
   </aside>
-
 </div>
-
-<!-- Modal -->
 <div 
   id="modal" 
   data-bind="template: { name: 'modal-template' }">
 </div>
-
-<!-- Templates -->
-<script type="text/html" id="toolbar-template">
-{{>toolbar}}
-</script>
-<script type="text/html" id="modal-template">
-{{>modal}}
-</script>
-<script type="text/html" id="modal-edit-marker">
-{{>modal/marker/edit}}
-</script>
-<script type="text/html" id="modal-share">
-{{>modal/share}}
-</script>
-<script type="text/html" id="modal-profile">
-{{>modal/profile}}
-</script>
-<script type="text/html" id="map-infowindow-edit-template">
-{{>infowindow/edit}}
-</script>
-<script type="text/html" id="map-infowindow-view-template">
-{{>infowindow/view}}
-</script>
-<script type="text/html" id="sidebar-template">
-{{>sidebar}}
-</script>
-<script type="text/html" id="navbar-template">
-{{>navbar}}
-</script>
-<script type="text/html" id="dropmenu-template">
-{{>navbar/dropmenu}}
-</script>
