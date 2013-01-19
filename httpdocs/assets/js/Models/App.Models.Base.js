@@ -7,84 +7,76 @@ App.Models.Base = function(data) {
   }
 };
 
-App.Models.Base.prototype.values = function(data) {
-  ko.mapping.fromJS(data, null, this);
-  return this;
-};
-
-App.Models.Base.prototype.setObservables = $.noop;
-App.Models.Base.prototype.setComputed = $.noop;
-
-App.Models.Base.prototype.save = function(success, error) {
-  if (this.id && this.id()) {
-    this.update(success, error);
-  } else {
-    this.create(success, error);
-  }
-};
-
-App.Models.Base.prototype.find = function(success, error) {
-  this.api.find({
-    success: success,
-    error: error,
-    data: this.where(),
-    mapResponse: {
-      model: this,
-      mappingOptions: {
-        'routes': {
-          create: function(options) {
-              return new App.Models.Route(options.data);
+App.Models.Base.prototype = {
+  values: function(data) {
+    ko.mapping.fromJS(data, null, this);
+    return this;
+  },
+  setObservables: $.noop,
+  setComputed: $.noop,
+  save: function(success, error) {
+    if (this.id && this.id()) {
+      this.update(success, error);
+    } else {
+      this.create(success, error);
+    }
+  },
+  find: function(success, error) {
+    this.api.find({
+      success: success,
+      error: error,
+      data: this.where(),
+      mapResponse: {
+        model: this,
+        mappingOptions: {
+          'routes': {
+            create: function(options) {
+                return new App.Models.Route(options.data);
+            }
           }
         }
       }
+    });
+  },
+  create: function(success, error) {
+    this._create(success, error);
+  },
+  update: function(success, error) {
+    this._update(success, error);
+  },
+  remove: function(success, error) {
+    this._remove(success, error);
+  },
+  where: function(key, value) {
+    if (!key && !value) {
+      return $.param(this.whereParam);
     }
-  });
-};
-
-App.Models.Base.prototype.create = function(success, error) {
-  this._create(success, error);
-};
-
-App.Models.Base.prototype.update = function(success, error) {
-  this._update(success, error);
-};
-
-App.Models.Base.prototype.remove = function(success, error) {
-  this._remove(success, error);
-};
-
-App.Models.Base.prototype.where = function(key, value) {
-  if (!key && !value) {
-    return $.param(this.whereParam);
+    this.whereParam[key] = value;
+    return this;
+  },
+  _create: function(success, error) {
+    this.api.create({
+      data: ko.mapping.toJSON(this),
+      success: success,
+      error: error,
+      mapResponse: {
+        fields: [ 'id' ],
+        model: this
+      }
+    });
+  },
+  _update: function(success, error) {
+    this.api.update({
+      data: ko.mapping.toJSON(this),
+      success: success,
+      error: error
+    });
+  },
+  _remove: function(success, error) {
+    this.api.remove({
+      data: ko.mapping.toJSON(this),
+      success: success,
+      error: error
+    });
   }
-  this.whereParam[key] = value;
-  return this;
-};
-
-App.Models.Base.prototype._create = function(success, error) {
-  this.api.create({
-    data: ko.mapping.toJSON(this),
-    success: success,
-    error: error,
-    mapResponse: {
-      fields: [ 'id' ],
-      model: this
-    }
-  });
-};
-
-App.Models.Base.prototype._update = function(success, error) {
-  this.api.update({
-    data: ko.mapping.toJSON(this),
-    success: success,
-    error: error
-  });
-};
-
-App.Models.Base.prototype._remove = function(success, error) {
-  this.api.remove({
-    data: ko.mapping.toJSON(this),
-    success: success,
-    error: error
-  });
 };

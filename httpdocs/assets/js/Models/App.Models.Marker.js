@@ -3,35 +3,36 @@ App.Models.Marker = function() {
   this.api = App.API.Marker;
 };
 
-App.inherits(App.Models.Marker, App.Models.Base);
-
-App.Models.Marker.prototype.setObservables = function() {
-  this.active = ko.observable(false);
-};
-
-App.Models.Marker.prototype.setComputed = function() {
-  this.route_title = ko.computed(this.getRouteTitle, this);
-};
-
-App.Models.Marker.prototype.getRouteTitle = function() {
-  return this.title() || this.description() || 
-    (this.longitude().toFixed(5) + ', ' + this.latitude().toFixed(5));
-};
-
-App.Models.Marker.prototype.findAll = function(success, error) {
-  App.API.Marker.findAll({
-    data: this.where(),
-    success: success.bind(this),
-    error: error,
-    mapResponse: {
-      model: this,
-      mappingOptions: {
-        'markers': {
-          create: function(options) {
-            return new App.Models.Marker(options.data);
+App.Models.Marker.prototype = Object.inherits(App.Models.Base, {
+  setObservables: function() {
+    this.active = ko.observable(false);
+  },
+  setComputed: function() {
+    this.route_title = ko.computed(this.getRouteTitle, this);
+    this.latlng = ko.computed(this.getLatLng, this);
+  },
+  getRouteTitle: function() {
+    return this.title() || this.description() || 
+      (this.longitude().toFixed(5) + ', ' + this.latitude().toFixed(5));
+  },
+  getLatLng: function() {
+    return this.latitude() + ',' + this.longitude(); 
+  },
+  findAll: function(success, error) {
+    App.API.Marker.findAll({
+      data: this.where(),
+      success: success.bind(this),
+      error: error,
+      mapResponse: {
+        model: this,
+        mappingOptions: {
+          'markers': {
+            create: function(options) {
+              return new App.Models.Marker(options.data);
+            }
           }
         }
       }
-    }
-  });
-};
+    });
+  }
+});

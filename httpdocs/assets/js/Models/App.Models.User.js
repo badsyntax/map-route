@@ -3,4 +3,4 @@ App.Models.User = function(data) {
   this.api = App.API.User;
 };
 
-App.inherits(App.Models.User, App.Models.Base);
+App.Models.User.prototype = Object.inherits(App.Models.Base);

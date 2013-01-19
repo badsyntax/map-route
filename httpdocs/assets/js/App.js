@@ -1,4 +1,3 @@
-// app.js
 var App = {
   Controllers: {},
   Models: {},
@@ -8,23 +7,22 @@ var App = {
   API: {}
 };
 
-if (!Function.prototype.bind) {
-  Function.prototype.bind = function(scope) {
-    return $.proxy(this, scope);
-  };
-}
-
 App.log = function() {
   if (App.Config.get('debug') === true && console && console.log) {
     console.log.apply(console, arguments);
   }
 };
 
-App.inherits = function(_sub, _super) {
+Object.inherits = function(_super, _sub) {
 
-  function F() {}
-  F.prototype = _super.prototype;
+  var proto = Object.create(_super.prototype);
 
-  _sub.prototype = new F();
-  _sub.prototype.constructor = _sub;
-}; 
+  // Mixin the sub-class
+  for (var prop in _sub) {
+    if (_sub.hasOwnProperty(prop)) {
+      proto[prop] = _sub[prop];
+    }
+  }
+
+  return proto;
+};
