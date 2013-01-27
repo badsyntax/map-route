@@ -3,14 +3,14 @@ App.Events = function() {
 };
 
 App.Events.prototype = {
-  on: function(name, handler) {
-    this._e.on(name, handler);
+  on: function() {
+    this._e.on.apply(this._e, arguments);
   },
-  off: function(name, handler) {
-    this._e.off(name, handler);  
+  off: function() {
+    this._e.off.apply(this._e, arguments);
   },
-  trigger: function(name) {
-    this._e.trigger(name);
+  trigger: function() {
+    this._e.trigger.apply(this._e, arguments);
   }
 };
 

@@ -15,7 +15,7 @@ App.log = function() {
 
 Object.inherits = function(_super, _sub) {
 
-  var proto = Object.create(_super.prototype);
+  var proto = Object.create(_super.prototype || _super);
 
   // Mixin the sub-class
   for (var prop in _sub) {

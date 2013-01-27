@@ -4,6 +4,17 @@ App.Models.Marker = function() {
 };
 
 App.Models.Marker.prototype = Object.inherits(App.Models.Base, {
+  fields: {
+    user_id: 0,
+    latitude: 0,
+    longitude: 0,
+    title: '',
+    description: '',
+    location: '',
+    date: null,
+    route_id: 0,
+    route_order: -1
+  },
   setObservables: function() {
     this.active = ko.observable(false);
   },

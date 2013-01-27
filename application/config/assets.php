@@ -31,6 +31,7 @@ $js = array(
 	'assets/js/Controllers/App.Controllers.SignIn.js',
 	'assets/js/UI/App.UI.Device.js',
 	'assets/js/UI/App.UI.Modal.js',
+	'assets/js/UI/Modal/App.UI.Modal.EditMarker.js',
 	'assets/js/UI/App.UI.PlacesSearch.js',
 	'assets/js/UI/Sidebar/App.UI.Sidebar.js',
 	'assets/js/UI/Sidebar/App.UI.Sidebar.Search.js',

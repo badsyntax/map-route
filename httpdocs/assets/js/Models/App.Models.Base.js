@@ -9,6 +9,10 @@ App.Models.Base = function(data) {
 
 App.Models.Base.prototype = {
   values: function(data) {
+    // Merge in fields with default data
+    if (this.fields) {
+      data = $.extend({}, this.fields, data);
+    }
     ko.mapping.fromJS(data, null, this);
     return this;
   },

@@ -28,28 +28,12 @@ App.Map.Marker = (function() {
   }
 
   function onAddDescriptionMarkerClick(e, marker) {
-    
     if (e && e.preventDefault) {
       e.preventDefault();
     }
 
     curMarker = marker;
-
-    App.UI.Modal.show('#modal-edit-marker', {
-      heading: 'Edit location',
-      buttons: [{
-        title: 'Save',
-        action: saveDescription,
-        type: 'btn-primary'
-      }, {
-        title: 'Cancel',
-        action: '',
-        type: ''
-      }]
-    }, marker.model, function() {
-      var field = $(this).find('#inputSearchLocation');
-      var placesSearch = new App.UI.PlacesSearch(field);
-    });
+    App.UI.Modal.EditMarker.show(marker.model, saveDescription);
   }
 
   function saveDescription(e) {
@@ -75,12 +59,7 @@ App.Map.Marker = (function() {
       user_id: App.Config.get('user_id'),
       latitude: data.location.lat(),
       longitude: data.location.lng(),
-      title: '',
-      description: '',
-      location: '',
-      date: null,
-      route_id: App.Map.Route.model().id,
-      route_order: -1
+      route_id: App.Map.Route.model().id
     });
 
     model.save(data.success, data.error);
