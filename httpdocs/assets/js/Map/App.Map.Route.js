@@ -25,6 +25,17 @@ App.Map.Route = (function() {
       this.removeMarkers();
       this.removeRoute();
     },
+    refresh: function() {
+      this.resetMarkers();
+      this.removeRoute();
+      this.addRoute();
+      this.fitMarkerBounds();
+    },
+    show: function() {
+      this.addMarkers();
+      this.fitMarkerBounds();
+      this.addRoute();
+    },
     createPoly: function() {
       poly(new google.maps.Polyline(App.Config.get('polyOptions')));
       poly().setMap(App.Map.instance());
@@ -87,7 +98,8 @@ App.Map.Route = (function() {
       $.each(markers(), function(i, marker) {
         this.removeMarker(marker, false, false);
       }.bind(this));
-      markers.removeAll();
+      markers([]);
+      markersData([]);
     },
     removeMarker: function(marker, removeModel, removeMarker) {
 
@@ -123,10 +135,7 @@ App.Map.Route = (function() {
     resetMarkers: function() {
       $.each(markers(), function(i, marker) {
         
-        marker.setAnimation(null);
-        marker.infoWindow.close();
-        marker.setCursor('pointer');
-        marker.setDraggable(true);
+        marker.reset();
 
         if ($.isFunction(marker.model.active)) {
           marker.model.active(false);

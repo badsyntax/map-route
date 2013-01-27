@@ -43,6 +43,7 @@ App.Map.Marker = (function() {
 
     curMarker.model.save();
     App.UI.Modal.hide();
+    App.Map.Route.refresh();
 
     // Refresh the infowindow dimensions
     var infoWindow = curMarker.infoWindow;
@@ -127,6 +128,20 @@ App.Map.Marker = (function() {
       var marker = createMarker(map, data);
 
       return $.extend(marker, {
+        reset: function() {
+          this.setAnimation(null);
+          this.infoWindow.close();
+          this.setCursor('pointer');
+          this.setDraggable(true);
+          this.updatePosition();
+        },
+        updatePosition: function() {
+          var latlng = new google.maps.LatLng(
+            marker.model.latitude(), 
+            marker.model.longitude()
+          );
+          marker.setPosition(latlng);
+        },
         focus: function() { 
           App.Map.Route.resetMarkers();
           marker.infoWindow.open(map, marker);
