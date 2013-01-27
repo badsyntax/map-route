@@ -102,12 +102,12 @@ App.Map.Marker = (function() {
     var infoWindow = new App.Map.InfoWindow(type);
 
     var marker = new google.maps.Marker({
-        infoWindow: infoWindow,
-        position: data.location,
-        map: map,
-        draggable: false,
-        clickable: false,
-        animation: google.maps.Animation.DROP // google.maps.Animation.DROP | BOUNCE
+      infoWindow: infoWindow,
+      position: data.location,
+      map: map,
+      draggable: false,
+      clickable: false,
+      animation: google.maps.Animation.DROP // google.maps.Animation.DROP | BOUNCE
     });
 
     marker.model = createModel(marker, data);

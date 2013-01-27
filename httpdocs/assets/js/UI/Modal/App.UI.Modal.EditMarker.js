@@ -17,6 +17,7 @@ App.UI.Modal.EditMarker = (function(base) {
   
   function show(dataModel, actionCallback) {
     model = dataModel;
+    
     base.show(selector, {
       heading: 'Edit location',
       buttons: [{

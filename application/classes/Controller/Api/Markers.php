@@ -63,6 +63,11 @@ class Controller_Api_Markers extends Controller_REST
 			throw HTTP_Exception::factory(401);
 		}
 
+		$data = array_merge(
+			$data,
+			array('user_id' => $this->user->id)
+		);
+
 		$marker->values($data);
 		$marker->save();
 
