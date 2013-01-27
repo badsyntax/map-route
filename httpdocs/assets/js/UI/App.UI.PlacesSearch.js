@@ -44,8 +44,7 @@ App.UI.PlacesSearch.prototype = Object.inherits(App.Events, {
 
     this.field.focus();
     this.places.getDetails({ reference: reference }, function(result, status) {
-      this.trigger('onAddressSelect', [ result, status ]);
-      // this.showSearchOnMap.bind(this));
+      this.trigger('onAddressSelect', arguments);
     }.bind(this));
 
     return address;

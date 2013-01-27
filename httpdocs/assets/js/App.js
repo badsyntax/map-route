@@ -26,3 +26,5 @@ Object.inherits = function(_super, _sub) {
 
   return proto;
 };
+
+Globalize.culture('en-GB');
