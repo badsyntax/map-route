@@ -36,4 +36,4 @@ App.UI.Modal.EditMarker = (function(base) {
     show: show
   });
 
-}(App.UI.Modal)) 
+}(App.UI.Modal));
