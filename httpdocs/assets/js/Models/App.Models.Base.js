@@ -60,7 +60,6 @@ App.Models.Base.prototype = {
       success: success,
       error: error,
       mapResponse: {
-        fields: [ 'id' ],
         model: this
       }
     });

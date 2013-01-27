@@ -35,17 +35,16 @@ class Controller_Api_Markers extends Controller_REST
 
 	public function action_create()
 	{
-		$data = (array) json_decode($this->request->body());
-
-		$data['user_id'] = $this->user->id;
+		$data = array_merge(
+			(array) json_decode($this->request->body()),
+			array('user_id' => $this->user->id)
+		);
 
 		$marker = ORM::factory('Marker');
 		$marker->values($data);
 		$marker->save();
 
-		$this->send_response(201, 'application/json', REST_Response::factory(array(
-			'id' => $marker->id
-		)));
+		$this->send_response(201, 'application/json', REST_Response::factory($marker->as_array()));
 	}
 
 	public function action_update()

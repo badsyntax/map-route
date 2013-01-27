@@ -122,6 +122,10 @@ body {
   padding: 0 8px 8px 6px;
 }
 
+.typeahead.dropdown-menu {
+  z-index: 2000000;
+}
+
 /* Sidebar
  *****************/
 .sidebar {

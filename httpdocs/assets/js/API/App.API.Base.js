@@ -56,10 +56,13 @@ App.API.Base.prototype = {
   },
   mapResponse: function(xhr, config) {
     xhr.success(function(data, textStatus, jqXHR) {
+      
       if (!data) {
         return;
       }
       var obj = {};
+
+      // Map specific fields in response
       if ($.isArray(config.fields)) {
         $.each(config.fields, function(i, field) {
           if (!data[field]) {
@@ -67,9 +70,12 @@ App.API.Base.prototype = {
           }
           obj[field] = data[field];
         });
+
+      // Map all fields in response
       } else {
         obj = data;
       }
+
       ko.mapping.fromJS(obj, config.mappingOptions, config.model);
     }); 
   }

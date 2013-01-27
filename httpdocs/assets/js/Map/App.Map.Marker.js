@@ -36,7 +36,7 @@ App.Map.Marker = (function() {
     curMarker = marker;
 
     App.UI.Modal.show('#modal-edit-marker', {
-      heading: 'Edit marker',
+      heading: 'Edit location',
       buttons: [{
         title: 'Save',
         action: saveDescription,
@@ -46,7 +46,10 @@ App.Map.Marker = (function() {
         action: '',
         type: ''
       }]
-    }, marker.model);
+    }, marker.model, function() {
+      var field = $(this).find('#inputSearchLocation');
+      var placesSearch = new App.UI.PlacesSearch(field);
+    });
   }
 
   function saveDescription(e) {
@@ -74,6 +77,8 @@ App.Map.Marker = (function() {
       longitude: data.location.lng(),
       title: '',
       description: '',
+      location: '',
+      date: null,
       route_id: App.Map.Route.model().id,
       route_order: -1
     });

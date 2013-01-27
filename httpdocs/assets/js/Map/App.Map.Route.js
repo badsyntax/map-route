@@ -109,26 +109,16 @@ App.Map.Route = (function() {
     },
     fitMarkerBounds: function() {
       var map = App.Map.instance();
-      if (!markers().length) {
-        return map.setZoom(2); 
+      if (markers().length) {
+        var bounds = new google.maps.LatLngBounds();
+        $.each(markers(), function(i, marker) {
+            bounds.extend(marker.getPosition());
+        });
+        map.fitBounds(bounds);
       }
-      var bounds = new google.maps.LatLngBounds();
-      $.each(markers(), function(i, marker) {
-          bounds.extend(marker.getPosition());
-      });
-      if (bounds.getNorthEast().equals(bounds.getSouthWest())) {
-        var extendPoint1 = new google.maps.LatLng(
-          bounds.getNorthEast().lat() + 0.01, 
-          bounds.getNorthEast().lng() + 0.01
-        );
-        var extendPoint2 = new google.maps.LatLng(
-          bounds.getNorthEast().lat() - 0.01, 
-          bounds.getNorthEast().lng() - 0.01
-        );
-        bounds.extend(extendPoint1);
-        bounds.extend(extendPoint2);
+      if (markers().length <= 1) {
+        map.setZoom(2);
       }
-      map.fitBounds(bounds);
     },
     resetMarkers: function() {
       $.each(markers(), function(i, marker) {

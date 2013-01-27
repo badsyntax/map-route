@@ -6,4 +6,14 @@ class Model_Marker extends ORM
 		'user' => array('model' => 'User'),
 		'route' => array('model' => 'Route'),
 	);
+
+  public function save(Validation $validation = NULL)
+  {
+    if ($this->date === NULL)
+    {
+      $this->date = time();
+    }
+
+    return parent::save($validation);
+  }
 }

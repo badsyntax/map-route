@@ -3,7 +3,9 @@
 $js = array(
 	'assets/lib/jquery/jquery-2.0.0b1.js',
 	'assets/lib/jquery/path.min.js',
+	'assets/lib/jquery/globalize.js',
 	'assets/lib/jquery/jquery.tinyscrollbar.js',
+	'assets/lib/jquery/cultures/globalize.culture.en-GB.js',
 	'assets/lib/bootstrap/js/bootstrap.min.js',
 	'assets/lib/knockout/knockout-2.2.1.js',
 	'assets/lib/knockout/knockout.mapping-2.3.4.js',

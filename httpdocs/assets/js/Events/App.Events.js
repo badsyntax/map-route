@@ -29,3 +29,5 @@ App.Events.delegate = function(e, handlers) {
 };
 
 App.GlobalEvents = new App.Events();
+
+Globalize.culture('en-GB');
