@@ -17,9 +17,9 @@
   <email>sebastian@phpunit.de</email>
   <active>yes</active>
  </lead>
- <date>2012-12-02</date>
+ <date>2013-03-01</date>
  <version>
-  <release>3.7.10</release>
+  <release>3.7.15</release>
   <api>3.7.0</api>
  </version>
  <stability>
@@ -234,6 +234,7 @@
     <name>PHP_Timer</name>
     <channel>pear.phpunit.de</channel>
     <min>1.0.2</min>
+    <max>1.0.99</max>
    </package>
    <package>
     <name>PHPUnit_MockObject</name>
@@ -244,7 +245,7 @@
    <package>
     <name>Yaml</name>
     <channel>pear.symfony.com</channel>
-    <min>2.1.0</min>
+    <min>2.2.0</min>
    </package>
    <extension>
     <name>dom</name>
@@ -252,18 +253,13 @@
    <extension>
     <name>pcre</name>
    </extension>
-   <extension>
-    <name>reflection</name>
-   </extension>
-   <extension>
-    <name>spl</name>
-   </extension>
   </required>
   <optional>
    <package>
     <name>PHP_Invoker</name>
     <channel>pear.phpunit.de</channel>
     <min>1.1.0</min>
+    <max>1.1.99</max>
    </package>
    <extension>
     <name>json</name>

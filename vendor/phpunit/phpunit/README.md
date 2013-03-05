@@ -2,6 +2,8 @@
 
 PHPUnit is the de-facto standard for unit testing in PHP projects. It provides both a framework that makes the writing of tests easy as well as the functionality to easily run the tests and analyse their results.
 
+[![Build Status](https://travis-ci.org/sebastianbergmann/phpunit.png?branch=3.7)](https://travis-ci.org/sebastianbergmann/phpunit)
+
 ## Requirements
 
 * PHPUnit 3.7 requires PHP 5.3.3 (or later) but PHP 5.4.6 (or later) is highly recommended.
@@ -9,7 +11,7 @@ PHPUnit is the de-facto standard for unit testing in PHP projects. It provides b
 
 ## Installation
 
-There a three supported ways of installing PHPUnit.
+There are three supported ways of installing PHPUnit.
 
 You can use the [PEAR Installer](http://pear.php.net/manual/en/guide.users.commandline.cli.php) or [Composer](http://getcomposer.org/) to download and install PHPUnit as well as its dependencies. You can also download a [PHP Archive (PHAR)](http://php.net/phar) of PHPUnit that has all required (as well as some optional) dependencies of PHPUnit bundled in a single file.
 
@@ -43,6 +45,10 @@ The documentation for PHPUnit is available in different formats:
 * [English, single HTML file](http://www.phpunit.de/manual/3.7/en/phpunit-book.html)
 * [English, PDF](http://www.phpunit.de/manual/3.7/en/phpunit-book.pdf)
 * [English, ePub](http://www.phpunit.de/manual/3.7/en/phpunit-book.epub)
+* [Brazilian Portuguese, multiple HTML files](http://www.phpunit.de/manual/3.7/pt_br/index.html)
+* [Brazilian Portuguese, single HTML file](http://www.phpunit.de/manual/3.7/pt_br/phpunit-book.html)
+* [Brazilian Portuguese, PDF](http://www.phpunit.de/manual/3.7/pt_br/phpunit-book.pdf)
+* [Brazilian Portuguese, ePub](http://www.phpunit.de/manual/3.7/pt_br/phpunit-book.epub)
 * [French, multiple HTML files](http://www.phpunit.de/manual/3.7/fr/index.html)
 * [French, single HTML file](http://www.phpunit.de/manual/3.7/fr/phpunit-book.html)
 * [French, PDF](http://www.phpunit.de/manual/3.7/fr/phpunit-book.pdf)

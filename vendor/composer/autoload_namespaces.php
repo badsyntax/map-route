@@ -6,5 +6,9 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Symfony\\Component\\Yaml' => $vendorDir . '/symfony/yaml/',
+    'Symfony\\Component\\Yaml\\' => $vendorDir . '/symfony/yaml/',
+    'Symfony\\Component\\EventDispatcher\\' => $vendorDir . '/symfony/event-dispatcher/',
+    'Guzzle\\Tests' => $vendorDir . '/guzzle/guzzle/tests/',
+    'Guzzle' => $vendorDir . '/guzzle/guzzle/src/',
+    'Aws' => $vendorDir . '/aws/aws-sdk-php/src/',
 );
