@@ -1,7 +1,7 @@
 <div class="container" style="margin:2em">
   <form 
     id="fileupload" 
-    action="https://maproute-local-photos.s3.amazonaws.com/" 
+    action="/api/photos" 
     method="POST" 
     enctype="multipart/form-data">
     <div class="row fileupload-buttonbar">
@@ -10,7 +10,7 @@
             <span class="btn btn-primary fileinput-button">
                 <i class="icon-plus icon-white"></i>
                 <span>Choose files...</span>
-                <input type="file" name="file" multiple>
+                <input type="file" name="files[]" multiple>
             </span>
         </div>
         <!-- The global progress information -->
@@ -27,7 +27,7 @@
     <div class="fileupload-loading"></div>
     <br>
     <!-- The table listing the files available for upload/download -->
-    <!-- <table role="presentation" class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table> -->
+    <table role="presentation" class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody></table>
   </form>
 </div>
 <!-- The template to display files available for upload -->
