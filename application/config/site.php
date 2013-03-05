@@ -16,9 +16,13 @@ return array(
 		'minion-tasks-migrations' => MODPATH.'minion-tasks-migrations',
 	),
 	'cookie' => array(
-		'salt' => 'JpTKsYl8dfdf3sNbHKqg'
+		'salt' => 'JpTKsYl8dfdf3sNbHKqg',
 	),
 	'map' => array(
-		'key' => 'AIzaSyBRgqg6tv_ZNjtP1BYH7NRCxglMmkSFMgs'
+		'key' => 'AIzaSyBRgqg6tv_ZNjtP1BYH7NRCxglMmkSFMgs',
+	),
+	's3' => array(
+		'key' => 'AKIAIVYJAENDGX5BFRYQ',
+		'secret' => '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',
 	)
 );

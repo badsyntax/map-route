@@ -1,7 +1,19 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 $js = array(
-	'assets/lib/jquery/jquery-2.0.0b1.js',
+	'assets/lib/jquery/jquery-1.9.1.min.js',
+	'assets/lib/jquery/jquery-file-upload/js/vendor/jquery.ui.widget.js', // FILEUPLOAD
+	'assets/lib/jquery/jquery-file-upload/js/tmpl.min.js', // FILEUPLOAD
+	'assets/lib/jquery/jquery-file-upload/js/load-image.min.js', // FILEUPLOAD
+	'assets/lib/jquery/jquery-file-upload/js/canvas-to-blob.min.js', // FILEUPLOAD
+	'assets/lib/jquery/jquery-file-upload/js/jquery.iframe-transport.js', // FILEUPLOAD
+	'assets/lib/jquery/jquery-file-upload/js/jquery.fileupload.js', // FILEUPLOAD
+	'assets/lib/jquery/jquery-file-upload/js/jquery.fileupload-fp.js', // FILEUPLOAD
+	'assets/lib/jquery/jquery-file-upload/js/jquery.fileupload-ui.js', // FILEUPLOAD
+
+
+
+
 	'assets/lib/jquery/path.min.js',
 	'assets/lib/jquery/globalize.js',
 	'assets/lib/jquery/jquery.tinyscrollbar.js',
@@ -105,6 +117,7 @@ return array(
 				'assets/lib/bootstrap/css/bootstrap.min.css',
 				'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
 				'assets/lib/fontawesome/css/font-awesome.css',
+				'assets/lib/jquery/jquery-file-upload/css/jquery.fileupload-ui.css',
 				'assets/css/screen.css',
 		  ),
 	  	'javascript' => $js,

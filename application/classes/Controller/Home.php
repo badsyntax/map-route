@@ -15,4 +15,10 @@ class Controller_Home extends Controller_Base {
 
 		$this->content = new $view_model;		
 	}
+
+  public function action_s3callback()
+  {
+    die(print_r($_REQUEST));
+    die('test');
+  }
 }
