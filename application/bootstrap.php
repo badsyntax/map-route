@@ -41,6 +41,11 @@ setlocale(LC_ALL, 'en_US.utf-8');
 spl_autoload_register(array('Kohana', 'auto_load'));
 
 /**
+ * Load the composer autoloader
+ */
+require str_replace('/application', '', APPPATH).'./vendor/autoload.php';
+
+/**
  * Optionally, you can enable a compatibility auto-loader for use with
  * older modules that have not been updated for PSR-0.
  *

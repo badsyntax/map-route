@@ -7,6 +7,7 @@ return array(
 		'auth'       => MODPATH.'auth',
 		'minion'     => MODPATH.'minion',
 		'cache'      => MODPATH.'cache',
+		'image'      => MODPATH.'image',
 		'database'   => MODPATH.'database',
 		'orm'        => MODPATH.'orm',
 		'oauth2'     => MODPATH.'oauth2',

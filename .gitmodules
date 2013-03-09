@@ -34,3 +34,6 @@
 [submodule "modules/device"]
 	path = modules/device
 	url = git@github.com:badsyntax/kohana-device.git
+[submodule "modules/image"]
+	path = modules/image
+	url = git://github.com/kohana/image.git
