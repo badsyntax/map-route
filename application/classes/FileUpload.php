@@ -3,14 +3,13 @@
 use Aws\Common\Aws;
 use Aws\S3\S3Client;
 
-class FilesUpload {
+class FileUpload {
 
   protected $field_name;
   protected $files;
   protected $data;
   protected $user;
-  protected $failed = array();
-  protected $uploaded = array();
+  protected $uploaded;
 
   public function __construct($field_name = array(), $files = array(), $data = array())
   {
@@ -20,12 +19,12 @@ class FilesUpload {
     $this->user = Auth::instance()->get_user();
     $this->s3_config = Kohana::$config->load('site.s3');
     $this->s3 = S3Client::factory($this->s3_config);
-    $this->process_files();
+    $this->process_file();
   }
 
   public static function factory($field_name = array(), $files = array(), $data = array())
   {
-    return new FilesUpload($field_name, $files, $data);
+    return new FileUpload($field_name, $files, $data);
   }
 
   public function rules()
@@ -38,24 +37,10 @@ class FilesUpload {
     );
   }
 
-  protected function process_files()
+  protected function process_file()
   {
-    $files = $this->files[$this->field_name];
+    $file = $this->files[$this->field_name];
 
-    foreach($files['name'] as $index => $v)
-    {
-      $this->process_file(array(
-        'name'     => $files['name'][$index],
-        'type'     => $files['type'][$index],
-        'tmp_name' => $files['tmp_name'][$index],
-        'error'    => $files['error'][$index],
-        'size'     => $files['size'][$index]
-      ));       
-    }
-  }
-
-  protected function process_file($file)
-  {
     if (!$this->validate($file))
     {
       $this->failed[] = $file;
@@ -66,13 +51,15 @@ class FilesUpload {
     $this->move_file($file);
     $this->create_thumbs($file);
     $this->upload_to_s3($file);
-    $this->uploaded[] = $file;
+    $this->remove_files($file);
+    $this->uploaded = $file;
   }
 
   protected function get_file_info(&$file)
   {
-    $file['extension'] = $this->extension($file);
     $file['path'] = $this->file_path($file);
+    $file['extension'] = $this->extension($file);
+    $file['filename'] = $this->file_name($file);
   }
 
   protected function extension($file)
@@ -88,7 +75,12 @@ class FilesUpload {
 
   protected function file_path($file, $prefix='')
   {
-    return $this->cache_path().$this->user->id.'.'.time().'.'.($prefix !== '' ? $prefix.'.' : '').$file['name'];
+    return $this->cache_path().$this->file_name($file, $prefix);
+  }
+
+  protected function file_name($file, $prefix='')
+  {
+    return $this->user->id.'.'.time().'.'.($prefix !== '' ? $prefix.'.' : '').$file['name'];
   }
 
   protected function move_file(&$file)
@@ -126,16 +118,42 @@ class FilesUpload {
 
   protected function upload_to_s3(&$file)
   {
-    die(print_r($file));
+    $bucket = 'maproute-local-photos';
+
+    // Original photo
+    $this->s3->putObject(array(
+      'Bucket' => $bucket,
+      'Key'    => basename($file['path']),
+      'Body'   => fopen($file['path'], 'r+'),
+      'ACL'    => 'public-read'
+    ));
+
+    // Screen
+    $this->s3->putObject(array(
+      'Bucket' => $bucket,
+      'Key'    => basename($file['screen']),
+      'Body'   => fopen($file['screen'], 'r+'),
+      'ACL'    => 'public-read'
+    ));
+
+    // Thumb
+    $this->s3->putObject(array(
+      'Bucket' => $bucket,
+      'Key'    => basename($file['thumb']),
+      'Body'   => fopen($file['thumb'], 'r+'),
+      'ACL'    => 'public-read'
+    ));
+  }
+
+  protected function remove_files($file)
+  {
+    unlink($file['path']);
+    unlink($file['screen']);
+    unlink($file['thumb']);
   }
 
   public function uploaded()
   {
     return $this->uploaded;
-  }
-
-  public function failed()
-  {
-    return $this->failed;
   }
 }

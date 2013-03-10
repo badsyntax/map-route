@@ -19,6 +19,31 @@ App.UI.Modal.EditMarker = (function(base) {
       e.preventDefault();
       $(this).tab('show');
     });
+
+    var container = $('#fileupload');
+
+    console.log(container.length);
+
+    container.fileupload({
+            // Uncomment the following to send cross-domain cookies:
+            //xhrFields: {withCredentials: true},
+            autoUpload: true,
+            dataType: 'json',
+            multipart: true,
+            acceptFileTypes: /(\.|\/)(png|jpe?g)$/i,
+            type: 'POST',     
+            previewMaxWidth: 78,
+            previewMaxHeight: 53,
+            url: '/api/photos'
+        });
+
+    container.on('fileuploadcompleted', onFileUploadCompleted);
+
+    function onFileUploadCompleted(e, data) {
+      var completedFileRows = data.filesContainer.find('.template-download').not('.error');
+      completedFileRows.remove();
+    }
+
   }
   
   function show(dataModel, actionCallback) {

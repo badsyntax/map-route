@@ -10,5 +10,6 @@ return array(
     'Symfony\\Component\\EventDispatcher\\' => $vendorDir . '/symfony/event-dispatcher/',
     'Guzzle\\Tests' => $vendorDir . '/guzzle/guzzle/tests/',
     'Guzzle' => $vendorDir . '/guzzle/guzzle/src/',
+    'Composer\\Installers\\' => $vendorDir . '/composer/installers/src/',
     'Aws' => $vendorDir . '/aws/aws-sdk-php/src/',
 );

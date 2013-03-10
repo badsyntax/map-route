@@ -338,82 +338,6 @@
         ]
     },
     {
-        "name": "phpunit/phpunit",
-        "version": "3.7.15",
-        "version_normalized": "3.7.15.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/sebastianbergmann/phpunit.git",
-            "reference": "3.7.15"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3.7.15",
-            "reference": "3.7.15",
-            "shasum": ""
-        },
-        "require": {
-            "ext-dom": "*",
-            "ext-pcre": "*",
-            "ext-reflection": "*",
-            "ext-spl": "*",
-            "php": ">=5.3.3",
-            "phpunit/php-code-coverage": ">=1.2.1,<1.3.0",
-            "phpunit/php-file-iterator": ">=1.3.1",
-            "phpunit/php-text-template": ">=1.1.1",
-            "phpunit/php-timer": ">=1.0.2,<1.1.0",
-            "phpunit/phpunit-mock-objects": ">=1.2.0,<1.3.0",
-            "symfony/yaml": ">=2.2.0"
-        },
-        "require-dev": {
-            "pear-pear/pear": "1.9.4"
-        },
-        "suggest": {
-            "ext-json": "*",
-            "ext-simplexml": "*",
-            "ext-tokenizer": "*",
-            "phpunit/php-invoker": ">=1.1.0,<1.2.0"
-        },
-        "time": "2013-03-01 11:55:06",
-        "bin": [
-            "composer/bin/phpunit"
-        ],
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "3.7.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "classmap": [
-                "PHPUnit/"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "include-path": [
-            "",
-            "../../symfony/yaml/"
-        ],
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Sebastian Bergmann",
-                "email": "sebastian@phpunit.de",
-                "role": "lead"
-            }
-        ],
-        "description": "The PHP Unit Testing framework.",
-        "homepage": "http://www.phpunit.de/",
-        "keywords": [
-            "phpunit",
-            "testing",
-            "xunit"
-        ]
-    },
-    {
         "name": "symfony/event-dispatcher",
         "version": "v2.2.0",
         "version_normalized": "2.2.0.0",
@@ -621,6 +545,156 @@
             "ec2",
             "s3",
             "sdk"
+        ]
+    },
+    {
+        "name": "phpunit/phpunit",
+        "version": "3.7.18",
+        "version_normalized": "3.7.18.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sebastianbergmann/phpunit.git",
+            "reference": "3.7.18"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3.7.18",
+            "reference": "3.7.18",
+            "shasum": ""
+        },
+        "require": {
+            "ext-dom": "*",
+            "ext-pcre": "*",
+            "ext-reflection": "*",
+            "ext-spl": "*",
+            "php": ">=5.3.3",
+            "phpunit/php-code-coverage": ">=1.2.1,<1.3.0",
+            "phpunit/php-file-iterator": ">=1.3.1",
+            "phpunit/php-text-template": ">=1.1.1",
+            "phpunit/php-timer": ">=1.0.2,<1.1.0",
+            "phpunit/phpunit-mock-objects": ">=1.2.0,<1.3.0",
+            "symfony/yaml": ">=2.2.0"
+        },
+        "require-dev": {
+            "pear-pear/pear": "1.9.4"
+        },
+        "suggest": {
+            "ext-json": "*",
+            "ext-simplexml": "*",
+            "ext-tokenizer": "*",
+            "phpunit/php-invoker": ">=1.1.0,<1.2.0"
+        },
+        "time": "2013-03-07 21:45:39",
+        "bin": [
+            "composer/bin/phpunit"
+        ],
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.7.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "PHPUnit/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "include-path": [
+            "",
+            "../../symfony/yaml/"
+        ],
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Sebastian Bergmann",
+                "email": "sebastian@phpunit.de",
+                "role": "lead"
+            }
+        ],
+        "description": "The PHP Unit Testing framework.",
+        "homepage": "http://www.phpunit.de/",
+        "keywords": [
+            "phpunit",
+            "testing",
+            "xunit"
+        ]
+    },
+    {
+        "name": "composer/installers",
+        "version": "v1.0.3",
+        "version_normalized": "1.0.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/composer/installers.git",
+            "reference": "v1.0.3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/composer/installers/zipball/v1.0.3",
+            "reference": "v1.0.3",
+            "shasum": ""
+        },
+        "replace": {
+            "shama/baton": "*"
+        },
+        "require-dev": {
+            "composer/composer": "1.0.*@dev",
+            "phpunit/phpunit": "3.7.*"
+        },
+        "time": "2013-03-02 22:45:58",
+        "type": "composer-installer",
+        "extra": {
+            "class": "Composer\\Installers\\Installer",
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Composer\\Installers\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Kyle Robinson Young",
+                "email": "kyle@dontkry.com",
+                "homepage": "https://github.com/shama",
+                "role": "Developer"
+            }
+        ],
+        "description": "A multi-framework Composer library installer",
+        "homepage": "http://composer.github.com/installers/",
+        "keywords": [
+            "TYPO3 Flow",
+            "TYPO3 Neos",
+            "agl",
+            "cakephp",
+            "codeigniter",
+            "drupal",
+            "fuelphp",
+            "installer",
+            "joomla",
+            "kohana",
+            "laravel",
+            "li3",
+            "lithium",
+            "mako",
+            "phpbb",
+            "ppi",
+            "silverstripe",
+            "symfony",
+            "wordpress",
+            "yii",
+            "zend"
         ]
     }
 ]

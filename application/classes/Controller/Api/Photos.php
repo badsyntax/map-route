@@ -19,21 +19,16 @@ class Controller_Api_Photos extends Controller_REST
 
 	public function action_create()
 	{
-		// Process uploaded files
-		$files = FilesUpload::factory('files', $_FILES);
+		$file = FileUpload::factory('file', $_FILES)->uploaded();
 
-		// Save uploaded files to db
-		foreach($files->uploaded() AS $file)
-		{
-			// ORM::factory('Asset')->save_uploaded($file);
-		}
+		ORM::factory('Asset')->save_uploaded($file);
 
-		return;
-
-		$failed = $files_upload->failed();
-
-		$this->send_response(201, 'application/json', REST_Response::factory(array(
-			'id' => 0
-		)));
+		$this->send_response(200, 'application/json', REST_Response::factory(array(
+			'files' => array(REST_Response::factory(array(
+				'name' => $file['name'],
+				'size' => $file['size'],
+				"type" => $file['type'],
+			))))
+		));
 	}	
 }

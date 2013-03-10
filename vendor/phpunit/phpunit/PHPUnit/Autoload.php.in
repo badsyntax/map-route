@@ -42,6 +42,25 @@
  * @since      File available since Release 3.5.0
  */
 
+if (defined('PHPUNIT_COMPOSER_INSTALL')) {
+    return;
+}
+
+$paths = array(
+  __DIR__ . '/../vendor',
+  __DIR__ . '/../../..'
+);
+
+foreach ($paths as $path) {
+    if (is_dir($path . '/composer') &&
+        is_file($path . '/autoload.php')) {
+        require_once $path . '/autoload.php';
+        define('PHPUNIT_COMPOSER_INSTALL', $path . '/autoload.php');
+
+        return;
+    }
+}
+
 require_once 'File/Iterator/Autoload.php';
 require_once 'PHP/CodeCoverage/Autoload.php';
 require_once 'PHP/Timer/Autoload.php';
