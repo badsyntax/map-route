@@ -4,19 +4,20 @@
     action="/api/photos" 
     method="POST" 
     enctype="multipart/form-data">
+    <input type="hidden" name="test" value="world" />
     <div class="row fileupload-buttonbar">
         <div class="span2">
             <!-- The fileinput-button span is used to style the file input field as button -->
-            <span class="btn btn-primary fileinput-button">
-                <i class="icon-plus icon-white"></i>
-                <span>Choose files...</span>
+            <button class="btn btn-primary fileinput-button">
+                <i class="icon-upload-alt"></i>
+                Choose files...
                 <input type="file" name="file" multiple>
-            </span>
+            </button>
         </div>
         <!-- The global progress information -->
         <div class="span5 fileupload-progress fade">
             <!-- The global progress bar -->
-            <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+            <div id="progress" class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
                 <div class="bar" style="width:0%;"></div>
             </div>
             <!-- The extended global progress information -->

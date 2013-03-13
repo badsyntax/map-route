@@ -1,30 +1,37 @@
-var App = {
-  Controllers: {},
-  Models: {},
-  ViewModels: {},
-  UI: {},
-  Config: {},
-  API: {}
+/**
+ * Maproute
+ * Author: Richard Willis (willis.rh@gmail.com)
+ */
+
+/* Inheritance helper */
+Function.prototype.inherit = function(_super, _sub) {
+
+  this.prototype = $.extend({}, _super.prototype || _super);
+  this.prototype.constructor = this;
+
+  // Mixin new properties and methods
+  $.extend(this.prototype, _sub);
+
+  return this;
 };
 
-App.log = function() {
-  if (App.Config.get('debug') === true && console && console.log) {
-    console.log.apply(console, arguments);
-  }
-};
+/* App bootstrap */
+function App(config) {
 
-Object.inherits = function(_super, _sub) {
+  /* Set config */
+  App.Config.set(config);
 
-  var proto = Object.create(_super.prototype || _super);
+  /* Set globalization culture */
+  Globalize.culture('en-GB');
 
-  // Mixin the sub-class
-  for (var prop in _sub) {
-    if (_sub.hasOwnProperty(prop)) {
-      proto[prop] = _sub[prop];
-    }
-  }
+  /* Route to controllers */
+  new App.Router();
+}
 
-  return proto;
-};
-
-Globalize.culture('en-GB');
+/* App namespaces */
+App.Controllers = {};
+App.Models = {};
+App.ViewModels = {},
+App.UI = {},
+App.Config = {},
+App.API = {}

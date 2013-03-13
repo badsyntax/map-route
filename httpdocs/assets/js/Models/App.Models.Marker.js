@@ -3,7 +3,7 @@ App.Models.Marker = function() {
   this.api = App.API.Marker;
 };
 
-App.Models.Marker.prototype = Object.inherits(App.Models.Base, {
+App.Models.Marker.inherit(App.Models.Base, {
   fields: {
     user_id: 0,
     latitude: 0,

@@ -128,7 +128,7 @@ class FileUpload {
       'ACL'    => 'public-read'
     ));
 
-    // Screen
+    // Screen res
     $this->s3->putObject(array(
       'Bucket' => $bucket,
       'Key'    => basename($file['screen']),
@@ -136,7 +136,7 @@ class FileUpload {
       'ACL'    => 'public-read'
     ));
 
-    // Thumb
+    // Thumb res
     $this->s3->putObject(array(
       'Bucket' => $bucket,
       'Key'    => basename($file['thumb']),

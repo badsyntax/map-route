@@ -4,7 +4,7 @@ App.Map.Actions.Routes = function() {
   this.path = App.Map.Route.path();
 };
 
-App.Map.Actions.Routes.prototype = Object.inherits(App.Map.Actions.Action, {
+App.Map.Actions.Routes.inherit(App.Map.Actions.Action, {
   execute: function() {
 
     if (!App.Map.Route.markers().length) {

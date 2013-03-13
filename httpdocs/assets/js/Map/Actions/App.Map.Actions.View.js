@@ -2,7 +2,7 @@ App.Map.Actions.View = function() {
   App.Map.Actions.Action.apply(this, arguments);
 };
 
-App.Map.Actions.View.prototype = Object.inherits(App.Map.Actions.Action, {
+App.Map.Actions.View.inherit(App.Map.Actions.Action, {
   execute: function() {
     App.Map.Actions.Action.prototype.execute.apply(this, arguments);
   },

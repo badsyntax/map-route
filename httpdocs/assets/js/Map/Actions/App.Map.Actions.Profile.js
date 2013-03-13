@@ -2,7 +2,7 @@ App.Map.Actions.Profile = function() {
   App.Map.Actions.Action.apply(this, arguments);
 };
 
-App.Map.Actions.Profile.prototype = Object.inherits(App.Map.Actions.Action, {
+App.Map.Actions.Profile.inherit(App.Map.Actions.Action, {
   execute: function() {
     var viewModel = new App.ViewModels.Modal.Profile();
     App.UI.Modal.show('#modal-profile', {

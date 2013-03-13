@@ -2,7 +2,7 @@ App.Map.Actions.Share = function() {
   App.Map.Actions.Action.apply(this, arguments);
 };
 
-App.Map.Actions.Share.prototype = Object.inherits(App.Map.Actions.Action, {
+App.Map.Actions.Share.inherit(App.Map.Actions.Action, {
   execute: function() {
     App.UI.Modal.show('#modal-share', {
       heading: 'Share'

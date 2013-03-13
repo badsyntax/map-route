@@ -8,36 +8,6 @@
 {{^coming_soon}}
 {{{scripts}}}
 <script>
-App.Config.set({{{app_config}}});
-new App.Router();
+new App({{{app_config}}});
 </script>
 {{/coming_soon}}
-
-
-<script>
-$(function() {
-
-var container = $('#fileupload');
-
-container.fileupload({
-        // Uncomment the following to send cross-domain cookies:
-        //xhrFields: {withCredentials: true},
-        autoUpload: true,
-        dataType: 'json',
-        multipart: true,
-        acceptFileTypes: /(\.|\/)(png|jpe?g)$/i,
-        type: 'POST',     
-        previewMaxWidth: 78,
-        previewMaxHeight: 53,
-        url: '/api/photos'
-    });
-
-container.on('fileuploadcompleted', onFileUploadCompleted);
-
-function onFileUploadCompleted(e, data) {
-  var completedFileRows = data.filesContainer.find('.template-download').not('.error');
-  completedFileRows.remove();
-}
-
-});
-</script>

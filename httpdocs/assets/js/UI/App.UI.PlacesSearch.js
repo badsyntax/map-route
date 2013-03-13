@@ -6,7 +6,7 @@ App.UI.PlacesSearch = function(field) {
   this.init();
 };
 
-App.UI.PlacesSearch.prototype = Object.inherits(App.Events, {
+App.UI.PlacesSearch.inherit(App.Events, {
   init: function() {
     this.initServices();
     this.initAutocomplete();

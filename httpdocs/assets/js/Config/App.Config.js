@@ -27,7 +27,7 @@ App.Config = (function() {
       }
 
       var obj = data;
-      var parts = key.split('.');
+      var parts = (key || '').split('.');
       key = parts.pop();
 
       $.each(parts, function(i, part) {

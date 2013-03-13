@@ -61,7 +61,7 @@ App.UI.Modal.EditMarker = (function(base) {
     }, dataModel, onShown);
   }
 
-  return Object.inherits(base, {
+  return $.extend({}, base, {
     show: show
   });
 

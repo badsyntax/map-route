@@ -23,6 +23,7 @@ $js = array(
 	'assets/lib/knockout/knockout.mapping-2.3.4.js',
 	'assets/js/CustomBindings.js',
 	'assets/js/App.js',
+	'assets/js/Util/App.Util.js',
 	'assets/js/Router/App.Router.js',
 	'assets/js/Events/App.Events.js',
 	'assets/js/Config/App.Config.js',

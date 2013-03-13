@@ -6,6 +6,7 @@ App.Controllers.Map = function(route_id, action) {
   this.action = action;
 
   var self = this;
+  
   this.initUI(function() {
     App.Map.create(function(map){
       App.Map.Route.init(route_id, function() {

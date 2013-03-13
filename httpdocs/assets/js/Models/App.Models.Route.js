@@ -3,7 +3,7 @@ App.Models.Route = function() {
   this.api = App.API.Route;
 };
 
-App.Models.Route.prototype = Object.inherits(App.Models.Base, {
+App.Models.Route.inherit(App.Models.Base, {
   findAll: function(success, error) {
     App.API.Route.findAll({
       success: success,
