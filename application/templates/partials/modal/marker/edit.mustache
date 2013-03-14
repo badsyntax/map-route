@@ -10,41 +10,44 @@
   </li>
 </ul>
  
-<form class="form-horizontal">
   <div class="tab-content">
     <div class="tab-pane active" id="details">
-      <div class="control-group">
-        <label class="control-label" for="inputTitle">Title</label>
-        <div class="controls">
-          <input type="text" id="inputTitle" placeholder="Enter title" class="input-xlarge" data-bind="value: title" />
+      <form class="form-horizontal">
+        <div class="control-group">
+          <label class="control-label" for="inputTitle">Title</label>
+          <div class="controls">
+            <input type="text" id="inputTitle" placeholder="Enter title" class="input-xlarge" data-bind="value: title" />
+          </div>
         </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label" for="inputDescription">Description</label>
-        <div class="controls">
-          <textarea id="inputDescription" placeholder="Enter description" rows="5" class="input-xlarge" data-bind="value: description"></textarea>
+        <div class="control-group">
+          <label class="control-label" for="inputDescription">Description</label>
+          <div class="controls">
+            <textarea id="inputDescription" placeholder="Enter description" rows="5" class="input-xlarge" data-bind="value: description"></textarea>
+          </div>
         </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label" for="inputDate">Date</label>
-        <div class="controls">
-          <input type="text" id="inputDate" placeholder="Enter date" class="input-xlarge" data-bind="value: date_formatted" />
+        <div class="control-group">
+          <label class="control-label" for="inputDate">Date</label>
+          <div class="controls">
+            <input type="text" id="inputDate" placeholder="Enter date" class="input-xlarge" data-bind="value: date_formatted" />
+          </div>
         </div>
-      </div>
+      </form>
     </div>
     <div class="tab-pane" id="location">
-      <div class="control-group">
-        <label class="control-label" for="inputLatLng">Location</label>
-        <div class="controls">
-          <input type="text" id="inputSearchLocation" placeholder="Search for a location..." class="input-xlarge" data-bind="value: location" />
+      <form class="form-horizontal">
+        <div class="control-group">
+          <label class="control-label" for="inputLatLng">Location</label>
+          <div class="controls">
+            <input type="text" id="inputSearchLocation" placeholder="Search for a location..." class="input-xlarge" data-bind="value: location" />
+          </div>
         </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label" for="inputLatLng">Lat/Long</label>
-        <div class="controls">
-          <input type="text" id="inputLatLng" placeholder="Enter latitude and longitude" class="input-xlarge" data-bind="value: latlng" /> 
+        <div class="control-group">
+          <label class="control-label" for="inputLatLng">Lat/Long</label>
+          <div class="controls">
+            <input type="text" id="inputLatLng" placeholder="Enter latitude and longitude" class="input-xlarge" data-bind="value: latlng" /> 
+          </div>
         </div>
-      </div>
+      </form>
     </div>
     <div class="tab-pane" id="photos-view">
       <ul class="thumbnails">
@@ -85,32 +88,33 @@
         </li>
       </ul>
     </div>
-    <div class="tab-pane" id="photos-upload">
-      <form 
-        id="fileupload" 
-        action="/api/photos" 
-        method="POST" 
-        enctype="multipart/form-data">
-        <div class="row fileupload-buttonbar">
-            <div class="span2">
-                <!-- The fileinput-button span is used to style the file input field as button -->
-                <span class="btn btn-primary fileinput-button">
-                    <i class="icon-plus icon-white"></i>
-                    <span>Choose files...</span>
-                    <input type="file" name="file" multiple>
-                </span>
+    <div class="tab-pane fileupload" id="photos-upload">
+      <h4>Upload photos</h4>
+      <div class="clearfix well">
+        <form class="fileupload-form" id="fileupload" action="/api/photos" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="test" value="world" />
+          <div class="fileupload-buttonbar">
+            <div class="clearfix">
+              <button class="btn btn-primary fileinput-button pull-left">
+                <i class="icon-upload-alt"></i>
+                <span>Choose files...</span>
+                <input type="file" name="file" multiple>
+              </button>
+              <p class="fileupload-uploaded"></p>              
             </div>
-            <!-- The global progress information -->
-            <div class="span5 fileupload-progress fade">
-                <!-- The global progress bar -->
-                <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                    <div class="bar" style="width:0%;"></div>
-                </div>
-                <!-- The extended global progress information -->
-                <!-- <div class="progress-extended">&nbsp;</div> -->
-            </div>
+          </div>
+        </form>
+      </div>
+      <div class="fileupload-progress fade">
+        <div id="progress" class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+          <div class="bar" style="width:0%;"></div>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </form>
+
+<script id="template-upload" type="text/x-tmpl">
+</script>
+<script id="template-download" type="text/x-tmpl">
+</script>
