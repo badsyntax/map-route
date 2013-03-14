@@ -2,12 +2,13 @@ App.UI.Modal.EditMarker = (function(base) {
 
   var shown;
   var container;
+  var viewModel;
 
   var photos = {
     init: function() {
-      alert('view photos');
+      viewModel.loadPhotos();
     }
-  }
+  };
 
   /* Upload Photos UI */
   var upload = {
@@ -88,21 +89,25 @@ App.UI.Modal.EditMarker = (function(base) {
         return;
       }
       
-      var tab = e.target.href.replace(/^[^#]*#/, '');
-      tabs.initUI(tab);
-
-      $.data(this, 'tab-ui-init', true);
+      if (!tabs.initUI(
+          e.target.href.replace(/^[^#]*#/, '')
+        )) {
+        $.data(this, 'tab-ui-init', true);
+      }
     },
     initUI: function(tab) {
       switch(tab) {
         case 'photos-view':
           photos.init();
+          return true;
         break;
         case 'photos-upload':
           upload.init();
+          return false;
         break;
         case 'location': 
           placesSearch.init();
+          return false;
         break;
       }      
     }
@@ -116,7 +121,10 @@ App.UI.Modal.EditMarker = (function(base) {
     }
   }
   
-  function show(selector, model, callback) {
+  function show(selector, dataModel, callback) {
+    
+    viewModel = dataModel;
+
     var config = {
       heading: 'Edit location',
       buttons: [{
@@ -129,7 +137,7 @@ App.UI.Modal.EditMarker = (function(base) {
         type: ''
       }]
     };
-    base.show(selector, config, model, onModalShown);
+    base.show(selector, config, dataModel, onModalShown);
   }
 
   return $.extend({}, base, {

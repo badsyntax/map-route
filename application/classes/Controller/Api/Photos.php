@@ -11,8 +11,14 @@ class Controller_Api_Photos extends Controller_REST
 			'photos' => array()
 		));
 
-    $this->s3_config = Kohana::$config->load('site.s3');
-    $this->s3 = S3Client::factory($this->s3_config);
+		$photos = ORM::factory('Photo');
+		$photos->where('user_id', '=', $this->user->id);
+		$photos->order_by('date_uploaded', 'DESC');
+
+		foreach($photos->find_all() as $photo)
+		{
+			$response_body->photos[] = (object) $photo->as_array();
+		}
 
 		$this->send_response(200, 'application/json', $response_body);
 	}
@@ -23,10 +29,10 @@ class Controller_Api_Photos extends Controller_REST
 		$file_upload = FileUpload::factory('file', $_FILES);
 		$file = $file_upload->uploaded();
 
-		try 
+		try
 		{
 			// Try save the file data to the DB
-			ORM::factory('Asset')->save_uploaded($file, $this->request->post());
+			ORM::factory('Photo')->save_uploaded($file, $this->request->post());
 		}
 		catch(ORM_Validation_Exception $e)
 		{
@@ -49,5 +55,5 @@ class Controller_Api_Photos extends Controller_REST
 		);
 
 		$this->send_response(200, 'application/json', $response_body);
-	}	
+	}
 }

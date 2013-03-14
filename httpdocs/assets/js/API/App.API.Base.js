@@ -16,38 +16,38 @@ App.API.Base.prototype = {
   create: function(config) {
     return this.makeRequest(this.xhrConfig(config, {
       type: 'POST'
-    }));  
+    }));
   },
   update: function(config) {
     return this.makeRequest(this.xhrConfig(config, {
       type: 'PUT'
-    }));  
+    }));
   },
   remove: function(config) {
     return this.makeRequest(this.xhrConfig(config, {
       type: 'DELETE',
       dataType: 'text'
-    }));  
+    }));
   },
   findAll: function(config) {
     return this.makeRequest(this.xhrConfig(config, {
       type: 'GET'
-    }));  
+    }));
   },
   find: function(config) {
     return this.makeRequest(this.xhrConfig(config, {
       type: 'GET'
-    }));  
+    }));
   },
   makeRequest: function(config) {
 
     var success = config.success;
     config.success = null;
-    
+
     var xhr = $.ajax(config);
 
     if (config.mapResponse) {
-      this.mapResponse(xhr, config.mapResponse);    
+      this.mapResponse(xhr, config.mapResponse);
     }
 
     xhr.success(success);
@@ -56,7 +56,7 @@ App.API.Base.prototype = {
   },
   mapResponse: function(xhr, config) {
     xhr.success(function(data, textStatus, jqXHR) {
-      
+
       if (!data) {
         return;
       }
@@ -77,6 +77,6 @@ App.API.Base.prototype = {
       }
 
       ko.mapping.fromJS(obj, config.mappingOptions, config.model);
-    }); 
+    });
   }
 };

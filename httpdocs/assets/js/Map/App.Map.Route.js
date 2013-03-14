@@ -8,7 +8,7 @@ App.Map.Route = (function() {
   var poly        = ko.observable();
 
   var route = {
-    
+
     markers: markers,
     poly:    poly,
     path:    path,
@@ -46,8 +46,8 @@ App.Map.Route = (function() {
       new App.Models.Route().where('id', route_id).findAll(function(data) {
 
         model(new App.Models.Route(data.routes[0] || {
-          id: 0, 
-          title: '' 
+          id: 0,
+          title: ''
         }));
 
         if (this.loaded()) {
@@ -88,7 +88,7 @@ App.Map.Route = (function() {
         return App.Map.Marker.factory({
           model: marker,
           location: new google.maps.LatLng(
-            marker.latitude(), 
+            marker.latitude(),
             marker.longitude()
           )
         });
@@ -134,7 +134,7 @@ App.Map.Route = (function() {
     },
     resetMarkers: function() {
       $.each(markers(), function(i, marker) {
-        
+
         marker.reset();
 
         if ($.isFunction(marker.model.active)) {
@@ -149,7 +149,7 @@ App.Map.Route = (function() {
       points([]);
     },
     removePoint: function(marker, updateModel) {
-      
+
       $.each(points(), function(i, point) {
         if (marker === point) {
           path().removeAt(i);
@@ -157,7 +157,7 @@ App.Map.Route = (function() {
           return false;
         }
       });
-      
+
       if (updateModel) {
         marker.model.values({
           route_order: -1
@@ -165,12 +165,12 @@ App.Map.Route = (function() {
       }
     },
     addPoint: function(marker, routeOrder) {
-      
+
       path().push(marker.getPosition());
       points.push(marker);
 
       marker.model.values({
-        route_order: routeOrder 
+        route_order: routeOrder
       }).save();
 
       App.GlobalEvents.trigger('addpoint');
