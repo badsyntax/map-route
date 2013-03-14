@@ -33,7 +33,9 @@ App.Map.Marker = (function() {
     }
 
     curMarker = marker;
-    App.UI.Modal.EditMarker.show(marker.model, saveDescription);
+    var viewModel = new App.ViewModels.Modal.EditMarker(marker.model);
+
+    App.UI.Modal.EditMarker.show('#modal-edit-marker', viewModel, saveDescription);
   }
 
   function saveDescription(e) {

@@ -3,6 +3,13 @@ App.UI.Modal.EditMarker = (function(base) {
   var shown;
   var container;
 
+  var photos = {
+    init: function() {
+      alert('view photos');
+    }
+  }
+
+  /* Upload Photos UI */
   var upload = {
     init: function () {
       this.uploaded = 0;
@@ -15,6 +22,7 @@ App.UI.Modal.EditMarker = (function(base) {
       this.uploadedContainer = container.find('.fileupload-uploaded');
     },
     initPlugin: function() {
+      this.uploadedContainer.html('');
       this.fileupload = this.uploadCcontainer.fileupload({
         autoUpload: true,
         dataType: 'json',
@@ -58,36 +66,62 @@ App.UI.Modal.EditMarker = (function(base) {
     }
   };  
 
-  function initPlacesSearch() {
-    var search = new App.UI.PlacesSearch(container.find('#inputSearchLocation'));
-    search.on('onAddressSelect', function(e, result, status) {});
-  }
+  /* Places search UI */
+  var placesSearch = {
+    init: function() {
+      var search = new App.UI.PlacesSearch(container.find('#inputSearchLocation'));
+      search.on('onAddressSelect', function(e, result, status) {});
+    }
+  };
 
-  function initTabs() {
-    container.find('.nav-tabs a').on('click', function(e) {
+  /* Tabs UI */
+  var tabs = {
+    init: function() {
+      container.find('.nav-tabs a').on('click', this.select);
+    },
+    select: function(e) {
+      
       e.preventDefault();
       $(this).tab('show');
-    });
-  }
 
-  function onShown() {
-    if (shown) {
-      return;
+      if ($.data(this, 'tab-ui-init')) {
+        return;
+      }
+      
+      var tab = e.target.href.replace(/^[^#]*#/, '');
+      tabs.initUI(tab);
+
+      $.data(this, 'tab-ui-init', true);
+    },
+    initUI: function(tab) {
+      switch(tab) {
+        case 'photos-view':
+          photos.init();
+        break;
+        case 'photos-upload':
+          upload.init();
+        break;
+        case 'location': 
+          placesSearch.init();
+        break;
+      }      
     }
-    shown = true;
-    container = $(this);
-    initPlacesSearch();
-    initTabs();
-    upload.init();
+  };
+
+  function onModalShown(e) {
+    // The 'shown' event bubbles up from the tabs :(
+    if ($(e.target).data('modal')) {
+      container = $(this);
+      tabs.init();
+    }
   }
   
-  function show(dataModel, actionCallback) {
-    shown = false;
+  function show(selector, model, callback) {
     var config = {
       heading: 'Edit location',
       buttons: [{
         title: 'Save',
-        action: actionCallback,
+        action: callback,
         type: 'btn-primary'
       }, {
         title: 'Cancel',
@@ -95,7 +129,7 @@ App.UI.Modal.EditMarker = (function(base) {
         type: ''
       }]
     };
-    base.show('#modal-edit-marker', config, dataModel, onShown);
+    base.show(selector, config, model, onModalShown);
   }
 
   return $.extend({}, base, {

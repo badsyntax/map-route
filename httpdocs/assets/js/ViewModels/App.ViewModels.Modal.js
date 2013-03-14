@@ -7,7 +7,7 @@ App.ViewModels.Modal = function(container, controller) {
   this.defaultValues();
 };
 
-App.ViewModels.Modal.prototype = {
+App.ViewModels.Modal.inherit(App.ViewModels.Base, {
   defaultValues: function(data) {
     this.values($.extend({
       heading: 'Info',
@@ -19,8 +19,5 @@ App.ViewModels.Modal.prototype = {
         action: ''
       }]
     }, data));
-  },
-  values: function(data) {
-    ko.mapping.fromJS(data, null, this);
   }
-};
+});
