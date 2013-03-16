@@ -28,7 +28,14 @@ MapRoute.UI.Sidebar.prototype = {
       .href
       .replace(/.*(?=#[^\s]*$)/, '')
     ).tinyscrollbar({size: 'auto' });
+
     this.scrollBar = this.scrollBarElem.data('tsb');
+
+    this.scrollBarElem.find('ul').sortable({
+      containment: 'parent',
+      distance: 5,
+      // placeholder: 'ui-state-highlight'
+    });
   },
   bindEvents: function() {
     $(window).on('resize', this.onWindowResize.bind(this));

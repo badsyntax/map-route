@@ -1,9 +1,9 @@
-<div class="btn-group pull-right" data-bind="with: dropmenu">
+<div class="btn-group dropdown" data-bind="with: dropmenuUser">
   <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    <i class="icon-user"></i> {{username}} 
+    <i class="icon-user"></i> {{username}}
     <span class="caret"></span>
   </a>
-  <ul class="dropdown-menu" data-bind="foreach: options">
+  <ul class="dropdown-menu pull-right" data-bind="foreach: options">
     <!-- ko ifnot: divider -->
     <li>
       <a data-bind="attr: { href: href }, text: title, click: $parent.onOptionClick"></a>

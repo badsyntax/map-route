@@ -78,11 +78,18 @@ body {
   text-align: center;
   padding-top: 1px;
   padding-bottom: 3px;
+  padding-right: 10px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.3) 6px 5px 12px -1px;
   -moz-box-shadow: rgba(0, 0, 0, 0.3) 6px 5px 12px -1px;
   box-shadow: rgba(0, 0, 0, 0.3) 6px 5px 12px -1px;
   background: #fff;
   height: 42px;
+}
+.navbar .dropmenus > div {
+  margin-right: 10px;
+}
+.navbar .dropmenus > div:last-child {
+  margin-right: 0;
 }
 .navbar .dropdown-menu {
   text-align: left;

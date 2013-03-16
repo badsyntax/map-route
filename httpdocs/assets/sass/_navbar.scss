@@ -1,5 +1,5 @@
 .navbar {
-  
+
   margin: 0 0 0 292px;
   z-index: 2;
   position: relative;
@@ -10,9 +10,17 @@
   text-align: center;
   padding-top: 1px;
   padding-bottom: 3px;
+  padding-right: 10px;
   @include box-shadow(rgba(0, 0, 0, 0.3) 6px 5px 12px -1px);
   background: #fff;
   height: 42px;
+
+  .dropmenus > div {
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 
   .dropdown-menu {
     text-align: left;

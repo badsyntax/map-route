@@ -27,7 +27,7 @@ MapRoute.ViewModels.Navbar.Toolbar.prototype = {
         caption: 'Plan Route',
         className: 'add-route',
         iconClassName: 'icon-sitemap',
-        action: MapRoute.Map.Actions.factory('Routes')
+        action: MapRoute.Map.Actions.factory('Route')
       }),
       new MapRoute.Models.ToolbarButton({
         caption: 'Zoom Out',

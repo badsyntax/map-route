@@ -19,4 +19,21 @@ class View_Page_Routes_View extends View_Layout
       throw new Exception('Route not found');
     }
   }
+
+  public function urls()
+  {
+    return array(
+      'overview' => URL::site(Route::get('routes')->uri(array(
+        'id' => $this->route->id,
+        'action' => 'view'
+      ))),
+      'map' => URL::site(Route::get('default')->uri(array())),
+      'gallery' => URL::site(Route::get('routes')->uri(array(
+        'action' => 'view',
+        'id' => $this->route->id,
+        'section' => 'gallery'
+      ))),
+      'share' => URL::site(Route::get('routes')->uri(array()))
+    );
+  }
 }

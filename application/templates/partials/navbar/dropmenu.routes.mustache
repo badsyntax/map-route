@@ -1,0 +1,16 @@
+<div class="btn-group dropdown" data-bind="with: dropmenuRoutes">
+  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    <i class="icon-sitemap"></i> Routes
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu pull-right" data-bind="foreach: options" role="menu">
+    <!-- ko ifnot: divider -->
+    <li>
+      <a data-bind="attr: { href: href }, text: title, click: $parent.onOptionClick"></a>
+    </li>
+    <!-- /ko -->
+    <!-- ko if: divider -->
+    <li class="divider"></li>
+    <!-- /ko -->
+  </ul>
+</div>

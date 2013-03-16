@@ -131,6 +131,13 @@ Route::set('api', 'api/(<controller>(/<action>(/<id>)))')
 		'action'     => 'index',
 	));
 
+Route::set('routes', 'routes(/<action>(/<id>(/<section>)))')
+	->defaults(array(
+		'controller' => 'routes',
+		'action'     => 'index',
+		'section'    => 'view'
+	));
+
 Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->defaults(array(
 		'controller' => 'home',

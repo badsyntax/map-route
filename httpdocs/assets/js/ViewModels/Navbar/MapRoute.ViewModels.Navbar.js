@@ -4,10 +4,10 @@ MapRoute.ViewModels.Navbar = function(container, controller) {
   this.controller = controller;
 
   this.toolbar = new MapRoute.ViewModels.Navbar.Toolbar(this);
-  this.dropmenu = new MapRoute.ViewModels.Navbar.DropMenu(this);
+  this.dropmenuUser = new MapRoute.ViewModels.Navbar.DropMenu.User(this);
+  this.dropmenuRoutes = new MapRoute.ViewModels.Navbar.DropMenu.Routes(this);
 };
 
 MapRoute.ViewModels.Navbar.prototype.rendered = function() {
   this.toolbar.rendered();
-  this.dropmenu.rendered();
 };

@@ -1,10 +1,10 @@
-MapRoute.Map.Actions.Routes = function() {
+MapRoute.Map.Actions.Route = function() {
   MapRoute.Map.Actions.Action.apply(this, arguments);
   this.poly = MapRoute.Map.Route.poly();
   this.path = MapRoute.Map.Route.path();
 };
 
-MapRoute.Map.Actions.Routes.inherit(MapRoute.Map.Actions.Action, {
+MapRoute.Map.Actions.Route.inherit(MapRoute.Map.Actions.Action, {
   execute: function() {
 
     if (!MapRoute.Map.Route.markers().length) {

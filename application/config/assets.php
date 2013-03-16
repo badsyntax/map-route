@@ -2,18 +2,15 @@
 
 $js = array(
 	'assets/lib/jquery/jquery-1.9.1.min.js',
+	'assets/lib/jquery-ui/js/jquery-ui-1.10.2.custom.js',
 	'assets/lib/jquery/jquery-file-upload/js/vendor/jquery.ui.widget.js', // FILEUPLOAD
-	'assets/lib/jquery/jquery-file-upload/js/tmpl.min.js', // FILEUPLOAD
-	'assets/lib/jquery/jquery-file-upload/js/load-image.min.js', // FILEUPLOAD
-	'assets/lib/jquery/jquery-file-upload/js/canvas-to-blob.min.js', // FILEUPLOAD
+	'assets/lib/jquery/jquery-file-upload/js/tmpl.min.js',                // FILEUPLOAD
+	'assets/lib/jquery/jquery-file-upload/js/load-image.min.js',         // FILEUPLOAD
+	'assets/lib/jquery/jquery-file-upload/js/canvas-to-blob.min.js',     // FILEUPLOAD
 	'assets/lib/jquery/jquery-file-upload/js/jquery.iframe-transport.js', // FILEUPLOAD
 	'assets/lib/jquery/jquery-file-upload/js/jquery.fileupload.js', // FILEUPLOAD
 	'assets/lib/jquery/jquery-file-upload/js/jquery.fileupload-fp.js', // FILEUPLOAD
 	'assets/lib/jquery/jquery-file-upload/js/jquery.fileupload-ui.js', // FILEUPLOAD
-
-
-
-
 	'assets/lib/jquery/path.min.js',
 	'assets/lib/jquery/globalize.js',
 	'assets/lib/jquery/jquery.tinyscrollbar.js',
@@ -36,8 +33,7 @@ $js = array(
 	'assets/js/Map/Actions/MapRoute.Map.Actions.js',
 	'assets/js/Map/Actions/MapRoute.Map.Actions.Action.js',
 	'assets/js/Map/Actions/MapRoute.Map.Actions.Markers.js',
-	'assets/js/Map/Actions/MapRoute.Map.Actions.Routes.js',
-	'assets/js/Map/Actions/MapRoute.Map.Actions.Profile.js',
+	'assets/js/Map/Actions/MapRoute.Map.Actions.Route.js',
 	'assets/js/Map/Actions/MapRoute.Map.Actions.Share.js',
 	'assets/js/Map/Actions/MapRoute.Map.Actions.View.js',
 	'assets/js/Map/Actions/MapRoute.Map.Actions.ZoomOut.js',
@@ -59,6 +55,8 @@ $js = array(
 	'assets/js/ViewModels/Navbar/MapRoute.ViewModels.Navbar.js',
 	'assets/js/ViewModels/Navbar/MapRoute.ViewModels.Navbar.Toolbar.js',
 	'assets/js/ViewModels/Navbar/MapRoute.ViewModels.Navbar.DropMenu.js',
+	'assets/js/ViewModels/Navbar/MapRoute.ViewModels.Navbar.DropMenu.User.js',
+	'assets/js/ViewModels/Navbar/MapRoute.ViewModels.Navbar.DropMenu.Routes.js',
 	'assets/js/ViewModels/MapRoute.ViewModels.Modal.js',
 	'assets/js/ViewModels/MapRoute.ViewModels.Modal.Profile.js',
 	'assets/js/ViewModels/MapRoute.ViewModels.Modal.EditMarker.js',
@@ -102,6 +100,7 @@ return array(
 				'assets/lib/bootstrap/css/bootstrap.min.css',
 				'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
 				'assets/lib/fontawesome/css/font-awesome.css',
+				// 'assets/lib/jquery-ui/css/jquery-ui-1.10.2.custom.css',
 				'assets/css/screen.css',
 		  ),
 	  	'javascript' => $js,
@@ -123,6 +122,7 @@ return array(
 				'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
 				'assets/lib/fontawesome/css/font-awesome.css',
 				'assets/lib/jquery/jquery-file-upload/css/jquery.fileupload-ui.css',
+				// 'assets/lib/jquery-ui/css/jquery-ui-1.10.2.custom.css',
 				'assets/css/screen.css',
 		  ),
 	  	'javascript' => $js,
