@@ -10,6 +10,12 @@ class FileUpload {
   protected $data;
   protected $user;
   protected $uploaded;
+  protected $bucket = 'maproute-local-photos';
+
+  protected $sizes = array(
+    'thumb' => array(200, 200),
+    'screen' => array(1000, 1000)
+  );
 
   public function __construct($field_name = array(), $files = array(), $data = array())
   {
@@ -33,7 +39,7 @@ class FileUpload {
       array('Upload::not_empty', array(':value')),
       array('Upload::valid'),
       array('Upload::size', array(':value', '10M')),
-      array('Upload::type', array(':value', array('jpg', 'png')))
+      array('Upload::type', array(':value', array('jpg', 'png', 'JPG', 'PNG')))
     );
   }
 
@@ -58,6 +64,8 @@ class FileUpload {
   protected function get_file_info(&$file)
   {
     $file['path'] = $this->file_path($file);
+    $file['thumb'] = $this->file_path($file, 'thumb');
+    $file['screen'] = $this->file_path($file, 'screen');
     $file['extension'] = $this->extension($file);
     $file['filename'] = $this->file_name($file);
   }
@@ -95,6 +103,7 @@ class FileUpload {
 
     if ($validation->check() === FALSE)
     {
+      print_r($file);
       $file['validation_errors'] = $validation->errors('upload');
       return FALSE;
     }
@@ -104,25 +113,22 @@ class FileUpload {
 
   protected function create_thumbs(&$file)
   {
-    $file['thumb'] = $this->file_path($file, 'thumb');
-    $file['screen'] = $this->file_path($file, 'screen');
-
+    // Thumbnail
     Image::factory($file['path'], 'Imagick')
-      ->resize(300, 300, Image::AUTO)
+      ->resize($this->sizes['thumb'][0], $this->sizes['thumb'][1], Image::AUTO)
       ->save($file['thumb'], 80);
 
+    // Screen
     Image::factory($file['path'], 'Imagick')
-      ->resize(1000, 1000, Image::AUTO)
+      ->resize($this->sizes['screen'][0], $this->sizes['screen'][1], Image::AUTO)
       ->save($file['screen'], 80);
   }
 
   protected function upload_to_s3(&$file)
   {
-    $bucket = 'maproute-local-photos';
-
     // Original photo
     $this->s3->putObject(array(
-      'Bucket' => $bucket,
+      'Bucket' => $this->bucket,
       'Key'    => basename($file['path']),
       'Body'   => fopen($file['path'], 'r+'),
       'ACL'    => 'public-read'
@@ -130,7 +136,7 @@ class FileUpload {
 
     // Screen res
     $this->s3->putObject(array(
-      'Bucket' => $bucket,
+      'Bucket' => $this->bucket,
       'Key'    => basename($file['screen']),
       'Body'   => fopen($file['screen'], 'r+'),
       'ACL'    => 'public-read'
@@ -138,7 +144,7 @@ class FileUpload {
 
     // Thumb res
     $this->s3->putObject(array(
-      'Bucket' => $bucket,
+      'Bucket' => $this->bucket,
       'Key'    => basename($file['thumb']),
       'Body'   => fopen($file['thumb'], 'r+'),
       'ACL'    => 'public-read'

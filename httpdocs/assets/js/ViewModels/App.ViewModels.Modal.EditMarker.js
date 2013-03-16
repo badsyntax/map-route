@@ -7,12 +7,18 @@ App.ViewModels.Modal.EditMarker.inherit(App.ViewModels.Base, {
     this.values({
       pendingRequest: false,
       model: model,
-      photos: []
+      photos: [],
+      state: 'list',
+      viewPhoto: false
     })
   },
   loadPhotos: function() {
+
     var self = this;
+
+    this.viewPhoto(false);
     this.pendingRequest(true);
+
     new App.Models.Photo().findAll(function() {
       self.pendingRequest(false);
       self.photos(this.photos());
@@ -20,6 +26,5 @@ App.ViewModels.Modal.EditMarker.inherit(App.ViewModels.Base, {
   },
   removePhoto: function(photo, callback) {
     photo.remove(callback);
-    console.log(photo);
   }
 });

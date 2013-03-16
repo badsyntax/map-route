@@ -19,12 +19,18 @@ App.UI.Modal.EditMarker = (function(base) {
       this.container.on('click', 'a.thumbnail', this.onThumbClick.bind(this));
     },
     onThumbClick: function(e) {
+
+      e.preventDefault();
+      var model = ko.dataFor(e.target);
+
+      // Remove photo
       if ($(e.target).data('remove')) {
-        e.preventDefault();
-        e.target.className = 'icon-spinner icon-spin';
-        viewModel.removePhoto(ko.dataFor(e.target), function() {
-          viewModel.loadPhotos();
-        });
+          e.target.className = 'icon-spinner icon-spin';
+          viewModel.removePhoto(model, viewModel.loadPhotos.bind(viewModel));
+      }
+      // View photo
+      else {
+        viewModel.viewPhoto(model);
       }
     }
   };
@@ -49,6 +55,7 @@ App.UI.Modal.EditMarker = (function(base) {
         acceptFileTypes: /(\.|\/)(png|jpe?g)$/i,
         type: 'POST',
         url: '/api/photos',
+        // maxFileSize:
         progressall: this.onProgressAll.bind(this),
         start: this.onStart.bind(this),
         stop: this.onStop.bind(this)

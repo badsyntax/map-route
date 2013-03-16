@@ -9,6 +9,9 @@ App.ViewModels.Sidebar.prototype = {
     this.markers = App.Map.Route.markers;
     this.route = App.Map.Route.points;
   },
+  rendered: function() {
+    this.ui = new App.UI.Sidebar(this.container.find('.search'), this);
+  },
   fadeIn: function(elem) {
     if (elem.nodeType === 1) {
       $(elem).hide().fadeIn(120);
@@ -21,11 +24,8 @@ App.ViewModels.Sidebar.prototype = {
       });
     }
   },
-  rendered: function() {
-    this.ui = new App.UI.Sidebar(this.container.find('.search'), this);
-  },
   onRoutePointClick: function(marker, e) {
-    
+
     e.preventDefault();
 
     App.Events.delegate(e, {

@@ -10,49 +10,50 @@
   </li>
 </ul>
 
-  <div class="tab-content">
-    <div class="tab-pane active" id="details">
-      <form class="form-horizontal">
-        <div class="control-group">
-          <label class="control-label" for="inputTitle">Title</label>
-          <div class="controls">
-            <input type="text" id="inputTitle" placeholder="Enter title" class="input-xlarge" data-bind="value: model.title" />
-          </div>
+<div class="tab-content">
+  <div class="tab-pane active" id="details">
+    <form class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label" for="inputTitle">Title</label>
+        <div class="controls">
+          <input type="text" id="inputTitle" placeholder="Enter title" class="input-xlarge" data-bind="value: model.title" />
         </div>
-        <div class="control-group">
-          <label class="control-label" for="inputDescription">Description</label>
-          <div class="controls">
-            <textarea id="inputDescription" placeholder="Enter description" rows="5" class="input-xlarge" data-bind="value: model.description"></textarea>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="inputDate">Date</label>
-          <div class="controls">
-            <input type="text" id="inputDate" placeholder="Enter date" class="input-xlarge" data-bind="value: model.date_formatted" />
-          </div>
-        </div>
-      </form>
-    </div>
-    <div class="tab-pane" id="location">
-      <form class="form-horizontal">
-        <div class="control-group">
-          <label class="control-label" for="inputLatLng">Location</label>
-          <div class="controls">
-            <input type="text" id="inputSearchLocation" placeholder="Search for a location..." class="input-xlarge" data-bind="value: model.location" />
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="inputLatLng">Lat/Long</label>
-          <div class="controls">
-            <input type="text" id="inputLatLng" placeholder="Enter latitude and longitude" class="input-xlarge" data-bind="value: model.latlng" />
-          </div>
-        </div>
-      </form>
-    </div>
-    <div class="tab-pane" id="photos-view">
-      <div data-bind="if: pendingRequest() && !photos().length">
-        <i class="icon-spinner icon-spin"></i> Loading...
       </div>
+      <div class="control-group">
+        <label class="control-label" for="inputDescription">Description</label>
+        <div class="controls">
+          <textarea id="inputDescription" placeholder="Enter description" rows="5" class="input-xlarge" data-bind="value: model.description"></textarea>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputDate">Date</label>
+        <div class="controls">
+          <input type="text" id="inputDate" placeholder="Enter date" class="input-xlarge" data-bind="value: model.date_formatted" />
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="tab-pane" id="location">
+    <form class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label" for="inputLatLng">Location</label>
+        <div class="controls">
+          <input type="text" id="inputSearchLocation" placeholder="Search for a location..." class="input-xlarge" data-bind="value: model.location" />
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputLatLng">Lat/Long</label>
+        <div class="controls">
+          <input type="text" id="inputLatLng" placeholder="Enter latitude and longitude" class="input-xlarge" data-bind="value: model.latlng" />
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="tab-pane" id="photos-view">
+    <div data-bind="if: pendingRequest() && !photos().length">
+      <i class="icon-spinner icon-spin"></i> Loading...
+    </div>
+    <!-- ko ifnot: viewPhoto -->
       <ul class="thumbnails photo-thumbnails" data-bind="foreach: photos">
         <li>
           <a href="#" target="_blank" class="thumbnail" data-bind="attr: { href: screenPath }">
@@ -63,32 +64,37 @@
           </a>
         </li>
       </ul>
-    </div>
-    <div class="tab-pane fileupload" id="photos-upload">
-      <h4>Upload photos</h4>
-      <div class="clearfix well">
-        <form class="fileupload-form" id="fileupload" action="/api/photos" method="POST" enctype="multipart/form-data">
-          <input type="hidden" name="test" value="world" />
-          <div class="fileupload-buttonbar">
-            <div class="clearfix">
-              <button class="btn btn-primary fileinput-button pull-left">
-                <i class="icon-upload-alt"></i>
-                <span>Choose files...</span>
-                <input type="file" name="file" multiple>
-              </button>
-              <p class="fileupload-uploaded"></p>
-            </div>
-          </div>
-        </form>
+    <!-- /ko -->
+    <!-- ko if: viewPhoto -->
+      <div class="photo-screen-view" data-bind="with: viewPhoto">
+        <a href="#" target="_blank" class="thumbnail" data-bind="attr: { href: screenPath }">
+          <img data-bind="attr: { src: screenPath }" />
+        </a>
       </div>
-      <div class="fileupload-progress fade">
-        <div id="progress" class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-          <div class="bar" style="width:0%;"></div>
+    <!-- /ko -->
+  </div>
+  <div class="tab-pane fileupload" id="photos-upload">
+    <h4>Upload photos</h4>
+    <div class="clearfix well">
+      <form class="fileupload-form" id="fileupload" action="/api/photos" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="test" value="world" />
+        <div class="fileupload-buttonbar clearfix">
+            <button class="btn btn-primary fileinput-button pull-left">
+              <i class="icon-upload-alt"></i>
+              <span>Choose files...</span>
+              <input type="file" name="file" multiple>
+            </button>
+            <p class="fileupload-uploaded"></p>
         </div>
+      </form>
+    </div>
+    <div class="fileupload-progress fade">
+      <div id="progress" class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+        <div class="bar" style="width:0%;"></div>
       </div>
     </div>
   </div>
-</form>
+</div>
 
 <script id="template-upload" type="text/x-tmpl">
 </script>
