@@ -20,17 +20,53 @@ ko.bindingHandlers.scroller = {
   }
 };
 
-ko.bindingHandlers.saveModel = (function(model) {
+ko.bindingHandlers.saveModel = (function(model, form) {
+
+  function showErrors(errors) {
+
+    $.each(errors, function addError(key, msg) {
+      form
+      .find('[data-key=' + key + ']')
+      .parents('.control-group')
+      .addClass('error')
+      .find('label')
+      .append('<span class="label-errormsg"> - ' + msg + '</span>');
+    });
+
+    form.find('.error:first input:first').focus();
+  }
+
+  function resetErrors() {
+    form.find('.error').removeClass('error');
+    form.find('.label-errormsg').remove();
+  }
 
   function onFormSubmit(e) {
     e.preventDefault();
-    model.save();
+    resetErrors();
+    model.save(
+      function success(data) {
+        form.trigger('save-success', data);
+      },
+      function error(jqXHR) {
+        form.trigger('save-error');
+        if (jqXHR.responseText && jqXHR.getResponseHeader("content-type").indexOf('json') >= 0) {
+          var errors = $.parseJSON(jqXHR.responseText).errors;
+          showErrors(errors);
+        }
+      }
+    );
+  }
+
+  function bindEvents() {
+    form.on('submit', onFormSubmit.bind(this));
   }
 
   return {
     init: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+      form = $(element);
       model = ko.utils.unwrapObservable(valueAccessor());
-      $(element).on('submit', onFormSubmit.bind(this));
+      bindEvents();
     }
   };
 }());

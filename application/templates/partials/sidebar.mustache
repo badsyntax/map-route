@@ -114,12 +114,31 @@
           <div class="control-group">
             <label class="control-label" for="inputTitle">Title</label>
             <div class="controls">
-              <input type="text" id="inputTitle" placeholder="Enter route title..." data-bind="value: title">
+              <input class="input-block-level" type="text" id="inputTitle" placeholder="Enter route title..." data-key="title" data-bind="value: title">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="inputDescription">Description</label>
+            <div class="controls">
+              <textarea class="input-block-level" id="inputDescription" placeholder="Enter route description..." data-key="description" data-bind="value: description">
+              </textarea>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="inputDateFrom">Start date</label>
+            <div class="controls">
+              <input class="input-block-level" type="text" id="inputDateFrom" placeholder="Enter start date..." data-key="date_from" data-bind="value: date_from">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="inputDateTo">End date</label>
+            <div class="controls">
+              <input class="input-block-level" type="text" id="inputDateTo" placeholder="Enter end date..." data-key="date_to" data-bind="value: date_to">
             </div>
           </div>
           <div class="control-group">
             <div class="controls">
-              <button type="submit" class="btn">
+              <button type="submit" class="btn btn-primary">
                 <i class="icon-save"></i>
                 Save
               </button>

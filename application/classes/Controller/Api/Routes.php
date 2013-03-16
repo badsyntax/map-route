@@ -64,7 +64,16 @@ class Controller_Api_Routes extends Controller_REST
 		}
 
 		$route->values($data);
-		$route->save();
+
+		try
+		{
+			$route->save();
+		}
+		catch(ORM_Validation_Exception $e)
+		{
+			$errors = $e->errors('route');
+			return $this->send_response(500, 'application/json', REST_Response::factory(array('errors' => $errors)));
+		}
 
 		$this->send_response(200, 'application/json', REST_Response::factory($route));
 	}
