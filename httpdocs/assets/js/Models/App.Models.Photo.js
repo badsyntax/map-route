@@ -5,6 +5,7 @@ App.Models.Photo = function() {
   this.api = App.API.Photo;
   this.s3Url = 'https://s3-eu-west-1.amazonaws.com/maproute-local-photos/';
 
+  this.origPath = ko.computed(this.getOrigPath, this);
   this.thumbPath = ko.computed(this.getThumbPath, this);
   this.screenPath = ko.computed(this.getScreenPath, this);
 };
@@ -21,6 +22,12 @@ App.Models.Photo.inherit(App.Models.Base, {
       return null;
     }
     return this.s3Url + this.screen_filename();
+  },
+  getOrigPath: function() {
+    if (!this.screen_filename) {
+      return null;
+    }
+    return this.s3Url + this.filename();
   },
   findAll: function(success, error) {
     this.api.findAll({

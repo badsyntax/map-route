@@ -1,6 +1,5 @@
 App.UI.Modal.EditMarker = (function(base) {
 
-  var shown;
   var container;
   var viewModel;
 
@@ -23,15 +22,24 @@ App.UI.Modal.EditMarker = (function(base) {
       e.preventDefault();
       var model = ko.dataFor(e.target);
 
-      // Remove photo
-      if ($(e.target).data('remove')) {
+      switch($(e.target).data('action')) {
+        // Remove photo
+        case 'remove':
           e.target.className = 'icon-spinner icon-spin';
           viewModel.removePhoto(model, viewModel.loadPhotos.bind(viewModel));
+        break;
+        // Download photo`
+        case 'download':
+          this.downloadPhoto(model);
+        break;
+        // View photo
+        default:
+          viewModel.viewPhoto(model);
+        break;
       }
-      // View photo
-      else {
-        viewModel.viewPhoto(model);
-      }
+    },
+    downloadPhoto: function(model) {
+      window.open(model.origPath());
     }
   };
 

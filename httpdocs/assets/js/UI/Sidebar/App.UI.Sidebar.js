@@ -21,13 +21,15 @@ App.UI.Sidebar.prototype = {
 
     e.preventDefault();
 
-    var elem = $(e.target).tab('show');
-   
-    var selector = elem
-      .attr('href')
-      .replace(/.*(?=#[^\s]*$)/, '');
+    $(e.target).tab('show');
 
-    this.scrollBar = $(selector).tinyscrollbar({size: 'auto' }).data('tsb');
+    this.scrollBar = $(
+      e.target
+      .href
+      .replace(/.*(?=#[^\s]*$)/, '')
+    )
+    .tinyscrollbar({size: 'auto' })
+    .data('tsb');
   },
   bindEvents: function() {
     $(window).on('resize', this.onWindowResize.bind(this));

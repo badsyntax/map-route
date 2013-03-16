@@ -58,7 +58,8 @@
         <li>
           <a href="#" target="_blank" class="thumbnail" data-bind="attr: { href: screenPath }">
             <span>
-              <i class="icon-trash" data-remove="true"></i>
+              <i class="icon-download-alt" data-action="download" title="Download"></i>
+              <i class="icon-trash" data-action="remove" title="Remove"></i>
             </span>
             <img data-bind="attr: { src: thumbPath }" />
           </a>
@@ -79,12 +80,12 @@
       <form class="fileupload-form" id="fileupload" action="/api/photos" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="test" value="world" />
         <div class="fileupload-buttonbar clearfix">
-            <button class="btn btn-primary fileinput-button pull-left">
-              <i class="icon-upload-alt"></i>
-              <span>Choose files...</span>
-              <input type="file" name="file" multiple>
-            </button>
-            <p class="fileupload-uploaded"></p>
+          <button class="btn btn-primary fileinput-button pull-left">
+            <i class="icon-upload-alt"></i>
+            <span>Choose files...</span>
+            <input type="file" name="file" multiple>
+          </button>
+          <p class="fileupload-uploaded"></p>
         </div>
       </form>
     </div>

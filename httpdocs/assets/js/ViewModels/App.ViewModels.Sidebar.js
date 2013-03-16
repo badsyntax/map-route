@@ -8,6 +8,7 @@ App.ViewModels.Sidebar.prototype = {
   setupObservables: function() {
     this.markers = App.Map.Route.markers;
     this.route = App.Map.Route.points;
+    this.routeModel = App.Map.Route.model;
   },
   rendered: function() {
     this.ui = new App.UI.Sidebar(this.container.find('.search'), this);

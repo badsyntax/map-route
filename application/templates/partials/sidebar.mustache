@@ -34,22 +34,21 @@
   <ul class="nav nav-tabs" id="sidebar-tabs">
     <li class="active"><a href="#sidebar-route">Route</a></li>
     <li><a href="#sidebar-pins">Pins</a></li>
+    <li><a href="#sidebar-settings">Settings</a></li>
   </ul>
 </div>
 
 <div class="row">
-   
+
   <div class="tab-content">
-    <div class="tab-pane active scroller" id="sidebar-route">
-      <div class="scrollbar"><div class="track"><div class="thumb"></div></div></div>
-      <div class="viewport">
-        <div class="overview">
+    <div class="tab-pane active scroller" id="sidebar-route" data-bind="scroller: true">
+      <div class="overview">
         <!-- ko if: route().length -->
         <ul class="markers nav nav-pills nav-stacked" data-bind="
           click: onRoutePointClick,
-          template: { 
-            foreach: route, 
-            afterAdd: fadeIn, 
+          template: {
+            foreach: route,
+            afterAdd: fadeIn,
             beforeRemove: fadeOut
           }">
           <li data-bind="css: { active: model.active }">
@@ -73,40 +72,60 @@
         </p>
       </div>
     </div>
+    <div class="tab-pane scroller" id="sidebar-pins" data-bind="scroller: true">
+      <div class="overview">
+        <!-- ko if: markers().length -->
+        <ul class="markers nav nav-pills nav-stacked" data-bind="foreach: markers, click: onRoutePointClick">
+          <li data-bind="css: { active: model.active }">
+            <a href="#">
+              <!-- ko text: model.route_title --><!-- /ko -->
+              <span class="actions btn-group">
+                <button class="btn edit">
+                  <i class="icon-edit"></i>
+                </button>
+                <button class="btn remove">
+                  <i class="icon-remove"></i>
+                </button>
+              </span>
+            </a>
+          </li>
+        </ul>
+        <!-- /ko -->
+        <!-- ko ifnot: markers().length -->
+          <p style="margin-top:0;padding:0 10px">
+            <em>No pins added. Click on the 'Add pins' button in the toolbar to add some pins.</em>
+          </p>
+          <p style="margin-top:0;padding:0 10px">
+            <button class="btn add-pins" data-bind="click: addPins">
+              <i class="icon-map-marker" style="font-size: 17px"></i>
+              Add pins
+            </button>
+          </p>
+        <!-- /ko -->
+      </div>
     </div>
-    <div class="tab-pane scroller" id="sidebar-pins">
-      <div class="scrollbar"><div class="track"><div class="thumb"></div></div></div>
-      <div class="viewport">
-        <div class="overview">
-          <!-- ko if: markers().length -->
-          <ul class="markers nav nav-pills nav-stacked" data-bind="foreach: markers, click: onRoutePointClick">
-            <li data-bind="css: { active: model.active }">
-              <a href="#">
-                <!-- ko text: model.route_title --><!-- /ko -->
-                <span class="actions btn-group">
-                  <button class="btn edit">
-                    <i class="icon-edit"></i>
-                  </button>
-                  <button class="btn remove">
-                    <i class="icon-remove"></i>
-                  </button>
-                </span>
-              </a>
-            </li>
-          </ul>
-          <!-- /ko -->
-          <!-- ko ifnot: markers().length -->
-            <p style="margin-top:0;padding:0 10px">
-              <em>No pins added. Click on the 'Add pins' button in the toolbar to add some pins.</em>
-            </p>
-            <p style="margin-top:0;padding:0 10px">
-              <button class="btn add-pins" data-bind="click: addPins">
-                <i class="icon-map-marker" style="font-size: 17px"></i>
-                Add pins
+    <div class="tab-pane scroller" id="sidebar-settings" data-bind="scroller: true">
+      <div class="overview">
+        <form
+          id="route-settings-form"
+          style="padding:0 .8em"
+          method="post"
+          data-bind="saveModel: routeModel, with: routeModel">
+          <div class="control-group">
+            <label class="control-label" for="inputTitle">Title</label>
+            <div class="controls">
+              <input type="text" id="inputTitle" placeholder="Enter route title..." data-bind="value: title">
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="controls">
+              <button type="submit" class="btn">
+                <i class="icon-save"></i>
+                Save
               </button>
-            </p>
-          <!-- /ko -->
-        </div>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>

@@ -21,7 +21,7 @@ class Controller_Api_Routes extends Controller_REST
 		}
 
 		$routes = $routes->find_all();
-		
+
 		foreach($routes as $route)
 		{
 			$response->routes[] = (object) $route->as_array();
@@ -63,15 +63,10 @@ class Controller_Api_Routes extends Controller_REST
 			throw HTTP_Exception::factory(401);
 		}
 
-		$route->values(array(
-			'longitude' => $data['longitude'],
-			'latitude' => $data['latitude'],
-			'description' => $data['description'],
-			'title' => $data['title']
-		));
+		$route->values($data);
 		$route->save();
 
-		$this->send_response(200);
+		$this->send_response(200, 'application/json', REST_Response::factory($route));
 	}
 
 	public function action_delete()
