@@ -1,43 +1,17 @@
- <form action="https://maproute-local-photos.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
-      <input type="hidden" name="key" value="uploads/${filename}">
-      <input type="hidden" name="AWSAccessKeyId" value="{{s3.key}}"> 
-      <input type="hidden" name="acl" value="{{s3.acl}}"> 
-      <input type="hidden" name="success_action_redirect" value="{{s3.redirect_url}}">
-      <input type="hidden" name="policy" value="{{s3.policy}}">
-      <input type="hidden" name="signature" value="{{s3.signature}}">
-      <input type="hidden" name="Content-Type" value="image/jpeg">
-      File to upload to S3: 
-      <input name="file" type="file"> 
-      <br> 
-      <input type="submit" value="Upload File to S3"> 
-    </form> 
+{{{navigation}}}
 
-
-<div class="navbar" style="margin:0">
-  <div class="navbar-inner">
-    <div class="container">            
-      <a href="/" class="brand">MapRoute <i class="m-icon-big-win8"></i></a>       
-      <ul class="nav">
-        <li class="active"><a href="/">Sign in</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/contact">Contact</a></li>
-      </ul>            
-    </div>
-  </div>
-</div>
-
-<header class="header">    
-  <div class="container">    
+<header class="header">
+  <div class="container">
     <div class="row" style="position:relative">
       <div id="signin-message">
         <div class="span4">
-          <h3>Ready for a holiday? Start planning your route today.</h3>   
-          <p>MapRoute takes the pain out of planning a route. <a href="/about">More info &raquo;</a></p>            
-          <p>It only takes 2 minutes to get started, and it's completely free!</p>   
+          <h3>Ready for a holiday? Start planning your route today.</h3>
+          <p>MapRoute takes the pain out of planning a route. <a href="/about">More info &raquo;</a></p>
+          <p>It only takes 2 minutes to get started, and it's completely free!</p>
           <a id="btn-signin" class="btn btn-large btn-primary" href="#">
             Sign in
             &raquo;
-          </a>     
+          </a>
            <div id="signin-buttons">
             <div class="signin-buttons" style="width:320px;margin:auto;">
               <a href="{{google_login}}" class="btn btn-primary btn-block btn-large">
@@ -50,14 +24,14 @@
                 Sign in with Yahoo &raquo;
               </a>-->
             </div>
-          </div>           
+          </div>
         </div>
-        <div class="offset1 span7" style="position:relative">        
+        <div class="offset1 span7" style="position:relative">
           <img src="/assets/img/tablet_new.png" width="540" height="351" alt="MapRoute google map">
         </div>
       </div>
 
-    </div>       
+    </div>
   </div>
 </header>
 

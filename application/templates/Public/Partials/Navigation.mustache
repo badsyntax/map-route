@@ -1,0 +1,14 @@
+<div class="navbar" style="margin:0">
+  <div class="navbar-inner">
+    <div class="container">
+      <a href="/" class="brand">MapRoute <i class="m-icon-big-win8"></i></a>
+      <ul class="nav">
+        {{#pages}}
+          <li{{#selected}} class="active"{{/selected}}>
+            <a href="{{url}}">{{title}}</a>
+          </li>
+        {{/pages}}
+      </ul>
+    </div>
+  </div>
+</div>

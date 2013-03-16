@@ -45,7 +45,7 @@ class View_Layout
 		$group = $this->logged_in ? 'edit' : 'signin';
 		$style_config = 'assets.'.$this->environment.'.'.$group.'.css';
 		$styles = Kohana::$config->load($style_config);
-		
+
 		if (Kohana::$environment === Kohana::PRODUCTION)
 		{
 			return HTML::style(Compress::instance('stylesheets')->styles($styles));
@@ -61,10 +61,10 @@ class View_Layout
 		$this->_app_config['mapApiKey'] = Kohana::$config->load('site.map.key');
 		$this->_app_config['debug'] = Kohana::$environment === Kohana::DEVELOPMENT;
 
-		if ($this->user !== NULL && $this->user->loaded()) 
+		if ($this->user !== NULL && $this->user->loaded())
 		{
 			$this->_app_config['user_id'] = $this->user->id;
-			
+
 			$route = $this->user->routes
 				->order_by('id', 'ASC')
 				->limit(1)
