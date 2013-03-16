@@ -12,6 +12,29 @@ ko.bindingHandlers.fadeVisible = {
   }
 };
 
+ko.bindingHandlers.fadeToggle = {
+  init: function(element, valueAccessor) {
+    $(element).hide();
+  },
+  update: function(element, valueAccessor) {
+
+    element = $(element).hide();
+    var value = valueAccessor();
+
+    if (!ko.utils.unwrapObservable(value)) {
+      return;
+    }
+
+    element.stop(true, true).fadeIn(160, function() {
+      setTimeout(function() {
+        element.fadeOut(660, function() {
+          value(false);
+        });
+      }, 3000);
+    });
+  }
+};
+
 ko.bindingHandlers.scroller = {
   init: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
     $(element)
@@ -30,7 +53,7 @@ ko.bindingHandlers.saveModel = (function(model, form) {
       .parents('.control-group')
       .addClass('error')
       .find('label')
-      .append('<span class="label-errormsg"> - ' + msg + '</span>');
+      .append('<span class="label-errormsg"> <i class="icon-info-sign"></i> ' + msg + '</span>');
     });
 
     form.find('.error:first input:first').focus();
@@ -38,24 +61,27 @@ ko.bindingHandlers.saveModel = (function(model, form) {
 
   function resetErrors() {
     form.find('.error').removeClass('error');
-    form.find('.label-errormsg').remove();
+    form.find('.label-errormsg,.alert').remove();
+  }
+
+  function onSuccess(data) {
+    App.GlobalEvents.trigger('ajax.msg.success');
+    form.trigger('save-success', data);
+    $(window).trigger('resize');
+  }
+
+  function onError(jqXHR) {
+    form.trigger('save-error');
+    if (jqXHR.responseText && jqXHR.getResponseHeader("content-type").indexOf('json') >= 0) {
+      var errors = $.parseJSON(jqXHR.responseText).errors;
+      showErrors(errors);
+    }
   }
 
   function onFormSubmit(e) {
     e.preventDefault();
     resetErrors();
-    model.save(
-      function success(data) {
-        form.trigger('save-success', data);
-      },
-      function error(jqXHR) {
-        form.trigger('save-error');
-        if (jqXHR.responseText && jqXHR.getResponseHeader("content-type").indexOf('json') >= 0) {
-          var errors = $.parseJSON(jqXHR.responseText).errors;
-          showErrors(errors);
-        }
-      }
-    );
+    model.save(onSuccess, onError);
   }
 
   function bindEvents() {

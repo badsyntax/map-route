@@ -23,13 +23,12 @@ App.UI.Sidebar.prototype = {
 
     $(e.target).tab('show');
 
-    this.scrollBar = $(
+    this.scrollBarElem = $(
       e.target
       .href
       .replace(/.*(?=#[^\s]*$)/, '')
-    )
-    .tinyscrollbar({size: 'auto' })
-    .data('tsb');
+    ).tinyscrollbar({size: 'auto' });
+    this.scrollBar = this.scrollBarElem.data('tsb');
   },
   bindEvents: function() {
     $(window).on('resize', this.onWindowResize.bind(this));
@@ -39,8 +38,13 @@ App.UI.Sidebar.prototype = {
       'removepoint',
       'addpoint'
     ].join(' '), this.onWindowResize.bind(this));
+
+    App.GlobalEvents.on('ajax.msg.success', this.onAjaxSuccess.bind(this));
   },
   onWindowResize: function() {
-    this.scrollBar.update();
+    this.scrollBar.update('relative');
+  },
+  onAjaxSuccess: function() {
+    this.viewModel.ajaxSuccessMessage(true)
   }
 };

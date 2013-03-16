@@ -9,6 +9,7 @@ App.ViewModels.Sidebar.prototype = {
     this.markers = App.Map.Route.markers;
     this.route = App.Map.Route.points;
     this.routeModel = App.Map.Route.model;
+    this.ajaxSuccessMessage = ko.observable(false);
   },
   rendered: function() {
     this.ui = new App.UI.Sidebar(this.container.find('.search'), this);
