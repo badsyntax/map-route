@@ -65,6 +65,7 @@
           </a>
         </li>
       </ul>
+      <p data-bind="ifnot: photos().length">No photos, why don't you upload some?</p>
     <!-- /ko -->
     <!-- ko if: viewPhoto -->
       <div class="photo-screen-view" data-bind="with: viewPhoto">

@@ -1,0 +1,48 @@
+{{{navigation}}}
+
+<div class="container">
+
+  <ul class="breadcrumb">
+    <li><a href="#">Home</a> <span class="divider">/</span></li>
+    <li><a href="/routes">Routes</a> <span class="divider">/</span></li>
+    <li class="active">Viewing route</li>
+  </ul>
+
+  <h3>Route overview</h3>
+  <ul>
+    <li><strong>Title:</strong> {{route.title}}</li>
+    <li><strong>Author:</strong> {{route.user.name}}</li>
+    <li><strong>Description:</strong> {{route.description}}</li>
+  </ul>
+
+  <hr />
+
+  <h3>Locations</h3>
+  <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Date</th>
+          <th>Photos</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+  {{#markers}}
+  <tr>
+          <td><a href="#">{{title}}</a></td>
+          <td>12/05/2013</td>
+          <td><a href="#">View photos</a></td>
+        </tr>
+
+
+  {{/markers}}
+  {{^markers}}
+    <li>(No photos)</li>
+  {{/markers}}
+      </tbody>
+    </table>
+
+ <hr />
+</div>

@@ -58,6 +58,9 @@ MapRoute.UI.Modal.EditMarker = (function(base) {
     initPlugin: function() {
       this.uploadedContainer.html('');
       this.fileupload = this.uploadCcontainer.fileupload({
+        formData: {
+          marker_id: viewModel.model.id()
+        },
         autoUpload: true,
         dataType: 'json',
         acceptFileTypes: /(\.|\/)(png|jpe?g)$/i,

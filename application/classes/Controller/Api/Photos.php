@@ -11,8 +11,14 @@ class Controller_Api_Photos extends Controller_REST
 			'photos' => array()
 		));
 
+		if (!($marker_id = $this->request->query('marker_id')))
+		{
+			throw new Exception('marker_id not specified.');
+		}
+
 		$photos = ORM::factory('Photo');
 		$photos->where('user_id', '=', $this->user->id);
+		$photos->where('marker_id', '=', $marker_id);
 		$photos->order_by('date_uploaded', 'DESC');
 
 		foreach($photos->find_all() as $photo)

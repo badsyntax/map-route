@@ -13,15 +13,15 @@ class Model_Photo extends ORM {
 		),
 	);
 
-	// public function rules()
-	// {
-	// 	return array(
-	// 		'marker_id' => array(
-	// 			array('not_empty'),
-	// 			array('numeric'),
-	// 		)
-	// 	);
-	// }
+	public function rules()
+	{
+		return array(
+			'marker_id' => array(
+				array('not_empty'),
+				array('numeric'),
+			)
+		);
+	}
 
 	public function save_uploaded($file = array(), $data = array())
 	{

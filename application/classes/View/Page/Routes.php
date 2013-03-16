@@ -10,4 +10,9 @@ class View_Page_Routes extends View_Layout
       new View_Public_Partials_Navigation('routes')
     );
   }
+
+  public function routes()
+  {
+    return ORM::factory('Route')->find_all();
+  }
 }

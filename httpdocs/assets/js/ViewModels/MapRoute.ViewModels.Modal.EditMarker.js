@@ -19,7 +19,7 @@ MapRoute.ViewModels.Modal.EditMarker.inherit(MapRoute.ViewModels.Base, {
     this.viewPhoto(false);
     this.pendingRequest(true);
 
-    new MapRoute.Models.Photo().findAll(function() {
+    new MapRoute.Models.Photo().where('marker_id', this.model.id()).findAll(function() {
       self.pendingRequest(false);
       self.photos(this.photos());
     });

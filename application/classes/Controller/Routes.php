@@ -6,4 +6,11 @@ class Controller_Routes extends Controller_Base {
 	{
     $this->content = new View_Page_Routes;
 	}
+
+  public function action_view()
+  {
+    $id = $this->request->param('id');
+
+    $this->content = new View_Page_Routes_View($id);
+  }
 }
