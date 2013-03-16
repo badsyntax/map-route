@@ -4,9 +4,28 @@ App.UI.Modal.EditMarker = (function(base) {
   var container;
   var viewModel;
 
+  /* View uploaded photos UI */
   var photos = {
-    init: function() {
+    init: function(tab, tabId) {
+      this.tab = tab;
+      this.container = $('#' + tabId);
       viewModel.loadPhotos();
+      if (!this.boundEvents) {
+        this.bindEvents();
+      }
+    },
+    bindEvents: function() {
+      this.boundEvents = true;
+      this.container.on('click', 'a.thumbnail', this.onThumbClick.bind(this));
+    },
+    onThumbClick: function(e) {
+      if ($(e.target).data('remove')) {
+        e.preventDefault();
+        e.target.className = 'icon-spinner icon-spin';
+        viewModel.removePhoto(ko.dataFor(e.target), function() {
+          viewModel.loadPhotos();
+        });
+      }
     }
   };
 
@@ -28,7 +47,7 @@ App.UI.Modal.EditMarker = (function(base) {
         autoUpload: true,
         dataType: 'json',
         acceptFileTypes: /(\.|\/)(png|jpe?g)$/i,
-        type: 'POST',     
+        type: 'POST',
         url: '/api/photos',
         progressall: this.onProgressAll.bind(this),
         start: this.onStart.bind(this),
@@ -65,7 +84,7 @@ App.UI.Modal.EditMarker = (function(base) {
       this.uploaded++;
       this.updateUploadedMessage();
     }
-  };  
+  };
 
   /* Places search UI */
   var placesSearch = {
@@ -81,35 +100,34 @@ App.UI.Modal.EditMarker = (function(base) {
       container.find('.nav-tabs a').on('click', this.select);
     },
     select: function(e) {
-      
+
       e.preventDefault();
       $(this).tab('show');
 
       if ($.data(this, 'tab-ui-init')) {
         return;
       }
-      
-      if (!tabs.initUI(
-          e.target.href.replace(/^[^#]*#/, '')
-        )) {
+
+      if (!tabs.initUI(this)) {
         $.data(this, 'tab-ui-init', true);
       }
     },
-    initUI: function(tab) {
-      switch(tab) {
+    initUI: function(tabAnchor) {
+      var tabId = tabAnchor.href.replace(/^[^#]*#/, '')
+      switch(tabId) {
         case 'photos-view':
-          photos.init();
+          photos.init(tabAnchor, tabId);
           return true;
         break;
         case 'photos-upload':
-          upload.init();
+          upload.init(tabAnchor, tabId);
           return false;
         break;
-        case 'location': 
-          placesSearch.init();
+        case 'location':
+          placesSearch.init(tabAnchor, tabId);
           return false;
         break;
-      }      
+      }
     }
   };
 
@@ -120,9 +138,9 @@ App.UI.Modal.EditMarker = (function(base) {
       tabs.init();
     }
   }
-  
+
   function show(selector, dataModel, callback) {
-    
+
     viewModel = dataModel;
 
     var config = {

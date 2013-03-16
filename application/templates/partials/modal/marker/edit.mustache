@@ -50,11 +50,16 @@
       </form>
     </div>
     <div class="tab-pane" id="photos-view">
-      <div data-bind="if: pendingRequest() && !photos().length">Loading...</div>
-      <ul class="thumbnails" data-bind="foreach: photos" style="margin-left: -15px;">
-        <li class="span1" style="width: 90px;margin-left: 15px;">
+      <div data-bind="if: pendingRequest() && !photos().length">
+        <i class="icon-spinner icon-spin"></i> Loading...
+      </div>
+      <ul class="thumbnails photo-thumbnails" data-bind="foreach: photos">
+        <li>
           <a href="#" target="_blank" class="thumbnail" data-bind="attr: { href: screenPath }">
-            <img style="width: 90px; height: 80px;" data-bind="attr: { src: thumbPath }">
+            <span>
+              <i class="icon-trash" data-remove="true"></i>
+            </span>
+            <img data-bind="attr: { src: thumbPath }" />
           </a>
         </li>
       </ul>

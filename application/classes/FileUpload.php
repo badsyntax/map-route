@@ -110,7 +110,7 @@ class FileUpload {
     Image::factory($file['path'], 'Imagick')
       ->resize(300, 300, Image::AUTO)
       ->save($file['thumb'], 80);
-    
+
     Image::factory($file['path'], 'Imagick')
       ->resize(1000, 1000, Image::AUTO)
       ->save($file['screen'], 80);

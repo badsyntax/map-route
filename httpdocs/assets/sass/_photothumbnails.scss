@@ -1,0 +1,28 @@
+.photo-thumbnails {
+  margin-left: -15px;
+  li {
+    width: 90px;
+    margin-left: 15px;
+  }
+  a {
+    position: relative;
+  }
+  span {
+    position: absolute;
+    bottom: 2px;
+    right: 3px;
+    display: inline-block;
+    width: 1.25em;
+    @include border-top-left-radius(2px);
+    @include opacity(0.8);
+    background: #fff;
+
+    i {
+      color: #222;
+    }
+  }
+  img {
+    width: 90px;
+    height: 80px;
+  }
+}

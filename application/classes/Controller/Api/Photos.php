@@ -56,4 +56,55 @@ class Controller_Api_Photos extends Controller_REST
 
 		$this->send_response(200, 'application/json', $response_body);
 	}
+
+	public function action_delete()
+	{
+		$data = (array) json_decode($this->request->body());
+
+		$photo = ORM::factory('Photo', $data['id']);
+
+		if (!$photo->loaded())
+		{
+			throw HTTP_Exception::factory(500, 'Marker not found');
+		}
+
+		if ($photo->user_id !== $this->user->id)
+		{
+			throw HTTP_Exception::factory(401);
+		}
+
+		$s3 = S3Client::factory(Kohana::$config->load('site.s3'));
+		$bucket = 'maproute-local-photos';
+
+		try
+		{
+			$s3->deleteObject(array(
+				'Bucket' => $bucket,
+				'Key' => $photo->filename
+			));
+		}
+		catch (Exception $e) {}
+
+		try
+		{
+			$s3->deleteObject(array(
+				'Bucket' => $bucket,
+				'Key' => $photo->screen_filename
+			));
+		}
+		catch (Exception $e) {}
+
+		try
+		{
+			$s3->deleteObject(array(
+				'Bucket' => $bucket,
+				'Key' => $photo->thumb_filename
+			));
+		}
+		catch(Exception $e) {}
+
+		$photo->delete();
+
+		$this->send_response(200);
+	}
 }

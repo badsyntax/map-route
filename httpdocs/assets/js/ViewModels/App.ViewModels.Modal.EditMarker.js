@@ -17,5 +17,9 @@ App.ViewModels.Modal.EditMarker.inherit(App.ViewModels.Base, {
       self.pendingRequest(false);
       self.photos(this.photos());
     });
+  },
+  removePhoto: function(photo, callback) {
+    photo.remove(callback);
+    console.log(photo);
   }
 });
