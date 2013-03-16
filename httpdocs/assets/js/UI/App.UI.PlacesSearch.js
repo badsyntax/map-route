@@ -1,12 +1,12 @@
-App.UI.PlacesSearch = function(field) {
-  App.Events.call(this);
+MapRoute.UI.PlacesSearch = function(field) {
+  MapRoute.Events.call(this);
   this.field = field;
   this.predictions = null;
-  this.map = App.Map.instance();
+  this.map = MapRoute.Map.instance();
   this.init();
 };
 
-App.UI.PlacesSearch.inherit(App.Events, {
+MapRoute.UI.PlacesSearch.inherit(MapRoute.Events, {
   init: function() {
     this.initServices();
     this.initAutocomplete();
@@ -24,7 +24,7 @@ App.UI.PlacesSearch.inherit(App.Events, {
   getPredictions: function(query, process) {
     this.autocomplete.getPlacePredictions({ input: query }, function(predictions, status) {
       if (status !== google.maps.places.PlacesServiceStatus.OK) {
-        return App.log(status);
+        return MapRoute.log(status);
       }
       this.predictions = predictions;
       process($.map(predictions, function(prediction) {

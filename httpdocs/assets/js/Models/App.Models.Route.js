@@ -1,11 +1,11 @@
-App.Models.Route = function() {
-  App.Models.Base.apply(this, arguments);
-  this.api = App.API.Route;
+MapRoute.Models.Route = function() {
+  MapRoute.Models.Base.apply(this, arguments);
+  this.api = MapRoute.API.Route;
 };
 
-App.Models.Route.inherit(App.Models.Base, {
+MapRoute.Models.Route.inherit(MapRoute.Models.Base, {
   findAll: function(success, error) {
-    App.API.Route.findAll({
+    MapRoute.API.Route.findAll({
       success: success,
       error: error,
       data: this.where(),
@@ -14,7 +14,7 @@ App.Models.Route.inherit(App.Models.Base, {
         mappingOptions: {
           'routes': {
             create: function(options) {
-                return new App.Models.Route(options.data);
+                return new MapRoute.Models.Route(options.data);
             }
           }
         }

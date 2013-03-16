@@ -1,24 +1,24 @@
 /* Map controller
  *************************/
-App.Controllers.Map = function(route_id, action) {
-  
+MapRoute.Controllers.Map = function(route_id, action) {
+
   this.route_id = route_id;
   this.action = action;
 
   var self = this;
-  
+
   this.initUI(function() {
-    App.Map.create(function(map){
-      App.Map.Route.init(route_id, function() {
-        if (App.Map.Route.loaded()) {
-          self.init(map); 
+    MapRoute.Map.create(function(map){
+      MapRoute.Map.Route.init(route_id, function() {
+        if (MapRoute.Map.Route.loaded()) {
+          self.init(map);
         }
       });
     });
   });
 };
 
-App.Controllers.Map.prototype = {
+MapRoute.Controllers.Map.prototype = {
   initUI: function(callback) {
     this.loadTemplates(function() {
       this.initModal();
@@ -27,13 +27,13 @@ App.Controllers.Map.prototype = {
   },
   init: function(map) {
     if (this.route_id === 'load') {
-      App.Router.push('route', App.Map.Route.model().id(), 'edit');
+      MapRoute.Router.push('route', MapRoute.Map.Route.model().id(), 'edit');
     }
 
     this.map = map;
     this.setConfig();
 
-    App.Map.Route.show();
+    MapRoute.Map.Route.show();
 
     if (this.action === 'edit') {
       this.initNavbar();
@@ -49,25 +49,25 @@ App.Controllers.Map.prototype = {
     });
   },initModal: function() {
     var container = $('#modal');
-    var viewModel = new App.ViewModels.Modal(container, this);
+    var viewModel = new MapRoute.ViewModels.Modal(container, this);
     ko.applyBindings(viewModel, container[0]);
-    App.UI.Modal.setup(container, viewModel);
+    MapRoute.UI.Modal.setup(container, viewModel);
   },
   initNavbar: function() {
     var container = $('#navbar');
-    var viewModel = new App.ViewModels.Navbar(container, this);
+    var viewModel = new MapRoute.ViewModels.Navbar(container, this);
     ko.applyBindings(viewModel, container[0]);
     viewModel.rendered();
   },
   initSidebar: function() {
     var container = $('#sidebar');
-    var viewModel = new App.ViewModels.Sidebar(container, this);
+    var viewModel = new MapRoute.ViewModels.Sidebar(container, this);
     ko.applyBindings(viewModel, container[0]);
     viewModel.rendered();
   },
   setConfig: function() {
-    App.Config.set('action', this.action);
-    App.Config.set('polyOptions', {
+    MapRoute.Config.set('action', this.action);
+    MapRoute.Config.set('polyOptions', {
       strokeColor: '#000000',
       strokeOpacity: 1.0,
       strokeWeight: 3,
@@ -82,7 +82,7 @@ App.Controllers.Map.prototype = {
     });
   },
   bindEvents: function() {
-    if (App.Config.get('map.loaded')) {
+    if (MapRoute.Config.get('map.loaded')) {
       return this.onTilesLoaded();
     }
     google.maps.event.addListenerOnce(this.map, 'tilesloaded', this.onTilesLoaded.bind(this));
@@ -90,7 +90,7 @@ App.Controllers.Map.prototype = {
   onTilesLoaded: function() {
     setTimeout(function() {
       if (this.action !== 'edit') {
-        new App.Map.Actions.View().execute();
+        new MapRoute.Map.Actions.View().execute();
       }
     }.bind(this), 200);
   }

@@ -1,13 +1,13 @@
 /* Sign In controller
  *************************/
-App.Controllers.SignIn = function() {
+MapRoute.Controllers.SignIn = function() {
   this.signinButtons = $('#signin-buttons');
   this.signinButton = $('#btn-signin');
   this.overlay = $('#auth-overlay');
   this.bindEvents();
 };
 
-App.Controllers.SignIn.prototype = {
+MapRoute.Controllers.SignIn.prototype = {
   bindEvents: function() {
     this.signinButton.on('click', this.onSigninButtonClick.bind(this));
     this.signinButtons.on('click', 'a', this.onSigninButtonsClick.bind(this));
@@ -82,7 +82,7 @@ App.Controllers.SignIn.prototype = {
     var win = window.open(windowURL, windowName, windowFeatures);
     this.curWindow = win;
     win.focus();
-    
+
     // Hide the overlay when the window closes
     (function poll(timer) {
       if (win.closed) {

@@ -1,4 +1,4 @@
-App.Map.Route = (function() {
+MapRoute.Map.Route = (function() {
 
   var markersData = ko.observableArray();
   var markers     = ko.observableArray();
@@ -37,15 +37,15 @@ App.Map.Route = (function() {
       this.addRoute();
     },
     createPoly: function() {
-      poly(new google.maps.Polyline(App.Config.get('polyOptions')));
-      poly().setMap(App.Map.instance());
+      poly(new google.maps.Polyline(MapRoute.Config.get('polyOptions')));
+      poly().setMap(MapRoute.Map.instance());
       path(poly().getPath());
     },
     load: function(route_id, callback) {
 
-      new App.Models.Route().where('id', route_id).findAll(function(data) {
+      new MapRoute.Models.Route().where('id', route_id).findAll(function(data) {
 
-        model(new App.Models.Route(data.routes[0] || {
+        model(new MapRoute.Models.Route(data.routes[0] || {
           id: 0,
           title: ''
         }));
@@ -56,7 +56,7 @@ App.Map.Route = (function() {
           this.create('Default route');
         } else {
           throw new Error('Route not found');
-          // App.Router.push('');
+          // MapRoute.Router.push('');
         }
       }.bind(this));
     },
@@ -66,11 +66,11 @@ App.Map.Route = (function() {
     create: function(title, callback) {
       model().title(title);
       model().save(function() {
-        App.Router.push('route', model().id(), 'edit');
+        MapRoute.Router.push('route', model().id(), 'edit');
       });
     },
     loadMarkers: function(route_id, callback) {
-      new App.Models.Marker().where('route_id', route_id).findAll(function() {
+      new MapRoute.Models.Marker().where('route_id', route_id).findAll(function() {
         markersData(this.markers());
         if (callback) {
           callback();
@@ -78,14 +78,14 @@ App.Map.Route = (function() {
       });
     },
     addMarker: function(location) {
-      var marker = App.Map.Marker.factory({
+      var marker = MapRoute.Map.Marker.factory({
         location: location
       });
-      App.GlobalEvents.trigger('addmarker');
+      MapRoute.GlobalEvents.trigger('addmarker');
     },
     addMarkers: function() {
       markers($.map(markersData(), function(marker) {
-        return App.Map.Marker.factory({
+        return MapRoute.Map.Marker.factory({
           model: marker,
           location: new google.maps.LatLng(
             marker.latitude(),
@@ -117,10 +117,10 @@ App.Map.Route = (function() {
 
       this.removePoint(marker, false);
 
-      App.GlobalEvents.trigger('removemarker');
+      MapRoute.GlobalEvents.trigger('removemarker');
     },
     fitMarkerBounds: function() {
-      var map = App.Map.instance();
+      var map = MapRoute.Map.instance();
       if (markers().length) {
         var bounds = new google.maps.LatLngBounds();
         $.each(markers(), function(i, marker) {
@@ -173,7 +173,7 @@ App.Map.Route = (function() {
         route_order: routeOrder
       }).save();
 
-      App.GlobalEvents.trigger('addpoint');
+      MapRoute.GlobalEvents.trigger('addpoint');
     },
     updatePoint: function(marker) {
       $.each(points(), function(i, point) {

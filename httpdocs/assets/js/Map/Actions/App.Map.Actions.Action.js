@@ -1,10 +1,10 @@
-App.Map.Actions.Action = function() {
+MapRoute.Map.Actions.Action = function() {
   this.handlers = [];
-  this.map = App.Map.instance();
+  this.map = MapRoute.Map.instance();
   this.active = ko.observable(false);
 };
 
-App.Map.Actions.Action.prototype = {
+MapRoute.Map.Actions.Action.prototype = {
   bindEvents: function() {},
   execute: function() {
     this.bindEvents();
@@ -16,6 +16,6 @@ App.Map.Actions.Action.prototype = {
       handler.remove();
       return null;
     });
-    App.Map.Route.resetMarkers();
+    MapRoute.Map.Route.resetMarkers();
   }
 };

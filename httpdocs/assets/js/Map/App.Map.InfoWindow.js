@@ -1,5 +1,5 @@
-App.Map.InfoWindow = (function(templates) {
-  
+MapRoute.Map.InfoWindow = (function(templates) {
+
   var elem = $('<div />');
 
   return function(type) {

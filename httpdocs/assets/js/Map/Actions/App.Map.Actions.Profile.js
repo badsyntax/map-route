@@ -1,11 +1,11 @@
-App.Map.Actions.Profile = function() {
-  App.Map.Actions.Action.apply(this, arguments);
+MapRoute.Map.Actions.Profile = function() {
+  MapRoute.Map.Actions.Action.apply(this, arguments);
 };
 
-App.Map.Actions.Profile.inherit(App.Map.Actions.Action, {
+MapRoute.Map.Actions.Profile.inherit(MapRoute.Map.Actions.Action, {
   execute: function() {
-    var viewModel = new App.ViewModels.Modal.Profile();
-    App.UI.Modal.show('#modal-profile', {
+    var viewModel = new MapRoute.ViewModels.Modal.Profile();
+    MapRoute.UI.Modal.show('#modal-profile', {
       heading: 'Profile',
       buttons: [{
         title: 'Save',
@@ -19,6 +19,6 @@ App.Map.Actions.Profile.inherit(App.Map.Actions.Action, {
     }, viewModel);
   },
   reset: function() {
-    App.Map.Actions.Action.prototype.reset.apply(this, arguments);
+    MapRoute.Map.Actions.Action.prototype.reset.apply(this, arguments);
   }
 });

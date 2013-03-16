@@ -1,13 +1,13 @@
-App.Map.Actions.View = function() {
-  App.Map.Actions.Action.apply(this, arguments);
+MapRoute.Map.Actions.View = function() {
+  MapRoute.Map.Actions.Action.apply(this, arguments);
 };
 
-App.Map.Actions.View.inherit(App.Map.Actions.Action, {
+MapRoute.Map.Actions.View.inherit(MapRoute.Map.Actions.Action, {
   execute: function() {
-    App.Map.Actions.Action.prototype.execute.apply(this, arguments);
+    MapRoute.Map.Actions.Action.prototype.execute.apply(this, arguments);
   },
   bindEvents: function() {
-    $.each(App.Map.Route.markers(), this.bindMarkerEvents.bind(this));
+    $.each(MapRoute.Map.Route.markers(), this.bindMarkerEvents.bind(this));
   },
   bindMarkerEvents: function(i, marker) {
 
@@ -35,4 +35,4 @@ App.Map.Actions.View.inherit(App.Map.Actions.Action, {
       marker.infoWindow.close();
     }
   }
-});  
+});

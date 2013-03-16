@@ -1,6 +1,6 @@
-App.API.Marker = (function(api) {
+MapRoute.API.Marker = (function(api) {
 
-  var _super = App.API.Base;
+  var _super = MapRoute.API.Base;
 
   api.findAll = function(config) {
     return _super.prototype.findAll.apply(this, arguments);
@@ -8,6 +8,6 @@ App.API.Marker = (function(api) {
 
   return api;
 
-}(new App.API.Base({
+}(new MapRoute.API.Base({
   url: '/api/markers'
 })));

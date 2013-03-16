@@ -1,1 +1,1 @@
-window.App = App;}(this, this.document));
+window.MapRoute = MapRoute;}(this, this.document));

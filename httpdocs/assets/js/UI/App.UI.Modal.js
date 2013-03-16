@@ -1,6 +1,6 @@
 /* Modal UI
  *************************/
-App.UI.Modal = (function() {
+MapRoute.UI.Modal = (function() {
 
   var modal = {
     setup: function(container, viewModel) {

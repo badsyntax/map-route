@@ -1,8 +1,8 @@
-App.Models.Photo = function() {
+MapRoute.Models.Photo = function() {
 
-  App.Models.Base.apply(this, arguments);
+  MapRoute.Models.Base.apply(this, arguments);
 
-  this.api = App.API.Photo;
+  this.api = MapRoute.API.Photo;
   this.s3Url = 'https://s3-eu-west-1.amazonaws.com/maproute-local-photos/';
 
   this.origPath = ko.computed(this.getOrigPath, this);
@@ -10,7 +10,7 @@ App.Models.Photo = function() {
   this.screenPath = ko.computed(this.getScreenPath, this);
 };
 
-App.Models.Photo.inherit(App.Models.Base, {
+MapRoute.Models.Photo.inherit(MapRoute.Models.Base, {
   getThumbPath: function() {
     if (!this.thumb_filename) {
       return null;
@@ -39,7 +39,7 @@ App.Models.Photo.inherit(App.Models.Base, {
         mappingOptions: {
           'photos': {
             create: function(options) {
-              return new App.Models.Photo(options.data);
+              return new MapRoute.Models.Photo(options.data);
             }
           }
         }

@@ -1,6 +1,6 @@
 {{#coming_soon}}
 <footer>
-  <a href="/contact">Contact</a> | 
+  <a href="/contact">Contact</a> |
   <a href="/about">About</a>
 </footer>
 {{{scripts}}}
@@ -8,6 +8,6 @@
 {{^coming_soon}}
 {{{scripts}}}
 <script>
-new App({{{app_config}}});
+MapRoute.bootstrap({{{app_config}}});
 </script>
 {{/coming_soon}}

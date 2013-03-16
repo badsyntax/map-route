@@ -1,10 +1,10 @@
-App.ViewModels.Navbar.DropMenu = function(controller) {
+MapRoute.ViewModels.Navbar.DropMenu = function(controller) {
   this.controller = controller;
   this.options = ko.observableArray();
   this.setData();
 };
 
-App.ViewModels.Navbar.DropMenu.prototype = {
+MapRoute.ViewModels.Navbar.DropMenu.prototype = {
   rendered: function() {
     this.container = $('#dropmenu');
   },
@@ -14,7 +14,7 @@ App.ViewModels.Navbar.DropMenu.prototype = {
         href: '#/profile',
         title: 'Profile',
         divider: false,
-        action: new App.Map.Actions.Profile()
+        action: new MapRoute.Map.Actions.Profile()
       },
       {
         divider: true
@@ -30,7 +30,7 @@ App.ViewModels.Navbar.DropMenu.prototype = {
     e.preventDefault();
     if (model.action) {
       return model.action.execute();
-    } 
+    }
     window.location = model.href;
   }
 };

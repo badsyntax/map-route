@@ -1,5 +1,5 @@
-App.Map = (function(canvas) {
-  
+MapRoute.Map = (function(canvas) {
+
   var map = ko.observable();
 
   return {
@@ -24,7 +24,7 @@ App.Map = (function(canvas) {
       var attr = {
         type: 'text/javascript',
         src: 'http://maps.googleapis.com/maps/api/js?' + [
-          'key=' + App.Config.get('mapApiKey'),
+          'key=' + MapRoute.Config.get('mapApiKey'),
           'sensor=false',
           'callback=mapCallback',
           'libraries=places'
@@ -44,9 +44,9 @@ App.Map = (function(canvas) {
     },
     bindEvents: function() {
       google.maps.event.addListenerOnce(map(), 'tilesloaded', function() {
-        App.Config.set('map.loaded', true);
+        MapRoute.Config.set('map.loaded', true);
       }.bind(this));
-    }    
+    }
   };
 
 }($('#map-canvas')));

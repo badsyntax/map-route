@@ -1,23 +1,23 @@
-App.UI.Sidebar.Search = function(container) {
+MapRoute.UI.Sidebar.Search = function(container) {
 
-  var map = App.Map.instance();
+  var map = MapRoute.Map.instance();
   var field = $('#search-input');
   var form = container.find('form');
   var menu = form.find('.dropdown-menu');
 
   var placesSearch = (function initPlacesSearch() {
 
-    var search = new App.UI.PlacesSearch(field);
+    var search = new MapRoute.UI.PlacesSearch(field);
 
     search.on('onAddressSelect', function(e, result, status) {
       if (status !== google.maps.GeocoderStatus.OK) {
-        App.log(status);
+        MapRoute.log(status);
         return window.alert('Location was not found. Please try again.');
       }
       map.setCenter(result.geometry.location);
-      map.setZoom(12); 
+      map.setZoom(12);
     });
-  
+
     return search;
   }());
 

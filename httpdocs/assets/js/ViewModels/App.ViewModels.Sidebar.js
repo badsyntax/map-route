@@ -1,18 +1,18 @@
-App.ViewModels.Sidebar = function(container, controller) {
+MapRoute.ViewModels.Sidebar = function(container, controller) {
   this.container = container;
   this.controller = controller;
   this.setupObservables();
 };
 
-App.ViewModels.Sidebar.prototype = {
+MapRoute.ViewModels.Sidebar.prototype = {
   setupObservables: function() {
-    this.markers = App.Map.Route.markers;
-    this.route = App.Map.Route.points;
-    this.routeModel = App.Map.Route.model;
+    this.markers = MapRoute.Map.Route.markers;
+    this.route = MapRoute.Map.Route.points;
+    this.routeModel = MapRoute.Map.Route.model;
     this.ajaxSuccessMessage = ko.observable(false);
   },
   rendered: function() {
-    this.ui = new App.UI.Sidebar(this.container.find('.search'), this);
+    this.ui = new MapRoute.UI.Sidebar(this.container.find('.search'), this);
   },
   fadeIn: function(elem) {
     if (elem.nodeType === 1) {
@@ -30,7 +30,7 @@ App.ViewModels.Sidebar.prototype = {
 
     e.preventDefault();
 
-    App.Events.delegate(e, {
+    MapRoute.Events.delegate(e, {
       '.edit': this.onEditButtonClick.bind(this),
       '.remove': this.onRemoveButtonClick.bind(this),
       'a': this.onAnchorClick.bind(this)
@@ -46,7 +46,7 @@ App.ViewModels.Sidebar.prototype = {
     ko.dataFor(elem).focus();
   },
   addPins: function() {
-    App.Map.Actions.reset();
-    App.Map.Actions.execute('Markers');
+    MapRoute.Map.Actions.reset();
+    MapRoute.Map.Actions.execute('Markers');
   }
 };

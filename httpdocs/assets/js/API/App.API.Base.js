@@ -1,14 +1,14 @@
-App.API.Base = function(defaultConfig) {
+MapRoute.API.Base = function(defaultConfig) {
   this.defaultConfig = $.extend({
     contentType: 'application/json',
     dataType: 'json',
     error: function() {
-      App.log('AJAX request error', arguments);
+      MapRoute.log('AJAX request error', arguments);
     }
   }, defaultConfig);
 };
 
-App.API.Base.prototype = {
+MapRoute.API.Base.prototype = {
   xhrConfig: function(config, xhrConfig) {
     var defaultConfig = $.extend({}, this.defaultConfig);
     return $.extend(defaultConfig, config, xhrConfig);

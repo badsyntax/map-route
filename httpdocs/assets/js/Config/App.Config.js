@@ -1,6 +1,6 @@
 /* Config
  *************************/
-App.Config = (function() {
+MapRoute.Config = (function() {
 
   var data = {};
 
@@ -20,7 +20,7 @@ App.Config = (function() {
       return obj;
     },
     set: function (key, val) {
-      
+
       if (typeof key === 'object' && val === undefined) {
         $.extend(data, key);
         return;

@@ -1,11 +1,11 @@
-App.Map.Actions.ZoomOut = function() {
-  App.Map.Actions.Action.apply(this, arguments);
+MapRoute.Map.Actions.ZoomOut = function() {
+  MapRoute.Map.Actions.Action.apply(this, arguments);
 };
 
-App.Map.Actions.ZoomOut.inherit(App.Map.Actions.Action, {
+MapRoute.Map.Actions.ZoomOut.inherit(MapRoute.Map.Actions.Action, {
   execute: function() {
-    App.Map.Actions.Action.prototype.execute.apply(this, arguments);
-    App.Map.Route.fitMarkerBounds();
+    MapRoute.Map.Actions.Action.prototype.execute.apply(this, arguments);
+    MapRoute.Map.Route.fitMarkerBounds();
     this.reset();
   }
 });

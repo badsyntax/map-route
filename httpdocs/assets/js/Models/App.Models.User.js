@@ -1,6 +1,6 @@
-App.Models.User = function(data) {
-  App.Models.Base.apply(this, arguments);
-  this.api = App.API.User;
+MapRoute.Models.User = function(data) {
+  MapRoute.Models.Base.apply(this, arguments);
+  this.api = MapRoute.API.User;
 };
 
-App.Models.User.inherit(App.Models.Base);
+MapRoute.Models.User.inherit(MapRoute.Models.Base);

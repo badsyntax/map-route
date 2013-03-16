@@ -1,8 +1,8 @@
-App.Events = function() {
+MapRoute.Events = function() {
   this._e = $('<i />');
 };
 
-App.Events.prototype = {
+MapRoute.Events.prototype = {
   on: function() {
     this._e.on.apply(this._e, arguments);
   },
@@ -14,7 +14,7 @@ App.Events.prototype = {
   }
 };
 
-App.Events.delegate = function(e, handlers) {
+MapRoute.Events.delegate = function(e, handlers) {
 
    var executeHandler = (function(target) {
     return function(key, handler, elem) {
@@ -28,4 +28,4 @@ App.Events.delegate = function(e, handlers) {
   $.each(handlers, executeHandler);
 };
 
-App.GlobalEvents = new App.Events();
+MapRoute.GlobalEvents = new MapRoute.Events();

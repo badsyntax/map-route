@@ -1,8 +1,8 @@
-App.ViewModels.Modal.EditMarker = function(model) {
+MapRoute.ViewModels.Modal.EditMarker = function(model) {
   this.setObservables(model);
 };
 
-App.ViewModels.Modal.EditMarker.inherit(App.ViewModels.Base, {
+MapRoute.ViewModels.Modal.EditMarker.inherit(MapRoute.ViewModels.Base, {
   setObservables: function(model) {
     this.values({
       pendingRequest: false,
@@ -19,7 +19,7 @@ App.ViewModels.Modal.EditMarker.inherit(App.ViewModels.Base, {
     this.viewPhoto(false);
     this.pendingRequest(true);
 
-    new App.Models.Photo().findAll(function() {
+    new MapRoute.Models.Photo().findAll(function() {
       self.pendingRequest(false);
       self.photos(this.photos());
     });

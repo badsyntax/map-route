@@ -1,4 +1,4 @@
-App.Models.ToolbarButton = function(data) {
+MapRoute.Models.ToolbarButton = function(data) {
 
   ko.mapping.fromJS(data, {
     'ignore': [ 'action' ]

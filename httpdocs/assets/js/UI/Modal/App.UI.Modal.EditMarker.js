@@ -1,4 +1,4 @@
-App.UI.Modal.EditMarker = (function(base) {
+MapRoute.UI.Modal.EditMarker = (function(base) {
 
   var container;
   var viewModel;
@@ -104,7 +104,7 @@ App.UI.Modal.EditMarker = (function(base) {
   /* Places search UI */
   var placesSearch = {
     init: function() {
-      var search = new App.UI.PlacesSearch(container.find('#inputSearchLocation'));
+      var search = new MapRoute.UI.PlacesSearch(container.find('#inputSearchLocation'));
       search.on('onAddressSelect', function(e, result, status) {});
     }
   };
@@ -176,4 +176,4 @@ App.UI.Modal.EditMarker = (function(base) {
   return $.extend({}, base, {
     show: show
   });
-}(App.UI.Modal));
+}(MapRoute.UI.Modal));

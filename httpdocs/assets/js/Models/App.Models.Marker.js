@@ -1,9 +1,9 @@
-App.Models.Marker = function() {
-  App.Models.Base.apply(this, arguments);
-  this.api = App.API.Marker;
+MapRoute.Models.Marker = function() {
+  MapRoute.Models.Base.apply(this, arguments);
+  this.api = MapRoute.API.Marker;
 };
 
-App.Models.Marker.inherit(App.Models.Base, {
+MapRoute.Models.Marker.inherit(MapRoute.Models.Base, {
   fields: {
     user_id: 0,
     latitude: 0,
@@ -28,11 +28,11 @@ App.Models.Marker.inherit(App.Models.Base, {
     });
   },
   getRouteTitle: function() {
-    return this.title() || this.description() || 
+    return this.title() || this.description() ||
       (this.longitude().toFixed(5) + ', ' + this.latitude().toFixed(5));
   },
   getLatLng: function() {
-    return this.latitude() + ',' + this.longitude(); 
+    return this.latitude() + ',' + this.longitude();
   },
   setDateFormatted: function(value) {
     var date = (Globalize.parseDate(value)).getTime() / 1000;
@@ -45,7 +45,7 @@ App.Models.Marker.inherit(App.Models.Base, {
     return Globalize.format(new Date(parseInt(this.date(), 10) * 1000), 'd');
   },
   findAll: function(success, error) {
-    App.API.Marker.findAll({
+    MapRoute.API.Marker.findAll({
       data: this.where(),
       success: success.bind(this),
       error: error,
@@ -54,7 +54,7 @@ App.Models.Marker.inherit(App.Models.Base, {
         mappingOptions: {
           'markers': {
             create: function(options) {
-              var t = new App.Models.Marker(options.data);
+              var t = new MapRoute.Models.Marker(options.data);
               return t;
             }
           }

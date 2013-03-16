@@ -65,7 +65,7 @@ ko.bindingHandlers.saveModel = (function(model, form) {
   }
 
   function onSuccess(data) {
-    App.GlobalEvents.trigger('ajax.msg.success');
+    MapRoute.GlobalEvents.trigger('ajax.msg.success');
     form.trigger('save-success', data);
     $(window).trigger('resize');
   }

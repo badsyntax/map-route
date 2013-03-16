@@ -1,9 +1,9 @@
-App.API.Route = (function(api) {
+MapRoute.API.Route = (function(api) {
 
-  var _super = App.API.Base;
+  var _super = MapRoute.API.Base;
 
   return api;
 
-}(new App.API.Base({
+}(new MapRoute.API.Base({
   url: '/api/routes'
 })));

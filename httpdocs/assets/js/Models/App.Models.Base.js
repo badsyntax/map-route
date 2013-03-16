@@ -1,4 +1,4 @@
-App.Models.Base = function(data) {
+MapRoute.Models.Base = function(data) {
   this.whereParam = {};
   if (data) {
     this.values(data);
@@ -7,14 +7,14 @@ App.Models.Base = function(data) {
   }
 };
 
-App.Models.Base.prototype = {
+MapRoute.Models.Base.prototype = {
   values: function(data) {
-    
+
     // Merge in default data
     data = this.defaultValues(this.fields || {}, data);
-    
+
     ko.mapping.fromJS(data, null, this);
-    
+
     return this;
   },
   defaultValues: function(fields, data) {
@@ -45,7 +45,7 @@ App.Models.Base.prototype = {
         mappingOptions: {
           'routes': {
             create: function(options) {
-                return new App.Models.Route(options.data);
+                return new MapRoute.Models.Route(options.data);
             }
           }
         }

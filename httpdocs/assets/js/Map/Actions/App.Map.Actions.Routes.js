@@ -1,24 +1,24 @@
-App.Map.Actions.Routes = function() {
-  App.Map.Actions.Action.apply(this, arguments);
-  this.poly = App.Map.Route.poly();
-  this.path = App.Map.Route.path();
+MapRoute.Map.Actions.Routes = function() {
+  MapRoute.Map.Actions.Action.apply(this, arguments);
+  this.poly = MapRoute.Map.Route.poly();
+  this.path = MapRoute.Map.Route.path();
 };
 
-App.Map.Actions.Routes.inherit(App.Map.Actions.Action, {
+MapRoute.Map.Actions.Routes.inherit(MapRoute.Map.Actions.Action, {
   execute: function() {
 
-    if (!App.Map.Route.markers().length) {
-      return App.UI.Modal.message('You need to add some pins before planning a route.');
+    if (!MapRoute.Map.Route.markers().length) {
+      return MapRoute.UI.Modal.message('You need to add some pins before planning a route.');
     }
 
-    App.Map.Actions.Action.prototype.execute.call(this);
+    MapRoute.Map.Actions.Action.prototype.execute.call(this);
 
-    this.map.setOptions({ 
-      draggableCursor: 'default' 
+    this.map.setOptions({
+      draggableCursor: 'default'
     });
   },
   bindEvents: function() {
-    $.each(App.Map.Route.markers(), this.bindMarkerEvents.bind(this));
+    $.each(MapRoute.Map.Route.markers(), this.bindMarkerEvents.bind(this));
   },
   bindMarkerEvents: function(i, marker) {
 
@@ -47,10 +47,10 @@ App.Map.Actions.Routes.inherit(App.Map.Actions.Action, {
     });
 
     if (remove) {
-      App.Map.Route.removePoint(marker);
+      MapRoute.Map.Route.removePoint(marker);
     }
     if (add) {
-      App.Map.Route.addPoint(marker, this.path.getArray().length);
+      MapRoute.Map.Route.addPoint(marker, this.path.getArray().length);
     }
   },
   getPath: function() {
@@ -62,9 +62,9 @@ App.Map.Actions.Routes.inherit(App.Map.Actions.Action, {
     });
   },
   reset: function() {
-    App.Map.Actions.Action.prototype.reset.apply(this, arguments);
-    this.map.setOptions({ 
-      draggableCursor: null 
+    MapRoute.Map.Actions.Action.prototype.reset.apply(this, arguments);
+    this.map.setOptions({
+      draggableCursor: null
     });
   }
 });

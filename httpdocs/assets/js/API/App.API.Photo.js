@@ -1,7 +1,7 @@
-App.API.Photo = (function(api) {
+MapRoute.API.Photo = (function(api) {
 
   return api;
 
-}(new App.API.Base({
+}(new MapRoute.API.Base({
   url: '/api/photos'
 })));

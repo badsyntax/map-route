@@ -1,13 +1,13 @@
-App.ViewModels.Navbar = function(container, controller) {
-  
+MapRoute.ViewModels.Navbar = function(container, controller) {
+
   this.container = container;
   this.controller = controller;
 
-  this.toolbar = new App.ViewModels.Navbar.Toolbar(this);
-  this.dropmenu = new App.ViewModels.Navbar.DropMenu(this);
+  this.toolbar = new MapRoute.ViewModels.Navbar.Toolbar(this);
+  this.dropmenu = new MapRoute.ViewModels.Navbar.DropMenu(this);
 };
 
-App.ViewModels.Navbar.prototype.rendered = function() {
+MapRoute.ViewModels.Navbar.prototype.rendered = function() {
   this.toolbar.rendered();
   this.dropmenu.rendered();
 };

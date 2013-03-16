@@ -1,4 +1,4 @@
-App.Map.Marker = (function() {
+MapRoute.Map.Marker = (function() {
 
   var handlers = [];
   var curMarker;
@@ -10,13 +10,13 @@ App.Map.Marker = (function() {
       latitude: marker.getPosition().lat()
     }).save();
 
-    App.Map.Route.updatePoint(marker);
+    MapRoute.Map.Route.updatePoint(marker);
   }
 
   function toggleInfoWindow(e, marker) {
     if (!marker.infoWindow.getMap()) {
-      App.Map.Route.resetMarkers();
-      marker.infoWindow.open(App.Map.instance(), marker);
+      MapRoute.Map.Route.resetMarkers();
+      marker.infoWindow.open(MapRoute.Map.instance(), marker);
     } else {
       marker.infoWindow.close();
     }
@@ -33,9 +33,9 @@ App.Map.Marker = (function() {
     }
 
     curMarker = marker;
-    var viewModel = new App.ViewModels.Modal.EditMarker(marker.model);
+    var viewModel = new MapRoute.ViewModels.Modal.EditMarker(marker.model);
 
-    App.UI.Modal.EditMarker.show('#modal-edit-marker', viewModel, saveDescription);
+    MapRoute.UI.Modal.EditMarker.show('#modal-edit-marker', viewModel, saveDescription);
   }
 
   function saveDescription(e) {
@@ -44,8 +44,8 @@ App.Map.Marker = (function() {
     }
 
     curMarker.model.save();
-    App.UI.Modal.hide();
-    App.Map.Route.refresh();
+    MapRoute.UI.Modal.hide();
+    MapRoute.Map.Route.refresh();
 
     // Refresh the infowindow dimensions
     var infoWindow = curMarker.infoWindow;
@@ -58,11 +58,11 @@ App.Map.Marker = (function() {
       return data.model;
     }
 
-    var model = new App.Models.Marker({
-      user_id: App.Config.get('user_id'),
+    var model = new MapRoute.Models.Marker({
+      user_id: MapRoute.Config.get('user_id'),
       latitude: data.location.lat(),
       longitude: data.location.lng(),
-      route_id: App.Map.Route.model().id
+      route_id: MapRoute.Map.Route.model().id
     });
 
     model.save(data.success, data.error);
@@ -84,7 +84,7 @@ App.Map.Marker = (function() {
   }
 
   function bindEvents(marker) {
-    
+
     marker.setCursor('pointer');
     marker.setDraggable(true);
 
@@ -101,8 +101,8 @@ App.Map.Marker = (function() {
 
   function createMarker(map, data) {
 
-    var type = App.Config.get('action'); // view|edit
-    var infoWindow = new App.Map.InfoWindow(type);
+    var type = MapRoute.Config.get('action'); // view|edit
+    var infoWindow = new MapRoute.Map.InfoWindow(type);
 
     var marker = new google.maps.Marker({
       infoWindow: infoWindow,
@@ -116,7 +116,7 @@ App.Map.Marker = (function() {
     marker.model = createModel(marker, data);
     bindEvents(marker);
 
-    App.Map.Route.markers.push(marker);
+    MapRoute.Map.Route.markers.push(marker);
 
     ko.applyBindings(marker.model, marker.infoWindow.getContent());
 
@@ -126,7 +126,7 @@ App.Map.Marker = (function() {
   return {
     factory: function(data) {
 
-      var map = App.Map.instance();
+      var map = MapRoute.Map.instance();
       var marker = createMarker(map, data);
 
       return $.extend(marker, {
@@ -139,13 +139,13 @@ App.Map.Marker = (function() {
         },
         updatePosition: function() {
           var latlng = new google.maps.LatLng(
-            marker.model.latitude(), 
+            marker.model.latitude(),
             marker.model.longitude()
           );
           marker.setPosition(latlng);
         },
-        focus: function() { 
-          App.Map.Route.resetMarkers();
+        focus: function() {
+          MapRoute.Map.Route.resetMarkers();
           marker.infoWindow.open(map, marker);
           marker.model.active(true);
         },
@@ -153,7 +153,7 @@ App.Map.Marker = (function() {
           onAddDescriptionMarkerClick(null, marker);
         },
         remove: function() {
-          App.Map.Route.removeMarker(marker, true, true);      
+          MapRoute.Map.Route.removeMarker(marker, true, true);
         }.bind(this)
       });
     }

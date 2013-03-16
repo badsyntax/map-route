@@ -26,7 +26,7 @@ module.exports = function(grunt) {
         google: true,
         ko: true,
         Path: true,
-        App: true
+        MapRoute: true
       }
     },
     uglify: {}

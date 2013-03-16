@@ -15,23 +15,25 @@ Function.prototype.inherit = function(_super, _sub) {
   return this;
 };
 
-/* App bootstrap */
-function App(config) {
+var MapRoute = {};
+
+/* MapRoute bootstrap */
+MapRoute.bootstrap = function(config) {
 
   /* Set config */
-  App.Config.set(config);
+  MapRoute.Config.set(config);
 
   /* Set globalization culture */
-  Globalize.culture('en-GB');
+  Globalize.culture(config.culture || 'en-GB');
 
   /* Route to controllers */
-  new App.Router();
-}
+  new MapRoute.Router();
+};
 
-/* App namespaces */
-App.Controllers = {};
-App.Models = {};
-App.ViewModels = {},
-App.UI = {},
-App.Config = {},
-App.API = {}
+/* MapRoute namespaces */
+MapRoute.Controllers = {};
+MapRoute.Models = {};
+MapRoute.ViewModels = {},
+MapRoute.UI = {},
+MapRoute.Config = {},
+MapRoute.API = {}

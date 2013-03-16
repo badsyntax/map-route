@@ -1,8 +1,8 @@
-App.UI.Sidebar = function(container, viewModel) {
+MapRoute.UI.Sidebar = function(container, viewModel) {
 
   this.container = container;
   this.viewModel = viewModel;
-  this.search = new App.UI.Sidebar.Search(container);
+  this.search = new MapRoute.UI.Sidebar.Search(container);
 
   this.initTabs();
   this.container.find('[rel="tooltip"]').tooltip();
@@ -10,7 +10,7 @@ App.UI.Sidebar = function(container, viewModel) {
   this.bindEvents();
 };
 
-App.UI.Sidebar.prototype = {
+MapRoute.UI.Sidebar.prototype = {
   initTabs: function() {
     $('#sidebar-tabs a')
     .on('click', this.onTabClick.bind(this))
@@ -32,14 +32,14 @@ App.UI.Sidebar.prototype = {
   },
   bindEvents: function() {
     $(window).on('resize', this.onWindowResize.bind(this));
-    App.GlobalEvents.on([
+    MapRoute.GlobalEvents.on([
       'removemarker',
       'addmarker',
       'removepoint',
       'addpoint'
     ].join(' '), this.onWindowResize.bind(this));
 
-    App.GlobalEvents.on('ajax.msg.success', this.onAjaxSuccess.bind(this));
+    MapRoute.GlobalEvents.on('ajax.msg.success', this.onAjaxSuccess.bind(this));
   },
   onWindowResize: function() {
     this.scrollBar.update('relative');

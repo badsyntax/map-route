@@ -1,5 +1,5 @@
-App.UI.Device = (function(device) {
-  
+MapRoute.UI.Device = (function(device) {
+
   var win = $(window);
   var winResizeTimer;
   var dimensions = {};
@@ -28,7 +28,7 @@ App.UI.Device = (function(device) {
       device.trigger('updateDimensions');
     }, 80);
   }
-  
+
   function init() {
     bindEvents();
     updateDimensions();
@@ -41,4 +41,4 @@ App.UI.Device = (function(device) {
     isTablet: isTablet
   });
 
-}(new App.Events()));
+}(new MapRoute.Events()));

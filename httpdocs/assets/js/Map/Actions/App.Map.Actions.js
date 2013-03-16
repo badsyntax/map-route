@@ -1,10 +1,10 @@
-App.Map.Actions = (function() {
-  
+MapRoute.Map.Actions = (function() {
+
   var instances = {};
 
   return {
     factory: function(action) {
-      instances[action] = new App.Map.Actions[action]();
+      instances[action] = new MapRoute.Map.Actions[action]();
       return instances[action];
     },
     getInstance: function(action) {
