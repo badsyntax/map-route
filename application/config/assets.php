@@ -87,7 +87,7 @@ $signin_production = Kohana::$config->load('site.comingsoon') ? array(
 		'assets/lib/bootstrap/css/bootstrap.min.css',
 		'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
 		'assets/lib/fontawesome/css/font-awesome.css',
-		'assets/css/signin.css',
+		'assets/css/edit/screen.css',
 	),
 	'javascript' => $js,
 );
@@ -101,7 +101,7 @@ return array(
 				'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
 				'assets/lib/fontawesome/css/font-awesome.css',
 				// 'assets/lib/jquery-ui/css/jquery-ui-1.10.2.custom.css',
-				'assets/css/screen.css',
+				'assets/css/edit/screen.css',
 		  ),
 	  	'javascript' => $js,
 		 )
@@ -112,7 +112,7 @@ return array(
 				'assets/lib/bootstrap/css/bootstrap.min.css',
 				'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
 				'assets/lib/fontawesome/css/font-awesome.css',
-				'assets/css/signin.css',
+				'assets/css/screen.css',
 		  ),
 		  'javascript' => $js,
 		),
@@ -123,7 +123,7 @@ return array(
 				'assets/lib/fontawesome/css/font-awesome.css',
 				'assets/lib/jquery/jquery-file-upload/css/jquery.fileupload-ui.css',
 				// 'assets/lib/jquery-ui/css/jquery-ui-1.10.2.custom.css',
-				'assets/css/screen.css',
+				'assets/css/edit/screen.css',
 		  ),
 	  	'javascript' => $js,
 		 )

@@ -1,0 +1,21 @@
+/* Mobile
+ *****************/
+@media (max-width: 480px) {
+
+  .toolbar {
+    left: auto;
+    right: 0;
+    top: 50%;
+    margin: 0;
+
+    .btn {
+      display: block;
+    }
+  }
+
+  .modal-signin { 
+    .well {
+      width: auto;
+    }
+  }
+}

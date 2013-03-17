@@ -12,11 +12,23 @@ class View_Page_Routes_View extends View_Layout
 
     $this->route = ORM::factory('Route', $id);
 
-    $this->markers = $this->route->markers->find_all();
-
     if (!$this->route->loaded())
     {
       throw new Exception('Route not found');
+    }
+
+    $this->markers = [];
+
+    foreach($this->route->markers->find_all() as $marker)
+    {
+      $photos = [];
+      foreach($marker->photos->find_all() as $photo)
+      {
+        $photos[] = $photo;
+      }
+      $marker = $marker->as_array();
+      $marker['photos'] = $photos;
+      $this->markers[] = $marker;
     }
   }
 

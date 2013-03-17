@@ -7,6 +7,10 @@ class Model_Marker extends ORM
 		'route' => array('model' => 'Route'),
 	);
 
+  protected $_has_many = array(
+    'photos'      => array('model' => 'Photo'),
+  );
+
   public function save(Validation $validation = NULL)
   {
     if ($this->date === NULL)

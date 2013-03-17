@@ -4,12 +4,10 @@ class Model_Photo extends ORM {
 
 	protected $_belongs_to = array(
 		'user' => array(
-			'model' => 'user',
-			'foreign_key' => 'user_id'
+			'model' => 'User',
 		),
 		'marker' => array(
-			'model' => 'marker',
-			'foreign_key' => 'marker_id'
+			'model' => 'Marker',
 		),
 	);
 
@@ -21,6 +19,16 @@ class Model_Photo extends ORM {
 				array('numeric'),
 			)
 		);
+	}
+
+	public function s3_thumb_filename()
+	{
+		return 'https://s3-eu-west-1.amazonaws.com/maproute-local-photos/'.$this->thumb_filename;
+	}
+
+	public function s3_screen_filename()
+	{
+		return 'https://s3-eu-west-1.amazonaws.com/maproute-local-photos/'.$this->screen_filename;
 	}
 
 	public function save_uploaded($file = array(), $data = array())

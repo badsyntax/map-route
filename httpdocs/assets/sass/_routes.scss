@@ -1,0 +1,13 @@
+.routes {
+  .thumbnail {
+    position: relative;
+    /*width: 160px;*/
+    height: 80px;
+    display: table-cell;
+    vertical-align: middle;
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}

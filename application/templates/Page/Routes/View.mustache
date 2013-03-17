@@ -1,6 +1,6 @@
 {{{navigation}}}
 
-<div class="container">
+<div class="container routes">
 
   <br />
 
@@ -10,43 +10,41 @@
     <li class="active">Viewing route</li>
   </ul>
 
-    <ul class="well pull-right nav nav-list" style="margin:0;width:200px">
-      <li><a href="{{urls.overview}}">Overview</a></li>
-      <li><a href="{{urls.map}}">View on map</a></li>
-      <li><a href="{{urls.gallery}}">View photo gallery</a></li>
-      <li><a href="{{urls.share}}">Share route</a></li>
-      <!-- <li><a href="#">Fork this route</a></li> -->
-    </ul>
+  <div class="row-fluid">
+    <div class="span8">
 
-  <h3>Route overview</h3>
-  <ul>
-    <li><strong>Title:</strong> {{route.title}}</li>
-    <li><strong>Author:</strong> <a href="/users/1/profile">{{route.user.name}}</a></li>
-    <li><strong>Description:</strong> {{route.description}}</li>
-  </ul>
 
-  <hr />
+      <h3>Route overview</h3>
+      <ul>
+        <li><strong>Title:</strong> {{route.title}}</li>
+        <li><strong>Author:</strong> <a href="/users/1/profile">{{route.user.name}}</a></li>
+        <li><strong>Description:</strong> {{route.description}}</li>
+      </ul>
 
-  <h3>Locations</h3>
-  <table class="table table-bordered table-hover">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Date</th>
-        <th>Photos</th>
-      </tr>
-    </thead>
-    <tbody>
-    {{#markers}}
-      <tr>
-        <td><a href="#">{{title}}</a></td>
-        <td>12/05/2013</td>
-        <td><a href="#">View photos</a></td>
-      </tr>
-    {{/markers}}
-    {{^markers}}
-    {{/markers}}
-    </tbody>
-  </table>
-  <hr />
+      <hr />
+
+      <h3>Locations</h3>
+      {{#markers}}
+        <h4>{{title}}</h4>
+        <p>{{description}}</p>
+        <ul class="thumbnails">
+          {{#photos}}
+            <li class="span2">
+              <a href="{{s3_screen_filename}}" class="thumbnail">
+                <img alt="160x120" src="{{s3_thumb_filename}}">
+              </a>
+            </li>
+          {{/photos}}
+        </ul>
+        <hr />
+      {{/markers}}
+    </div>
+    <div class="span4">
+      <ul class="well nav nav-list">
+        <li><a href="{{urls.map}}">View on map</a></li>
+        <li><a href="{{urls.share}}">Share route</a></li>
+        <!-- <li><a href="#">Fork this route</a></li> -->
+      </ul>
+    </div>
+  </div>
 </div>

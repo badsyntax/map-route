@@ -1,21 +1,15 @@
-/* Mobile
- *****************/
-@media (max-width: 480px) {
-
-  .toolbar {
-    left: auto;
-    right: 0;
-    top: 50%;
-    margin: 0;
-
-    .btn {
-      display: block;
-    }
+@media (min-width: 1200px) {
+  .navbar-inner .container,
+  .container {
+     width: 940px;
   }
-
-  .modal-signin { 
-    .well {
-      width: auto;
-    }
+  .span4 {
+    width: 300px;
+  }
+  .span7 {
+    width: 540px;
+  }
+  .offset1 {
+    margin-left: 100px;
   }
 }

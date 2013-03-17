@@ -1,28 +1,34 @@
+.navbar-inner {
+  background: transparent;
+  @include box-shadow(none);
+  filter: none;
+  background: #EEE;
+  border: 0;
+  border-bottom: 1px solid #CCC;
+  @include border-radius(0);
+}
+
 .navbar {
 
-  margin: 0 0 0 292px;
-  z-index: 2;
-  position: relative;
-  border-left: 0;
-  border-top:0;
-  border-bottom: 1px solid #a5a5a5;
-  @include border-radius(0);
-  text-align: center;
-  padding-top: 1px;
-  padding-bottom: 3px;
-  padding-right: 10px;
-  @include box-shadow(rgba(0, 0, 0, 0.3) 6px 5px 12px -1px);
-  background: #fff;
-  height: 42px;
-
-  .dropmenus > div {
-    margin-right: 10px;
-    &:last-child {
-      margin-right: 0;
-    }
+  .brand {
+    font: 600 20px/60px Segoe UI Light,Segoe UI,Helvetica,Arial,sans-serif;
+    color: #111;
+    text-shadow: 0 1px 0 white;
+    padding: 0;
+    margin-left: 0;
   }
 
-  .dropdown-menu {
-    text-align: left;
+  .nav {
+    float: right;
+    display: inline-block;
+
+    li {
+      margin-left: 15px;
+      line-height: 48px;
+
+      a {
+        padding: 7px 15px;
+      }
+    }
   }
 }
