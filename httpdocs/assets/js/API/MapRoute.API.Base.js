@@ -16,18 +16,24 @@ MapRoute.API.Base.prototype = {
   create: function(config) {
     return this.makeRequest(this.xhrConfig(config, {
       type: 'POST'
-    }));
+    }))
+    .done(this._onSuccess)
+    .fail(this._onErro);
   },
   update: function(config) {
     return this.makeRequest(this.xhrConfig(config, {
       type: 'PUT'
-    }));
+    }))
+    .done(this._onSuccess)
+    .fail(this._onErro);
   },
   remove: function(config) {
     return this.makeRequest(this.xhrConfig(config, {
       type: 'DELETE',
       dataType: 'text'
-    }));
+    }))
+    .done(this._onSuccess)
+    .fail(this._onErro);
   },
   findAll: function(config) {
     return this.makeRequest(this.xhrConfig(config, {
@@ -78,5 +84,11 @@ MapRoute.API.Base.prototype = {
 
       ko.mapping.fromJS(obj, config.mappingOptions, config.model);
     });
+  },
+  _onSuccess: function() {
+    MapRoute.GlobalEvents.trigger('api.request.success');
+  },
+  _onError: function() {
+    MapRoute.GlobalEvents.trigger('api.request.error');
   }
 };

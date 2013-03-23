@@ -12,8 +12,37 @@
 
 .fileupload-form {
   margin: 0;
+  text-align: center;
 }
 
 .fileupload-uploaded {
   float: right;
+}
+
+.fileupload-buttonbar {
+  margin: 0 0 10px 0;
+  padding: 10px;
+}
+
+.fileupload-dragndrop {
+
+  height: 160px;
+  border: 4px dashed #cfcfcf;
+  margin-bottom: 20px;
+  @include border-radius(12px);
+  position: relative;
+
+  p {
+    text-align: center;
+    font-size: 26px;
+    padding-top: 68px;
+  }
+
+  &.dragover {
+    border-color: #006dcc;
+  }
+}
+
+.fileinput-button {
+  float: none;
 }

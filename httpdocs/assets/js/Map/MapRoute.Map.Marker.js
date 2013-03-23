@@ -1,7 +1,6 @@
 MapRoute.Map.Marker = (function() {
 
   var handlers = [];
-  var curMarker;
 
   function onMarkerDragEnd(e, marker) {
 
@@ -28,28 +27,26 @@ MapRoute.Map.Marker = (function() {
   }
 
   function onAddDescriptionMarkerClick(e, marker) {
+
     if (e && e.preventDefault) {
       e.preventDefault();
     }
 
-    curMarker = marker;
     var viewModel = new MapRoute.ViewModels.Modal.EditMarker(marker.model);
 
-    MapRoute.UI.Modal.EditMarker.show('#modal-edit-marker', viewModel, saveDescription);
-  }
+    MapRoute.UI.Modal.EditMarker.show('#modal-edit-marker', viewModel, function onSave(e) {
 
-  function saveDescription(e) {
-    if (e && e.preventDefault) {
-      e.preventDefault();
-    }
+      if (e && e.preventDefault) {
+        e.preventDefault();
+      }
 
-    curMarker.model.save();
-    MapRoute.UI.Modal.hide();
-    MapRoute.Map.Route.refresh();
+      viewModel.save();
+      MapRoute.Map.Route.refresh();
 
-    // Refresh the infowindow dimensions
-    var infoWindow = curMarker.infoWindow;
-    infoWindow.setContent(infoWindow.getContent());
+      // Refresh the infowindow dimensions
+      var infoWindow = marker.infoWindow;
+      infoWindow.setContent(infoWindow.getContent());
+    });
   }
 
   function createModel(marker, data) {

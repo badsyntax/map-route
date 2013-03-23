@@ -46,12 +46,12 @@ MapRoute.UI.Sidebar.prototype = {
       'addpoint'
     ].join(' '), this.onWindowResize.bind(this));
 
-    MapRoute.GlobalEvents.on('ajax.msg.success', this.onAjaxSuccess.bind(this));
+    MapRoute.GlobalEvents.on('api.request.success', this.onApiSuccess.bind(this));
   },
   onWindowResize: function() {
     this.scrollBar.update('relative');
   },
-  onAjaxSuccess: function() {
+  onApiSuccess: function() {
     this.viewModel.ajaxSuccessMessage(true)
   }
 };

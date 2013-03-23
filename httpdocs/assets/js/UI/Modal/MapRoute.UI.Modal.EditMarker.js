@@ -49,11 +49,13 @@ MapRoute.UI.Modal.EditMarker = (function(base) {
       this.uploaded = 0;
       this.getElements();
       this.initPlugin();
+      this.bindEvents();
     },
     getElements: function() {
       this.uploadCcontainer = $('#fileupload');
       this.progressContainer = container.find('.fileupload-progress');
       this.uploadedContainer = container.find('.fileupload-uploaded');
+      this.dropZone = container.find('.fileupload-dragndrop');
     },
     initPlugin: function() {
       this.uploadedContainer.html('');
@@ -74,6 +76,9 @@ MapRoute.UI.Modal.EditMarker = (function(base) {
       .on('fileuploaddone', this.onDone.bind(this))
       .data('blueimp-fileupload');
     },
+    bindEvents: function() {
+      this.dropZone.on('dragover dragend dragleave drop', this.onDropZoneEvents.bind(this));
+    },
     updateUploadedMessage: function() {
       var msg = [
         this.uploaded,
@@ -81,6 +86,10 @@ MapRoute.UI.Modal.EditMarker = (function(base) {
         'uploaded'
       ].join(' ');
       this.uploadedContainer.html(msg);
+    },
+    onDropZoneEvents: function(e) {
+      var actionMethod = e.type === 'dragover' ? 'addClass' : 'removeClass';
+      this.dropZone[actionMethod]('dragover');
     },
     onProgressAll: function(e, data) {
       var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -157,7 +166,7 @@ MapRoute.UI.Modal.EditMarker = (function(base) {
     }
   }
 
-  function show(selector, dataModel, callback) {
+  function show(selector, dataModel, saveCallback) {
 
     viewModel = dataModel;
 
@@ -165,7 +174,7 @@ MapRoute.UI.Modal.EditMarker = (function(base) {
       heading: 'Edit location',
       buttons: [{
         title: 'Save',
-        action: callback,
+        action: saveCallback,
         type: 'btn-primary'
       }, {
         title: 'Cancel',

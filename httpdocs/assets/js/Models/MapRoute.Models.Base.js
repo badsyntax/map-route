@@ -37,8 +37,6 @@ MapRoute.Models.Base.prototype = {
   },
   find: function(success, error) {
     this.api.find({
-      success: success,
-      error: error,
       data: this.where(),
       mapResponse: {
         model: this,
@@ -50,7 +48,9 @@ MapRoute.Models.Base.prototype = {
           }
         }
       }
-    });
+    })
+    .done(success)
+    .fail(error);
   },
   create: function(success, error) {
     this._create(success, error);
@@ -71,25 +71,27 @@ MapRoute.Models.Base.prototype = {
   _create: function(success, error) {
     this.api.create({
       data: ko.mapping.toJSON(this),
-      success: success,
-      error: error,
       mapResponse: {
         model: this
       }
-    });
+    })
+    .done(success)
+    .done(this._onSuccess)
+    .fail(error);
   },
   _update: function(success, error) {
     this.api.update({
-      data: ko.mapping.toJSON(this),
-      success: success,
-      error: error
-    });
+      data: ko.mapping.toJSON(this)
+    })
+    .done(success)
+    .fail(error);
   },
   _remove: function(success, error) {
     this.api.remove({
-      data: ko.mapping.toJSON(this),
-      success: success,
-      error: error
-    });
+      data: ko.mapping.toJSON(this)
+    })
+    .done(success)
+    .done(this._onSuccess)
+    .fail(error);
   }
 };

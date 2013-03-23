@@ -24,8 +24,7 @@ ko.bindingHandlers.fadeToggle = {
     if (!ko.utils.unwrapObservable(value)) {
       return;
     }
-
-    element.stop(true, true).fadeIn(160, function() {
+    element.stop(true, true).hide().fadeIn(160, function() {
       setTimeout(function() {
         element.fadeOut(660, function() {
           value(false);

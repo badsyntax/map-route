@@ -1,12 +1,12 @@
 MapRoute.ViewModels.Modal.EditMarker = function(model) {
-  this.setObservables(model);
+  this.model = model;
+  this.setObservables();
 };
 
 MapRoute.ViewModels.Modal.EditMarker.inherit(MapRoute.ViewModels.Base, {
-  setObservables: function(model) {
+  setObservables: function() {
     this.values({
       pendingRequest: false,
-      model: model,
       photos: [],
       state: 'list',
       viewPhoto: false
@@ -26,5 +26,8 @@ MapRoute.ViewModels.Modal.EditMarker.inherit(MapRoute.ViewModels.Base, {
   },
   removePhoto: function(photo, callback) {
     photo.remove(callback);
+  },
+  save: function() {
+    this.model.save();
   }
 });
