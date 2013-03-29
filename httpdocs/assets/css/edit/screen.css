@@ -22,16 +22,11 @@ body {
   line-height: 17.5px;
 }
 
-/* Temporary fix for tooltips in button groups messing with margins */
-.btn-group > .tooltip + .btn {
-  margin-left: -1px;
-}
-
 /* Map Canvas
  *****************/
 .map {
   right: 0;
-  left: 280px;
+  left: 292px;
   bottom: 0;
   top: 46px;
   position: absolute;
@@ -43,23 +38,26 @@ body {
   display: inline;
   top: 0;
 }
-.map .message {
+
+/* Map loading message
+ *******************/
+.map-loading-message {
   text-align: center;
   position: absolute;
   top: 50%;
   width: 100%;
-  margin-top: -1em;
+  margin-top: -60px;
 }
-.map .has-js {
+.map-loading-message .has-js {
   display: none;
 }
 
 /* Javascript enabled
  *****************/
-.js .map .no-js {
+.js .map-loading-message .no-js {
   display: none;
 }
-.js .map .has-js {
+.js .map-loading-message .has-js {
   display: block;
 }
 
@@ -84,6 +82,7 @@ body {
   box-shadow: rgba(0, 0, 0, 0.3) 6px 5px 12px -1px;
   background: #fff;
   height: 42px;
+  display: none;
 }
 .navbar .dropmenus > div {
   margin-right: 10px;
@@ -149,7 +148,7 @@ body {
   -webkit-box-shadow: rgba(0, 0, 0, 0.3) 6px -5px 12px -1px;
   -moz-box-shadow: rgba(0, 0, 0, 0.3) 6px -5px 12px -1px;
   box-shadow: rgba(0, 0, 0, 0.3) 6px -5px 12px -1px;
-  display: table;
+  display: none;
 }
 .sidebar .row {
   display: table-row;
@@ -244,6 +243,9 @@ body {
   margin: 0 0 10px 0;
   padding: 10px;
 }
+.fileupload-buttonbar button.btn {
+  margin: 0;
+}
 
 .fileupload-dragndrop {
   height: 160px;
@@ -262,7 +264,8 @@ body {
   padding-top: 68px;
 }
 .fileupload-dragndrop.dragover {
-  border-color: #006dcc;
+  border-color: #aaa;
+  color: #444;
 }
 
 .fileinput-button {

@@ -12,6 +12,7 @@ MapRoute.ViewModels.Sidebar.prototype = {
     this.ajaxSuccessMessage = ko.observable(false);
   },
   rendered: function() {
+    // console.log(this.container.find('.search')[0])
     this.ui = new MapRoute.UI.Sidebar(this.container.find('.search'), this);
   },
   fadeIn: function(elem) {

@@ -12,6 +12,15 @@ ko.bindingHandlers.fadeVisible = {
   }
 };
 
+ko.bindingHandlers.fadeIn = {
+  init: function(element, valueAccessor) {
+    $(element).hide();
+  },
+  update: function(element, valueAccessor) {
+    $(element).fadeIn(valueAccessor());
+  }
+};
+
 ko.bindingHandlers.fadeToggle = {
   init: function(element, valueAccessor) {
     $(element).hide();

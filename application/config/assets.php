@@ -29,6 +29,7 @@ $js = array(
 	'assets/js/API/MapRoute.API.Photo.js',
 	'assets/js/API/MapRoute.API.Route.js',
 	'assets/js/API/MapRoute.API.User.js',
+	'assets/js/API/MapRoute.API.Views.js',
 	'assets/js/Map/MapRoute.Map.js',
 	'assets/js/Map/Actions/MapRoute.Map.Actions.js',
 	'assets/js/Map/Actions/MapRoute.Map.Actions.Action.js',

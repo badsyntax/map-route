@@ -1,53 +1,58 @@
 /* Map controller
  *************************/
-MapRoute.Controllers.Map = function(route_id, action) {
+MapRoute.Controllers.Map = function(route_id) {
 
   this.route_id = route_id;
-  this.action = action;
+  this.action   = MapRoute.Config.get('action'); // edit || view
+  this.Map      = MapRoute.Map;
 
-  var self = this;
-
-  this.initUI(function() {
-    MapRoute.Map.create(function(map){
-      MapRoute.Map.Route.init(route_id, function() {
-        if (MapRoute.Map.Route.loaded()) {
-          self.init(map);
-        }
-      });
-    });
-  });
+  this.init();
 };
 
 MapRoute.Controllers.Map.prototype = {
-  initUI: function(callback) {
-    this.loadTemplates(function() {
-      this.initModal();
-      callback();
-    }.bind(this));
-  },
   init: function(map) {
-    if (this.route_id === 'load') {
-      MapRoute.Router.push('route', MapRoute.Map.Route.model().id(), 'edit');
-    }
+    $.when(
+      this.Map.load(),
+      this.loadTemplates()
+    )
+    .then(this.Map.create.bind(this.Map))
+    .then(this.initUI.bind(this));
+  },
+  initUI: function() {
 
-    this.map = map;
-    this.setConfig();
-
-    MapRoute.Map.Route.show();
-
+    this.initModal();
     if (this.action === 'edit') {
       this.initNavbar();
       this.initSidebar();
     }
 
+    $('#map-loader').remove();
+
+    if (this.route_id === 'load') {
+      MapRoute.Router.push('route', this.Map.Route.model().id(), 'edit');
+    }
+
+    this.Map.Route.show();
     this.bindEvents();
   },
-  loadTemplates: function(callback) {
-    $.get('/templates', function(data) {
+  loadTemplates: function() {
+
+    var deferred = $.Deferred();
+
+    MapRoute.API.Views.find()
+    .then(function(data) {
       $('body').append(data);
-      callback();
-    });
-  },initModal: function() {
+      this.initContainer();
+      deferred.resolve();
+    }.bind(this));
+
+    return deferred.promise();
+  },
+  initContainer: function() {
+    var container = $('#container-template');
+    $('body').prepend(container.html());
+  },
+  initModal: function() {
     var container = $('#modal');
     var viewModel = new MapRoute.ViewModels.Modal(container, this);
     ko.applyBindings(viewModel, container[0]);
@@ -65,32 +70,16 @@ MapRoute.Controllers.Map.prototype = {
     ko.applyBindings(viewModel, container[0]);
     viewModel.rendered();
   },
-  setConfig: function() {
-    MapRoute.Config.set('action', this.action);
-    MapRoute.Config.set('polyOptions', {
-      strokeColor: '#000000',
-      strokeOpacity: 1.0,
-      strokeWeight: 3,
-      map: this.map,
-      editable: false,
-      icons: [{
-        icon: {
-          path: google.maps.SymbolPath.FORWARD_OPEN_ARROW
-        },
-        offset: '100%'
-      }]
-    });
-  },
   bindEvents: function() {
     if (MapRoute.Config.get('map.loaded')) {
       return this.onTilesLoaded();
     }
-    google.maps.event.addListenerOnce(this.map, 'tilesloaded', this.onTilesLoaded.bind(this));
+    google.maps.event.addListenerOnce(this.Map.instance(), 'tilesloaded', this.onTilesLoaded.bind(this));
   },
   onTilesLoaded: function() {
     setTimeout(function() {
       if (this.action !== 'edit') {
-        new MapRoute.Map.Actions.View().execute();
+        new this.Map.Actions.View().execute();
       }
     }.bind(this), 200);
   }

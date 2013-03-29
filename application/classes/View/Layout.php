@@ -3,7 +3,6 @@
 class View_Layout
 {
 	public $title = 'Map Route';
-	public $_app_config = array();
 	protected $environment = NULL;
 
 	public function __construct()
@@ -58,12 +57,19 @@ class View_Layout
 
 	public function app_config()
 	{
-		$this->_app_config['mapApiKey'] = Kohana::$config->load('site.map.key');
-		$this->_app_config['debug'] = Kohana::$environment === Kohana::DEVELOPMENT;
+		$config = array(
+			'mapApiKey' => Kohana::$config->load('site.map.key'),
+			'debug' => Kohana::$environment === Kohana::DEVELOPMENT,
+			'hosts' => array(
+				'photos' => Kohana::$config->load('site.photos.s3bucket')[Kohana::$environment]
+			)
+		);
+
+		$config['user_id'] = 0;
 
 		if ($this->user !== NULL && $this->user->loaded())
 		{
-			$this->_app_config['user_id'] = $this->user->id;
+			$config['user_id'] = $this->user->id;
 
 			$route = $this->user->routes
 				->order_by('id', 'ASC')
@@ -72,15 +78,11 @@ class View_Layout
 
 			if ($route->loaded())
 			{
-				$this->_app_config['default_route'] = $route->id;
+				$config['default_route'] = $route->id;
 			}
 		}
-		else
-		{
-			$this->_app_config['user_id'] = 0;
-		}
 
-		return json_encode($this->_app_config, JSON_NUMERIC_CHECK);
+		return json_encode($config, JSON_NUMERIC_CHECK | JSON_PRETTY_PRINT);
 	}
 
 	public function coming_soon()

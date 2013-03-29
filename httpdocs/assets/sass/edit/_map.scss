@@ -1,9 +1,9 @@
 /* Map Canvas
  *****************/
-.map { 
+.map {
 
   right: 0;
-  left: 280px;
+  left: 292px;
   bottom: 0;
   top: 46px;
   position: absolute;
@@ -11,19 +11,20 @@
 
   img {
     max-width: none;
-    width: auto; 
+    width: auto;
     display: inline;
     top: 0;
   }
+}
 
-  .message {
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    margin-top: -1em;
-  }
-
+/* Map loading message
+ *******************/
+.map-loading-message {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  margin-top: -60px;
   .has-js {
     display: none;
   }
@@ -32,8 +33,7 @@
 /* Javascript enabled
  *****************/
 .js {
-  
-  .map {
+  .map-loading-message {
     .no-js {
       display: none;
     }

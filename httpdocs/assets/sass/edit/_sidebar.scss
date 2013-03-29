@@ -11,7 +11,8 @@
   background-color: #fff;
   border-right: 1px solid #a5a5a5;
   @include box-shadow(rgba(0, 0, 0, 0.3) 6px -5px 12px -1px);
-  display: table;
+  // display: table;
+  display: none;
 
   .row {
     display: table-row;

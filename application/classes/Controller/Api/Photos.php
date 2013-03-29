@@ -31,25 +31,27 @@ class Controller_Api_Photos extends Controller_REST
 
 	public function action_create()
 	{
-		// Prcess the files and try upload them to S3
+		// Process the files and upload them to S3
 		$file_upload = FileUpload::factory('file', $_FILES);
 		$file = $file_upload->uploaded();
 
 		try
 		{
-			// Try save the file data to the DB
+			// Save the file data to the DB
 			ORM::factory('Photo')->save_uploaded($file, $this->request->post());
 		}
 		catch(ORM_Validation_Exception $e)
 		{
-			// TODO: remove message in prod mode
-			print_r($e->errors('upload'));
+			if (Kohana::$environment === Kohana::DEVELOPMENT)
+			{
+				print_r($e->errors('upload'));
+			}
 			throw HTTP_Exception::factory(500);
 		}
 
 		$response_body = REST_Response::factory(array(
 			'files' => array(
-					// We don't want to just return the $file as it contains to
+					// We don't want to just return the $file as it contains too
 					// much sensitive data.
 					array(
 						'name' => $file['name'],
@@ -71,43 +73,13 @@ class Controller_Api_Photos extends Controller_REST
 
 		if (!$photo->loaded())
 		{
-			throw HTTP_Exception::factory(500, 'Marker not found');
+			throw HTTP_Exception::factory(500, 'Photo not found');
 		}
 
 		if ($photo->user_id !== $this->user->id)
 		{
 			throw HTTP_Exception::factory(401);
 		}
-
-		$s3 = S3Client::factory(Kohana::$config->load('site.s3'));
-		$bucket = 'maproute-local-photos';
-
-		try
-		{
-			$s3->deleteObject(array(
-				'Bucket' => $bucket,
-				'Key' => $photo->filename
-			));
-		}
-		catch (Exception $e) {}
-
-		try
-		{
-			$s3->deleteObject(array(
-				'Bucket' => $bucket,
-				'Key' => $photo->screen_filename
-			));
-		}
-		catch (Exception $e) {}
-
-		try
-		{
-			$s3->deleteObject(array(
-				'Bucket' => $bucket,
-				'Key' => $photo->thumb_filename
-			));
-		}
-		catch(Exception $e) {}
 
 		$photo->delete();
 

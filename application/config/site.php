@@ -3,7 +3,7 @@
 return array(
 	'comingsoon' => FALSE,
 	'modules' => array(
-		'compress'   => MODPATH.'compress',	
+		'compress'   => MODPATH.'compress',
 		'auth'       => MODPATH.'auth',
 		'minion'     => MODPATH.'minion',
 		'cache'      => MODPATH.'cache',
@@ -25,5 +25,17 @@ return array(
 	's3' => array(
 		'key' => 'AKIAIVYJAENDGX5BFRYQ',
 		'secret' => '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',
+		'region' => 'eu-west-1'
+	),
+	'photos' => array(
+		'sizes' => array(
+			'thumb'  => array(200, 200),
+			'screen' => array(1000, 1000)
+		),
+		's3bucket' => array(
+			Kohana::DEVELOPMENT => 'local.photos.staging.maproute.cc',
+			Kohana::STAGING     => 'photos.staging.maproute.cc',
+			Kohana::PRODUCTION  => 'photos.maproute.cc'
+		),
 	)
 );

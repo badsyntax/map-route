@@ -1,26 +1,8 @@
-<div class="container">
-  <div
-    class="navbar navbar-inner" 
-    id="navbar"
-    data-bind="template: { name: 'navbar-template' }">
+<div class="map-loading-message" id="map-loader">
+  <div class="has-js">
+    <img src="/assets/img/ajax-loader-large.gif" alt="Loading..." width="120" height="120" />
   </div>
-  <div id="map-canvas" class="map">
-    <div class="message">
-      <div class="has-js">
-        Loading map...
-      </div>
-      <div class="no-js">
-        <strong>You need to enable Javascript in your browser to use this application.</strong>
-      </div>
-    </div>
+  <div class="no-js">
+    <strong>You need to enable Javascript in your browser to use this application.</strong>
   </div>
-  <aside 
-    class="sidebar" 
-    id="sidebar"
-    data-bind="template: { name: 'sidebar-template' }">
-  </aside>
-</div>
-<div 
-  id="modal" 
-  data-bind="template: { name: 'modal-template' }">
 </div>

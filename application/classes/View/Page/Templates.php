@@ -2,5 +2,4 @@
 
 class View_Page_Templates extends View_Layout
 {
-	
 }

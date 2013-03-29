@@ -3,7 +3,7 @@ MapRoute.Models.Photo = function() {
   MapRoute.Models.Base.apply(this, arguments);
 
   this.api = MapRoute.API.Photo;
-  this.s3Url = 'https://s3-eu-west-1.amazonaws.com/maproute-local-photos/';
+  this.s3Url = 'http://' + MapRoute.Config.get('hosts.photos') + '/';
 
   this.origPath = ko.computed(this.getOrigPath, this);
   this.thumbPath = ko.computed(this.getThumbPath, this);

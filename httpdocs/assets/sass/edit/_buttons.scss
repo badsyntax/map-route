@@ -4,8 +4,3 @@
   font-size: 17.5px;
   line-height: 17.5px;
 }
-
-/* Temporary fix for tooltips in button groups messing with margins */
-.btn-group > .tooltip + .btn {
-  margin-left: -1px;
-}

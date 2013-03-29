@@ -15,7 +15,8 @@ MapRoute.Map.Route = (function() {
     model:   model,
     points:  points,
 
-    init: function(route_id, callback) {
+    init: function(callback) {
+      var route_id = MapRoute.Config.get('default_route');
       this.reset();
       this.load(route_id, function() {
         this.loadMarkers(route_id, callback);

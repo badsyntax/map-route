@@ -37,14 +37,49 @@ class Model_Photo extends ORM {
 			$data,
 			array(
 				'user_id'           => Auth::instance()->get_user()->id,
-				'filename'          => basename($file['path']),
-				'screen_filename'   => basename($file['screen']),
-				'thumb_filename'    => basename($file['thumb']),
+				'filename'          => $file['s3_path']['orig'],
+				'screen_filename'   => $file['s3_path']['screen'],
+				'thumb_filename'    => $file['s3_path']['thumb'],
 			)
 		);
 
 		$this->values($data);
 		$this->save();
+	}
+
+	public function delete()
+	{
+		$s3 = S3Client::factory(Kohana::$config->load('site.s3'));
+		$bucket = Kohana::$config->load('site.photos.s3bucket')[Kohana::$environment];
+
+		try
+		{
+			$s3->deleteObject(array(
+				'Bucket' => $bucket,
+				'Key' => $this->filename
+			));
+		}
+		catch (Exception $e) {}
+
+		try
+		{
+			$s3->deleteObject(array(
+				'Bucket' => $bucket,
+				'Key' => $this->screen_filename
+			));
+		}
+		catch (Exception $e) {}
+
+		try
+		{
+			$s3->deleteObject(array(
+				'Bucket' => $bucket,
+				'Key' => $this->thumb_filename
+			));
+		}
+		catch(Exception $e) {}
+
+		return parent::delete();
 	}
 
 }
