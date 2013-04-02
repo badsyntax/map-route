@@ -83,6 +83,7 @@ MapRoute.API.Base.prototype = {
       }
 
       ko.mapping.fromJS(obj, config.mappingOptions, config.model);
+      // console.log(obj);
     });
   },
   _onSuccess: function() {

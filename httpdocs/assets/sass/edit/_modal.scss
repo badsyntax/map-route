@@ -1,10 +1,27 @@
 /* Modals
  *****************/
-.modal-signin { 
+.modal-signin {
   text-align: center;
 
   .well {
     width: 64%;
     margin: auto;
+  }
+}
+.modal {
+  &.fade {
+    @include transition(opacity .2s linear, none);
+    display: none;
+    top: 10%;
+    &.in {
+      @include transition(opacity .2s linear, none);
+    }
+  }
+}
+.modal-backdrop {
+  &.fade {
+    &.in {
+      @include transition(opacity .1s linear, none);
+    }
   }
 }

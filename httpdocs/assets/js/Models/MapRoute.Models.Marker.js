@@ -44,11 +44,9 @@ MapRoute.Models.Marker.inherit(MapRoute.Models.Base, {
     }
     return Globalize.format(new Date(parseInt(this.date(), 10) * 1000), 'd');
   },
-  findAll: function(success, error) {
-    MapRoute.API.Marker.findAll({
+  findAll: function() {
+    return this.api.findAll({
       data: this.where(),
-      success: success.bind(this),
-      error: error,
       mapResponse: {
         model: this,
         mappingOptions: {

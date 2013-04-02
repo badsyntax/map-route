@@ -15,7 +15,7 @@ MapRoute.Map = (function() {
 
       this.bindEvents();
 
-      this.Route.init();
+      return this.Route.init();
     },
     load: function() {
 

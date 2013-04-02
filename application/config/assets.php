@@ -15,10 +15,11 @@ $js = array(
 	'assets/lib/jquery/globalize.js',
 	'assets/lib/jquery/jquery.tinyscrollbar.js',
 	'assets/lib/jquery/cultures/globalize.culture.en-GB.js',
-	'assets/lib/bootstrap/js/bootstrap.min.js',
+	'assets/lib/bootstrap/js/bootstrap.js',
 	'assets/lib/knockout/knockout-2.2.1.js',
 	'assets/lib/knockout/knockout.mapping-2.3.4.js',
 	'assets/js/CustomBindings.js',
+	'assets/js/Helpers.js',
 	'assets/js/MapRoute.js',
 	'assets/js/Util/MapRoute.Util.js',
 	'assets/js/Router/MapRoute.Router.js',
@@ -75,8 +76,8 @@ if (Kohana::$environment === Kohana::PRODUCTION)
 
 $signin_production = Kohana::$config->load('site.comingsoon') ? array(
 	'css' => array(
-	 'assets/lib/bootstrap/css/bootstrap.min.css',
-		'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
+	 'assets/lib/bootstrap/css/bootstrap.css',
+		'assets/lib/bootstrap/css/bootstrap-responsive.css',
 		'assets/lib/fontawesome/css/font-awesome.css',
 		'assets/css/comingsoon.css'
   ),
@@ -85,8 +86,8 @@ $signin_production = Kohana::$config->load('site.comingsoon') ? array(
  	),
 ) : array(
 	'css' => array(
-		'assets/lib/bootstrap/css/bootstrap.min.css',
-		'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
+		'assets/lib/bootstrap/css/bootstrap.css',
+		'assets/lib/bootstrap/css/bootstrap-responsive.css',
 		'assets/lib/fontawesome/css/font-awesome.css',
 		'assets/css/edit/screen.css',
 	),
@@ -98,8 +99,8 @@ return array(
 		'signin' => $signin_production,
 		'edit' => array(
 			'css' => array(
-				'assets/lib/bootstrap/css/bootstrap.min.css',
-				'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
+				'assets/lib/bootstrap/css/bootstrap.css',
+				'assets/lib/bootstrap/css/bootstrap-responsive.css',
 				'assets/lib/fontawesome/css/font-awesome.css',
 				// 'assets/lib/jquery-ui/css/jquery-ui-1.10.2.custom.css',
 				'assets/css/edit/screen.css',
@@ -110,8 +111,8 @@ return array(
 	'development' => array(
 		'signin' => array(
 		  'css' => array(
-				'assets/lib/bootstrap/css/bootstrap.min.css',
-				'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
+				'assets/lib/bootstrap/css/bootstrap.css',
+				'assets/lib/bootstrap/css/bootstrap-responsive.css',
 				'assets/lib/fontawesome/css/font-awesome.css',
 				'assets/css/screen.css',
 		  ),
@@ -119,8 +120,8 @@ return array(
 		),
 		'edit' => array(
 			'css' => array(
-				'assets/lib/bootstrap/css/bootstrap.min.css',
-				'assets/lib/bootstrap/css/bootstrap-responsive.min.css',
+				'assets/lib/bootstrap/css/bootstrap.css',
+				'assets/lib/bootstrap/css/bootstrap-responsive.css',
 				'assets/lib/fontawesome/css/font-awesome.css',
 				'assets/lib/jquery/jquery-file-upload/css/jquery.fileupload-ui.css',
 				// 'assets/lib/jquery-ui/css/jquery-ui-1.10.2.custom.css',

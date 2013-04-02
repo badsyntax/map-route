@@ -4,10 +4,10 @@ class Controller_Api_Views extends Controller_REST
 {
 	public function action_index()
 	{
-    if (Kohana::$environment === Kohana::DEVELOPMENT)
-    {
-      Cache::instance('apc')->delete_all();
-    }
+		if (Kohana::$environment === Kohana::DEVELOPMENT)
+		{
+			Cache::instance('apc')->delete_all();
+		}
 
 		if (!($view = Cache::instance('apc')->get('api_views', FALSE)))
 		{

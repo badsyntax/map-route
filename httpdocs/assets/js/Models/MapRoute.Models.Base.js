@@ -8,6 +8,7 @@ MapRoute.Models.Base = function(data) {
 };
 
 MapRoute.Models.Base.prototype = {
+  constructor: MapRoute.Models.Base,
   values: function(data) {
 
     // Merge in default data
@@ -30,36 +31,33 @@ MapRoute.Models.Base.prototype = {
   setComputed: $.noop,
   save: function(success, error) {
     if (this.id && this.id()) {
-      this.update(success, error);
+      return this.update(success, error);
     } else {
-      this.create(success, error);
+      return this.create(success, error);
     }
   },
   find: function(success, error) {
-    this.api.find({
-      data: this.where(),
-      mapResponse: {
-        model: this,
-        mappingOptions: {
-          'routes': {
-            create: function(options) {
-                return new MapRoute.Models.Route(options.data);
-            }
-          }
-        }
-      }
+    return this.api.find({
+      data: this.where()
+    })
+    .done(success)
+    .fail(error);
+  },
+  findAll: function(success, error) {
+    return this.api.findAll({
+      data: this.where()
     })
     .done(success)
     .fail(error);
   },
   create: function(success, error) {
-    this._create(success, error);
+    return this._create(success, error);
   },
   update: function(success, error) {
-    this._update(success, error);
+    return this._update(success, error);
   },
   remove: function(success, error) {
-    this._remove(success, error);
+    return this._remove(success, error);
   },
   where: function(key, value) {
     if (!key && !value) {
@@ -69,7 +67,7 @@ MapRoute.Models.Base.prototype = {
     return this;
   },
   _create: function(success, error) {
-    this.api.create({
+    return this.api.create({
       data: ko.mapping.toJSON(this),
       mapResponse: {
         model: this
@@ -80,14 +78,14 @@ MapRoute.Models.Base.prototype = {
     .fail(error);
   },
   _update: function(success, error) {
-    this.api.update({
+    return this.api.update({
       data: ko.mapping.toJSON(this)
     })
     .done(success)
     .fail(error);
   },
   _remove: function(success, error) {
-    this.api.remove({
+    return this.api.remove({
       data: ko.mapping.toJSON(this)
     })
     .done(success)

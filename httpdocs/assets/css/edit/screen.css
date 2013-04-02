@@ -327,6 +327,28 @@ body {
   margin: auto;
 }
 
+.modal.fade {
+  -webkit-transition: opacity 0.2s linear, none;
+  -moz-transition: opacity 0.2s linear, none;
+  -o-transition: opacity 0.2s linear, none;
+  transition: opacity 0.2s linear, none;
+  display: none;
+  top: 10%;
+}
+.modal.fade.in {
+  -webkit-transition: opacity 0.2s linear, none;
+  -moz-transition: opacity 0.2s linear, none;
+  -o-transition: opacity 0.2s linear, none;
+  transition: opacity 0.2s linear, none;
+}
+
+.modal-backdrop.fade.in {
+  -webkit-transition: opacity 0.1s linear, none;
+  -moz-transition: opacity 0.1s linear, none;
+  -o-transition: opacity 0.1s linear, none;
+  transition: opacity 0.1s linear, none;
+}
+
 /* Scrollbar
  *****************/
 .scroller {

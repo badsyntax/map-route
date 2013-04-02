@@ -30,7 +30,7 @@ MapRoute.Models.Photo.inherit(MapRoute.Models.Base, {
     return this.s3Url + this.filename();
   },
   findAll: function(success, error) {
-    this.api.findAll({
+    return this.api.findAll({
       data: this.where(),
       success: success.bind(this),
       error: error,

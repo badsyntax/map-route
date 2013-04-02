@@ -28,15 +28,17 @@ MapRoute.UI.Sidebar.prototype = {
       e.target
       .href
       .replace(/.*(?=#[^\s]*$)/, '')
-    ).tinyscrollbar({size: 'auto' });
+    );
 
-    this.scrollBar = this.scrollBarElem.data('tsb');
+    console.log(this.scrollBarElem[0]);
 
-    this.scrollBarElem.find('ul').sortable({
-      containment: 'parent',
-      distance: 5,
-      // placeholder: 'ui-state-highlight'
-    });
+    // this.scrollBar = this.scrollBarElem.data('tsb');
+
+    // this.scrollBarElem.find('ul').sortable({
+    //   containment: 'parent',
+    //   distance: 5,
+    //   // placeholder: 'ui-state-highlight'
+    // });
   },
   bindEvents: function() {
     $(window).on('resize', this.onWindowResize.bind(this));

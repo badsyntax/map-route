@@ -10,6 +10,7 @@ MapRoute.Controllers.Map = function(route_id) {
 };
 
 MapRoute.Controllers.Map.prototype = {
+  constructor: MapRoute.Controllers.Map,
   init: function(map) {
     $.when(
       this.Map.load(),
@@ -36,17 +37,11 @@ MapRoute.Controllers.Map.prototype = {
     this.bindEvents();
   },
   loadTemplates: function() {
-
-    var deferred = $.Deferred();
-
-    MapRoute.API.Views.find()
+    return MapRoute.API.Views.find()
     .then(function(data) {
       $('body').append(data);
       this.initContainer();
-      deferred.resolve();
     }.bind(this));
-
-    return deferred.promise();
   },
   initContainer: function() {
     var container = $('#container-template');
