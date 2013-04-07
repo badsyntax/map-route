@@ -3,25 +3,31 @@
  * Author: Richard Willis (willis.rh@gmail.com)
  */
 
-var MapRoute = {};
+(function(exports) {
 
-/* Namespaces */
-MapRoute.Controllers = {};
-MapRoute.Models = {};
-MapRoute.ViewModels = {},
-MapRoute.UI = {},
-MapRoute.Config = {},
-MapRoute.API = {}
+  var MapRoute = {};
 
-/* App init */
-MapRoute.init = function(config) {
+  /* Namespaces */
+  MapRoute.Controllers = {};
+  MapRoute.Models = {};
+  MapRoute.ViewModels = {},
+  MapRoute.UI = {},
+  MapRoute.Config = {},
+  MapRoute.API = {}
 
-  /* Set config */
-  MapRoute.Config.set(config);
+  /* App init */
+  MapRoute.init = function(config) {
 
-  /* Set globalization culture */
-  Globalize.culture(config.culture || 'en-GB');
+    /* Set config */
+    MapRoute.Config.set(config);
 
-  /* Route to controllers */
-  new MapRoute.Router();
-};
+    /* Set globalization culture */
+    Globalize.culture(config.culture || 'en-GB');
+
+    /* Route to controllers */
+    new MapRoute.Router();
+  };
+
+  exports.MapRoute = MapRoute;
+
+}(this));

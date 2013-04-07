@@ -4,7 +4,7 @@ MapRoute.Map = (function() {
 
   return {
     instance: map,
-    create: function(callback) {
+    create: function(route_id) {
 
       var options = {
         center: new google.maps.LatLng(10.089036, 10.992188),
@@ -15,7 +15,7 @@ MapRoute.Map = (function() {
 
       this.bindEvents();
 
-      return this.Route.init();
+      return this.Route.init(route_id);
     },
     load: function() {
 

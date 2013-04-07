@@ -1,9 +1,11 @@
 /* Map controller
  *************************/
-MapRoute.Controllers.Map = function(route_id) {
+MapRoute.Controllers.Map = function(route_id, action) {
+
+  MapRoute.Config.set('action', action);
 
   this.route_id = route_id;
-  this.action   = MapRoute.Config.get('action'); // edit || view
+  this.action   = action; // edit || view
   this.Map      = MapRoute.Map;
 
   this.init();
@@ -16,7 +18,7 @@ MapRoute.Controllers.Map.prototype = {
       this.Map.load(),
       this.loadTemplates()
     )
-    .then(this.Map.create.bind(this.Map))
+    .then(this.Map.create.bind(this.Map, this.route_id))
     .then(this.initUI.bind(this));
   },
   initUI: function() {

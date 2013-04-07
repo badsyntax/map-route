@@ -34,7 +34,7 @@
 </div>
 
 <div class="row">
-  <ul class="nav nav-tabs" id="sidebar-tabs">
+  <ul class="nav nav-tabs" id="sidebar-tabs" data-bind="uiTabs: true">
     <li class="active"><a href="#sidebar-route">Route</a></li>
     <li><a href="#sidebar-pins">Pins</a></li>
     <li><a href="#sidebar-settings">Settings</a></li>
@@ -44,7 +44,7 @@
 <div class="row">
 
   <div class="tab-content">
-    <div class="tab-pane active scroller" id="sidebar-route" data-bind="scroller: true">
+    <div class="tab-pane active" id="sidebar-route" data-bind="scroller: true">
       <div class="overview">
         <!-- ko if: route().length -->
         <ul class="markers nav nav-pills nav-stacked" data-bind="
@@ -75,7 +75,7 @@
         </p>
       </div>
     </div>
-    <div class="tab-pane scroller" id="sidebar-pins" data-bind="scroller: true">
+    <div class="tab-pane" id="sidebar-pins" data-bind="scroller: true">
       <div class="overview">
         <!-- ko if: markers().length -->
         <ul class="markers nav nav-pills nav-stacked" data-bind="foreach: markers, click: onRoutePointClick">
@@ -107,7 +107,7 @@
         <!-- /ko -->
       </div>
     </div>
-    <div class="tab-pane scroller" id="sidebar-settings" data-bind="scroller: true">
+    <div class="tab-pane" id="sidebar-settings" data-bind="scroller: true">
       <div class="overview">
         <form
           id="route-settings-form"

@@ -1,13 +1,21 @@
-/* Sign In controller
+/* Home controller
  *************************/
-MapRoute.Controllers.SignIn = function() {
+MapRoute.Controllers.Home = function() {
+
+  // If a default route is set in the config then redirect to edit the route
+  var defaultRoute = MapRoute.Config.get('default_route');
+  if (defaultRoute) {
+    return MapRoute.Router.push('route', defaultRoute, 'edit');
+  }
+
   this.signinButtons = $('#signin-buttons');
   this.signinButton = $('#btn-signin');
   this.overlay = $('#auth-overlay');
   this.bindEvents();
 };
 
-MapRoute.Controllers.SignIn.prototype = {
+MapRoute.Controllers.Home.prototype = {
+  constructor: MapRoute.Controllers.Home,
   bindEvents: function() {
     this.signinButton.on('click', this.onSigninButtonClick.bind(this));
     this.signinButtons.on('click', 'a', this.onSigninButtonsClick.bind(this));

@@ -17,7 +17,8 @@ ko.bindingHandlers.fadeIn = {
     $(element).hide();
   },
   update: function(element, valueAccessor) {
-    $(element).fadeIn(valueAccessor());
+    var config = valueAccessor();
+    $(element).fadeIn(config.speed, config.callback);
   }
 };
 
@@ -46,9 +47,56 @@ ko.bindingHandlers.fadeToggle = {
 ko.bindingHandlers.scroller = {
   init: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
     $(element)
+    .addClass('scroller')
     .wrapInner('<div class="viewport"></div>')
-    .prepend('<div class="scrollbar"><div class="track"><div class="thumb"></div></div></div>');
+    .prepend('<div class="scrollbar"><div class="track"><div class="thumb"></div></div></div>')
+    .tinyscrollbar();
   }
+};
+
+ko.bindingHandlers.uiTabs = {
+    init: function(element, valueAccessor, allBindingsAccessor, viewModel) {
+
+      var scrollBar;
+
+      $(window).on('resize.tabs', onWindowResize);
+
+      $(element).find('a')
+      .on('click', onTabClick)
+      .eq(0)
+      .trigger('click');
+
+       MapRoute.GlobalEvents.on([
+        'removemarker',
+        'addmarker',
+        'removepoint',
+        'addpoint'
+      ].join(' '), onWindowResize);
+
+      function onWindowResize() {
+        if (scrollBar) {
+          scrollBar.update('relative');
+        }
+      }
+
+      function onTabClick(e) {
+
+        e.preventDefault();
+
+        alert('test');
+
+        $(e.target).tab('show');
+
+        var scrollBarElem = $(
+          e.target
+          .href
+          .replace(/.*(?=#[^\s]*$)/, '')
+        );
+
+        scrollBar = scrollBarElem.data('tsb');
+        onWindowResize();
+      }
+    }
 };
 
 ko.bindingHandlers.saveModel = (function(model, form) {

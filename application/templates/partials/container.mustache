@@ -2,14 +2,14 @@
   <div
     class="navbar navbar-inner"
     id="navbar"
-    data-bind="template: { name: 'navbar-template' }, fadeIn: 50">
+    data-bind="template: { name: 'navbar-template' }, fadeIn: { speed: 50 }">
   </div>
   <div id="map-canvas" class="map">
   </div>
   <aside
     class="sidebar"
     id="sidebar"
-    data-bind="template: { name: 'sidebar-template' }, fadeIn: 100">
+    data-bind="template: { name: 'sidebar-template' }, fadeIn: { speed: 100, callback: function() { $(this).css('display', 'table') } }">
   </aside>
 </div>
 <div

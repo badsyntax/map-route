@@ -15,16 +15,15 @@ MapRoute.Map.Route = (function() {
     model:   model,
     points:  points,
 
-    init: function(callback) {
+    init: function(route_id) {
 
       var deferred = $.Deferred();
-      var route_id = MapRoute.Config.get('default_route');
 
       this.reset();
 
       this.load(route_id)
       .then(function() {
-        this.loadMarkers(route_id, callback).then(deferred.resolve);
+        this.loadMarkers(route_id).then(deferred.resolve);
       }.bind(this));
 
       return deferred.promise();
@@ -51,7 +50,12 @@ MapRoute.Map.Route = (function() {
     },
     load: function(route_id, callback) {
 
-      return new MapRoute.Models.Route().where('id', route_id).findAll().success(function(data) {
+      var deferred = $.Deferred();
+
+      new MapRoute.Models.Route()
+      .where('id', route_id)
+      .findAll()
+      .then(function(data) {
 
         model(new MapRoute.Models.Route(data.routes[0] || {
           id: 0,
@@ -59,15 +63,18 @@ MapRoute.Map.Route = (function() {
         }));
 
         if (this.loaded()) {
-          return;
+          return deferred.resolve();
         }
 
         if (route_id === 'new') {
           this.create('Default route');
         } else {
-          throw new Error('Route not found');
+          console.log('Route not found');
+          deferred.reject();
         }
       }.bind(this));
+
+      return deferred.promise();
     },
     loaded: function() {
       return (model().id && model().id());
@@ -80,7 +87,7 @@ MapRoute.Map.Route = (function() {
     },
     loadMarkers: function(route_id) {
       var m = new MapRoute.Models.Marker().where('route_id', route_id);
-      return m.findAll().success(function() {
+      return m.findAll().then(function() {
         markersData(m.markers());
       });
     },

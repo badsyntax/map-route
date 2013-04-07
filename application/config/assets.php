@@ -40,7 +40,7 @@ $js = array(
 	'assets/js/Map/Actions/MapRoute.Map.Actions.View.js',
 	'assets/js/Map/Actions/MapRoute.Map.Actions.ZoomOut.js',
 	'assets/js/Controllers/MapRoute.Controllers.Map.js',
-	'assets/js/Controllers/MapRoute.Controllers.SignIn.js',
+	'assets/js/Controllers/MapRoute.Controllers.Home.js',
 	'assets/js/UI/MapRoute.UI.Device.js',
 	'assets/js/UI/MapRoute.UI.Modal.js',
 	'assets/js/UI/Modal/MapRoute.UI.Modal.EditMarker.js',
