@@ -1,5 +1,5 @@
 <VirtualHost *:80>
-	
+
 	DocumentRoot	/home/richard/Projects/staging.maproute.cc/httpdocs
 	ServerName	staging.maproute.cc
 
@@ -19,16 +19,16 @@
   AddType application/json               json
 
   # Audio
-  AddType audio/mp4                      m4a f4a f4b 
-  AddType audio/ogg                      oga ogg 
+  AddType audio/mp4                      m4a f4a f4b
+  AddType audio/ogg                      oga ogg
 
   # Video
-  AddType video/mp4                      mp4 m4v f4v f4p 
-  AddType video/ogg                      ogv 
+  AddType video/mp4                      mp4 m4v f4v f4p
+  AddType video/ogg                      ogv
   AddType video/webm                     webm
-  AddType video/x-flv                    flv 
+  AddType video/x-flv                    flv
 
-  # SVG 
+  # SVG
   #   Required for svg webfonts on iPad
   #   twitter.com/FontSquirrel/status/14855840545
   AddType     image/svg+xml              svg svgz
@@ -100,8 +100,8 @@
     ExpiresByType image/svg+xml             "access plus 1 year"
 
     # CSS and JavaScript
-    ExpiresByType application/javascript    "access plus 10 years"
-    ExpiresByType text/css                  "access plus 10 years"
+    ExpiresByType application/javascript    "access plus 0 seconds"
+    ExpiresByType text/css                  "access plus 0 seconds"
 
     ExpiresByType image/x-icon            "access plus 1 year"
 

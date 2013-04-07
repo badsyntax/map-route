@@ -29,14 +29,19 @@ class View_Layout
 		$script_config = 'assets.'.$this->environment.'.'.$group.'.javascript';
 		$scripts = Kohana::$config->load($script_config);
 
-		if (Kohana::$environment === Kohana::PRODUCTION)
-		{
-			return HTML::script(Compress::instance('javascripts')->scripts($scripts));
-		}
-		else
-		{
-			return implode("\n", array_map('HTML::script', $scripts));
-		}
+		// $scripts = array
+		// die(print_r($scripts));
+
+		// if (Kohana::$environment === Kohana::PRODUCTION)
+		// {
+		// 	$scripts = HTML::script(Compress::instance('javascripts')->scripts($scripts));
+		// }
+		// else
+		// {
+		// 	$scripts = implode("\n", array_map('HTML::script', $scripts));
+		// }
+
+		return $scripts;
 	}
 
 	public function stylesheets()

@@ -15,19 +15,16 @@ MapRoute.Map.Route = (function() {
     model:   model,
     points:  points,
 
-    init: function(callback) {
+    init: function() {
 
-      var deferred = $.Deferred();
       var route_id = MapRoute.Config.get('default_route');
 
       this.reset();
 
-      this.load(route_id)
-      .then(function() {
-        this.loadMarkers(route_id, callback).then(deferred.resolve);
-      }.bind(this));
-
-      return deferred.promise();
+      return $.when(
+        this.load(route_id),
+        this.loadMarkers(route_id)
+      );
     },
     reset: function() {
       this.removeMarkers();
@@ -49,7 +46,7 @@ MapRoute.Map.Route = (function() {
       poly().setMap(MapRoute.Map.instance());
       path(poly().getPath());
     },
-    load: function(route_id, callback) {
+    load: function(route_id) {
 
       return new MapRoute.Models.Route().where('id', route_id).findAll().success(function(data) {
 

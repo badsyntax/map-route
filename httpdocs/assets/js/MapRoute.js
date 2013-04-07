@@ -1,27 +1,22 @@
-/**
- * MapRoute
- * Author: Richard Willis (willis.rh@gmail.com)
- */
+define([
+  'Config',
+  'Router',
+  'Globalize'
+], function (Config, Router, Globalize) {
 
-var MapRoute = {};
+  var MapRoute = {
+    init: function() {
 
-/* Namespaces */
-MapRoute.Controllers = {};
-MapRoute.Models = {};
-MapRoute.ViewModels = {},
-MapRoute.UI = {},
-MapRoute.Config = {},
-MapRoute.API = {}
+      /* Set config */
+      Config.set(window.appConfig);
 
-/* App init */
-MapRoute.init = function(config) {
+      /* Set globalization culture */
+      Globalize.culture(Config.get('culture') || 'en-GB');
 
-  /* Set config */
-  MapRoute.Config.set(config);
+      /* Route to controllers */
+      new Router();
+    }
+  };
 
-  /* Set globalization culture */
-  Globalize.culture(config.culture || 'en-GB');
-
-  /* Route to controllers */
-  new MapRoute.Router();
-};
+  return MapRoute;
+});

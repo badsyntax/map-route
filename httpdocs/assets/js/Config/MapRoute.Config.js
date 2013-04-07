@@ -1,6 +1,6 @@
 /* Config
  *************************/
-MapRoute.Config = (function() {
+define(['jquery'], function($) {
 
   var data = {};
 
@@ -52,4 +52,4 @@ MapRoute.Config = (function() {
     }
   };
   return Config;
-}());
+});

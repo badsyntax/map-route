@@ -6,8 +6,8 @@
 {{{scripts}}}
 {{/coming_soon}}
 {{^coming_soon}}
-{{{scripts}}}
+<script data-main="{{scripts.bootstrap}}" src="{{scripts.requirejs}}"></script>
 <script>
-MapRoute.init({{{app_config}}});
+(function(){this.appConfig={{{app_config}}}}());
 </script>
 {{/coming_soon}}
