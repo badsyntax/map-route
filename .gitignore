@@ -2,3 +2,6 @@ application/cache/*
 application/logs/*
 .sass-cache
 httpdocs/assets/cache
+vendor
+.vagrant
+.composer
