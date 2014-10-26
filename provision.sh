@@ -28,20 +28,19 @@ debconf-set-selections <<< 'dbconfig-common dbconfig-common/password-confirm pas
 
 echo "Installing packages..."
 apt-get update
-apt-get install software-properties-common
-add-apt-repository -y ppa:ondrej/php5-oldstable
-apt-get update
 apt-get upgrade -y
 
-apt-get install -y git ruby-dev rubygems apache2 mysql-server \
+apt-get install -y git ruby-dev apache2 mysql-server \
   php5 php5 php5-mysql php5-curl php5-xdebug php-apc phpmyadmin
 
 gem install --no-ri --no-rdoc sass compass
 
 echo "Setting up Apache..."
 a2enmod rewrite
-rm /etc/apache2/sites-enabled/000-default
-ln -s /var/www/apache/maproute.cc.local /etc/apache2/sites-enabled/
+ln -s /var/www/apache/maproute.cc.local.conf /etc/apache2/sites-enabled/
+ln -s /var/www/apache/staging.maproute.cc.local.conf /etc/apache2/sites-enabled/
+sed -i 's/APACHE_RUN_USER=www-data/APACHE_RUN_USER=vagrant/' /etc/apache2/envvars
+sed -i 's/APACHE_RUN_GROUP=www-data/APACHE_RUN_GROUP=vagrant/' /etc/apache2/envvars
 service apache2 restart
 
 echo "Setting up PHP..."
@@ -57,6 +56,6 @@ php composer.phar install
 
 echo "Setting up application database..."
 echo "create database maproute" | mysql -u root -pvagrant
-cd /var/www/httpdocs && ./minion migrations:run
+cd /var/www/httpdocs && php ./minion migrations:run
 
 echo "All done!"
